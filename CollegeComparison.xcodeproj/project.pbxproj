@@ -53,6 +53,7 @@
 		535EA92918297638003D289A /* CollegeComparisonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollegeComparisonTests-Info.plist"; sourceTree = "<group>"; };
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
+		536C8615182F4E70005EA908 /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				535EA90A18297637003D289A /* CollegeComparison-Info.plist */,
+				536C8615182F4E70005EA908 /* database.db */,
 				535EA90B18297637003D289A /* InfoPlist.strings */,
 				535EA90E18297637003D289A /* main.m */,
 				535EA91018297637003D289A /* CollegeComparison-Prefix.pch */,
@@ -461,6 +463,7 @@
 				535EA93318297638003D289A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		535EA93418297638003D289A /* Build configuration list for PBXNativeTarget "CollegeComparisonTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +472,7 @@
 				535EA93618297638003D289A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
