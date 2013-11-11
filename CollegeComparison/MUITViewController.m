@@ -7,6 +7,7 @@
 //
 
 #import "MUITViewController.h"
+#import "MUITCollegeDb.h"
 
 @interface MUITViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    MUITCollegeDb *collegeManager = [MUITCollegeDb new];
+    [collegeManager findSchool:@"Mizzou"];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

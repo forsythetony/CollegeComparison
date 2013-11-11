@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53589C99182FE74C006F378D /* MUITCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = 53589C98182FE74C006F378D /* MUITCollege.m */; };
+		53290F431830A1F800781050 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53290F421830A1F800781050 /* libsqlite3.dylib */; };
+		53290F491830A9D000781050 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 53290F481830A9D000781050 /* schools.db */; };
 		53589C9C182FE936006F378D /* MUITCollegeDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 53589C9B182FE936006F378D /* MUITCollegeDb.m */; };
 		535EA90318297637003D289A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90218297637003D289A /* Foundation.framework */; };
 		535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90418297637003D289A /* CoreGraphics.framework */; };
@@ -36,8 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		53589C97182FE74C006F378D /* MUITCollege.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITCollege.h; sourceTree = "<group>"; };
-		53589C98182FE74C006F378D /* MUITCollege.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUITCollege.m; sourceTree = "<group>"; };
+		53290F421830A1F800781050 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		53290F481830A9D000781050 /* schools.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = schools.db; sourceTree = "<group>"; };
 		53589C9A182FE936006F378D /* MUITCollegeDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITCollegeDb.h; sourceTree = "<group>"; };
 		53589C9B182FE936006F378D /* MUITCollegeDb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUITCollegeDb.m; sourceTree = "<group>"; };
 		535EA8FF18297637003D289A /* CollegeComparison.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeComparison.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,7 +60,6 @@
 		535EA92918297638003D289A /* CollegeComparisonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollegeComparisonTests-Info.plist"; sourceTree = "<group>"; };
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
-		536C8615182F4E70005EA908 /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53290F431830A1F800781050 /* libsqlite3.dylib in Frameworks */,
 				535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */,
 				535EA90718297637003D289A /* UIKit.framework in Frameworks */,
 				535EA90318297637003D289A /* Foundation.framework in Frameworks */,
@@ -89,8 +90,6 @@
 		53589C96182FE735006F378D /* school */ = {
 			isa = PBXGroup;
 			children = (
-				53589C97182FE74C006F378D /* MUITCollege.h */,
-				53589C98182FE74C006F378D /* MUITCollege.m */,
 				53589C9A182FE936006F378D /* MUITCollegeDb.h */,
 				53589C9B182FE936006F378D /* MUITCollegeDb.m */,
 			);
@@ -119,6 +118,7 @@
 		535EA90118297637003D289A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53290F421830A1F800781050 /* libsqlite3.dylib */,
 				535EA90218297637003D289A /* Foundation.framework */,
 				535EA90418297637003D289A /* CoreGraphics.framework */,
 				535EA90618297637003D289A /* UIKit.framework */,
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				535EA90A18297637003D289A /* CollegeComparison-Info.plist */,
-				536C8615182F4E70005EA908 /* database.db */,
+				53290F481830A9D000781050 /* schools.db */,
 				535EA90B18297637003D289A /* InfoPlist.strings */,
 				535EA90E18297637003D289A /* main.m */,
 				535EA91018297637003D289A /* CollegeComparison-Prefix.pch */,
@@ -250,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
+				53290F491830A9D000781050 /* schools.db in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
 				535EA91618297637003D289A /* Main.storyboard in Resources */,
 			);
@@ -272,7 +273,6 @@
 			files = (
 				535EA90F18297637003D289A /* main.m in Sources */,
 				535EA91318297637003D289A /* MUITAppDelegate.m in Sources */,
-				53589C99182FE74C006F378D /* MUITCollege.m in Sources */,
 				535EA91918297637003D289A /* MUITViewController.m in Sources */,
 				53589C9C182FE936006F378D /* MUITCollegeDb.m in Sources */,
 			);
