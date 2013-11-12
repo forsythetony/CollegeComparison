@@ -13,18 +13,22 @@ static sqlite3_stmt *statement = nil;
 
 @implementation MUITCollegeDb
 -(NSArray*) findSchool:(NSString *)keyword {
-    BOOL fileExist;
-    NSArray * dirPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir;
+    NSArray *dirPaths;
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = dirPaths[0];
+    // Build the path to the database file
+    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"schools.db"]];
     
-    NSString * documentPath = [[dirPath objectAtIndex:0] stringByAppendingPathComponent:@"database.db"];
-    
-    fileExist = [[NSFileManager alloc] fileExistsAtPath:documentPath];
-    
-    if(fileExist){
-    
-    if (sqlite3_open([documentPath UTF8String], &database) == SQLITE_OK)
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    if ([filemgr fileExistsAtPath: databasePath ] == NO)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"select * from schools where INSTITUTION=\"%@\"",keyword];
+        const char *dbpath = [databasePath UTF8String];
+        if (sqlite3_open(dbpath, &database) == SQLITE_OK)
+        {
+        NSString *querySQL = [NSString stringWithFormat: @"select * from schools where institution like '%%%@'",keyword];
         const char *query_stmt = [querySQL UTF8String];
         NSMutableArray *resultArray = [[NSMutableArray alloc]init];
         if (sqlite3_prepare_v2(database,
@@ -35,10 +39,7 @@ static sqlite3_stmt *statement = nil;
                 NSString *name = [[NSString alloc] initWithUTF8String:
                                   (const char *) sqlite3_column_text(statement, 0)];
                 [resultArray addObject:name];
-                NSString *fee2 = [[NSString alloc] initWithUTF8String:
-                                        (const char *) sqlite3_column_text(statement, 1)];
-                NSLog(fee2);
-                [resultArray addObject:fee2];
+                
                 NSString *year = [[NSString alloc]initWithUTF8String:
                                   (const char *) sqlite3_column_text(statement, 2)];
                 [resultArray addObject:year];
