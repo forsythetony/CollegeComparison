@@ -24,8 +24,8 @@
                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
                                                        [UIFont fontWithName:@"Avenir-Medium" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
-
-    
+  
+  
     
     
     return YES;
