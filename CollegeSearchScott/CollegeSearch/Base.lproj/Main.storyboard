@@ -13,15 +13,15 @@
                         <viewControllerLayoutGuide type="bottom" id="asd-9O-3qK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bL7-dD-Ymb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search colleges" id="eiY-TP-MGV">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Seach colleges" id="eiY-TP-MGV">
                                     <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -80,7 +80,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wA1-CZ-UBV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="37O-F2-O1r">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4Q-km-WoN">
@@ -93,18 +93,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="v4Q-km-WoN" secondAttribute="centerX" id="7dN-dd-prJ"/>
-                            <constraint firstItem="v4Q-km-WoN" firstAttribute="top" secondItem="amh-ge-Dsu" secondAttribute="bottom" constant="20" id="NZe-Wg-z0N"/>
+                            <constraint firstItem="v4Q-km-WoN" firstAttribute="centerX" secondItem="37O-F2-O1r" secondAttribute="centerX" id="K5h-TA-NuE"/>
+                            <constraint firstItem="v4Q-km-WoN" firstAttribute="top" secondItem="amh-ge-Dsu" secondAttribute="bottom" constant="20" id="eRN-6c-biD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="College Details" id="CpS-cq-Prd"/>
+                    <navigationItem key="navigationItem" title="College Details" id="CpS-cq-Prd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="K54-v5-Nwp">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collegeLabel" destination="v4Q-km-WoN" id="HCQ-5C-syC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXy-zc-65N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="-255"/>
+            <point key="canvasLocation" x="2046" y="-255"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="b05-PV-tyx">
@@ -127,12 +131,12 @@
             </objects>
             <point key="canvasLocation" x="1139" y="-255"/>
         </scene>
-        <!--Table View Controller - Saved Schools-->
+        <!--College Saved View Controller - Saved Schools-->
         <scene sceneID="ffX-RB-RoJ">
             <objects>
-                <tableViewController id="v5H-zl-o18" sceneMemberID="viewController">
+                <tableViewController id="v5H-zl-o18" customClass="CollegeSavedViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b8L-gj-2Jv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -150,7 +154,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPu-N9-m0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="412"/>
+            <point key="canvasLocation" x="1596" y="412"/>
         </scene>
         <!--Navigation Controller - Saved-->
         <scene sceneID="Byp-Pk-jXv">
@@ -168,7 +172,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orr-df-ccM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="412"/>
+            <point key="canvasLocation" x="1139" y="412"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="au0-Fa-ZvP">
@@ -195,10 +199,10 @@
         <image name="Home" width="25" height="25"/>
         <image name="Star" width="25" height="25"/>
     </resources>
-    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

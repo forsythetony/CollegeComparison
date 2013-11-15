@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491619D61835587C0062D568 /* CollegeSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491619D51835587C0062D568 /* CollegeSavedViewController.m */; };
 		49A868F1182978FC006ADD4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A868F0182978FC006ADD4D /* Foundation.framework */; };
 		49A868F3182978FC006ADD4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A868F2182978FC006ADD4D /* CoreGraphics.framework */; };
 		49A868F5182978FC006ADD4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A868F4182978FC006ADD4D /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		491619D41835587C0062D568 /* CollegeSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeSavedViewController.h; sourceTree = "<group>"; };
+		491619D51835587C0062D568 /* CollegeSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeSavedViewController.m; sourceTree = "<group>"; };
 		49A868ED182978FC006ADD4D /* CollegeSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A868F0182978FC006ADD4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49A868F2182978FC006ADD4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,10 +160,12 @@
 		49A86928182C2555006ADD4D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				49A86905182978FC006ADD4D /* CollegeSearchViewController.h */,
-				49A86906182978FC006ADD4D /* CollegeSearchViewController.m */,
 				49A86925182C253C006ADD4D /* CollegeDetailViewController.h */,
 				49A86926182C253C006ADD4D /* CollegeDetailViewController.m */,
+				491619D41835587C0062D568 /* CollegeSavedViewController.h */,
+				491619D51835587C0062D568 /* CollegeSavedViewController.m */,
+				49A86905182978FC006ADD4D /* CollegeSearchViewController.h */,
+				49A86906182978FC006ADD4D /* CollegeSearchViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				49A86927182C253C006ADD4D /* CollegeDetailViewController.m in Sources */,
 				49A86901182978FC006ADD4D /* CollegeSearchAppDelegate.m in Sources */,
 				49A86907182978FC006ADD4D /* CollegeSearchViewController.m in Sources */,
+				491619D61835587C0062D568 /* CollegeSavedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

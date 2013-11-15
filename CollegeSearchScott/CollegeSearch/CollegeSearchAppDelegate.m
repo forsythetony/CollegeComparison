@@ -17,13 +17,15 @@
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xFF0000)];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-                                                          [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:21.0], NSFontAttributeName, nil]];
+                                                          [UIFont fontWithName:@"Avenir-Book" size:24.0], NSFontAttributeName, nil]];
     
+        
     [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0xFF0000)];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                       [UIFont fontWithName:@"Avenir-Medium" size:12.0], NSFontAttributeName,
+                                                       [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
+    
   
   
     
