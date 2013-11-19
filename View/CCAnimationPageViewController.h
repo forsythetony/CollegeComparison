@@ -1,0 +1,13 @@
+//
+//  CCAnimationPageViewController.h
+//  CollegeComparison
+//
+//  Created by Anthony Forsythe on 11/18/13.
+//  Copyright (c) 2013 MUIT. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface CCAnimationPageViewController : UIViewController
+
+@end

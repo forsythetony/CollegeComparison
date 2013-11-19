@@ -24,6 +24,7 @@
 		535EA92418297638003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
+		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		535EA92918297638003D289A /* CollegeComparisonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollegeComparisonTests-Info.plist"; sourceTree = "<group>"; };
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
+		BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = ../View/CCAnimationPageViewController.h; sourceTree = "<group>"; };
+		BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = ../View/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +176,8 @@
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
+				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
 				535EA91418297637003D289A /* Main.storyboard */,
 				535EA91718297637003D289A /* CCViewController.h */,
 				535EA91818297637003D289A /* CCViewController.m */,
@@ -282,6 +287,7 @@
 				535EA90F18297637003D289A /* main.m in Sources */,
 				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
 				535EA91918297637003D289A /* CCViewController.m in Sources */,
+				BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */,
 				53589C9C182FE936006F378D /* MUITCollegeDb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
