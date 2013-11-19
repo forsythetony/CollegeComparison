@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MUITViewController : UIViewController
+@interface CCViewController : UIViewController
 
 @end

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MUITAppDelegate.h"
+#import "CCAppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MUITAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([CCAppDelegate class]));
     }
 }
