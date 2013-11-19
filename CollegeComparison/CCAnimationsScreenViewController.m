@@ -33,6 +33,11 @@
     [backgroundView setAlpha:0.05];
     [self.view addSubview:backgroundView];
     
+    
+    //[self.view addSubview:newView];
+   
+    
+    
 }
 -(void)animateAll {
     
@@ -82,7 +87,29 @@
           andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
                    andCollege:[schoolTwo objectForKey:@"Name"]];
     
+    CGRect newRect = CGRectMake(self.view.bounds.size.width / 2.0 - (40), 395.0, 80.0, 20.0);
+    CGRect oldRect = CGRectMake(0.0, 380.0, self.view.bounds.size.width, 50.0);
+    UIView* newView = [[UIView alloc] initWithFrame:oldRect];
+    [newView setBackgroundColor:[UIColor blackColor]];
+    [newView setAlpha:0.25];
+    [self.view addSubview:newView];
     
+    
+    
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    UIPageControl *newPageController = [[UIPageControl alloc] initWithFrame:newRect];
+    [newPageController setNumberOfPages:4];
+    [newPageController setTintColor:[UIColor blackColor]];
+    [newPageController setOpaque:YES];
+    [newPageController setCurrentPageIndicatorTintColor:coralColor];
+    [newPageController setCurrentPage:[self getIndex]];
+    [self.view addSubview:newPageController];
+    
+    [newPageController setAlpha:0.0];
+    
+    [UIView animateWithDuration:0.75 animations:^{
+        [newPageController setAlpha:1.0];
+    }];
     
     
       NSLog(@"I JUST WANT THE WORLD TO KNOW THAT I WAS HERE!");
@@ -118,7 +145,7 @@
     
     
     
-    point.y = 400.0f - height/2;
+    point.y = 380.0f - height/2;
     
     //NSLog(@"point.x: %f and point.y: %f",point.x, point.y);
     CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
@@ -128,7 +155,7 @@
     
     
     
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, 400.0, width, 20.0f)];
+    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, 380.0, width, 20.0f)];
     
     
     [collegeLabel setBackgroundColor:[UIColor clearColor]];
@@ -205,7 +232,7 @@
     
     CGPoint lineReferencePoint = self.view.center;
     
-    lineReferencePoint.y = 400.0;
+    lineReferencePoint.y = 380.0;
     
     //float lineSpacingModifier = [self.unitModifier floatValue];
     
@@ -330,5 +357,10 @@
         
         
     }];
+}
+
+-(int)getIndex
+{
+    return [[[self.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] intValue] ;
 }
 @end

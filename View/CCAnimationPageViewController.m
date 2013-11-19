@@ -37,6 +37,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     
+    
    // self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
     self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_arrow_new.png"];
     
@@ -75,6 +76,8 @@
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     [[viewControllers objectAtIndex:0] animateAll];
+    
+    
     
 }
 
@@ -344,4 +347,5 @@
                
     }
 }
+
 @end
