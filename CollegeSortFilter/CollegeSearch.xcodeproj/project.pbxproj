@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		491619D61835587C0062D568 /* CollegeSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491619D51835587C0062D568 /* CollegeSavedViewController.m */; };
 		492BB65318398E28004018B9 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492BB65218398E28004018B9 /* HomeViewController.m */; };
+		49912DE7183B6EFA00F24DC1 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49912DE6183B6EFA00F24DC1 /* FilterViewController.m */; };
 		49A868F1182978FC006ADD4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A868F0182978FC006ADD4D /* Foundation.framework */; };
 		49A868F3182978FC006ADD4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A868F2182978FC006ADD4D /* CoreGraphics.framework */; };
 		49A868F5182978FC006ADD4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A868F4182978FC006ADD4D /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 		491619D51835587C0062D568 /* CollegeSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeSavedViewController.m; sourceTree = "<group>"; };
 		492BB65118398E28004018B9 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		492BB65218398E28004018B9 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		49912DE5183B6EFA00F24DC1 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		49912DE6183B6EFA00F24DC1 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		49A868ED182978FC006ADD4D /* CollegeSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A868F0182978FC006ADD4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49A868F2182978FC006ADD4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -169,6 +172,8 @@
 				491619D51835587C0062D568 /* CollegeSavedViewController.m */,
 				49A86905182978FC006ADD4D /* CollegeSearchViewController.h */,
 				49A86906182978FC006ADD4D /* CollegeSearchViewController.m */,
+				49912DE5183B6EFA00F24DC1 /* FilterViewController.h */,
+				49912DE6183B6EFA00F24DC1 /* FilterViewController.m */,
 				492BB65118398E28004018B9 /* HomeViewController.h */,
 				492BB65218398E28004018B9 /* HomeViewController.m */,
 			);
@@ -277,6 +282,7 @@
 				49A86927182C253C006ADD4D /* CollegeDetailViewController.m in Sources */,
 				49A86901182978FC006ADD4D /* CollegeSearchAppDelegate.m in Sources */,
 				49A86907182978FC006ADD4D /* CollegeSearchViewController.m in Sources */,
+				49912DE7183B6EFA00F24DC1 /* FilterViewController.m in Sources */,
 				491619D61835587C0062D568 /* CollegeSavedViewController.m in Sources */,
 				492BB65318398E28004018B9 /* HomeViewController.m in Sources */,
 			);

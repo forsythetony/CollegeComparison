@@ -173,20 +173,23 @@
             </objects>
             <point key="canvasLocation" x="1596" y="412"/>
         </scene>
-        <!--Navigation Controller - Saved-->
+        <!--Navigation Controller-->
         <scene sceneID="Byp-Pk-jXv">
             <objects>
                 <navigationController definesPresentationContext="YES" id="5Qg-Ix-o0S" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <tabBarItem key="tabBarItem" title="Saved" image="Star" id="SYp-mf-Wo9">
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="SYp-mf-Wo9">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                     </tabBarItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ddn-wL-1Vx">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ukt-MV-h7l">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="v5H-zl-o18" kind="relationship" relationship="rootViewController" id="BNI-cq-Dnf"/>
                     </connections>
@@ -218,7 +221,6 @@
     </scenes>
     <resources>
         <image name="Home" width="25" height="25"/>
-        <image name="Star" width="25" height="25"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
