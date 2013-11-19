@@ -25,6 +25,8 @@
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
+		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
+		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,9 @@
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
 		BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = ../View/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = ../View/CCAnimationPageViewController.m; sourceTree = "<group>"; };
+		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
+		BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAnimationsScreenViewController.m; sourceTree = "<group>"; };
+		BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCAnimationsScreenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,13 +181,24 @@
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
-				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
+				BA852071183AF40D002CC626 /* Bar Animations */,
 				535EA91418297637003D289A /* Main.storyboard */,
 				535EA91718297637003D289A /* CCViewController.h */,
 				535EA91818297637003D289A /* CCViewController.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		BA852071183AF40D002CC626 /* Bar Animations */ = {
+			isa = PBXGroup;
+			children = (
+				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
+				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
+				BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */,
+				BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */,
+				BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */,
+			);
+			name = "Bar Animations";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +280,7 @@
 			files = (
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
 				53290F491830A9D000781050 /* schools.db in Resources */,
+				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
 				535EA91618297637003D289A /* Main.storyboard in Resources */,
 			);
@@ -287,6 +304,7 @@
 				535EA90F18297637003D289A /* main.m in Sources */,
 				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
 				535EA91918297637003D289A /* CCViewController.m in Sources */,
+				BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */,
 				BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */,
 				53589C9C182FE936006F378D /* MUITCollegeDb.m in Sources */,
 			);
