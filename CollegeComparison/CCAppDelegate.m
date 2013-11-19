@@ -14,14 +14,8 @@
 {
     // Override point for customization after application launch.
     
-    UIPageControl *pageControl = [UIPageControl appearance];
+    [self setPageControlAppearance];
     
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-   
-    UIColor *coralColor = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.050];
-    UIColor *barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
-    pageControl.currentPageIndicatorTintColor = barTwoColor;
-    pageControl.backgroundColor = coralColor;
     return YES;
 }
 							
@@ -50,6 +44,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)setPageControlAppearance
+{
+    UIPageControl *pageControl = [UIPageControl appearance];
+    
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    
+    UIColor *coralColor = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.050];
+    UIColor *barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
+    pageControl.currentPageIndicatorTintColor = barTwoColor;
+    pageControl.backgroundColor = coralColor;
+    
+
 }
 
 @end

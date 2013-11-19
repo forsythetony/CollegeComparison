@@ -164,7 +164,7 @@
     CGPoint screenCenter = self.view.center;
     float width = self.view.bounds.size.width;
     
-    CGRect mainLabelFrame = CGRectMake((screenCenter.x - (width/2)), 10.0, width, 40.0);
+    CGRect mainLabelFrame = CGRectMake((screenCenter.x - (width/2)), 0.0, width, 40.0);
     
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:mainLabelFrame];
     
@@ -241,7 +241,7 @@
         myPoint.x += 5.0;
     }
     
-    if (point.y > 40) {
+    if (point.y > 30) {
         [self setSmallLabelsWithString:string andtime:time andPoint:myPoint];
     }
 
@@ -299,7 +299,7 @@
 
 -(void)setSmallLabelsWithString:(NSString*) string andtime:(float)itsTime andPoint:(CGPoint)point
 {
-    UILabel* theLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, point.y, 100.0, 20.0)];
+    UILabel* theLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, point.y + -5.0, 100.0, 20.0)];
     
     [[self view] addSubview:theLabel];
     [theLabel setTextColor:[UIColor blackColor]];
