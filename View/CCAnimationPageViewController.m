@@ -30,11 +30,17 @@
     [self setAllArrays];
     [self createViewControllers];
     
+    //Navbar configuration
     UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = coralColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
-   
+    
+    
+   // self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_arrow_new.png"];
+    
+    
     
     
     //Setting our chapter title array
