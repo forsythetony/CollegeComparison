@@ -7,6 +7,7 @@
 //
 
 #import "CCAnimationsScreenViewController.h"
+#define BOTTOMREFERENCEPOINT 378.0
 
 @interface CCAnimationsScreenViewController ()
 
@@ -32,11 +33,6 @@
     [backgroundView setBackgroundColor:[UIColor blackColor]];
     [backgroundView setAlpha:0.05];
     [self.view addSubview:backgroundView];
-    
-    
-    //[self.view addSubview:newView];
-   
-    
     
 }
 -(void)animateAll {
@@ -87,16 +83,18 @@
           andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
                    andCollege:[schoolTwo objectForKey:@"Name"]];
     
-    CGRect newRect = CGRectMake(self.view.bounds.size.width / 2.0 - (40), 395.0, 80.0, 20.0);
-    CGRect oldRect = CGRectMake(0.0, 380.0, self.view.bounds.size.width, 50.0);
+    //CGRect newRect = CGRectMake(self.view.bounds.size.width / 2.0 - (40), 395.0, 80.0, 20.0);
+    CGRect oldRect = CGRectMake(0.0, BOTTOMREFERENCEPOINT, self.view.bounds.size.width, 50.0);
     UIView* newView = [[UIView alloc] initWithFrame:oldRect];
-    [newView setBackgroundColor:[UIColor blackColor]];
+    [newView setBackgroundColor:[UIColor clearColor]];
     [newView setAlpha:0.25];
     [self.view addSubview:newView];
     
     
     
-    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+   // UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    
+    /*
     UIPageControl *newPageController = [[UIPageControl alloc] initWithFrame:newRect];
     [newPageController setNumberOfPages:4];
     [newPageController setTintColor:[UIColor blackColor]];
@@ -110,7 +108,7 @@
     [UIView animateWithDuration:0.75 animations:^{
         [newPageController setAlpha:1.0];
     }];
-    
+    */
     
       NSLog(@"I JUST WANT THE WORLD TO KNOW THAT I WAS HERE!");
 }
@@ -124,39 +122,14 @@
     UIView *theView = [[UIView alloc] init];
     height *= multiplier;
     
-    /*
-     UIButton *theButton = [UIButton buttonWithType:UIButtonTypeCustom];
-     [theButton addTarget:self action:@selector(myCustomFunction) forControlEvents:UIControlEventTouchUpInside];
-     
-     
-     
-     if ([college isEqualToString:@"Mizzou"]) {
-     self.barOneHeight = 450.0 - height;
-     theButton.tag = 1;
-     }
-     else if ([college isEqualToString:@"NYU"])
-     {
-     self.barTwoHeight = 450.0 - height;
-     theButton.tag = 2;
-     }
-     */
+    point.y = BOTTOMREFERENCEPOINT - height/2;
     
-    
-    
-    
-    
-    point.y = 380.0f - height/2;
-    
-    //NSLog(@"point.x: %f and point.y: %f",point.x, point.y);
     CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
     
-    // [theButton setFrame:framez];
     [theView setFrame:framez];
     
     
-    
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, 380.0, width, 20.0f)];
-    
+    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, point.y - height/2 - 17.0, width, 20.0f)];
     
     [collegeLabel setBackgroundColor:[UIColor clearColor]];
     [[self view] addSubview:collegeLabel];
@@ -166,22 +139,15 @@
     [collegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
     
     
-    
-    
-    
-    
     [[self view] addSubview:theView];
-    // [[self view] addSubview:theButton];
     
     [theView setBackgroundColor:backgroundColor];
-    // [theButton setBackgroundColor:[UIColor grayColor]];
     
     theView.alpha = 0.0f;
     
     [UIView animateWithDuration:0.5f animations:^{
         theView.transform = CGAffineTransformScale(theView.transform, 1.0f, height);
         
-        //theButton.transform = CGAffineTransformScale(theButton.transform, 1.0f, height);
         theView.alpha = 1.0f;
         
     }];
@@ -202,13 +168,9 @@
     
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:mainLabelFrame];
     
-  //  UIColor* backgroundColor = [UIColor colorWithRed:158.0/255.0 green:158.0/255.0 blue:158.0/255.0 alpha:0.5];
-    
-   // [mainLabel setBackgroundColor:backgroundColor];
     [mainLabel setText:title];
     [mainLabel setTextAlignment:NSTextAlignmentCenter];
     [mainLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:20.0f]];
-   // [mainLabel setBackgroundColor:[UIColor blackColor]];
     [mainLabel setAlpha:0.0];
     [self.view addSubview:mainLabel];
     
@@ -232,7 +194,7 @@
     
     CGPoint lineReferencePoint = self.view.center;
     
-    lineReferencePoint.y = 380.0;
+    lineReferencePoint.y = BOTTOMREFERENCEPOINT;
     
     //float lineSpacingModifier = [self.unitModifier floatValue];
     
@@ -271,8 +233,6 @@
     myPoint.x += 130.0;
     myPoint.y -= 10.0;
     
-   // NSLog(@"%lu", (unsigned long)[string length]);
-    
     if ([string length] <= 3)
     {
         if ([string length] <=2) {
@@ -284,7 +244,6 @@
     if (point.y > 40) {
         [self setSmallLabelsWithString:string andtime:time andPoint:myPoint];
     }
-    
 
     CGRect theFrame = CGRectMake(point.x, point.y, 1.0f, 1.0);
     
@@ -292,8 +251,7 @@
     [[self view] addSubview:lineView];
     
     [lineView setBackgroundColor:[UIColor grayColor]];
-    
-    
+
     lineView.alpha = 0.0f;
     
     float widthOfScreen = self.view.bounds.size.width;

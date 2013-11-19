@@ -26,40 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Hello there tony");
+    
+    //Set up all arrays with data and create view controllers based on those arrays
     [self setAllArrays];
     [self createViewControllers];
+    [self configureNavigationBar];
     
-    //Navbar configuration
-    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
-    self.navigationController.navigationBar.barTintColor = coralColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.translucent = NO;
-    
-    
-    
-   // self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
-    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_arrow_new.png"];
-    
-    
-    
-    
-    //Setting our chapter title array
-    
-    /*
-     self.chapterTitles = [[NSMutableArray alloc] init];
-     for (int i = 0; i < 10; i++) {
-     [self.chapterTitles addObject:[NSString stringWithFormat:@"Chapter %d", i]];
-     }
-     
-     //Setting our chapter texts array
-     self.chapterTexts = [[NSMutableArray alloc] init];
-     for (int i = 0; i < 10; i++) {
-     [self.chapterTexts addObject:[NSString stringWithFormat:@"This is the text for chapter %d", i]];
-     }
-     
-     */
-    //NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
+
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     [self.pageViewController setDataSource:self];
@@ -72,12 +45,14 @@
     
     [self.pageViewController.view setFrame:[self.view bounds]];
     
+    //[self.pageViewController.]
+    
+    
+    
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     [[viewControllers objectAtIndex:0] animateAll];
-    
-    
     
 }
 
@@ -127,6 +102,28 @@
     return [self viewControllerAtIndex:index];
     
 }
+
+-(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
+    return 4;
+}
+
+-(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
+    return 0;
+}
+//Delegate methods
+
+-(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
+    
+    if ([pendingViewControllers firstObject]) {
+        CCAnimationsScreenViewController *theView = [pendingViewControllers firstObject];
+        
+        [theView checkBeforeAnimation];
+        theView.hasAnimated = YES;
+        
+        
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -327,25 +324,20 @@
     return lines;
 }
 
--(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+
+-(void)configureNavigationBar
 {
-//    if ([previousViewControllers lastObject])
-//    {
-//        CCAnimationsScreenViewController *theView = [previousViewControllers lastObject];
-//        [theView setLabel];
-//    }
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    self.navigationController.navigationBar.barTintColor = coralColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
     
-}
--(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
+    self.navigationItem.title = @"Comparison";
     
-    if ([pendingViewControllers firstObject]) {
-        CCAnimationsScreenViewController *theView = [pendingViewControllers firstObject];
-        
-            [theView checkBeforeAnimation];
-            theView.hasAnimated = YES;
-        
-               
-    }
+    
+    // self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_arrow_new.png"];
+
 }
 
 @end
