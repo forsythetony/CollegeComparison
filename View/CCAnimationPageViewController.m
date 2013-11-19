@@ -31,7 +31,7 @@
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0, 100.0, 100.0, 40.0)];
     
     
-    [mainLabel setText:@"This is going to be the animation page!"];
+    [mainLabel setText:@"This is going to be an animation page!"];
     
     [self.view addSubview:mainLabel];
     
