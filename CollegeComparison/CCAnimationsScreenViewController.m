@@ -50,8 +50,8 @@
                                  andNumberOfLines:[[global objectForKey:@"Lines"] integerValue]];
     
     
-    UIColor *barOneColor = [UIColor orangeColor];
-    UIColor *barTwoColor = [UIColor purpleColor];
+    UIColor *barOneColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];;
+    UIColor *barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
     
     
     float width = 60.0;
@@ -118,7 +118,7 @@
     
     
     
-    point.y = 450.0f - height/2;
+    point.y = 400.0f - height/2;
     
     //NSLog(@"point.x: %f and point.y: %f",point.x, point.y);
     CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
@@ -128,7 +128,7 @@
     
     
     
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, 450.0, width, 20.0f)];
+    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, 400.0, width, 20.0f)];
     
     
     [collegeLabel setBackgroundColor:[UIColor clearColor]];
@@ -171,7 +171,7 @@
     CGPoint screenCenter = self.view.center;
     float width = self.view.bounds.size.width;
     
-    CGRect mainLabelFrame = CGRectMake((screenCenter.x - (width/2)), 64.0, width, 40.0);
+    CGRect mainLabelFrame = CGRectMake((screenCenter.x - (width/2)), 10.0, width, 40.0);
     
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:mainLabelFrame];
     
@@ -205,7 +205,7 @@
     
     CGPoint lineReferencePoint = self.view.center;
     
-    lineReferencePoint.y = 450.0;
+    lineReferencePoint.y = 400.0;
     
     //float lineSpacingModifier = [self.unitModifier floatValue];
     
@@ -218,9 +218,9 @@
             
             NSLog(@"LINE REFERENCE Y: %lf", lineReferencePoint.y);
         
-        if (lineReferencePoint.y > 90) {
+        
             [self createLineWithPoint:lineReferencePoint andTime:time andString:moneyString];
-        }
+        
         
         
         
@@ -254,13 +254,9 @@
         myPoint.x += 5.0;
     }
     
-    UILabel *theLabel = [[UILabel alloc] initWithFrame:CGRectMake(myPoint.x, myPoint.y, 100.0f, 20.0f)];
-    
-    [[self view] addSubview:theLabel];
-    [theLabel setTextColor:[UIColor blackColor]];
-    [theLabel setBackgroundColor:[UIColor clearColor]];
-    [theLabel setText:string];
-    [theLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
+    if (point.y > 40) {
+        [self setSmallLabelsWithString:string andtime:time andPoint:myPoint];
+    }
     
 
     CGRect theFrame = CGRectMake(point.x, point.y, 1.0f, 1.0);
@@ -272,16 +268,12 @@
     
     
     lineView.alpha = 0.0f;
-    theLabel.alpha = 0.0f;
     
     float widthOfScreen = self.view.bounds.size.width;
-    //NSLog(@"WIDTH OF SCREEN IS %lf", widthOfScreen);
     
     [UIView animateWithDuration:time animations:^{
         lineView.transform = CGAffineTransformScale(lineView.transform, widthOfScreen, 1.0f);
         lineView.alpha = 0.25f;
-        theLabel.alpha = 1.0f;
-        
         
     }];
 }
@@ -291,7 +283,7 @@
     CGPoint screenCenter = self.view.center;
     float width = self.view.bounds.size.width;
     
-    CGRect mainLabelFrame = CGRectMake((screenCenter.x - (width/2)), 200.0, width, 40.0);
+    CGRect mainLabelFrame = CGRectMake((screenCenter.x - (width/2)), 300.0, width, 40.0);
     
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:mainLabelFrame];
     
@@ -303,6 +295,7 @@
     [mainLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:20.0f]];
     // [mainLabel setBackgroundColor:[UIColor blackColor]];
     [mainLabel setAlpha:0.0];
+    [mainLabel setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:mainLabel];
     
     
@@ -319,4 +312,23 @@
     }
 }
 
+-(void)setSmallLabelsWithString:(NSString*) string andtime:(float)itsTime andPoint:(CGPoint)point
+{
+    UILabel* theLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, point.y, 100.0, 20.0)];
+    
+    [[self view] addSubview:theLabel];
+    [theLabel setTextColor:[UIColor blackColor]];
+    [theLabel setBackgroundColor:[UIColor clearColor]];
+    [theLabel setText:string];
+    [theLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
+    
+    
+    theLabel.alpha = 0.0f;
+    
+    [UIView animateWithDuration:itsTime animations:^{
+        theLabel.alpha = 1.0f;
+        
+        
+    }];
+}
 @end

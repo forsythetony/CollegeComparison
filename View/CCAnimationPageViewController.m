@@ -23,13 +23,18 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"Hello there tony");
     [self setAllArrays];
     [self createViewControllers];
+    
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    self.navigationController.navigationBar.barTintColor = coralColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
+   
     
     
     //Setting our chapter title array
@@ -182,10 +187,9 @@
                 floatValueOne = 20000.0;
                 floatValueTwo = 15000.0;
                 [self.lineLabelArray addObject:@"%@%%"];
-               
                 moneyValue = 10.0;
                 lines = 11;
-                unitValue = (self.view.bounds.size.height - 140.0) / moneyValue;
+                unitValue = (self.view.bounds.size.height - 135.0) / moneyValue;
                 heightMultiplier = (unitValue / (moneyValue * 1000));
                 break;
             default:
