@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 MUIT. All rights reserved.
 //
 
-#import "MUITViewController.h"
+#import "CCViewController.h"
 #import "MUITCollegeDb.h"
 
-@interface MUITViewController ()
+@interface CCViewController ()
 
 @end
 
-@implementation MUITViewController
+@implementation CCViewController
 
 - (void)viewDidLoad
 {

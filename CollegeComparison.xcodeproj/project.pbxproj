@@ -15,9 +15,9 @@
 		535EA90718297637003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
 		535EA90D18297637003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA90B18297637003D289A /* InfoPlist.strings */; };
 		535EA90F18297637003D289A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA90E18297637003D289A /* main.m */; };
-		535EA91318297637003D289A /* MUITAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91218297637003D289A /* MUITAppDelegate.m */; };
+		535EA91318297637003D289A /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91218297637003D289A /* CCAppDelegate.m */; };
 		535EA91618297637003D289A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91418297637003D289A /* Main.storyboard */; };
-		535EA91918297637003D289A /* MUITViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91818297637003D289A /* MUITViewController.m */; };
+		535EA91918297637003D289A /* CCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91818297637003D289A /* CCViewController.m */; };
 		535EA91B18297637003D289A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91A18297637003D289A /* Images.xcassets */; };
 		535EA92218297637003D289A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA92118297637003D289A /* XCTest.framework */; };
 		535EA92318297638003D289A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90218297637003D289A /* Foundation.framework */; };
@@ -49,11 +49,11 @@
 		535EA90C18297637003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA90E18297637003D289A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		535EA91018297637003D289A /* CollegeComparison-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CollegeComparison-Prefix.pch"; sourceTree = "<group>"; };
-		535EA91118297637003D289A /* MUITAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUITAppDelegate.h; sourceTree = "<group>"; };
-		535EA91218297637003D289A /* MUITAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MUITAppDelegate.m; sourceTree = "<group>"; };
+		535EA91118297637003D289A /* CCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAppDelegate.h; sourceTree = "<group>"; };
+		535EA91218297637003D289A /* CCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAppDelegate.m; sourceTree = "<group>"; };
 		535EA91518297637003D289A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		535EA91718297637003D289A /* MUITViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUITViewController.h; sourceTree = "<group>"; };
-		535EA91818297637003D289A /* MUITViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MUITViewController.m; sourceTree = "<group>"; };
+		535EA91718297637003D289A /* CCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCViewController.h; sourceTree = "<group>"; };
+		535EA91818297637003D289A /* CCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCViewController.m; sourceTree = "<group>"; };
 		535EA91A18297637003D289A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		535EA92018297637003D289A /* CollegeComparisonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollegeComparisonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		535EA92118297637003D289A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -87,13 +87,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		53589C96182FE735006F378D /* school */ = {
+		53589C96182FE735006F378D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				53589C9A182FE936006F378D /* MUITCollegeDb.h */,
 				53589C9B182FE936006F378D /* MUITCollegeDb.m */,
 			);
-			name = school;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		535EA8F618297637003D289A = {
@@ -130,12 +130,10 @@
 		535EA90818297637003D289A /* CollegeComparison */ = {
 			isa = PBXGroup;
 			children = (
-				535EA91118297637003D289A /* MUITAppDelegate.h */,
-				535EA91218297637003D289A /* MUITAppDelegate.m */,
-				53589C96182FE735006F378D /* school */,
-				535EA91418297637003D289A /* Main.storyboard */,
-				535EA91718297637003D289A /* MUITViewController.h */,
-				535EA91818297637003D289A /* MUITViewController.m */,
+				535EA91118297637003D289A /* CCAppDelegate.h */,
+				535EA91218297637003D289A /* CCAppDelegate.m */,
+				53589C96182FE735006F378D /* Model */,
+				BA852066183AE2E4002CC626 /* View */,
 				535EA91A18297637003D289A /* Images.xcassets */,
 				535EA90918297637003D289A /* Supporting Files */,
 			);
@@ -170,6 +168,16 @@
 				535EA92A18297638003D289A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA852066183AE2E4002CC626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				535EA91418297637003D289A /* Main.storyboard */,
+				535EA91718297637003D289A /* CCViewController.h */,
+				535EA91818297637003D289A /* CCViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				535EA90F18297637003D289A /* main.m in Sources */,
-				535EA91318297637003D289A /* MUITAppDelegate.m in Sources */,
-				535EA91918297637003D289A /* MUITViewController.m in Sources */,
+				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
+				535EA91918297637003D289A /* CCViewController.m in Sources */,
 				53589C9C182FE936006F378D /* MUITCollegeDb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

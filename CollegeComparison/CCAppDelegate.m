@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 MUIT. All rights reserved.
 //
 
-#import "MUITAppDelegate.h"
+#import "CCAppDelegate.h"
 
-@implementation MUITAppDelegate
+@implementation CCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
