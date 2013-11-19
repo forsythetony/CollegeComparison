@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1iP-Ce-72c">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--College Search View Controller - College Search-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="CollegeSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oeg-Iq-k9g"/>
+                        <viewControllerLayoutGuide type="bottom" id="asd-9O-3qK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bL7-dD-Ymb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="scrollIndicatorInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Seach colleges" id="eiY-TP-MGV">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="vXZ-lx-hvc" id="Z2y-hK-7ht"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CollegeCell" id="a7O-mb-NCN">
+                                        <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a7O-mb-NCN" id="4Wz-IZ-O5v">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="3k1-IL-GAf" kind="push" identifier="showCollegeDetailSegue" id="SaM-y6-Zcf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="Py9-Is-Y9g"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="pMl-tT-gMA"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bL7-dD-Ymb" secondAttribute="trailing" id="2pg-O3-WSp"/>
+                            <constraint firstItem="bL7-dD-Ymb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="9Iv-Ln-lQ3"/>
+                            <constraint firstAttribute="bottom" secondItem="bL7-dD-Ymb" secondAttribute="bottom" id="GBx-Sg-mOo"/>
+                            <constraint firstItem="bL7-dD-Ymb" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="gXo-lI-8SN"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="College Search" id="yG1-5s-tBS">
+                        <barButtonItem key="backBarButtonItem" title="Search" id="22P-lM-zUc"/>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="nfP-O6-I2h" id="JVK-8d-NKz"/>
+                        <outlet property="tableView" destination="bL7-dD-Ymb" id="ZYn-A1-ScZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="nfP-O6-I2h">
+                    <connections>
+                        <outlet property="delegate" destination="vXZ-lx-hvc" id="OMl-q9-ogI"/>
+                        <outlet property="searchBar" destination="eiY-TP-MGV" id="E98-Xm-o6l"/>
+                        <outlet property="searchContentsController" destination="vXZ-lx-hvc" id="tnH-BK-kv6"/>
+                        <outlet property="searchResultsDataSource" destination="vXZ-lx-hvc" id="s7a-hO-u3X"/>
+                        <outlet property="searchResultsDelegate" destination="vXZ-lx-hvc" id="7ha-Qm-pef"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2078" y="-255"/>
+        </scene>
+        <!--College Detail View Controller - College Details-->
+        <scene sceneID="Y8r-SO-0LH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GXy-zc-65N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="3k1-IL-GAf" customClass="CollegeDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="amh-ge-Dsu"/>
+                        <viewControllerLayoutGuide type="bottom" id="wA1-CZ-UBV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="37O-F2-O1r">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="School Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4Q-km-WoN">
+                                <rect key="frame" x="108" y="20" width="104" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v4Q-km-WoN" firstAttribute="centerX" secondItem="37O-F2-O1r" secondAttribute="centerX" id="K5h-TA-NuE"/>
+                            <constraint firstItem="v4Q-km-WoN" firstAttribute="top" secondItem="amh-ge-Dsu" secondAttribute="bottom" constant="20" id="eRN-6c-biD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="College Details" id="CpS-cq-Prd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="K54-v5-Nwp">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collegeLabel" destination="v4Q-km-WoN" id="HCQ-5C-syC"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2528" y="-255"/>
+        </scene>
+        <!--Navigation Controller - Home-->
+        <scene sceneID="b05-PV-tyx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="meo-2H-XpB" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="yE9-7u-Jbt">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="RE4-iY-YSO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="bBE-OP-qDj">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="3hQ-QE-9SS" kind="relationship" relationship="rootViewController" id="du4-4O-54g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LwY-rA-6h1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1139" y="-255"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="eXT-Sv-IX8">
+            <objects>
+                <viewController id="3hQ-QE-9SS" userLabel="Home View Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hOk-KR-BZj"/>
+                        <viewControllerLayoutGuide type="bottom" id="y1s-zw-oqA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LjJ-ik-HD8">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mam-7T-gQn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CJk-cf-A6r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="-255"/>
+        </scene>
+        <!--College Saved View Controller - Saved Schools-->
+        <scene sceneID="ffX-RB-RoJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kPu-N9-m0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="v5H-zl-o18" customClass="CollegeSavedViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b8L-gj-2Jv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="maT-s7-Nqq">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="maT-s7-Nqq" id="WjM-4a-2k4">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="Saved Schools" id="g7N-AZ-MwT"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1596" y="412"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Byp-Pk-jXv">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="5Qg-Ix-o0S" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="SYp-mf-Wo9">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ddn-wL-1Vx">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ukt-MV-h7l">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="v5H-zl-o18" kind="relationship" relationship="rootViewController" id="BNI-cq-Dnf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orr-df-ccM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1139" y="412"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="au0-Fa-ZvP">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1iP-Ce-72c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="33U-ci-CCT">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="meo-2H-XpB" kind="relationship" relationship="viewControllers" id="EPY-R2-MyC"/>
+                        <segue destination="5Qg-Ix-o0S" kind="relationship" relationship="viewControllers" id="scH-uJ-9bz"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPa-JC-fOE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="597" y="71"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Home" width="25" height="25"/>
+    </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
