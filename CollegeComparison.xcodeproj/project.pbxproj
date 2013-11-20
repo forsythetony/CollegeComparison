@@ -196,10 +196,10 @@
 			children = (
 				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
 				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
-				BA565EB3183B4CBD0035C178 /* back_arrow_new.png */,
 				BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */,
 				BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */,
 				BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */,
+				BA565EB3183B4CBD0035C178 /* back_arrow_new.png */,
 			);
 			name = "Bar Animations";
 			sourceTree = "<group>";
