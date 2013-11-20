@@ -9,7 +9,25 @@
 #import "CCAnimationPageViewController.h"
 #import "CCAnimationsScreenViewController.h"
 
-@interface CCAnimationPageViewController ()
+@interface CCAnimationPageViewController () {
+    
+    NSMutableArray *sectionTitles;
+    NSMutableArray *schoolOneValues;
+    NSMutableArray *schoolTwoValues;
+    NSMutableArray *labelModifier;
+    NSMutableArray *lineLabelArray;
+    NSMutableArray *linesArray;
+    NSMutableArray *moneyValueArray;
+    NSMutableArray *heightMultiplierArray;
+    
+    NSString *schoolOneTitle;
+    NSString *schoolTwoTitle;
+    
+    NSMutableArray *chapterTexts;
+    
+    NSMutableArray *viewControllersForMe;
+    NSDictionary *modifierDictionary;
+}
 
 @end
 
@@ -19,7 +37,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -32,7 +50,6 @@
     [self createViewControllers];
     [self configureNavigationBar];
     
-
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     [self.pageViewController setDataSource:self];
@@ -45,10 +62,6 @@
     
     [self.pageViewController.view setFrame:[self.view bounds]];
     
-    //[self.pageViewController.]
-    
-    
-    
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
@@ -58,11 +71,11 @@
 
 -(CCAnimationsScreenViewController*)viewControllerAtIndex:(NSUInteger) index
 {
-    if (index > self.sectionTitles.count - 1) {
+    if (index > sectionTitles.count - 1) {
         return nil;
     }
     
-    return [self.viewControllersForMe objectAtIndex:index];
+    return [viewControllersForMe objectAtIndex:index];
 }
 
 -(NSInteger)indexOfViewController:(CCAnimationsScreenViewController*) viewController
@@ -110,8 +123,8 @@
 -(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     return 0;
 }
-//Delegate methods
 
+//Delegate methods
 -(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
     
     if ([pendingViewControllers firstObject]) {
@@ -132,14 +145,14 @@
 
 -(void)setAllArrays
 {
-    self.sectionTitles  = [[NSMutableArray alloc] init];
-    self.schoolOneValues = [[NSMutableArray alloc] init];
-    self.labelModifier = [[NSMutableArray alloc] init];
-    self.schoolTwoValues = [[NSMutableArray alloc] init];
-    self.lineLabelArray = [[NSMutableArray alloc] init];
-    self.moneyValueArray = [[NSMutableArray alloc] init];
-    self.linesArray = [[NSMutableArray alloc] init];
-    self.heightMultiplier = [[NSMutableArray alloc] init];
+    sectionTitles  = [[NSMutableArray alloc] init];
+    schoolOneValues = [[NSMutableArray alloc] init];
+    labelModifier = [[NSMutableArray alloc] init];
+    schoolTwoValues = [[NSMutableArray alloc] init];
+    lineLabelArray = [[NSMutableArray alloc] init];
+    moneyValueArray = [[NSMutableArray alloc] init];
+    linesArray = [[NSMutableArray alloc] init];
+    heightMultiplierArray = [[NSMutableArray alloc] init];
     
     
     
@@ -154,20 +167,20 @@
     for (int i = 0; i < 4; i++) {
         switch (i) {
             case 0:
-                [self.sectionTitles addObject:@"Overall"];
+                [sectionTitles addObject:@"Overall"];
                 floatValueOne = 3.0;
                 floatValueTwo = 5.0;
-                [self.lineLabelArray addObject:@""];
+                [lineLabelArray addObject:@""];
                 unitValue = 40.0;
                 moneyValue = 0.0;
                 lines = 10;
                 heightMultiplier = 40.0;
                 break;
             case 1:
-                [self.sectionTitles addObject:@"Tuition"];
+                [sectionTitles addObject:@"Tuition"];
                 floatValueOne= 156000.0;
                 floatValueTwo = 45000.0;
-                [self.lineLabelArray addObject:@"%@k"];
+                [lineLabelArray addObject:@"%@k"];
                 moneyValue = 10.0;
                 modifier = 200;
                 unitValue = [self determineBestForTuitionWithMoneyValue:(moneyValue) andMaxFloat:MAX(floatValueTwo, floatValueOne) andModifier:modifier];
@@ -175,10 +188,10 @@
                 lines = [self determineLineNumberFromUnitValue:unitValue andModifier:modifier];
                 break;
             case 2:
-                [self.sectionTitles addObject:@"Population"];
+                [sectionTitles addObject:@"Population"];
                 floatValueOne = 80000;
                 floatValueTwo = 30000.0;
-                [self.lineLabelArray addObject:@"%@k"];
+                [lineLabelArray addObject:@"%@k"];
                 
                 moneyValue = 10.0;
                 modifier = 250;
@@ -189,10 +202,10 @@
                 
                 break;
             case 3:
-                [self.sectionTitles addObject:@"Aid"];
+                [sectionTitles addObject:@"Aid"];
                 floatValueOne = 20000.0;
                 floatValueTwo = 15000.0;
-                [self.lineLabelArray addObject:@"%@%%"];
+                [lineLabelArray addObject:@"%@%%"];
                 moneyValue = 10.0;
                 lines = 11;
                 unitValue = (self.view.bounds.size.height - 135.0) / moneyValue;
@@ -203,63 +216,69 @@
         }
         
         NSNumber *numberValue = [NSNumber numberWithFloat:floatValueOne];
-        [self.schoolOneValues addObject:numberValue];
+        [schoolOneValues addObject:numberValue];
         
         numberValue = [NSNumber numberWithFloat:floatValueTwo];
-        [self.schoolTwoValues addObject:numberValue];
+        [schoolTwoValues addObject:numberValue];
         
         numberValue = [NSNumber numberWithFloat:unitValue];
-        [self.labelModifier addObject:numberValue];
+        [labelModifier addObject:numberValue];
 
         numberValue = [NSNumber numberWithFloat:moneyValue];
-        [self.moneyValueArray addObject:numberValue];
+        [moneyValueArray addObject:numberValue];
         
         numberValue = [NSNumber numberWithInt:lines];
-        [self.linesArray addObject:numberValue];
+        [linesArray addObject:numberValue];
         
         numberValue = [NSNumber numberWithFloat:heightMultiplier];
-        [self.heightMultiplier addObject:numberValue];
+        [heightMultiplierArray addObject:numberValue];
         
     }
 }
 
 -(void)createViewControllers
 {
-    NSUInteger capacity = [self.sectionTitles count];
+    NSUInteger capacity = [sectionTitles count];
     
-    self.viewControllersForMe = [[NSMutableArray alloc] init];
-    
-    
+    viewControllersForMe = [[NSMutableArray alloc] init];
     
     
     for (int i = 0; i < capacity; i++) {
         
-        
-        NSNumber* schoolHeight = [self.schoolOneValues objectAtIndex:i];
+        NSNumber* schoolHeight = [schoolOneValues objectAtIndex:i];
         
         NSArray *settingKeysForSchool = [NSArray arrayWithObjects:@"Name", @"Height", nil];
         
-        NSArray *schoolOneValues = [NSArray arrayWithObjects:@"Mizzou", schoolHeight, nil];
-        NSDictionary *schoolOneSettings = [NSDictionary dictionaryWithObjects:schoolOneValues forKeys:settingKeysForSchool];
+        NSArray *schoolOneValue = [NSArray arrayWithObjects:@"Mizzou", schoolHeight, nil];
+        NSDictionary *schoolOneSettings = [NSDictionary dictionaryWithObjects:schoolOneValue forKeys:settingKeysForSchool];
         
-        schoolHeight = [self.schoolTwoValues objectAtIndex:i];
-        NSArray*schoolTwoValues = [NSArray arrayWithObjects:@"NYU", schoolHeight, nil];
-        NSDictionary *schoolTwoSettings = [NSDictionary dictionaryWithObjects:schoolTwoValues forKeys:settingKeysForSchool];
+        schoolHeight = [schoolTwoValues objectAtIndex:i];
+        NSArray *schoolTwoValue = [NSArray arrayWithObjects:@"NYU", schoolHeight, nil];
+        NSDictionary *schoolTwoSettings = [NSDictionary dictionaryWithObjects:schoolTwoValue forKeys:settingKeysForSchool];
         
-        NSArray *settingKeysForView = [NSArray arrayWithObjects:@"Title", @"LineSpacing", @"LineLabel",@"Index",@"Lines", @"MoneyValue",@"Multiplier",nil];
+        NSArray *settingKeysForView = [NSArray arrayWithObjects:
+                                                                @"Title",
+                                                                @"LineSpacing",
+                                                                @"LineLabel",
+                                                                @"Index",
+                                                                @"Lines",
+                                                                @"MoneyValue",
+                                                                @"Multiplier",
+                                                                nil];
         
         NSArray *settingObjectsForView = [NSArray arrayWithObjects:
-                                          [self.sectionTitles objectAtIndex:i],
-                                          [self.labelModifier objectAtIndex:i],
-                                          [self.lineLabelArray objectAtIndex:i],
-                                          [NSNumber numberWithInt:i],
-                                          [self.linesArray objectAtIndex:i],
-                                          [self.moneyValueArray objectAtIndex:i],
-                                          [self.heightMultiplier objectAtIndex:i],
-                                          nil];
+                                                                    [sectionTitles objectAtIndex:i],
+                                                                    [labelModifier objectAtIndex:i],
+                                                                    [lineLabelArray objectAtIndex:i],
+                                                                    [NSNumber numberWithInt:i],
+                                                                    [linesArray objectAtIndex:i],
+                                                                    [moneyValueArray objectAtIndex:i],
+                                                                    [heightMultiplierArray objectAtIndex:i],
+                                                                    nil];
         
         
-        NSDictionary *generalSettings = [NSDictionary dictionaryWithObjects:settingObjectsForView forKeys:settingKeysForView];
+        NSDictionary *generalSettings = [NSDictionary dictionaryWithObjects:settingObjectsForView
+                                                                    forKeys:settingKeysForView];
         
         NSDictionary *viewControllerInformation = [NSDictionary dictionaryWithObjectsAndKeys:
                                                    schoolOneSettings, @"One",
@@ -269,11 +288,10 @@
         
         
         CCAnimationsScreenViewController *cVC = [[CCAnimationsScreenViewController alloc] init];
-        
         [cVC setModifierDictionary:viewControllerInformation];
         
         
-        [self.viewControllersForMe addObject:cVC];
+        [viewControllersForMe addObject:cVC];
     }
     
     
@@ -287,13 +305,9 @@
     
     viewHeight -= modifier;
     
-    
     float user = max / moneyValue;
     
-    NSLog(@"RETURNING: %lf", user);
     return viewHeight/user;
-    
-    
 }
 
 -(float)determineBestForPopulationWithMoneyValue:(float) moneyValue andMaxFloat:(float)maxFloat andModifier:(float)modifier
@@ -305,10 +319,8 @@
     
     viewHeight -= modifier;
     
-    
     float user = maxFloat / moneyValue;
     
-    NSLog(@"RETURNING: %lf", user);
     return viewHeight/user;
 }
 
@@ -316,11 +328,8 @@
 {
     float screenHeight = self.view.bounds.size.height;
     
-    
-    
     int lines = (int)(screenHeight / unitValue);
     
-    NSLog(@"LINENUMBER: %d", lines);
     return lines;
 }
 
@@ -333,11 +342,6 @@
     self.navigationController.navigationBar.translucent = NO;
     
     self.navigationItem.title = @"Comparison";
-    
-    
-    // self.navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
-    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back_arrow_new.png"];
-
 }
 
 @end
