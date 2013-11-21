@@ -178,8 +178,8 @@
                 break;
             case 1:
                 [sectionTitles addObject:@"Tuition"];
-                floatValueOne= 234453.0;
-                floatValueTwo = 45000.0;
+                floatValueOne= 23366.0;
+                floatValueTwo = 43204.0;
                 [lineLabelArray addObject:@"%@k"];
                 moneyValue = 10.0;
                 modifier = 200;
@@ -189,8 +189,8 @@
                 break;
             case 2:
                 [sectionTitles addObject:@"Population"];
-                floatValueOne = 80000;
-                floatValueTwo = 30000.0;
+                floatValueOne = 22280.0;
+                floatValueTwo = 25992.0;
                 [lineLabelArray addObject:@"%@k"];
                 
                 moneyValue = 10.0;
@@ -203,13 +203,13 @@
                 break;
             case 3:
                 [sectionTitles addObject:@"Aid"];
-                floatValueOne = 20000.0;
-                floatValueTwo = 15000.0;
+                floatValueOne = 56.7;
+                floatValueTwo = 54.5;
                 [lineLabelArray addObject:@"%@%%"];
                 moneyValue = 10.0;
                 lines = 11;
-                unitValue = (self.view.bounds.size.height - 135.0) / moneyValue;
-                heightMultiplier = (unitValue / (moneyValue * 1000));
+                unitValue = 34.0;
+                heightMultiplier = (unitValue / (moneyValue));
                 break;
             default:
                 break;
