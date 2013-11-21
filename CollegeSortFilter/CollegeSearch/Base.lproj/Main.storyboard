@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--College Search View Controller - College Search-->
+        <!--College Search View Controller - Search-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="CollegeSearchViewController" sceneMemberID="viewController">
@@ -22,10 +22,15 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Seach colleges" id="eiY-TP-MGV">
+                                <searchBar key="tableHeaderView" contentMode="scaleToFill" placeholder="Seach colleges" translucent="NO" id="eiY-TP-MGV">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <scopeButtonTitles>
+                                        <string>Tuition</string>
+                                        <string>Financial Aid</string>
+                                        <string>Enrollment</string>
+                                    </scopeButtonTitles>
                                     <connections>
                                         <outlet property="delegate" destination="vXZ-lx-hvc" id="Z2y-hK-7ht"/>
                                     </connections>
@@ -58,8 +63,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="College Search" id="yG1-5s-tBS">
+                    <navigationItem key="navigationItem" title="Search" id="yG1-5s-tBS">
                         <barButtonItem key="backBarButtonItem" title="Search" id="22P-lM-zUc"/>
+                        <barButtonItem key="rightBarButtonItem" title="Compare" id="A5O-gT-pgl"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -424,6 +430,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fHj-rR-QiB"/>
+        <segue reference="dJr-Nr-IIF"/>
     </inferredMetricsTieBreakers>
 </document>
