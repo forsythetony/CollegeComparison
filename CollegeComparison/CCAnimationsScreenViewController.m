@@ -22,8 +22,6 @@
         // Custom initialization
     }
     return self;
-    
-    adsfaf
 }
 - (void)viewDidLoad
 {
@@ -339,7 +337,7 @@
     [theView setFrame:framez];
     
     
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, BOTTOMREFERENCEPOINT - height, width, 20.0f)];
+    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0, width, 20.0f)];
     
     [collegeLabel setBackgroundColor:[UIColor clearColor]];
     [[self view] addSubview:collegeLabel];
@@ -347,7 +345,7 @@
     collegeLabel.textAlignment = NSTextAlignmentCenter;
     [collegeLabel setText:college];
     [collegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
-    [collegeLabel setAlpha:0.0];
+    [collegeLabel setAlpha:0.750];
     
     
     [[self view] addSubview:theView];
@@ -360,25 +358,9 @@
   
         [theView setFrame:CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height))];
         theView.alpha = 1.0f;
-        
-        
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.4 animations:^{
-            
-            [collegeLabel setAlpha:1.0f];
-            [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 25.0, width, 20.0f)];
-            
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.3 animations:^{
-                [collegeLabel setAlpha:1.0f];
-                [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 17.0, width, 20.0f)];
-            }];
-        }];
+        [collegeLabel setAlpha:1.0f];
+        [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 17.0, width, 20.0f)];
     }];
-    
-
-   
-    
     
 }
 @end

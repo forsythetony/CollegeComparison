@@ -178,7 +178,7 @@
                 break;
             case 1:
                 [sectionTitles addObject:@"Tuition"];
-                floatValueOne= 156000.0;
+                floatValueOne= 234453.0;
                 floatValueTwo = 45000.0;
                 [lineLabelArray addObject:@"%@k"];
                 moneyValue = 10.0;
