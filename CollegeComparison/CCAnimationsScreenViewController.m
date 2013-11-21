@@ -61,14 +61,20 @@
     CGPoint mainPoint = CGPointMake(exOrigin, 40.0);
     
     // NSLog(@"SCHOOL ONE: %@ SCHOOL TWO: %@", schoolOneName, schoolTwoName);
-    
+    /*
     [self createViewWithPoint:mainPoint
                      andColor:barOneColor
                     andHeight:[[schoolOne objectForKey:@"Height"] floatValue]
                      andWidth:width
           andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
                    andCollege:[schoolOne objectForKey:@"Name"]];
-    
+    */
+    [self createGrowingBarWithPoint:mainPoint
+                           andColor:barOneColor
+                          andHeight:[[schoolOne objectForKey:@"Height"] floatValue]
+                           andWidth:width
+                andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
+                         andCollege:[schoolOne objectForKey:@"Name"]];
     
     NSLog(@"EX ORIGIN IS:%lf", exOrigin);
     NSLog(@"MAINPOINT.X IS:%lf", mainPoint.x);
@@ -76,7 +82,7 @@
     mainPoint.x = 320 - (exOrigin + width);
     
     
-    [self createViewWithPoint:mainPoint
+    [self createGrowingBarWithPoint:mainPoint
                      andColor:barTwoColor
                     andHeight:[[schoolTwo objectForKey:@"Height"] floatValue]
                      andWidth:width
@@ -188,7 +194,9 @@
 -(void)createBackgroundLinesWithHeightModifier:(float)modifier andLabel:(NSString*)label andMoneyModifier:(int)moneyModifer andNumberOfLines:(int)lines
 {
     
+    //float time = 0.90f;
     float time = 0.90f;
+    
     int moneyValue = 0;
     NSString *moneyString = [[NSString alloc] init];
     
@@ -202,22 +210,17 @@
     for (int i = 0; i < lines; i++)
     {
        
-            NSNumber *WoWmoneyValue = [NSNumber numberWithInt:moneyValue];
-            moneyString = [NSString stringWithFormat:label, WoWmoneyValue];
-            
-            NSLog(@"LINE REFERENCE Y: %lf", lineReferencePoint.y);
+        NSNumber *WoWmoneyValue = [NSNumber numberWithInt:moneyValue];
+        moneyString = [NSString stringWithFormat:label, WoWmoneyValue];
+        
+        NSLog(@"LINE REFERENCE Y: %lf", lineReferencePoint.y);
         
         
-            [self createLineWithPoint:lineReferencePoint andTime:time andString:moneyString];
+        [self createLineWithPoint:lineReferencePoint andTime:time andString:moneyString];
         
-        
-        
-        
-            time = time * 1.05f;
-            lineReferencePoint.y -= modifier;
-            moneyValue += moneyModifer;
-        
-        
+        time *= 1.05f;
+        lineReferencePoint.y -= modifier;
+        moneyValue += moneyModifer;
     }
 
 }
@@ -250,7 +253,7 @@
     [lineView setFrame:theFrame];
     [[self view] addSubview:lineView];
     
-    [lineView setBackgroundColor:[UIColor grayColor]];
+    [lineView setBackgroundColor:[UIColor blackColor]];
 
     lineView.alpha = 0.0f;
     
@@ -320,5 +323,60 @@
 -(int)getIndex
 {
     return [[[self.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] intValue] ;
+}
+
+-(void)createGrowingBarWithPoint:(CGPoint)point andColor:(UIColor*)backgroundColor andHeight:(float)height andWidth:(float)width andHeightMultiplier:(float)multiplier andCollege:(NSString*)college
+{
+    UIView *theView = [[UIView alloc] init];
+    height *= multiplier;
+    
+    point.y = BOTTOMREFERENCEPOINT;
+    
+    CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
+    
+    [theView setFrame:framez];
+    
+    
+    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, BOTTOMREFERENCEPOINT - height, width, 20.0f)];
+    
+    [collegeLabel setBackgroundColor:[UIColor clearColor]];
+    [[self view] addSubview:collegeLabel];
+    [collegeLabel setTextColor:[UIColor blackColor]];
+    collegeLabel.textAlignment = NSTextAlignmentCenter;
+    [collegeLabel setText:college];
+    [collegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
+    [collegeLabel setAlpha:0.0];
+    
+    
+    [[self view] addSubview:theView];
+    
+    [theView setBackgroundColor:backgroundColor];
+    
+    theView.alpha = 0.75f;
+    
+    [UIView animateWithDuration:1.0f animations:^{
+  
+        [theView setFrame:CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height))];
+        theView.alpha = 1.0f;
+        
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.4 animations:^{
+            
+            [collegeLabel setAlpha:1.0f];
+            [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 25.0, width, 20.0f)];
+            
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.3 animations:^{
+                [collegeLabel setAlpha:1.0f];
+                [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 17.0, width, 20.0f)];
+            }];
+        }];
+    }];
+    
+
+   
+    
+    
 }
 @end
