@@ -7,9 +7,15 @@
 //
 
 #import "CCAnimationsScreenViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 #define BOTTOMREFERENCEPOINT 378.0
 
-@interface CCAnimationsScreenViewController ()
+@interface CCAnimationsScreenViewController (){
+    UIView *detailViewer;
+    
+    NSDictionary *global, *schoolOne, *schoolTwo;
+}
 
 @end
 
@@ -25,6 +31,8 @@
 }
 - (void)viewDidLoad
 {
+    
+    
     [super viewDidLoad];
     self.hasAnimated = NO;
     [self.view setBackgroundColor:[UIColor clearColor]];
@@ -34,14 +42,18 @@
     [backgroundView setAlpha:0.05];
     [self.view addSubview:backgroundView];
     
+    self.labelPlaces = [[NSMutableArray alloc] init];
+    
 }
 -(void)animateAll {
     
     self.hasAnimated = YES;
     
-    NSDictionary *schoolOne = [self.modifierDictionary objectForKey:@"One"];
-    NSDictionary *schoolTwo = [self.modifierDictionary objectForKey:@"Two"];
-    NSDictionary *global = [self.modifierDictionary objectForKey:@"All"];
+   
+    
+    schoolOne = [self.modifierDictionary objectForKey:@"One"];
+    schoolTwo = [self.modifierDictionary objectForKey:@"Two"];
+    global = [self.modifierDictionary objectForKey:@"All"];
     
     [self createTitleLabelWithString:[global objectForKey:@"Title"]];
     
@@ -89,6 +101,9 @@
           andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
                    andCollege:[schoolTwo objectForKey:@"Name"]];
     
+     [self createInfoButton];
+    
+    
     //CGRect newRect = CGRectMake(self.view.bounds.size.width / 2.0 - (40), 395.0, 80.0, 20.0);
     CGRect oldRect = CGRectMake(0.0, BOTTOMREFERENCEPOINT, self.view.bounds.size.width, 50.0);
     UIView* newView = [[UIView alloc] initWithFrame:oldRect];
@@ -123,42 +138,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)createViewWithPoint:(CGPoint)point andColor:(UIColor*)backgroundColor andHeight:(float)height andWidth:(float)width andHeightMultiplier:(float)multiplier andCollege:(NSString*)college
-{
-    UIView *theView = [[UIView alloc] init];
-    height *= multiplier;
-    
-    point.y = BOTTOMREFERENCEPOINT - height/2;
-    
-    CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
-    
-    [theView setFrame:framez];
-    
-    
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, point.y - height/2 - 17.0, width, 20.0f)];
-    
-    [collegeLabel setBackgroundColor:[UIColor clearColor]];
-    [[self view] addSubview:collegeLabel];
-    [collegeLabel setTextColor:[UIColor blackColor]];
-    collegeLabel.textAlignment = NSTextAlignmentCenter;
-    [collegeLabel setText:college];
-    [collegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
-    
-    
-    [[self view] addSubview:theView];
-    
-    [theView setBackgroundColor:backgroundColor];
-    
-    theView.alpha = 0.0f;
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        theView.transform = CGAffineTransformScale(theView.transform, 1.0f, height);
-        
-        theView.alpha = 1.0f;
-        
-    }];
-}
-
 -(void)myCustomFunction
 {
     
@@ -327,8 +306,24 @@
 
 -(void)createGrowingBarWithPoint:(CGPoint)point andColor:(UIColor*)backgroundColor andHeight:(float)height andWidth:(float)width andHeightMultiplier:(float)multiplier andCollege:(NSString*)college
 {
-    UIView *theView = [[UIView alloc] init];
+    UIButton *theView = [[UIButton alloc] init];
     height *= multiplier;
+    
+    
+    if (point.x < 80.0) {
+        theView.tag = 1;
+        self.schoolOneHeight = height;
+    }
+    else
+    {
+        theView.tag = 2;
+        self.schoolTwoHeight = height;
+    }
+    
+    [theView addTarget:self action:@selector(buttonPress:) forControlEvents:UIControlEventTouchUpInside];
+    
+   // UIButton
+    
     
     point.y = BOTTOMREFERENCEPOINT;
     
@@ -336,9 +331,10 @@
     
     [theView setFrame:framez];
     
+    CGRect labelFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0, width, 20.0f);
+    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:labelFrame];
     
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0, width, 20.0f)];
-    
+    self.mainFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 30.0, width, 20.0f);
     [collegeLabel setBackgroundColor:[UIColor clearColor]];
     [[self view] addSubview:collegeLabel];
     [collegeLabel setTextColor:[UIColor blackColor]];
@@ -360,7 +356,263 @@
         theView.alpha = 1.0f;
         [collegeLabel setAlpha:1.0f];
         [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 17.0, width, 20.0f)];
+        
     }];
+
+    CGRect saveFrame = CGRectMake(point.x, point.y - height - 17.0, width, 20.0f);
+    
+    
+
+    [self.labelPlaces addObject:[NSValue valueWithCGRect:saveFrame]];
+    
+    
+}
+
+-(void)buttonPress:(UIButton*)button
+{
+    
+    CGRect frame;
+    NSLog(@"HELLO PEOPLE   %d", button.tag);
+    
+   // UILabel *collegeLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0, width, 20.0f)];
+    
+    UILabel *collegeLabel  = [[UILabel alloc] init];
+    
+    [collegeLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [collegeLabel setTextColor:[UIColor blackColor]];
+    collegeLabel.textAlignment = NSTextAlignmentCenter;
+    [collegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
+    [collegeLabel setAlpha:1.0];
+    
+    NSNumberFormatter *currencyStyle = [[NSNumberFormatter alloc] init];
+    
+    // set options.
+    [currencyStyle setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [currencyStyle setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    
+    
+    
+    if (button.tag == 1) {
+        NSNumber *height = [[self.modifierDictionary objectForKey:@"One"] objectForKey:@"Height"];
+        NSString *formatted =  [ NSString stringWithFormat:@"%@", height];
+       
+        frame =  [[self.labelPlaces objectAtIndex:0] CGRectValue];
+//
+//        frame.origin.y -= 20.0;
+//         NSLog(@"MONEY VALUE: %@ FRAME VALUES: %.0f, %.0f, %.0f, %.0f", formatted, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+//        [collegeLabel setFrame:frame];
+//        
+//        [collegeLabel setText:formatted];
+        
+        
+        [self createPanelByMove];
+
+    }
+    else if (button.tag == 2)
+    {
+        [self removeInformationPanel];
+    }
+    
+    [[self view] addSubview:collegeLabel];
+}
+
+-(void)createPanelByScale
+{
+    UIView *newView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, 1.0)];
+    
+    [newView setBackgroundColor:[UIColor grayColor]];
+    
+    [self.view addSubview:newView];
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        [newView setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, -self.view.bounds.size.height - 1.0)];
+    }];
+    
+    
+}
+
+-(void)createPanelByMove
+{
+    
+    
+    
+    detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"ios-linen.png"];
+    
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+    
+    [detailViewer addSubview:backgroundImageView];
+    [detailViewer sendSubviewToBack:backgroundImageView];
+    
+    [self.view addSubview:detailViewer];
+    
+    
+    NSLog(@"Width: %f Height: %f", self.view.bounds.size.width, self.view.bounds.size.height);
+    
+    
+    [self setPropertiesOfDetailView];
+    
+    
+    [UIView animateWithDuration:0.7 animations:^{
+        [self.view setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * .5, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        [detailViewer setFrame:CGRectMake(detailViewer.bounds.origin.x + detailViewer.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    }
+     completion:^(BOOL finished) {
+         [self createDismissButton];
+     }];
+    
+}
+
+-(void)removeInformationPanel
+{
+    [UIView animateWithDuration:0.7 animations:^{
+        [self.view setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        [detailViewer setFrame:CGRectMake(self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    }
+                     completion:^(BOOL finished) {
+                         [self createInfoButton];
+                         [detailViewer removeFromSuperview];
+                     }];
+}
+-(void)setPropertiesOfDetailView
+{
+    
+    int index = [[global objectForKey:@"Index"] integerValue];
+    switch (index) {
+        case 1:
+            [self configureDetailViewForTuition];
+            break;
+        case 2:
+            [self configureDetailViewForTuition];
+        default:
+            break;
+    }
+}
+
+-(void)createDismissButton
+{
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(300.0, self.view.bounds.size.width - 80.0
+                                                                         , 80.0, 30.0)];
+    
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
+    [dismissButton setBackgroundColor:[UIColor whiteColor]];
+    [detailViewer addSubview:dismissButton];
+}
+-(void)createInfoButton
+{
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    
+    [infoButton setFrame:CGRectMake(self.view.bounds.size.width - 60.0, 10.0, 30.0, 30.0)];
+    [infoButton addTarget:self action:@selector(createPanelByMove) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:infoButton];
+    
+}
+-(void)configureDetailViewForTuition
+{
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 30.0;
+    newFrame.origin.x = 5.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += newFrame.size.width + 5.0;
+    
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y -= 35.0;
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"%@ Stats:", titleFromDictionary];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@:", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentRight];
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@:", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentRight];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    NSString *CollegeValueString = [numberFormatter stringFromNumber:[schoolOne objectForKey:@"Height"]];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentLeft];
+
+    CollegeValueString = [numberFormatter stringFromNumber:[schoolTwo objectForKey:@"Height"]];
+    
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    
+    
+    
+    
+    
+    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 47.0;
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(14.0, lineWhy, 1.0, 1.0)];
+    
+    [line setBackgroundColor:[UIColor grayColor]];
+    
+    [detailViewer addSubview:line];
+    
+    float newWidth = (float)([titleString length] * 7.5);
+    
+    [detailViewer addSubview:mainTitleLabel];
+    [detailViewer addSubview:collegeOne];
+    [detailViewer addSubview:collegeTwo];
+    [detailViewer addSubview:collegeOneTuitionValue];
+    [detailViewer addSubview:collegeTwoTuitionValue];
+    [UIView animateWithDuration:1.0 animations:^{
+        [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
+    }];
+    
+}
+
+-(void)panelStyleInformation
+{
     
 }
 @end

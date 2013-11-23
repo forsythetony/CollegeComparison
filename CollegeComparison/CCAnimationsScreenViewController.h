@@ -26,6 +26,14 @@
 @property (strong, nonatomic) NSNumber *barTwoHeight;
 @property (assign, nonatomic) BOOL hasAnimated;
 
+@property (assign, nonatomic) CGRect mainFrame;
+@property (assign, nonatomic) float schoolOneHeight;
+@property (assign, nonatomic) float schoolTwoHeight;
+
+@property (strong, nonatomic) NSMutableArray *labelPlaces;
+
+
+
 -(void)setLabel;
 -(void)animateAll;
 -(void)checkBeforeAnimation;

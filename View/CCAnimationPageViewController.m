@@ -27,6 +27,8 @@
     
     NSMutableArray *viewControllersForMe;
     NSDictionary *modifierDictionary;
+    
+    UINavigationItem *myNavigationItem;
 }
 
 @end
@@ -44,11 +46,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self configureNavigationBar];
     //Set up all arrays with data and create view controllers based on those arrays
     [self setAllArrays];
     [self createViewControllers];
-    [self configureNavigationBar];
+    
     
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
@@ -264,6 +266,7 @@
                                                                 @"Lines",
                                                                 @"MoneyValue",
                                                                 @"Multiplier",
+                                                                @"My Navigation Item",
                                                                 nil];
         
         NSArray *settingObjectsForView = [NSArray arrayWithObjects:
@@ -274,6 +277,7 @@
                                                                     [linesArray objectAtIndex:i],
                                                                     [moneyValueArray objectAtIndex:i],
                                                                     [heightMultiplierArray objectAtIndex:i],
+                                                                    myNavigationItem,
                                                                     nil];
         
         
@@ -342,6 +346,10 @@
     self.navigationController.navigationBar.translucent = NO;
     
     self.navigationItem.title = @"Comparison";
+    
+    myNavigationItem = self.navigationItem;
 }
+
+
 
 @end
