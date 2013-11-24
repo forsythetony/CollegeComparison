@@ -25,7 +25,7 @@
     BOOL resetting;
     
     
-    UIButton *handleView;
+    UIButton *handleView, *dismissArea;
     
     CGPoint lastPoint;
     
@@ -445,7 +445,7 @@
         
         detailPanelDisplayed = YES;
         
-        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
         
         originalDetailViewFrame = detailViewer.bounds;
         
@@ -522,6 +522,8 @@
                 
                 [detailViewer removeFromSuperview];
                 [handleView removeFromSuperview];
+                [dismissArea removeFromSuperview];
+                dismissArea = nil;
                 detailViewer = nil;
                 handleView = nil;
             }];
@@ -554,7 +556,8 @@
     int index = [[global objectForKey:@"Index"] integerValue];
     switch (index) {
         case 0:
-            [self configureDetailViewForTuition];
+            [self configureDetailViewForOverall];
+            break;
         case 1:
             [self configureDetailViewForTuition];
             break;
@@ -568,6 +571,116 @@
           //  [self configureDetailViewForAid];
             break;
     }
+}
+
+-(void)configureDetailViewForOverall
+{
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:dismissButton];
+    
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 30.0;
+    newFrame.origin.x = 5.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += newFrame.size.width + 5.0;
+    
+    newFrame.size.width += 100.0;
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y -= 35.0;
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"%@ Stats:", titleFromDictionary];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@:", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentRight];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@:", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentRight];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    
+    [numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+    
+    float number = [[schoolOne objectForKey:@"Height"] floatValue];
+    
+    NSString *CollegeValueString = [NSString stringWithFormat:@"#%.0f", number];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    
+    
+    number = [[schoolTwo objectForKey:@"Height"] floatValue];
+    
+    CollegeValueString = [NSString stringWithFormat:@"#%.0f", number];
+    
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    
+    
+    
+    
+    
+    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 47.0;
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(14.0, lineWhy, 1.0, 1.0)];
+    
+    [line setBackgroundColor:[UIColor grayColor]];
+    
+    [detailViewer addSubview:line];
+    
+    float newWidth = (float)([titleString length] * 7.5);
+    
+    [detailViewer addSubview:mainTitleLabel];
+    [detailViewer addSubview:collegeOne];
+    [detailViewer addSubview:collegeTwo];
+    [detailViewer addSubview:collegeOneTuitionValue];
+    [detailViewer addSubview:collegeTwoTuitionValue];
+    [UIView animateWithDuration:1.0 animations:^{
+        [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
+    }];
 }
 
 
@@ -993,61 +1106,103 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
-        if (thePoint.y < 285.0) {
+        if (thePoint.y < 285.0)
+        {
            
-            if (lastPoint.y - thePoint.y < - 7.0) {
+            if (lastPoint.y - thePoint.y < - 7.0)
+            {
+                
                 [UIView animateWithDuration:0.25 animations:^{
-                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
+                                                      self.view.bounds.size.height,
+                                                      self.view.bounds.size.width,
+                                                      self.view.bounds.size.height)];
                     
-                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
+                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
+                                                    BOTTOMREFERENCEPOINT - 15.0,
+                                                    35.0,
+                                                    20.0)];
                 }];
                 
                 isUp = NO;
                 
+                
             }
-            
-            
-            else{
+            else
+            {
                 [UIView animateWithDuration:0.25 animations:^{
-                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, 215.0, self.view.bounds.size.width, self.view.bounds.size.height)];
-                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), 215.0 - 15.0, 35.0, 20.0)];
+                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
+                                                      215.0,
+                                                      self.view.bounds.size.width,
+                                                      self.view.bounds.size.height)];
+                    
+                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
+                                                    215.0 - 15.0,
+                                                    35.0,
+                                                    20.0)];
                 }];
                 
                 isUp = YES;
             }
         
         }
-        
-        else {
+
+        else if (lastPoint.y >= 285.0)
+        {
+        if (lastPoint.y - thePoint.y > 7.0) {
             
-            
-            
-            if (lastPoint.y - thePoint.y > 7.0) {
-                [UIView animateWithDuration:0.25 animations:^{
-                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, 215.0, self.view.bounds.size.width, self.view.bounds.size.height)];
-                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), 215.0 - 15.0, 35.0, 20.0)];
+            [UIView animateWithDuration:0.25 animations:^{
+                [detailViewer setFrame:CGRectMake(
+                                                  self.view.bounds.origin.x,
+                                                  215.0,
+                                                  self.view.bounds.size.width,
+                                                  self.view.bounds.size.height)];
+                
+                [handleView setFrame:CGRectMake(
+                                                self.view.center.x - (35.0 / 2.0),
+                                                215.0 - 15.0,
+                                                35.0,
+                                                20.0)];
                 }];
                 
                 isUp = YES;
 
             }
             
-            else {
-            
-            
-            [UIView animateWithDuration:0.25 animations:^{
-                [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+        else if ((int)(lastPoint.y - thePoint.y) == 0)
+        {
+            [self createPanelByMove];
+            [self bounceAnimation];
+            isUp = NO;
+        }
+        else
+            {
+                [UIView animateWithDuration:0.25 animations:^{
+                    [detailViewer setFrame:CGRectMake(
+                                                  self.view.bounds.origin.x,
+                                                  self.view.bounds.size.height,
+                                                  self.view.bounds.size.width,
+                                                  self.view.bounds.size.height)];
                 
-                [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
+                    [handleView setFrame:CGRectMake(
+                                                self.view.center.x - (35.0 / 2.0),
+                                                BOTTOMREFERENCEPOINT - 15.0,
+                                                35.0,
+                                                20.0)];
                 
-                isUp = NO;
-                
-            }];
+                    isUp = NO;
+                }];
                 
             }
         }
         
+        resetting = YES;
+        [self buttonToDismiss];
+        resetting = NO;
+        
     }
+    
+    
     
      lastPoint = thePoint;
 }
@@ -1062,6 +1217,16 @@
         handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
         
         [handleView addTarget:self action:@selector(bounceAnimation) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+//        UIImage *pullUpImage = [UIImage imageNamed:@"pullUpBar.png"];
+//        
+//        UIImageView *pullUpBackground = [[UIImageView alloc] initWithImage:pullUpImage];
+//        
+//        [handleView addSubview:pullUpBackground];
+        
+        
         
         handleView.layer.cornerRadius = 3.0;
         [handleView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
@@ -1119,36 +1284,57 @@
 }
 -(void)bounceAnimation
 {
-    if (!detailViewer) {
-        [self createPanelByMove];
-    }
-    
-    CGRect detailViewFrame = detailViewer.bounds;
-    detailViewFrame.origin.y = self.view.bounds.size.height - 70.0;
-    
+    NSLog(@"hello");
     
     [ UIView animateWithDuration:0.4 animations:^{
-        [detailViewer setFrame:detailViewFrame];
+        [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT - 70.0, self.view.bounds.size.width, self.view.bounds.size.height)];
         [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width/2), BOTTOMREFERENCEPOINT - 85.0, handleView.bounds.size.width, handleView.bounds.size.height)];
         
         
-        NSLog(@"%@", NSStringFromCGRect(detailViewFrame));
+        
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:.4 animations:^{
-             [detailViewer setFrame:CGRectMake(detailViewFrame.origin.x, detailViewFrame.origin.y + 70.0, detailViewFrame.size.width, detailViewFrame.size.height)];
+            [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
             [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2), BOTTOMREFERENCEPOINT - 15.0, handleView.bounds.size.width, handleView.bounds.size.height)];
         } completion:^(BOOL finished) {
             [self.view bringSubviewToFront:handleView];
             
         }];
-       
+        
+    }];
+    
+}
+
+-(void)buttonToDismiss
+{
+    if (isUp == YES && !dismissArea) {
+        
+        dismissArea = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, 200.0)];
+        
+        
+        [dismissArea addTarget:self action:@selector(dismissInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+        
+        [dismissArea setBackgroundColor:[UIColor clearColor]];
+        
+        [self.view addSubview:dismissArea];
+        
+    }
+    
+    
+}
+
+-(void)dismissInformationPanel {
+    
+    [UIView animateWithDuration:.6 animations:^{
+        [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2), BOTTOMREFERENCEPOINT - 15.0, handleView.bounds.size.width, handleView.bounds.size.height)];
+    } completion:^(BOOL finished) {
+        [dismissArea removeFromSuperview];
     }];
     
     
-    
-    
-    
+     
     
     
     
