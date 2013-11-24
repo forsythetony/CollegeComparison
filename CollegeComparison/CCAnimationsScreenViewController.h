@@ -37,5 +37,9 @@
 -(void)setLabel;
 -(void)animateAll;
 -(void)checkBeforeAnimation;
+-(void)removeDuringTransition;
+-(void)createHandle;
+
+
 
 @end

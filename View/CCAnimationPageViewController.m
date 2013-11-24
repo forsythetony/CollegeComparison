@@ -54,6 +54,9 @@
     
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
+    
+    
+    
     [self.pageViewController setDataSource:self];
     [self.pageViewController setDelegate:self];
     CCAnimationsScreenViewController *initialVC = [self viewControllerAtIndex:0];
@@ -67,8 +70,9 @@
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    [[viewControllers objectAtIndex:0] animateAll];
     
+    [[viewControllers objectAtIndex:0] animateAll];
+    [[viewControllers objectAtIndex:0] createHandle];
 }
 
 -(CCAnimationsScreenViewController*)viewControllerAtIndex:(NSUInteger) index
@@ -130,13 +134,25 @@
 -(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
     
     if ([pendingViewControllers firstObject]) {
-        CCAnimationsScreenViewController *theView = [pendingViewControllers firstObject];
         
+        CCAnimationsScreenViewController *theView = [pendingViewControllers firstObject];
         [theView checkBeforeAnimation];
         theView.hasAnimated = YES;
         
+        int index = [[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] integerValue];
         
-    }
+        for (int i = 0; i < 4; i++) {
+            if (i == index) {
+                [theView createHandle];
+            }
+            else
+            {
+                CCAnimationsScreenViewController *newView = [self viewControllerAtIndex:i];
+                [newView removeDuringTransition];
+            }
+        }
+        
+        }
 }
 
 - (void)didReceiveMemoryWarning
@@ -280,7 +296,7 @@
                                                                     myNavigationItem,
                                                                     nil];
         
-        
+        NSLog(@"MY INDEX IS: %@", [NSNumber numberWithInt:i]);
         NSDictionary *generalSettings = [NSDictionary dictionaryWithObjects:settingObjectsForView
                                                                     forKeys:settingKeysForView];
         
@@ -349,6 +365,7 @@
     
     myNavigationItem = self.navigationItem;
 }
+
 
 
 

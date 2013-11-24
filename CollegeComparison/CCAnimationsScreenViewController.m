@@ -15,6 +15,21 @@
     UIView *detailViewer;
     
     NSDictionary *global, *schoolOne, *schoolTwo;
+    
+    CGRect originalMainViewFrame, originalDetailViewFrame;
+    
+    UIView *myView;
+    
+    BOOL detailPanelDisplayed;
+    
+    BOOL resetting;
+    
+    
+    UIButton *handleView;
+    
+    CGPoint lastPoint;
+    
+    BOOL isUp;
 }
 
 @end
@@ -48,8 +63,10 @@
 -(void)animateAll {
     
     self.hasAnimated = YES;
+    detailPanelDisplayed = NO;
     
-   
+    originalMainViewFrame = self.view.bounds;
+    
     
     schoolOne = [self.modifierDictionary objectForKey:@"One"];
     schoolTwo = [self.modifierDictionary objectForKey:@"Two"];
@@ -68,7 +85,7 @@
     
     
     float width = 60.0;
-    float exOrigin = 75.0;
+    float exOrigin = 60.0;
     
     CGPoint mainPoint = CGPointMake(exOrigin, 40.0);
     
@@ -101,7 +118,7 @@
           andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
                    andCollege:[schoolTwo objectForKey:@"Name"]];
     
-     [self createInfoButton];
+     //[self createInfoButton];
     
     
     //CGRect newRect = CGRectMake(self.view.bounds.size.width / 2.0 - (40), 395.0, 80.0, 20.0);
@@ -113,25 +130,12 @@
     
     
     
-   // UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    [self.view bringSubviewToFront:myView];
     
-    /*
-    UIPageControl *newPageController = [[UIPageControl alloc] initWithFrame:newRect];
-    [newPageController setNumberOfPages:4];
-    [newPageController setTintColor:[UIColor blackColor]];
-    [newPageController setOpaque:YES];
-    [newPageController setCurrentPageIndicatorTintColor:coralColor];
-    [newPageController setCurrentPage:[self getIndex]];
-    [self.view addSubview:newPageController];
+    //[self addGestureRecognizer];
     
-    [newPageController setAlpha:0.0];
-    
-    [UIView animateWithDuration:0.75 animations:^{
-        [newPageController setAlpha:1.0];
-    }];
-    */
-    
-      NSLog(@"I JUST WANT THE WORLD TO KNOW THAT I WAS HERE!");
+    //[self createHandle];
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -201,6 +205,7 @@
         lineReferencePoint.y -= modifier;
         moneyValue += moneyModifer;
     }
+
 
 }
 
@@ -276,6 +281,7 @@
 {
     if (self.hasAnimated == NO) {
         [self animateAll];
+        
     }
 }
 
@@ -361,8 +367,7 @@
 
     CGRect saveFrame = CGRectMake(point.x, point.y - height - 17.0, width, 20.0f);
     
-    
-
+  
     [self.labelPlaces addObject:[NSValue valueWithCGRect:saveFrame]];
     
     
@@ -436,86 +441,373 @@
 -(void)createPanelByMove
 {
     
-    
-    
-    detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
-    
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"ios-linen.png"];
-    
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
-    
-    [detailViewer addSubview:backgroundImageView];
-    [detailViewer sendSubviewToBack:backgroundImageView];
-    
-    [self.view addSubview:detailViewer];
-    
-    
-    NSLog(@"Width: %f Height: %f", self.view.bounds.size.width, self.view.bounds.size.height);
-    
-    
-    [self setPropertiesOfDetailView];
-    
-    
-    [UIView animateWithDuration:0.7 animations:^{
-        [self.view setFrame:CGRectMake(self.view.bounds.origin.x - self.view.bounds.size.width * .5, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    if (!detailViewer) {
         
-        [detailViewer setFrame:CGRectMake(detailViewer.bounds.origin.x + detailViewer.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
-    }
-     completion:^(BOOL finished) {
+        detailPanelDisplayed = YES;
+        
+        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        originalDetailViewFrame = detailViewer.bounds;
+        
+        UIImage *backgroundImage = [UIImage imageNamed:@"ios-linen.png"];
+        
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+        
+        [detailViewer addSubview:backgroundImageView];
+        [detailViewer sendSubviewToBack:backgroundImageView];
+        [detailViewer setBackgroundColor:[UIColor grayColor]];
+        [self.view addSubview:detailViewer];
+        
+        
+        NSLog(@"Width: %f Height: %f", self.view.bounds.size.width, self.view.bounds.size.height);
+        
+        
+        [self setPropertiesOfDetailView];
+        
+        /*
+         [UIView animateWithDuration:0.7 animations:^{
+         //  [self.view setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y - self.view.bounds.size.height * .5, self.view.bounds.size.width, self.view.bounds.size.height)];
+         
+         [detailViewer setFrame:CGRectMake(detailViewer.bounds.origin.x, detailViewer.bounds.origin.y + 200.0
+         , self.view.bounds.size.width, self.view.bounds.size.height)];
+         }
+         completion:^(BOOL finished) {
          [self createDismissButton];
-     }];
+         }];
+         */
+        UIView *swipeGestureSubview = [[UIView alloc] initWithFrame:detailViewer.bounds];
+        
+        [swipeGestureSubview setBackgroundColor:[UIColor clearColor]];
+        
+        [detailViewer addSubview:swipeGestureSubview];
+        
+        /*
+         UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(removeInformationPanel)];
+         UISwipeGestureRecognizer *dummy = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:nil];
+         
+         dummy.direction = (UISwipeGestureRecognizerDirectionLeft|| UISwipeGestureRecognizerDirectionRight);
+         
+         gestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+         
+         [swipeGestureSubview addGestureRecognizer:dummy];
+         [swipeGestureSubview addGestureRecognizer:gestureRecognizer];
+         */
+
+    }
     
-}
+    
+    }
 
 -(void)removeInformationPanel
 {
-    [UIView animateWithDuration:0.7 animations:^{
-        [self.view setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    //This will remove the information panel along with the info handle
+    
+    
+    
+    if (resetting == YES) {
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            [detailViewer setAlpha:0.0];
+            [handleView setAlpha:0.0];
+            
+            
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
+                                                  self.view.bounds.size.height,
+                                                  self.view.bounds.size.width,
+                                                  self.view.bounds.size.height)];
+                
+                [detailViewer removeFromSuperview];
+                [handleView removeFromSuperview];
+                detailViewer = nil;
+                handleView = nil;
+            }];
+            
+            
+            //[self resetGestureRecognizer];
+        }];
+
         
-        [detailViewer setFrame:CGRectMake(self.view.bounds.size.width, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        
     }
-                     completion:^(BOOL finished) {
-                         [self createInfoButton];
-                         [detailViewer removeFromSuperview];
-                     }];
+//    else
+//    {
+//        [UIView animateWithDuration:0.7 animations:^{
+//        [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
+//                                                  self.view.bounds.size.height,
+//                                                  self.view.bounds.size.width,
+//                                                  self.view.bounds.size.height)];
+//        } completion:^(BOOL finished) {
+//            [self resetGestureRecognizer];
+//        }];
+//    }
+    
+    
 }
 -(void)setPropertiesOfDetailView
 {
     
     int index = [[global objectForKey:@"Index"] integerValue];
     switch (index) {
+        case 0:
+            [self configureDetailViewForTuition];
         case 1:
             [self configureDetailViewForTuition];
             break;
         case 2:
-            [self configureDetailViewForTuition];
+            [self configureDetailViewForPopulation];
+            break;
+        case 3:
+            [self configureDetailViewForAid];
+            break;
         default:
+          //  [self configureDetailViewForAid];
             break;
     }
 }
 
--(void)createDismissButton
+
+-(void)configureDetailViewForPopulation
 {
-    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(300.0, self.view.bounds.size.width - 80.0
-                                                                         , 80.0, 30.0)];
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
-    [dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
-    [dismissButton setBackgroundColor:[UIColor whiteColor]];
-    [detailViewer addSubview:dismissButton];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:dismissButton];
+    
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 30.0;
+    newFrame.origin.x = 5.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += newFrame.size.width + 5.0;
+    
+    newFrame.size.width += 100.0;
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y -= 35.0;
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"%@ Stats:", titleFromDictionary];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@:", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentRight];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@:", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentRight];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    
+    [numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+    
+    float number = [[schoolOne objectForKey:@"Height"] floatValue];
+    
+    NSString *CollegeValueString = [NSString stringWithFormat:@"%.0f students", number];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    
+    
+    number = [[schoolTwo objectForKey:@"Height"] floatValue];
+
+    CollegeValueString = [NSString stringWithFormat:@"%.0f students", number];
+    
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    
+    
+    
+    
+    
+    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 47.0;
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(14.0, lineWhy, 1.0, 1.0)];
+    
+    [line setBackgroundColor:[UIColor grayColor]];
+    
+    [detailViewer addSubview:line];
+    
+    float newWidth = (float)([titleString length] * 7.5);
+    
+    [detailViewer addSubview:mainTitleLabel];
+    [detailViewer addSubview:collegeOne];
+    [detailViewer addSubview:collegeTwo];
+    [detailViewer addSubview:collegeOneTuitionValue];
+    [detailViewer addSubview:collegeTwoTuitionValue];
+    [UIView animateWithDuration:1.0 animations:^{
+        [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
+    }];
+
 }
--(void)createInfoButton
+-(void)configureDetailViewForAid
 {
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
-    [infoButton setFrame:CGRectMake(self.view.bounds.size.width - 60.0, 10.0, 30.0, 30.0)];
-    [infoButton addTarget:self action:@selector(createPanelByMove) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:infoButton];
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:dismissButton];
     
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 30.0;
+    newFrame.origin.x = 5.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += newFrame.size.width + 5.0;
+    
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y -= 35.0;
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"%@ Stats:", titleFromDictionary];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@:", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentRight];
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@:", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentRight];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    
+    [numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+    
+    float number = [[schoolOne objectForKey:@"Height"] floatValue];
+    
+    number /= 100.0;
+    
+    NSNumber* realNumber = [NSNumber numberWithFloat:number];
+    
+    NSString *CollegeValueString = [numberFormatter stringFromNumber:realNumber];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    
+    
+    number = [[schoolTwo objectForKey:@"Height"] floatValue];
+    
+    number /= 100.0;
+    
+    realNumber = [NSNumber numberWithFloat:number];
+    
+    
+    CollegeValueString = [numberFormatter stringFromNumber:realNumber];
+    
+    
+    
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentLeft];
+    
+    
+    
+    
+    
+    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 47.0;
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(14.0, lineWhy, 1.0, 1.0)];
+    
+    [line setBackgroundColor:[UIColor grayColor]];
+    
+    [detailViewer addSubview:line];
+    
+    float newWidth = (float)([titleString length] * 7.5);
+    
+    [detailViewer addSubview:mainTitleLabel];
+    [detailViewer addSubview:collegeOne];
+    [detailViewer addSubview:collegeTwo];
+    [detailViewer addSubview:collegeOneTuitionValue];
+    [detailViewer addSubview:collegeTwoTuitionValue];
+    [UIView animateWithDuration:1.0 animations:^{
+        [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
+    }];
 }
 -(void)configureDetailViewForTuition
 {
+    //Create dismiss button
+    
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:dismissButton];
+    
     CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
     
     UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
@@ -609,10 +901,258 @@
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
     
-}
-
--(void)panelStyleInformation
-{
+    
     
 }
+//
+//-(void)resetGestureRecognizer
+//{
+//    CGRect viewBounds = self.view.bounds;
+//    
+//    viewBounds.origin.y = BOTTOMREFERENCEPOINT - 40.0;
+//    
+//    viewBounds.origin.x = 0.0;
+//    
+//    viewBounds.size.height = 40.0;
+//    
+//    
+//    UIView *gestureRecognizerView = [[UIView alloc] initWithFrame:viewBounds];
+//    
+//    [gestureRecognizerView setBackgroundColor:[UIColor clearColor]];
+//    
+//    [self.view addSubview:gestureRecognizerView];
+//    
+//    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(createPanelByMove)];
+//    
+//    gestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+//    
+//    
+//    [gestureRecognizerView addGestureRecognizer:gestureRecognizer];
+//    
+//    [self.view bringSubviewToFront:gestureRecognizerView];
+//    
+//
+//}
+
+-(void)removeDuringTransition
+{
+    if (detailPanelDisplayed == YES) {
+        
+        resetting = YES;
+        [self removeInformationPanel];
+        resetting = NO;
+    }
+}
+-(void)addGestureRecognizer
+{
+    
+    
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer*) gestureRecognizer
+{
+    //NSLog(@"%@", NSStringFromCGPoint([[gestureRecognizer valueForKey:@"_startPointScreen"] CGPointValue]));
+    
+    CGPoint thePoint = [gestureRecognizer locationInView:self.view];
+    
+//    if (!detailViewer) {
+//        [self createPanelByMove];
+//    }
+//    
+//    if (!handleView) {
+//        [self createHandle];
+//    }
+
+    
+    //NSLog(@"\nLAST POINT: %@ \nTHIS POINT: %@", NSStringFromCGPoint(lastPoint), NSStringFromCGPoint(thePoint));
+    
+    NSLog(@"%.f", lastPoint.y - thePoint.y);
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        
+        if (thePoint.y >= 215.0 && isUp == NO) {
+            [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, thePoint.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+            [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), thePoint.y - 15.0, 35.0, 20.0)];
+        }
+        
+        else if (isUp == YES)
+        {
+            
+            
+            if (thePoint.y <= 215.0) {
+                thePoint.y = 215.0;
+            }
+            [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, thePoint.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+            [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), thePoint.y - 15.0, 35.0, 20.0)];
+        }
+        
+        
+        [self.view bringSubviewToFront:handleView];
+
+    }
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        
+        if (thePoint.y < 285.0) {
+           
+            if (lastPoint.y - thePoint.y < - 7.0) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+                    
+                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
+                }];
+                
+                isUp = NO;
+                
+            }
+            
+            
+            else{
+                [UIView animateWithDuration:0.25 animations:^{
+                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, 215.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), 215.0 - 15.0, 35.0, 20.0)];
+                }];
+                
+                isUp = YES;
+            }
+        
+        }
+        
+        else {
+            
+            
+            
+            if (lastPoint.y - thePoint.y > 7.0) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, 215.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+                    [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), 215.0 - 15.0, 35.0, 20.0)];
+                }];
+                
+                isUp = YES;
+
+            }
+            
+            else {
+            
+            
+            [UIView animateWithDuration:0.25 animations:^{
+                [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+                
+                [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
+                
+                isUp = NO;
+                
+            }];
+                
+            }
+        }
+        
+    }
+    
+     lastPoint = thePoint;
+}
+
+-(void)createHandle
+{
+    
+    
+    if (!handleView) {
+        [self createPanelByMove];
+        
+        handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
+        
+        [handleView addTarget:self action:@selector(bounceAnimation) forControlEvents:UIControlEventTouchUpInside];
+        
+        handleView.layer.cornerRadius = 3.0;
+        [handleView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
+        
+        
+        UILabel *moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(-3.0, -25.0, 40.0, 40.0)];
+        
+        
+        
+        
+        
+        
+        [moreLabel setText:@"Info"];
+        
+        moreLabel.font = [UIFont fontWithName:@"Avenir-Book" size:10.0];
+        moreLabel.textAlignment = NSTextAlignmentCenter;
+        
+        float why = 5.0;
+        
+        for (int i = 0; i < 2; i++) {
+            UIView *lines = [[UIView alloc] initWithFrame:CGRectMake(7.5, why, 20.0, 2.0)];
+            
+            //[lines setBackgroundColor:[UIColor redColor]];
+            
+            lines.layer.cornerRadius = 2.0;
+            
+            [lines setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.15]];
+            
+            [handleView addSubview:lines];
+            
+            why += 5.0;
+        }
+        
+//        UIView *coverMe = [[UIView alloc] initWithFrame:CGRectMake(0.0, 20.0 - 5.0, 40.0, 5.0)];
+//        
+//        [coverMe setBackgroundColor:[UIColor lightGrayColor]];
+//        [handleView addSubview:coverMe];
+        
+        UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        
+        longPressRecognizer.minimumPressDuration = .001;
+        
+        [handleView addGestureRecognizer:longPressRecognizer];
+        
+        [handleView addSubview:moreLabel];
+        
+        [self.view addSubview:handleView];
+        
+        
+        
+
+    }
+    
+    
+}
+-(void)bounceAnimation
+{
+    if (!detailViewer) {
+        [self createPanelByMove];
+    }
+    
+    CGRect detailViewFrame = detailViewer.bounds;
+    detailViewFrame.origin.y = self.view.bounds.size.height - 70.0;
+    
+    
+    [ UIView animateWithDuration:0.4 animations:^{
+        [detailViewer setFrame:detailViewFrame];
+        [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width/2), BOTTOMREFERENCEPOINT - 85.0, handleView.bounds.size.width, handleView.bounds.size.height)];
+        
+        
+        NSLog(@"%@", NSStringFromCGRect(detailViewFrame));
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:.4 animations:^{
+             [detailViewer setFrame:CGRectMake(detailViewFrame.origin.x, detailViewFrame.origin.y + 70.0, detailViewFrame.size.width, detailViewFrame.size.height)];
+            [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2), BOTTOMREFERENCEPOINT - 15.0, handleView.bounds.size.width, handleView.bounds.size.height)];
+        } completion:^(BOOL finished) {
+            [self.view bringSubviewToFront:handleView];
+            
+        }];
+       
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
 @end
