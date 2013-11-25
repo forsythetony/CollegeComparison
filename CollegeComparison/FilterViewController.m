@@ -1,27 +1,24 @@
 //
-//  CollegeDetailViewController.m
+//  FilterViewController.m
 //  CollegeSearch
 //
-//  Created by borrower on 11/7/13.
+//  Created by borrower on 11/19/13.
 //  Copyright (c) 2013 MUIT. All rights reserved.
 //
 
-#import "CollegeDetailViewController.h"
+#import "FilterViewController.h"
 
-@interface CollegeDetailViewController ()
+@interface FilterViewController ()
 
 @end
 
-@implementation CollegeDetailViewController
-
-@synthesize collegeLabel;
-@synthesize collegeName;
+@implementation FilterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialize
+        // Custom initialization
     }
     return self;
 }
@@ -29,11 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Set the Label text with the selected recipe
-    collegeLabel.text = collegeName;
-   
+	// Do any additional setup after loading the view.
 }
-
 
 - (void)didReceiveMemoryWarning
 {
