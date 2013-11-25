@@ -1169,7 +1169,7 @@
 
             }
             
-        else if ((int)(lastPoint.y - thePoint.y) == 0)
+        else if ((int)(lastPoint.y - thePoint.y) == 0 && thePoint.y > BOTTOMREFERENCEPOINT - 15.0)
         {
             [self createPanelByMove];
             [self bounceAnimation];
@@ -1286,7 +1286,7 @@
 {
     NSLog(@"hello");
     
-    [ UIView animateWithDuration:0.4 animations:^{
+    [ UIView animateWithDuration:0.35 animations:^{
         [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT - 70.0, self.view.bounds.size.width, self.view.bounds.size.height)];
         [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width/2), BOTTOMREFERENCEPOINT - 85.0, handleView.bounds.size.width, handleView.bounds.size.height)];
         
@@ -1294,7 +1294,7 @@
         
     } completion:^(BOOL finished) {
         
-        [UIView animateWithDuration:.4 animations:^{
+        [UIView animateWithDuration:.35 animations:^{
             [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
             [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2), BOTTOMREFERENCEPOINT - 15.0, handleView.bounds.size.width, handleView.bounds.size.height)];
         } completion:^(BOOL finished) {
@@ -1333,12 +1333,80 @@
         [dismissArea removeFromSuperview];
     }];
     
-    
-     
-    
-    
-    
-    
+}
+
+-(void)replaceHandle
+{
+    if (!handleView) {
+        [self createPanelByMove];
+        
+        handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0), BOTTOMREFERENCEPOINT - 15.0, 35.0, 20.0)];
+        
+        [handleView addTarget:self action:@selector(bounceAnimation) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        //        UIImage *pullUpImage = [UIImage imageNamed:@"pullUpBar.png"];
+        //
+        //        UIImageView *pullUpBackground = [[UIImageView alloc] initWithImage:pullUpImage];
+        //
+        //        [handleView addSubview:pullUpBackground];
+        
+        
+        
+        handleView.layer.cornerRadius = 3.0;
+        [handleView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
+        
+        
+        UILabel *moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(-3.0, -25.0, 40.0, 40.0)];
+        
+        
+        
+        
+        
+        
+        [moreLabel setText:@"Info"];
+        
+        moreLabel.font = [UIFont fontWithName:@"Avenir-Book" size:10.0];
+        moreLabel.textAlignment = NSTextAlignmentCenter;
+        
+        float why = 5.0;
+        
+        for (int i = 0; i < 2; i++) {
+            UIView *lines = [[UIView alloc] initWithFrame:CGRectMake(7.5, why, 20.0, 2.0)];
+            
+            //[lines setBackgroundColor:[UIColor redColor]];
+            
+            lines.layer.cornerRadius = 2.0;
+            
+            [lines setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.15]];
+            
+            [handleView addSubview:lines];
+            
+            why += 5.0;
+        }
+        
+        //        UIView *coverMe = [[UIView alloc] initWithFrame:CGRectMake(0.0, 20.0 - 5.0, 40.0, 5.0)];
+        //
+        //        [coverMe setBackgroundColor:[UIColor lightGrayColor]];
+        //        [handleView addSubview:coverMe];
+        
+        UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        
+        longPressRecognizer.minimumPressDuration = .001;
+        
+        [handleView addGestureRecognizer:longPressRecognizer];
+        
+        [handleView addSubview:moreLabel];
+        [handleView setAlpha:0.0];
+        [self.view addSubview:handleView];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            [handleView setAlpha:1.0];
+        }];
+        
+    }
+
 }
 
 @end

@@ -28,6 +28,8 @@
     NSMutableArray *viewControllersForMe;
     NSDictionary *modifierDictionary;
     
+    BOOL Mycompleted;
+    
     UINavigationItem *myNavigationItem;
 }
 
@@ -147,6 +149,7 @@
             }
             else
             {
+                
                 CCAnimationsScreenViewController *newView = [self viewControllerAtIndex:i];
                 [newView removeDuringTransition];
             }
@@ -154,6 +157,18 @@
         
         }
 }
+-(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    if (!completed) {
+        if ([previousViewControllers firstObject]) {
+            CCAnimationsScreenViewController *theView = [previousViewControllers firstObject];
+            
+            [theView replaceHandle];
+        }
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

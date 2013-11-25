@@ -39,6 +39,7 @@
 -(void)checkBeforeAnimation;
 -(void)removeDuringTransition;
 -(void)createHandle;
+-(void)replaceHandle;
 
 
 
