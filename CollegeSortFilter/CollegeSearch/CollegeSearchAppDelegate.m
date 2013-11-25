@@ -1,15 +1,16 @@
 //
-//  MUITAppDelegate.m
-//  CollegeComparison
+//  CollegeSearchAppDelegate.m
+//  CollegeSearch
 //
-//  Created by CompSci on 11/5/13.
+//  Created by borrower on 11/5/13.
 //  Copyright (c) 2013 MUIT. All rights reserved.
 //
 
-#import "CCAppDelegate.h"
+#import "CollegeSearchAppDelegate.h"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-@implementation CCAppDelegate
+
+@implementation CollegeSearchAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,18 +19,22 @@
                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
                                                           [UIFont fontWithName:@"Avenir-Book" size:24.0], NSFontAttributeName,
                                                           nil]];
+
     
-    
-    
+        
     [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0xF05746)];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
                                                        [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
     
+    
+  
+  
+    
+    
     return YES;
 }
-
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
