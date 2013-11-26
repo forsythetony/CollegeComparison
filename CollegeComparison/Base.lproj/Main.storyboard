@@ -175,8 +175,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="l19-zk-tHN" firstAttribute="top" secondItem="WS7-pw-8XS" secondAttribute="bottom" constant="20" id="Pfj-dd-ZFO"/>
-                            <constraint firstItem="l19-zk-tHN" firstAttribute="centerX" secondItem="Amj-f2-Hkt" secondAttribute="centerX" id="Vsw-xk-els"/>
+                            <constraint firstItem="l19-zk-tHN" firstAttribute="centerX" secondItem="Amj-f2-Hkt" secondAttribute="centerX" id="MLy-s8-fRv"/>
+                            <constraint firstItem="l19-zk-tHN" firstAttribute="top" secondItem="Amj-f2-Hkt" secondAttribute="top" constant="20" symbolic="YES" id="Sxz-0q-1CG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="College Details" id="Wmy-1S-8DQ">
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwW-mQ-Pbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="-1634"/>
+            <point key="canvasLocation" x="1322" y="-1634"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="KMS-1g-QzD">
@@ -313,10 +313,10 @@
             </objects>
             <point key="canvasLocation" x="290" y="-635"/>
         </scene>
-        <!--View Controller - Filters-->
+        <!--Filter View Controller - Filters-->
         <scene sceneID="7ho-lQ-ZGJ">
             <objects>
-                <viewController id="JJf-y7-7oN" sceneMemberID="viewController">
+                <viewController id="JJf-y7-7oN" customClass="FilterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hNi-2b-Gvb"/>
                         <viewControllerLayoutGuide type="bottom" id="7aO-Se-Nbp"/>
@@ -408,9 +408,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.86196588009999997" green="0.86196588009999997" blue="0.86196588009999997" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="Select Location to Search By">
+                                <state key="normal" title="Select location to search by">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="9iW-61-PHS" kind="push" id="TF8-6I-80e"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU5-0h-Zsl">
                                 <rect key="frame" x="20" y="405" width="280" height="30"/>
@@ -432,6 +435,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHA-6i-lno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="826" y="-957"/>
+        </scene>
+        <!--State View Controller - States-->
+        <scene sceneID="Ibl-zE-9W0">
+            <objects>
+                <viewController id="9iW-61-PHS" customClass="StateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lku-dZ-KQQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="cxq-pF-ODj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yPr-58-lza">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-N4-lIV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RVb-nu-keK">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RVb-nu-keK" id="4vV-aD-vLp">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9iW-61-PHS" id="emm-h1-n29"/>
+                                    <outlet property="delegate" destination="9iW-61-PHS" id="49D-sc-3nF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="States" id="Mmu-hA-Fzk"/>
+                    <connections>
+                        <outlet property="statesTableView" destination="EzA-N4-lIV" id="qBi-GB-4GB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogF-mR-LCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1322" y="-957"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tTC-eE-WLf">
@@ -490,6 +536,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1xZ-G9-NzW"/>
+        <segue reference="Hev-in-HSq"/>
     </inferredMetricsTieBreakers>
 </document>
