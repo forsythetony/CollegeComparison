@@ -448,7 +448,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-N4-lIV">
+                            <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-N4-lIV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -469,6 +469,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EzA-N4-lIV" secondAttribute="trailing" id="7Jt-H2-T10"/>
+                            <constraint firstAttribute="bottom" secondItem="EzA-N4-lIV" secondAttribute="bottom" id="9mo-2E-UHE"/>
+                            <constraint firstItem="EzA-N4-lIV" firstAttribute="top" secondItem="yPr-58-lza" secondAttribute="top" id="NQf-kO-eOD"/>
+                            <constraint firstItem="EzA-N4-lIV" firstAttribute="leading" secondItem="yPr-58-lza" secondAttribute="leading" id="n22-6A-zle"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="States" id="Mmu-hA-Fzk"/>
                     <connections>
