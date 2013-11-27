@@ -13,6 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+<<<<<<< HEAD
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xF05746)];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
@@ -26,6 +27,9 @@
                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
                                                        [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
+=======
+    // Override point for customization after application launch.
+>>>>>>> bar_graph_animation_feature
     
     return YES;
 }
@@ -56,6 +60,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)setPageControlAppearance
+{
+    UIPageControl *pageControl = [UIPageControl appearance];
+    
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    
+    UIColor *coralColor = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.050];
+    UIColor *barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
+    pageControl.currentPageIndicatorTintColor = barTwoColor;
+    pageControl.backgroundColor = coralColor;
+    
+
 }
 
 @end
