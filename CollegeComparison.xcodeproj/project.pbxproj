@@ -215,6 +215,7 @@
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				535EA91418297637003D289A /* Main.storyboard */,
 				BA852071183AF40D002CC626 /* Bar Animations */,
 				535EA91718297637003D289A /* CCViewController.h */,
 				535EA91818297637003D289A /* CCViewController.m */,
@@ -228,7 +229,6 @@
 				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
 				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
 				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
-				535EA91418297637003D289A /* Main.storyboard */,
 				49EB4CBE184458B400C9C4AB /* StateViewController.h */,
 				49EB4CBF184458B400C9C4AB /* StateViewController.m */,
 			);

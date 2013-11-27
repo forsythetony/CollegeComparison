@@ -9,7 +9,9 @@
 #import "CCAnimationsScreenViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define BOTTOMREFERENCEPOINT 378.0
+#define BOTTOMREFERENCEPOINT 329.0
+#define TOPOFDETAILREFERENCEPOINT 100.0
+#define MIDSECTIONREFERENCEPOINT 200.0
 
 @interface CCAnimationsScreenViewController () {
     
@@ -62,6 +64,8 @@
     
     self.labelPlaces = [[NSMutableArray alloc] init];
     
+    
+    [self justseeing];
 }
 -(void)animateAll
 {
@@ -120,6 +124,8 @@
     
     
     [self.view bringSubviewToFront:myView];
+    
+    
 }
 
 #pragma mark Main Animation Methods -
@@ -425,7 +431,7 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         
-        if (thePoint.y >= 215.0 && isUp == NO) {
+        if (thePoint.y >= TOPOFDETAILREFERENCEPOINT && isUp == NO) {
             
             [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
                                               thePoint.y,
@@ -442,9 +448,9 @@
         {
             
             
-            if (thePoint.y <= 215.0)
+            if (thePoint.y <= TOPOFDETAILREFERENCEPOINT)
             {
-                thePoint.y = 215.0;
+                thePoint.y = TOPOFDETAILREFERENCEPOINT;
             }
             
             
@@ -466,7 +472,7 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
-        if (thePoint.y < 285.0)
+        if (thePoint.y < MIDSECTIONREFERENCEPOINT)
         {
             
             if (lastPoint.y - thePoint.y < - 7.0)
@@ -492,12 +498,12 @@
             {
                 [UIView animateWithDuration:0.25 animations:^{
                     [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                                      215.0,
+                                                      TOPOFDETAILREFERENCEPOINT,
                                                       self.view.bounds.size.width,
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    215.0 - 15.0,
+                                                    TOPOFDETAILREFERENCEPOINT - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -507,19 +513,19 @@
             
         }
         
-        else if (lastPoint.y >= 285.0)
+        else if (lastPoint.y >= MIDSECTIONREFERENCEPOINT)
         {
             if (lastPoint.y - thePoint.y > 7.0) {
                 
                 [UIView animateWithDuration:0.25 animations:^{
                     
                     [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                                      215.0,
+                                                      TOPOFDETAILREFERENCEPOINT,
                                                       self.view.bounds.size.width,
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    215.0 - 15.0,
+                                                    TOPOFDETAILREFERENCEPOINT - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -567,9 +573,10 @@
 -(void)createHandle
 {
     
-    
+    NSLog(@"hello there peoples");
     if (!handleView)
     {
+        
         [self createPanelByMove];
         
         handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
@@ -1218,5 +1225,24 @@
 {
     
     return [[[self.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] intValue];
+}
+
+
+-(void)justseeing
+{
+    UIPageControl *pageControl = [UIPageControl appearance];
+    
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    
+    UIColor *coralColor = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:.050];
+    
+    UIColor *barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
+    pageControl.currentPageIndicatorTintColor = barTwoColor;
+    pageControl.backgroundColor = coralColor;
+    
+    
+    [pageControl setFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+
+    
 }
 @end

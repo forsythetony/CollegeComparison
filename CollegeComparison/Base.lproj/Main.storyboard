@@ -135,7 +135,11 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Search" id="ygU-S0-Oi6">
                         <barButtonItem key="backBarButtonItem" title="Search" id="XNp-Jt-S1a"/>
-                        <barButtonItem key="rightBarButtonItem" title="Compare" id="IlY-y0-M9p"/>
+                        <barButtonItem key="rightBarButtonItem" title="Compare" id="IlY-y0-M9p">
+                            <connections>
+                                <segue destination="1sJ-ZE-tet" kind="push" id="0YU-F1-aVs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -155,6 +159,25 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="826" y="-1634"/>
+        </scene>
+        <!--Animation Page View Controller-->
+        <scene sceneID="sFL-EM-lMZ">
+            <objects>
+                <viewController id="1sJ-ZE-tet" customClass="CCAnimationPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8xN-VO-Pg8"/>
+                        <viewControllerLayoutGuide type="bottom" id="YTR-ro-rd1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uo7-9p-ggl">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xcv-dD-1bR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TLQ-cI-VIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1103" y="-2409"/>
         </scene>
         <!--College Detail View Controller - College Details-->
         <scene sceneID="AJI-DV-LZO">
