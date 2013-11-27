@@ -37,6 +37,8 @@
 
 @implementation CCAnimationPageViewController
 
+#pragma mark Initialization Methods -
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -77,24 +79,9 @@
     [[viewControllers objectAtIndex:0] createHandle];
 }
 
--(CCAnimationsScreenViewController*)viewControllerAtIndex:(NSUInteger) index
-{
-    if (index > sectionTitles.count - 1) {
-        return nil;
-    }
-    
-    return [viewControllersForMe objectAtIndex:index];
-}
 
--(NSInteger)indexOfViewController:(CCAnimationsScreenViewController*) viewController
-{
-    NSNumber *indexValue = [[viewController.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"];
-    
-    return [indexValue integerValue];
-    
-}
 
-//Data source methods
+#pragma mark Data Source Methods -
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
@@ -132,7 +119,8 @@
     return 0;
 }
 
-//Delegate methods
+#pragma mark Delegate Methods -
+
 -(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
     
     if ([pendingViewControllers firstObject]) {
@@ -168,13 +156,7 @@
     }
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-}
+#pragma mark Data Setup Methods -
 
 -(void)setAllArrays
 {
@@ -332,6 +314,8 @@
     
 }
 
+#pragma mark Methods for Dynamic Bar Height
+
 -(float)determineBestForTuitionWithMoneyValue:(float) moneyValue andMaxFloat:(float)max andModifier:(float)modifier
 {
     moneyValue *= 1000;
@@ -369,6 +353,8 @@
 }
 
 
+#pragma mark View Configuration Methods -
+
 -(void)configureNavigationBar
 {
     UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
@@ -381,7 +367,24 @@
     myNavigationItem = self.navigationItem;
 }
 
+#pragma mark Helper Methods -
 
+-(CCAnimationsScreenViewController*)viewControllerAtIndex:(NSUInteger) index
+{
+    if (index > sectionTitles.count - 1) {
+        return nil;
+    }
+    
+    return [viewControllersForMe objectAtIndex:index];
+}
+
+-(NSInteger)indexOfViewController:(CCAnimationsScreenViewController*) viewController
+{
+    NSNumber *indexValue = [[viewController.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"];
+    
+    return [indexValue integerValue];
+    
+}
 
 
 @end

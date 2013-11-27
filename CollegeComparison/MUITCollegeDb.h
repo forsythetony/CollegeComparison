@@ -13,5 +13,4 @@
 
 -(NSArray*) findSchool:(NSString*)keyword;
 
-
 @end

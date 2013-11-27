@@ -184,6 +184,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BA26F8851846A2AD008042BB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BA565EB3183B4CBD0035C178 /* back_arrow_new.png */,
+				BA3E01FD18402C9E00325A5F /* ios-linen.png */,
+				BA3E01FF1842B2AF00325A5F /* pullUpBar.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,14 +208,12 @@
 		BA852071183AF40D002CC626 /* Bar Animations */ = {
 			isa = PBXGroup;
 			children = (
-				BA3E01FD18402C9E00325A5F /* ios-linen.png */,
+				BA26F8851846A2AD008042BB /* Images */,
 				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
 				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
 				BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */,
 				BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */,
-				BA3E01FF1842B2AF00325A5F /* pullUpBar.png */,
 				BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */,
-				BA565EB3183B4CBD0035C178 /* back_arrow_new.png */,
 			);
 			name = "Bar Animations";
 			sourceTree = "<group>";
