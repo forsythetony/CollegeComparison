@@ -19,8 +19,18 @@
 {
     [super viewDidLoad];
     MUITCollegeDb *collegeManager = [MUITCollegeDb new];
-    [collegeManager findSchool:@"Mizzou"];
+    NSArray *myArray = [collegeManager findSchool:@"Mizzou"];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    if (!myArray) {
+        NSLog(@"Hi");
+    }
+    int theCount = [myArray count];
+    
+    for (int i = 0; i < theCount; i++) {
+        NSLog(@"%@", [myArray objectAtIndex:i]);
+    }
 }
 
 - (void)didReceiveMemoryWarning

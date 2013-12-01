@@ -13,6 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xF05746)];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
@@ -26,7 +27,9 @@
                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
                                                        [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
-    
+    // Override point for customization after application launch.
+
+
     return YES;
 }
 
@@ -57,5 +60,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end
