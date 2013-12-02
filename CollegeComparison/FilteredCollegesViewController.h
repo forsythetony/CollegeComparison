@@ -17,6 +17,7 @@
 //@property (nonatomic, strong) NSMutableArray *selectedRowsToCompare;
 
 @property (nonatomic, strong) NSDictionary *navigationBarAttributes;
+@property (nonatomic, strong) NSMutableDictionary *storedSchoolsDictionary;
 
 @property (nonatomic, strong) UIBarButtonItem *selectButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;

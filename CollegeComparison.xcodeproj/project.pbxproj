@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D581DC3184C4A5B00645179 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D581DC2184C4A5A00645179 /* QuartzCore.framework */; };
 		3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */; };
 		3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */; };
 		49EB4CB11843FDBB00C9C4AB /* CollegeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CA41843FDBB00C9C4AB /* CollegeDetailViewController.m */; };
@@ -32,9 +33,6 @@
 		535EA92418297638003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
-		BA3E01FE18402C9E00325A5F /* ios-linen.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3E01FD18402C9E00325A5F /* ios-linen.png */; };
-		BA3E02001842B2AF00325A5F /* pullUpBar.png in Resources */ = {isa = PBXBuildFile; fileRef = BA3E01FF1842B2AF00325A5F /* pullUpBar.png */; };
-		BA565EB4183B4CBD0035C178 /* back_arrow_new.png in Resources */ = {isa = PBXBuildFile; fileRef = BA565EB3183B4CBD0035C178 /* back_arrow_new.png */; };
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
 		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
@@ -51,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D581DC2184C4A5A00645179 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesViewController.h; sourceTree = "<group>"; };
 		3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesViewController.m; sourceTree = "<group>"; };
 		3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesTableViewCell.h; sourceTree = "<group>"; };
@@ -90,9 +89,6 @@
 		535EA92918297638003D289A /* CollegeComparisonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollegeComparisonTests-Info.plist"; sourceTree = "<group>"; };
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
-		BA3E01FD18402C9E00325A5F /* ios-linen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ios-linen.png"; path = "../../../../../Downloads/ios-linen/ios-linen.png"; sourceTree = "<group>"; };
-		BA3E01FF1842B2AF00325A5F /* pullUpBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullUpBar.png; path = ../../../../../Documents/Xcode/pullUpBar.png; sourceTree = "<group>"; };
-		BA565EB3183B4CBD0035C178 /* back_arrow_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_arrow_new.png; path = ../../../../../Downloads/back_arrow_new.png; sourceTree = "<group>"; };
 		BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = ../View/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = ../View/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
@@ -105,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D581DC3184C4A5B00645179 /* QuartzCore.framework in Frameworks */,
 				53290F431830A1F800781050 /* libsqlite3.dylib in Frameworks */,
 				535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */,
 				535EA90718297637003D289A /* UIKit.framework in Frameworks */,
@@ -156,6 +153,7 @@
 		535EA90118297637003D289A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D581DC2184C4A5A00645179 /* QuartzCore.framework */,
 				53290F421830A1F800781050 /* libsqlite3.dylib */,
 				535EA90218297637003D289A /* Foundation.framework */,
 				535EA90418297637003D289A /* CoreGraphics.framework */,
@@ -211,9 +209,6 @@
 		BA26F8851846A2AD008042BB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BA565EB3183B4CBD0035C178 /* back_arrow_new.png */,
-				BA3E01FD18402C9E00325A5F /* ios-linen.png */,
-				BA3E01FF1842B2AF00325A5F /* pullUpBar.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -338,11 +333,8 @@
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
 				53290F491830A9D000781050 /* schools.db in Resources */,
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
-				BA565EB4183B4CBD0035C178 /* back_arrow_new.png in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
 				535EA91618297637003D289A /* Main.storyboard in Resources */,
-				BA3E01FE18402C9E00325A5F /* ios-linen.png in Resources */,
-				BA3E02001842B2AF00325A5F /* pullUpBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     self.collegesToCompare = [[NSMutableArray alloc] init];
+    self.storedSchoolsDictionary = [[NSMutableDictionary alloc] init];
     //self.selectedRowsToCompare = [[NSMutableArray alloc] init];
     
     // Passed data
@@ -49,13 +50,13 @@
 -(void)setCustomAttributesForNavigationBar
 {
     // Navigation attributes
-    self.navigationBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+    /*self.navigationBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [UIColor whiteColor], NSForegroundColorAttributeName,
-                                    [UIFont fontWithName:@"Avenir-Heavy" size:22.0], NSFontAttributeName, nil];
+                                    [UIFont fontWithName:@"Avenir-Book" size:22.0], NSFontAttributeName, nil];
     
     self.navigationController.navigationBar.titleTextAttributes = self.navigationBarAttributes;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:240.0/255.0 green:87.0/255.0 blue:70.0/255.0 alpha:1.0];
-    self.navigationItem.title = @"RESULTS";
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:240.0/255.0 green:87.0/255.0 blue:70.0/255.0 alpha:1.0];*/
+    self.navigationItem.title = @"Results";
 }
 
 // Select two universites to compare
@@ -207,21 +208,24 @@
     [cell.universityTuitionLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:17.0]];
     
     // Configure cell
-    if(cell)
-    {
-        cell.universityNameLabel.text = self.universityNames[indexPath.row];
-        cell.universityLocationLabel.text = @"Location (City, State)";
-        cell.universityTuitionLabel.text = @"Tuition";
-        cell.tag = indexPath.row;
-        /*cell.tag = indexPath.row;
-         [cell addSubview:buttonHolder];
-         [cell.compareCheckmark setTag:indexPath.row];
-         NSLog(@"%d", cell.compareCheckmark.tag);
-         [cell.compareCheckmark addTarget:self
-         action:@selector(selectCollegesToCompare:)
-         forControlEvents:UIControlEventTouchUpInside];
-         cell.compareCheckmark.hidden = NO;*/
-    }
+   
+    cell.universityNameLabel.text = self.universityNames[indexPath.row];
+    cell.universityLocationLabel.text = @"Location (City, State)";
+    cell.universityTuitionLabel.text = @"Tuition";
+    cell.tag = indexPath.row;
+    [self.storedSchoolsDictionary setObject:cell.universityNameLabel.text forKey:cell.universityNameLabel.text];
+    NSLog(@"%@", self.storedSchoolsDictionary);
+    /*cell.tag = indexPath.row;
+     [cell addSubview:buttonHolder];
+     [cell.compareCheckmark setTag:indexPath.row];
+     NSLog(@"%d", cell.compareCheckmark.tag);
+     [cell.compareCheckmark addTarget:self
+     action:@selector(selectCollegesToCompare:)
+     forControlEvents:UIControlEventTouchUpInside];
+     cell.compareCheckmark.hidden = NO;*/
+    
+    
+    
     
     return cell;
 }
@@ -271,7 +275,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // By default it will take the user to the detailed college view controller
+    NSUInteger index;
     
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
@@ -279,8 +283,33 @@
         // If the user has less than two colleges to selected
         if(self.collegesToCompare.count < 2)
         {
-            // Add the selected college to the array
-            [self.collegesToCompare addObject:[self.tableView indexPathForSelectedRow]];
+            /*FilteredCollegesTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            NSString *universityKey = cell.universityNameLabel.text;
+            [universityKey stringByAppendingString:[NSString stringWithFormat:@"-%i", indexPath.row]];
+            
+            // I can't retreive this? It requires an indexOfObject which i'm not sure how to obtain
+            //[[self.storedSchoolsDictionary objectForKey:universityKey] addObject:cell];
+            
+            // Is this adding the object to the dictionary?
+            [self.storedSchoolsDictionary setObject:cell forKey:universityKey];
+            
+            // Array to store dictionaries (Not sure if this is needed)
+            //[self.collegesToCompare addObject:self.storedSchoolsDictionary];
+            
+            // Just checking that there's cell data in the dictionary which there is with the log statement below
+            cell = [self.storedSchoolsDictionary objectForKey:universityKey];
+            
+            // This would get the index only if the dictionary is stored in an array
+            //index = [self.collegesToCompare indexOfObject:self.storedSchoolsDictionary];
+            
+            NSLog(@"%@ at row %i", cell.universityNameLabel.text, indexPath.row);
+            NSLog(@"%@", universityKey);*/
+            
+            //NSLog(@"%@", [self.storedSchoolsDictionary objectForKey:@"universityName"]);
+            //NSLog(@"%@", [[self.storedSchoolsDictionary objectForKey:@"universityName"] objectAtIndex:[NSNumber numberWithInt:indexPath.row]]);
+            
+            FilteredCollegesTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            NSLog(@"%@", [self.storedSchoolsDictionary objectForKey:cell.universityNameLabel.text]);
         }
         
         // If the user has reached their max limit for selecting colleges
