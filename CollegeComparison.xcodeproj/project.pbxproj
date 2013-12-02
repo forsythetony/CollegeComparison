@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D581DC3184C4A5B00645179 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D581DC2184C4A5A00645179 /* QuartzCore.framework */; };
+		3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */; };
+		3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */; };
 		49EB4CB11843FDBB00C9C4AB /* CollegeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CA41843FDBB00C9C4AB /* CollegeDetailViewController.m */; };
 		49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */; };
 		49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */; };
@@ -46,6 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D581DC2184C4A5A00645179 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesViewController.h; sourceTree = "<group>"; };
+		3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesViewController.m; sourceTree = "<group>"; };
+		3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesTableViewCell.h; sourceTree = "<group>"; };
+		3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesTableViewCell.m; sourceTree = "<group>"; };
 		49EB4CA31843FDBB00C9C4AB /* CollegeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeDetailViewController.h; sourceTree = "<group>"; };
 		49EB4CA41843FDBB00C9C4AB /* CollegeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeDetailViewController.m; sourceTree = "<group>"; };
 		49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeSavedViewController.h; sourceTree = "<group>"; };
@@ -93,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D581DC3184C4A5B00645179 /* QuartzCore.framework in Frameworks */,
 				53290F431830A1F800781050 /* libsqlite3.dylib in Frameworks */,
 				535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */,
 				535EA90718297637003D289A /* UIKit.framework in Frameworks */,
@@ -144,6 +153,7 @@
 		535EA90118297637003D289A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D581DC2184C4A5A00645179 /* QuartzCore.framework */,
 				53290F421830A1F800781050 /* libsqlite3.dylib */,
 				535EA90218297637003D289A /* Foundation.framework */,
 				535EA90418297637003D289A /* CoreGraphics.framework */,
@@ -222,6 +232,10 @@
 				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
 				49EB4CBE184458B400C9C4AB /* StateViewController.h */,
 				49EB4CBF184458B400C9C4AB /* StateViewController.m */,
+				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
+				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
+				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
+				3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -341,10 +355,12 @@
 			files = (
 				535EA90F18297637003D289A /* main.m in Sources */,
 				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
+				3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */,
 				49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */,
 				49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */,
 				49EB4CB11843FDBB00C9C4AB /* CollegeDetailViewController.m in Sources */,
 				535EA91918297637003D289A /* CCViewController.m in Sources */,
+				3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */,
 				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
 				49EB4CC0184458B400C9C4AB /* StateViewController.m in Sources */,
 				BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */,
