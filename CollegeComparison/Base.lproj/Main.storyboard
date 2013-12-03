@@ -132,7 +132,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJi-WG-x1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="-203"/>
+            <point key="canvasLocation" x="1322" y="-279"/>
         </scene>
         <!--College Search View Controller - Search-->
         <scene sceneID="vld-Mi-VUN">
@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLQ-cI-VIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-2409"/>
+            <point key="canvasLocation" x="1322" y="-2345"/>
         </scene>
         <!--College Detail View Controller - College Details-->
         <scene sceneID="AJI-DV-LZO">
