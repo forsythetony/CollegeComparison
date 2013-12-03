@@ -23,4 +23,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accRateLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *actRead;
+@property (weak, nonatomic) IBOutlet UILabel *actMath;
+@property (weak, nonatomic) IBOutlet UILabel *actWriting;
+@property (weak, nonatomic) IBOutlet UILabel *actComposite;
+
+@property (weak, nonatomic) IBOutlet UILabel *satRead;
+@property (weak, nonatomic) IBOutlet UILabel *satMath;
+@property (weak, nonatomic) IBOutlet UILabel *satWriting;
+
 @end
