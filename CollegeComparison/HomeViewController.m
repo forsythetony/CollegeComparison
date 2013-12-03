@@ -28,6 +28,22 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
+    
+    //Example on getting the enrollment totals for all schools with "Missouri" in their name
+    //Uncomment the following lines:
+
+    /**
+    NSMutableDictionary* options = [NSMutableDictionary new];
+    [options setObject:@"Missouri" forKey:@"institution"];
+    
+    MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
+    
+    NSMutableArray *collegeArray = [collegeManager getColleges:options];
+    for(MUITCollege *college in collegeArray)
+    {
+        NSLog(@"Enrollment_total: %ld", (long)college.enrollment_total);
+    }
+    **/
 }
 
 - (void)didReceiveMemoryWarning
