@@ -26,7 +26,7 @@ static sqlite3_stmt *statement = nil;
     NSString *documentPath = [searchPaths objectAtIndex:0];
     NSString *databasePath = [documentPath stringByAppendingPathComponent:@"schools.db"];
     
-    NSLog(@"Database Path: %@", databasePath);
+    //NSLog(@"Database Path: %@", databasePath);
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -36,7 +36,7 @@ static sqlite3_stmt *statement = nil;
         if (sqlite3_open(dbpath, &database) == SQLITE_OK)
         {
             NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and INSTNM LIKE '%%%@%%'", [parameters objectForKey:@"institution"]];
-            NSLog(@"%@", querySQL);
+            //NSLog(@"%@", querySQL);
             const char *query_stmt = [querySQL UTF8String];
             if(sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK)
             {
