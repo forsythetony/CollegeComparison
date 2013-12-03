@@ -34,6 +34,7 @@
 		535EA92418297638003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
+		53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91418297637003D289A /* Main.storyboard */; };
 		53F82003184D808C000466E4 /* CollegeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */; };
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
@@ -334,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */,
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
 				53290F491830A9D000781050 /* schools.db in Resources */,
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
