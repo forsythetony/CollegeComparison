@@ -618,7 +618,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ixq-OL-otI" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="zUR-LE-Yp6">
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="gek-mz-0Pg">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
