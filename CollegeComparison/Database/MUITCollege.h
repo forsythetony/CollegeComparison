@@ -10,8 +10,8 @@
 
 @interface MUITCollege : NSObject
 
-@property (nonatomic, assign) NSString *institution;
-@property (nonatomic, assign) NSString *state;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *state;
 @property (nonatomic, assign) NSInteger id;
 @property (nonatomic, assign) NSInteger control;
 

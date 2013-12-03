@@ -44,7 +44,8 @@ static sqlite3_stmt *statement = nil;
                 {
                     MUITCollege *college = [MUITCollege new];
                     
-                    college.institution = [NSString stringWithCString:(const char *) sqlite3_column_text(statement, 1) encoding:NSUTF8StringEncoding];
+                    college.name = [NSString stringWithCString:(const char *) sqlite3_column_text(statement, 1) encoding:NSUTF8StringEncoding];
+
                     college.id = (int)sqlite3_column_int(statement, 0);
                     college.control = (int)sqlite3_column_int(statement, 3);
                     college.state = [NSString stringWithCString:(const char *) sqlite3_column_text(statement, 2) encoding:NSUTF8StringEncoding];
@@ -73,15 +74,17 @@ static sqlite3_stmt *statement = nil;
                     college.percent_receive_financial_aid = (int) sqlite3_column_int(statement, 20);
 
                     college.enrollment_men = (int) sqlite3_column_int(statement, 21);
-                    college.enrollment_total = (int) sqlite3_column_int(statement, 22);
                     college.enrollment_women = (int) sqlite3_column_int(statement, 23);
 
-                    //NSLog(@"percent_receive_financial_aid: %ld",(long)college.percent_receive_financial_aid);
+                    college.enrollment_total = (int) sqlite3_column_int(statement, 22);
+                    
                     [collegeArray addObject:college];
                 }
+                
                 //[self sortCollegeArray:collegeArray sortKey:@"institution" ascending:YES];
-                return collegeArray;
                 sqlite3_reset(statement);
+                return collegeArray;
+                
             }
         }
         
