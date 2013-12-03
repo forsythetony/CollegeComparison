@@ -206,13 +206,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BA26F8851846A2AD008042BB /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +236,6 @@
 		BA852071183AF40D002CC626 /* Bar Animations */ = {
 			isa = PBXGroup;
 			children = (
-				BA26F8851846A2AD008042BB /* Images */,
 				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
 				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
 				BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */,
