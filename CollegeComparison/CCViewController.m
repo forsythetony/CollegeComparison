@@ -7,7 +7,6 @@
 //
 
 #import "CCViewController.h"
-#import "MUITCollegeDb.h"
 
 @interface CCViewController ()
 
@@ -18,12 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
-    
-
-        NSLog(@"Hi");
     
 }
 
