@@ -275,55 +275,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger index;
-    
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
+        FilteredCollegesTableViewCell *cellToCompare = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
+        
         // If the user has less than two colleges to selected
         if(self.collegesToCompare.count < 2)
         {
-            /*FilteredCollegesTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            NSString *universityKey = cell.universityNameLabel.text;
-            [universityKey stringByAppendingString:[NSString stringWithFormat:@"-%i", indexPath.row]];
-            
-            // I can't retreive this? It requires an indexOfObject which i'm not sure how to obtain
-            //[[self.storedSchoolsDictionary objectForKey:universityKey] addObject:cell];
-            
-            // Is this adding the object to the dictionary?
-            [self.storedSchoolsDictionary setObject:cell forKey:universityKey];
-            
-            // Array to store dictionaries (Not sure if this is needed)
-            //[self.collegesToCompare addObject:self.storedSchoolsDictionary];
-            
-            // Just checking that there's cell data in the dictionary which there is with the log statement below
-            cell = [self.storedSchoolsDictionary objectForKey:universityKey];
-            
-            // This would get the index only if the dictionary is stored in an array
-            //index = [self.collegesToCompare indexOfObject:self.storedSchoolsDictionary];
-            
-            NSLog(@"%@ at row %i", cell.universityNameLabel.text, indexPath.row);
-            NSLog(@"%@", universityKey);*/
-            
-            //NSLog(@"%@", [self.storedSchoolsDictionary objectForKey:@"universityName"]);
-            //NSLog(@"%@", [[self.storedSchoolsDictionary objectForKey:@"universityName"] objectAtIndex:[NSNumber numberWithInt:indexPath.row]]);
-            
-            FilteredCollegesTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            NSLog(@"%@", [self.storedSchoolsDictionary objectForKey:cell.universityNameLabel.text]);
+            [self.collegesToCompare addObject:cellToCompare];
+            NSLog(@"%i", self.collegesToCompare.count);
+
+            self.compareButton.enabled = YES;
         }
         
         // If the user has reached their max limit for selecting colleges
         if (self.collegesToCompare.count == 2)
         {
-            NSIndexPath *selectedIndexPathOne = self.collegesToCompare.firstObject;
-            NSIndexPath *selectedIndexPathTwo = self.collegesToCompare.lastObject;
-            
-            UITableViewCell *firstCollegeSelected = [self.tableView cellForRowAtIndexPath:selectedIndexPathOne];
-            UITableViewCell *secondCollegeSelected = [self.tableView cellForRowAtIndexPath:selectedIndexPathTwo];
-            
-            NSLog(@"%@", firstCollegeSelected);
-            NSLog(@"%@", selectedIndexPathTwo);
-            
             self.compareButton.enabled = YES;
             
             // Disable all other visible cells (THIS NEEDS TO BE FIXED)
