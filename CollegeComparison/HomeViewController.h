@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MUITCollegeDataProvider.h"
 
 @interface HomeViewController : UIViewController
 
