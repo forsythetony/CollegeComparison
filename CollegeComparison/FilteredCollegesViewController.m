@@ -213,8 +213,11 @@
     cell.universityLocationLabel.text = @"Location (City, State)";
     cell.universityTuitionLabel.text = @"Tuition";
     cell.tag = indexPath.row;
-    [self.storedSchoolsDictionary setObject:cell.universityNameLabel.text forKey:cell.universityNameLabel.text];
-    NSLog(@"%@", self.storedSchoolsDictionary);
+    [self.storedSchoolsDictionary setObject:cell forKey:[NSString stringWithFormat:@"%i", indexPath.row]];
+    
+    FilteredCollegesTableViewCell *theCell = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
+
+    NSLog(@"%@", theCell.universityNameLabel.text);
     /*cell.tag = indexPath.row;
      [cell addSubview:buttonHolder];
      [cell.compareCheckmark setTag:indexPath.row];
@@ -223,9 +226,6 @@
      action:@selector(selectCollegesToCompare:)
      forControlEvents:UIControlEventTouchUpInside];
      cell.compareCheckmark.hidden = NO;*/
-    
-    
-    
     
     return cell;
 }
