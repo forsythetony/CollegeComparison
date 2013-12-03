@@ -213,8 +213,16 @@
     cell.universityLocationLabel.text = @"Location (City, State)";
     cell.universityTuitionLabel.text = @"Tuition";
     cell.tag = indexPath.row;
-    [self.storedSchoolsDictionary setObject:cell.universityNameLabel.text forKey:cell.universityNameLabel.text];
-    NSLog(@"%@", self.storedSchoolsDictionary);
+    [self.storedSchoolsDictionary setObject:cell forKey:cell.universityNameLabel.text];
+    
+    FilteredCollegesTableViewCell *theCell = [self.storedSchoolsDictionary objectForKey:@"University 1"];
+    
+    NSString *ello = theCell.universityNameLabel.text;
+    
+    
+    
+    
+    NSLog(@"%@", ello);
     /*cell.tag = indexPath.row;
      [cell addSubview:buttonHolder];
      [cell.compareCheckmark setTag:indexPath.row];
