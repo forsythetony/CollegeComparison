@@ -39,10 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [super viewDidLoad];
 	// Set the Label text with the selected recipe
-    collegeLabel.text = collegeName;
+    collegeLabel.text = self.collegeName;
     tuitionLabel.text = @"40,000";
     studentBTotalLabel.text = @"30,000";
     
@@ -53,7 +51,7 @@
     
     womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
     
-    finaidLabel.text = @"70%";
+    finaidLabel.text = college.percent_receive_financial_aid;
     institLabel.text = @"Public";
     degreeLabel.text = @"Associates";
     accRateLabel.text = @"60%";
@@ -71,24 +69,24 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 8;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
+//    // Configure the cell...
+//    
+//    return cell;
+//}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CollegeDetailTableViewController.h"
 
 @interface CollegeSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
