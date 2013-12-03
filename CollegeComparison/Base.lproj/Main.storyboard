@@ -303,7 +303,7 @@
         <!--Home View Controller-->
         <scene sceneID="wtI-Oj-jV3">
             <objects>
-                <viewController id="g9c-ZR-neY" userLabel="Home View Controller" sceneMemberID="viewController">
+                <viewController id="g9c-ZR-neY" userLabel="Home View Controller" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YpE-wI-stl"/>
                         <viewControllerLayoutGuide type="bottom" id="CL0-fc-j2E"/>
