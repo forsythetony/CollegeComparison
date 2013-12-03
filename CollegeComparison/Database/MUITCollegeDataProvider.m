@@ -16,8 +16,11 @@ static sqlite3_stmt *statement = nil;
 -(NSMutableArray*) getColleges:(NSMutableDictionary*)parameters
 {
     //defaults
-    if (![parameters objectForKey:@"institution"]) {
-        [parameters setObject:@"" forKey:@"institution"];
+    if (![parameters objectForKey:@"name"]) {
+        [parameters setObject:@"" forKey:@"name"];
+    }
+    if (![parameters objectForKey:@"state"]) {
+        [parameters setObject:@"" forKey:@"state"];
     }
 
     NSMutableArray *collegeArray = [NSMutableArray new];
@@ -35,7 +38,7 @@ static sqlite3_stmt *statement = nil;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &database) == SQLITE_OK)
         {
-            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and INSTNM LIKE '%%%@%%'", [parameters objectForKey:@"institution"]];
+            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and INSTNM LIKE '%%%@%%'", [parameters objectForKey:@"name"]];
             //NSLog(@"%@", querySQL);
             const char *query_stmt = [querySQL UTF8String];
             if(sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK)

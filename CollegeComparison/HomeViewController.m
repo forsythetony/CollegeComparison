@@ -34,7 +34,7 @@
 
 
     NSMutableDictionary* options = [NSMutableDictionary new];
-    [options setObject:@"University of Missouri-" forKey:@"institution"];
+    [options setObject:@"University of Missouri-" forKey:@"name"];
     
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     
