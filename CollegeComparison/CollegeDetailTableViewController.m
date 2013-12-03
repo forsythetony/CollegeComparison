@@ -51,7 +51,7 @@
     
     womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
     
-    finaidLabel.text = college.percent_receive_financial_aid;
+    //finaidLabel.text = college.percent_receive_financial_aid;
     institLabel.text = @"Public";
     degreeLabel.text = @"Associates";
     accRateLabel.text = @"60%";
