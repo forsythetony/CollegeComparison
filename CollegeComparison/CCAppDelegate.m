@@ -29,7 +29,23 @@
                                                        nil] forState:UIControlStateNormal];
     // Override point for customization after application launch.
 
-
+    NSError *error;
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  // Get the path to the database file
+    NSString *documentPath = [searchPaths objectAtIndex:0];
+    NSString *databasePath = [documentPath stringByAppendingPathComponent:@"schools.db"];
+    
+    NSLog(@"%@", databasePath);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:databasePath] == YES)
+    {
+        [fileManager removeItemAtPath:databasePath error:&error];
+    }
+    
+    NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
+    [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
+    
     return YES;
 }
 
