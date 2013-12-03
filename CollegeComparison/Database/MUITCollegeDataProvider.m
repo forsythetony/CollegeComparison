@@ -19,6 +19,9 @@ static sqlite3_stmt *statement = nil;
     if (![parameters objectForKey:@"name"]) {
         [parameters setObject:@"" forKey:@"name"];
     }
+    if (![parameters objectForKey:@"state"]) {
+        [parameters setObject:@"" forKey:@"state"];
+    }
 
     NSMutableArray *collegeArray = [NSMutableArray new];
 
