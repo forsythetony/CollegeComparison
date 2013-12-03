@@ -27,7 +27,6 @@
 		535EA90D18297637003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA90B18297637003D289A /* InfoPlist.strings */; };
 		535EA90F18297637003D289A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA90E18297637003D289A /* main.m */; };
 		535EA91318297637003D289A /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91218297637003D289A /* CCAppDelegate.m */; };
-		535EA91618297637003D289A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91418297637003D289A /* Main.storyboard */; };
 		535EA91918297637003D289A /* CCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91818297637003D289A /* CCViewController.m */; };
 		535EA91B18297637003D289A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91A18297637003D289A /* Images.xcassets */; };
 		535EA92218297637003D289A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA92118297637003D289A /* XCTest.framework */; };
@@ -340,7 +339,6 @@
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
 				532A148D184D7594009C5BAE /* schools.db in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
-				535EA91618297637003D289A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
