@@ -27,7 +27,6 @@
 		535EA90D18297637003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA90B18297637003D289A /* InfoPlist.strings */; };
 		535EA90F18297637003D289A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA90E18297637003D289A /* main.m */; };
 		535EA91318297637003D289A /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91218297637003D289A /* CCAppDelegate.m */; };
-		535EA91918297637003D289A /* CCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA91818297637003D289A /* CCViewController.m */; };
 		535EA91B18297637003D289A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91A18297637003D289A /* Images.xcassets */; };
 		535EA92218297637003D289A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA92118297637003D289A /* XCTest.framework */; };
 		535EA92318297638003D289A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90218297637003D289A /* Foundation.framework */; };
@@ -87,8 +86,6 @@
 		535EA91118297637003D289A /* CCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCAppDelegate.h; sourceTree = "<group>"; };
 		535EA91218297637003D289A /* CCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCAppDelegate.m; sourceTree = "<group>"; };
 		535EA91518297637003D289A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		535EA91718297637003D289A /* CCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCViewController.h; sourceTree = "<group>"; };
-		535EA91818297637003D289A /* CCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCViewController.m; sourceTree = "<group>"; };
 		535EA91A18297637003D289A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		535EA92018297637003D289A /* CollegeComparisonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollegeComparisonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		535EA92118297637003D289A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -222,8 +219,6 @@
 			children = (
 				535EA91418297637003D289A /* Main.storyboard */,
 				BA852071183AF40D002CC626 /* Bar Animations */,
-				535EA91718297637003D289A /* CCViewController.h */,
-				535EA91818297637003D289A /* CCViewController.m */,
 				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
 				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
 				49EB4CA31843FDBB00C9C4AB /* CollegeDetailViewController.h */,
@@ -366,7 +361,6 @@
 				49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */,
 				49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */,
 				49EB4CB11843FDBB00C9C4AB /* CollegeDetailViewController.m in Sources */,
-				535EA91918297637003D289A /* CCViewController.m in Sources */,
 				3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */,
 				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
 				49EB4CC0184458B400C9C4AB /* StateViewController.m in Sources */,
