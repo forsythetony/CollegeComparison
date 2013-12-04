@@ -37,5 +37,8 @@
 @property (nonatomic, assign) NSInteger enrollment_women;
 @property (nonatomic, assign) NSInteger enrollment_total;
 
+@property (nonatomic, assign) NSInteger tuition_out_state;
+@property (nonatomic, assign) NSInteger tuition_in_state;
+
 
 @end
