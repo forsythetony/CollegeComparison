@@ -248,17 +248,25 @@
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
-        if([self.tableView indexPathForSelectedRow] == self.collegesToCompare.firstObject)
+        
+        FilteredCollegesTableViewCell *cellToCompare = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
+        
+        /*if([self.tableView indexPathForSelectedRow] == self.collegesToCompare.firstObject)
         {
             [self.collegesToCompare removeObject:[self.tableView indexPathForSelectedRow]];
         }
         else if([self.tableView indexPathForSelectedRow] == self.collegesToCompare.lastObject)
         {
             [self.collegesToCompare removeLastObject];
-        }
+        }*/
         
         if(self.collegesToCompare.count < 2)
         {
+            if([self.collegesToCompare indexOfObject:cellToCompare])
+            {
+                [self.collegesToCompare removeObject:cellToCompare];
+            }
+            
             self.compareButton.enabled = NO;
         }
         
@@ -286,7 +294,7 @@
             [self.collegesToCompare addObject:cellToCompare];
             NSLog(@"%i", self.collegesToCompare.count);
 
-            self.compareButton.enabled = YES;
+            self.compareButton.enabled = NO;
         }
         
         // If the user has reached their max limit for selecting colleges
