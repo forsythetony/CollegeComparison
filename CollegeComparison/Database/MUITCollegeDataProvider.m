@@ -16,8 +16,11 @@ static sqlite3_stmt *statement = nil;
 -(NSMutableArray*) getColleges:(NSMutableDictionary*)parameters
 {
     //defaults
-    if (![parameters objectForKey:@"institution"]) {
-        [parameters setObject:@"" forKey:@"institution"];
+    if (![parameters objectForKey:@"name"]) {
+        [parameters setObject:@"" forKey:@"name"];
+    }
+    if (![parameters objectForKey:@"state"]) {
+        [parameters setObject:@"" forKey:@"state"];
     }
 
     NSMutableArray *collegeArray = [NSMutableArray new];

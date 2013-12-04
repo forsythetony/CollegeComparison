@@ -66,7 +66,7 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showCollegeDetailSegue"]) {
-        CollegeDetailViewController *destViewController = segue.destinationViewController;
+        CollegeDetailTableViewController *destViewController = segue.destinationViewController;
         
         NSIndexPath *indexPath = nil;
         

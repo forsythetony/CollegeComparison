@@ -21,7 +21,7 @@
     //self.selectedRowsToCompare = [[NSMutableArray alloc] init];
     
     // Passed data
-    self.universityNames = [[NSMutableArray alloc] initWithObjects:@"University 1", @"University 2", @"University 3", @"University 4", @"University 5", @"University 6", @"University 7", @"University 8", nil];
+    self.universitiesPassed = [[NSMutableArray alloc] initWithObjects:@"University 1", @"University 2", @"University 3", @"University 4", @"University 5", @"University 6", @"University 7", @"University 8", nil];
     
     // Set custom attributes for navigation bar
     [self setCustomAttributesForNavigationBar];
@@ -33,6 +33,7 @@
     self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare" style:UIBarButtonItemStyleBordered target:self action:@selector(compareButton)];
     self.compareButton.tintColor = [UIColor whiteColor];
     self.compareButton.enabled = NO;
+    self.compareButton.action = @selector(selectCollegesToCompare:);
     
     self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
     self.cancelButton.tintColor = [UIColor whiteColor];
@@ -49,13 +50,6 @@
 
 -(void)setCustomAttributesForNavigationBar
 {
-    // Navigation attributes
-    /*self.navigationBarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [UIColor whiteColor], NSForegroundColorAttributeName,
-                                    [UIFont fontWithName:@"Avenir-Book" size:22.0], NSFontAttributeName, nil];
-    
-    self.navigationController.navigationBar.titleTextAttributes = self.navigationBarAttributes;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:240.0/255.0 green:87.0/255.0 blue:70.0/255.0 alpha:1.0];*/
     self.navigationItem.title = @"Results";
 }
 
@@ -87,38 +81,6 @@
     }
 }
 
-#pragma mark - Segues
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Grab the row number to pass
-    NSInteger selectedRowToPass = self.tableView.indexPathForSelectedRow.row;
-    
-    // Grab the data from row that was selected
-    NSString *selectedUniversity = self.universityNames[selectedRowToPass];
-    
-    // Segue identifiers
-    NSString *comparisonSegueIdentifier = @"ComparisonSegue";
-    NSString *schoolDetailSegueIdentifier = @"SchoolDetailsSegue";
-    
-    /*if([segue.identifier isEqualToString:comparisonSegueIdentifier] && self.collegesToCompare.count == 2)
-    {
-        // Set up the destination view controller
-        FilteredCollegesViewController *comparisonViewController = segue.destinationViewController;
-        [comparisonViewController setReceivedCollegeInformation:selectedUniversity];
-        
-        //[self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    }*/
-    
-    /*if([segue.identifier isEqualToString:schoolDetailSegueIdentifier])
-    {
-        // Implement the segue to a new view controller to display the details page
-        FilteredCollegesViewController *detailsViewController = segue.destinationViewController;
-        detailsViewController.university = selectedUniversity;
-        detailsViewController.location = selectedUniversity;
-        detailsViewController.tuition = selectedUniversity;
-    }*/
-}
-
 #pragma mark - Table View Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -131,7 +93,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     // Get the number of colleges returned
-    NSUInteger collegesReturned = self.universityNames.count;
+    NSUInteger collegesReturned = self.universitiesPassed.count;
     
     UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
     [tableHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
@@ -160,7 +122,7 @@
 {
     if(section == 0)
     {
-        return self.universityNames.count;
+        return self.universitiesPassed.count;
     }
     
     return 0;
@@ -171,31 +133,8 @@
 {
     // Local variables
     NSString *cellIdentifier = @"CollegeCell";
-    NSString *uncheckedButtonImage = @"Unchecked.png";
     
     FilteredCollegesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    // Get the size of the cell
-    /*float cellHeight = cell.frame.size.height;
-     float cellWidth = cell.frame.size.width;
-     
-     // Create custom view to hold button
-     UIView *buttonHolder = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
-     buttonHolder.center = CGPointMake(cellWidth - 20, cellHeight/2);
-     
-     // Get the size of the buttonHolder view
-     float buttonHolderHeight = buttonHolder.frame.size.height;
-     float buttonHolderWidth = buttonHolder.frame.size.width;
-     
-     // Create a custom button
-     cell.compareCheckmark = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-     cell.compareCheckmark.frame = CGRectMake(cellWidth - 50, cellHeight/3, 70.0f, 70.0f);
-     
-     // Set the background image and place it
-     [cell.compareCheckmark setBackgroundImage:[UIImage imageNamed:uncheckedButtonImage] forState:UIControlStateNormal];
-     [cell.compareCheckmark setFrame:CGRectMake(0, 0, 22.0, 22.0)];
-     cell.compareCheckmark.center = CGPointMake(buttonHolderWidth/2, buttonHolderHeight/2);
-     [buttonHolder addSubview:cell.compareCheckmark];*/
     
     // Cell label customization
     [cell.universityNameLabel setTextColor:[UIColor colorWithRed:0.0/255 green:174.0/255 blue:239.0/255 alpha:1.0]];
@@ -208,24 +147,17 @@
     [cell.universityTuitionLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:17.0]];
     
     // Configure cell
-   
-    cell.universityNameLabel.text = self.universityNames[indexPath.row];
+    cell.universityNameLabel.text = self.universitiesPassed[indexPath.row];
     cell.universityLocationLabel.text = @"Location (City, State)";
     cell.universityTuitionLabel.text = @"Tuition";
     cell.tag = indexPath.row;
+    
     [self.storedSchoolsDictionary setObject:cell forKey:[NSString stringWithFormat:@"%i", indexPath.row]];
+    [self.allCellsInTable addObject:cell];
     
     FilteredCollegesTableViewCell *theCell = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
 
     NSLog(@"%@", theCell.universityNameLabel.text);
-    /*cell.tag = indexPath.row;
-     [cell addSubview:buttonHolder];
-     [cell.compareCheckmark setTag:indexPath.row];
-     NSLog(@"%d", cell.compareCheckmark.tag);
-     [cell.compareCheckmark addTarget:self
-     action:@selector(selectCollegesToCompare:)
-     forControlEvents:UIControlEventTouchUpInside];
-     cell.compareCheckmark.hidden = NO;*/
     
     return cell;
 }
@@ -236,7 +168,8 @@
 {
     NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
     
-    if (selectedRows.count == 2) {
+    if(selectedRows.count == 2)
+    {
         return nil;
     } else {
         return indexPath;
@@ -245,17 +178,13 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"showCollegeDetailSegue" sender:self];
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
-        if([self.tableView indexPathForSelectedRow] == self.collegesToCompare.firstObject)
-        {
-            [self.collegesToCompare removeObject:[self.tableView indexPathForSelectedRow]];
-        }
-        else if([self.tableView indexPathForSelectedRow] == self.collegesToCompare.lastObject)
-        {
-            [self.collegesToCompare removeLastObject];
-        }
+        FilteredCollegesTableViewCell *cellToCompare = [self.tableView cellForRowAtIndexPath:indexPath];
+        
+        [self.collegesToCompare removeObject:cellToCompare];
         
         if(self.collegesToCompare.count < 2)
         {
@@ -275,57 +204,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger index;
+    FilteredCollegesTableViewCell *detailCell = [self.tableView cellForRowAtIndexPath:indexPath];
     
+    if([detailCell.reuseIdentifier isEqualToString:@"CollegeCell"])
+    {
+        if(!self.tableView.isEditing)
+        {
+            [self performSegueWithIdentifier:@"collegeDetailsSegue" sender:detailCell];
+        }
+    }
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
+        FilteredCollegesTableViewCell *cellToCompare = [self.tableView cellForRowAtIndexPath:indexPath];
+        
         // If the user has less than two colleges to selected
         if(self.collegesToCompare.count < 2)
         {
-            /*FilteredCollegesTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            NSString *universityKey = cell.universityNameLabel.text;
-            [universityKey stringByAppendingString:[NSString stringWithFormat:@"-%i", indexPath.row]];
-            
-            // I can't retreive this? It requires an indexOfObject which i'm not sure how to obtain
-            //[[self.storedSchoolsDictionary objectForKey:universityKey] addObject:cell];
-            
-            // Is this adding the object to the dictionary?
-            [self.storedSchoolsDictionary setObject:cell forKey:universityKey];
-            
-            // Array to store dictionaries (Not sure if this is needed)
-            //[self.collegesToCompare addObject:self.storedSchoolsDictionary];
-            
-            // Just checking that there's cell data in the dictionary which there is with the log statement below
-            cell = [self.storedSchoolsDictionary objectForKey:universityKey];
-            
-            // This would get the index only if the dictionary is stored in an array
-            //index = [self.collegesToCompare indexOfObject:self.storedSchoolsDictionary];
-            
-            NSLog(@"%@ at row %i", cell.universityNameLabel.text, indexPath.row);
-            NSLog(@"%@", universityKey);*/
-            
-            //NSLog(@"%@", [self.storedSchoolsDictionary objectForKey:@"universityName"]);
-            //NSLog(@"%@", [[self.storedSchoolsDictionary objectForKey:@"universityName"] objectAtIndex:[NSNumber numberWithInt:indexPath.row]]);
-            
-            FilteredCollegesTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            NSLog(@"%@", [self.storedSchoolsDictionary objectForKey:cell.universityNameLabel.text]);
+            [self.collegesToCompare addObject:cellToCompare];
+            self.compareButton.enabled = NO;
         }
         
         // If the user has reached their max limit for selecting colleges
         if (self.collegesToCompare.count == 2)
         {
-            NSIndexPath *selectedIndexPathOne = self.collegesToCompare.firstObject;
-            NSIndexPath *selectedIndexPathTwo = self.collegesToCompare.lastObject;
-            
-            UITableViewCell *firstCollegeSelected = [self.tableView cellForRowAtIndexPath:selectedIndexPathOne];
-            UITableViewCell *secondCollegeSelected = [self.tableView cellForRowAtIndexPath:selectedIndexPathTwo];
-            
-            NSLog(@"%@", firstCollegeSelected);
-            NSLog(@"%@", selectedIndexPathTwo);
-            
             self.compareButton.enabled = YES;
-            
+            /*for(cellToCompare in self.collegesToCompare)
+            {
+                NSLog(@"%@", cellToCompare.universityNameLabel.text);
+                NSLog(@"%@", cellToCompare.universityLocationLabel.text);
+                NSLog(@"%@", cellToCompare.universityTuitionLabel.text);
+            }*/
             // Disable all other visible cells (THIS NEEDS TO BE FIXED)
             /*for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
              {
@@ -344,20 +253,8 @@
     }
 }
 
-/*- (void)selectCollegesToCompare:(id)sender
+- (void)selectCollegesToCompare:(id)sender
  {
- //self.compareCheckmark.hidden = YES;
- for(NSInteger i = 0; i < self.collegeDataSet.count; i++)
- {
- //CCAPPTableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
- CCAPPTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
- cell.compareCheckmark.hidden = YES;
- NSLog(@"%d", i);
- } //NSString *checkedButtonImage = @"CheckedBox.png";
- //[sender setBackgroundImage:[UIImage imageNamed:checkedButtonImage] forState:UIControlStateNormal];
- 
- //cell.compareCheckmark.hidden = NO;
- //[button setBackgroundImage:[UIImage imageNamed:checkedButtonImage] forState:UIControlStateNormal];
- }*/
-
+    [self performSegueWithIdentifier:@"comparisonSegue" sender:sender];
+ }
 @end
