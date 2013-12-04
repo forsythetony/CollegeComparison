@@ -10,7 +10,6 @@
 		3D581DC3184C4A5B00645179 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D581DC2184C4A5A00645179 /* QuartzCore.framework */; };
 		3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */; };
 		3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */; };
-		49EB4CB11843FDBB00C9C4AB /* CollegeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CA41843FDBB00C9C4AB /* CollegeDetailViewController.m */; };
 		49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */; };
 		49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */; };
 		49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */; };
@@ -56,8 +55,6 @@
 		3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesViewController.m; sourceTree = "<group>"; };
 		3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesTableViewCell.h; sourceTree = "<group>"; };
 		3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesTableViewCell.m; sourceTree = "<group>"; };
-		49EB4CA31843FDBB00C9C4AB /* CollegeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeDetailViewController.h; sourceTree = "<group>"; };
-		49EB4CA41843FDBB00C9C4AB /* CollegeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeDetailViewController.m; sourceTree = "<group>"; };
 		49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeSavedViewController.h; sourceTree = "<group>"; };
 		49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeSavedViewController.m; sourceTree = "<group>"; };
 		49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeSearchViewController.h; sourceTree = "<group>"; };
@@ -221,8 +218,6 @@
 				BA852071183AF40D002CC626 /* Bar Animations */,
 				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
 				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
-				49EB4CA31843FDBB00C9C4AB /* CollegeDetailViewController.h */,
-				49EB4CA41843FDBB00C9C4AB /* CollegeDetailViewController.m */,
 				49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */,
 				49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */,
 				49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */,
@@ -360,7 +355,6 @@
 				532A148C184D7594009C5BAE /* MUITCollegeDataProvider.m in Sources */,
 				49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */,
 				49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */,
-				49EB4CB11843FDBB00C9C4AB /* CollegeDetailViewController.m in Sources */,
 				3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */,
 				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
 				49EB4CC0184458B400C9C4AB /* StateViewController.m in Sources */,
