@@ -58,12 +58,12 @@
         
         collegeLabel.text = college.name;
         locationLabel.text = college.state;
-        tuitionLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
+        tuitionLabel.text = @"$16,000";
         
         float menEnrollment = college.enrollment_men, totalEnrollment = college.enrollment_total, womenEnrollment = college.enrollment_women;
         float menPerc = menEnrollment/totalEnrollment, womenPerc = womenEnrollment/totalEnrollment;
     
-        studentBTotalLabel.text = [NSString stringWithFormat:@"%d",college.enrollment_total];
+        studentBTotalLabel.text = [NSString stringWithFormat:@"%d", college.enrollment_total];
         
         menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
     
@@ -82,6 +82,7 @@
         satRead.text = [NSString stringWithFormat:@"%d - %d", college.sat_reading_25, college.sat_reading_75];
         satMath.text = [NSString stringWithFormat:@"%d - %d", college.sat_math_25, college.sat_math_75];
         satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
+        
         
     }
 }
