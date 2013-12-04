@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "FilteredCollegesTableViewCell.h"
+#import "CollegeDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FilteredCollegesViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *universityNames;
+@property (nonatomic, strong) NSMutableArray *universitiesPassed;
+@property (nonatomic, strong) NSMutableArray *allCellsInTable;
 @property (nonatomic, strong) NSMutableArray *collegesToCompare;
 //@property (nonatomic, strong) NSMutableArray *selectedRowsToCompare;
 
