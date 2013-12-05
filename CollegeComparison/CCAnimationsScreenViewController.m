@@ -117,9 +117,9 @@
     
     CGPoint mainPoint = CGPointMake(exOrigin, 40.0);
     
-    if ([[global objectForKey:@"Title"] isEqualToString:@"Financial Aid"]) {
-        [self buttonsForMenAndWomen];
-    }
+//    if ([[global objectForKey:@"Title"] isEqualToString:@"Financial Aid"]) {
+//        [self buttonsForMenAndWomen];
+//    }
     
     [self createGrowingBarWithPoint:mainPoint
                            andColor:barOneColor
@@ -848,6 +848,7 @@
         
     }
     
+        
     
     
     
@@ -1368,6 +1369,44 @@
 -(void)buttonsForMenAndWomen
 {
     
+    if (allButton) {
+        
+        
+        MUITCollege *collegeOne, *collegeTwo;
+        NSNumber *malePopulation, *malePopulationTwo;
+        
+        collegeOne = [global objectForKey:@"Object One"];
+        malePopulation = [NSNumber numberWithInteger:collegeOne.enrollment_total];
+        
+        collegeTwo = [global objectForKey:@"Object Two"];
+        malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.enrollment_total];
+        
+        [schoolOne setValue:malePopulation forKey:@"Height"];
+        [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
+        
+        [self resizeBarsWithOptionSwitching:YES];
+        
+        womenButton.backgroundColor = [UIColor clearColor];
+        allButton.backgroundColor = [UIColor grayColor];
+        menButton.backgroundColor = [UIColor clearColor];
+        
+        [allButton removeFromSuperview];
+        allButton = nil;
+        
+        [womenButton removeFromSuperview];
+        womenButton = nil;
+        
+        [menButton removeFromSuperview];
+        menButton = nil;
+        
+       
+    }
+
+    
+    
+    if (!allButton) {
+    
+   
     NSLog(@"I RAN I RAN I RAN");
     CGRect buttonFrame = CGRectMake(0.0, 10.0, 75.0, 20.0);
     
@@ -1429,6 +1468,7 @@
     
     [self customAddSubview:womenButton toSuperView:self.view];
     [self customAddSubview:menButton toSuperView:self.view];
+    }
     
     
 }
@@ -1462,9 +1502,9 @@
             
             
 //            [self customRemoveAllSubviews];
-            [self resizeBars];
+            [self resizeBarsWithOptionSwitching:NO];
             
-            womenButton.backgroundColor = [UIColor grayColor];
+            womenButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
             allButton.backgroundColor = [UIColor clearColor];
             menButton.backgroundColor = [UIColor clearColor];
             break;
@@ -1479,11 +1519,11 @@
             [schoolOne setValue:malePopulation forKey:@"Height"];
             [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
             
-            [self resizeBars];
+            [self resizeBarsWithOptionSwitching:NO];
             
             womenButton.backgroundColor = [UIColor clearColor];
             allButton.backgroundColor = [UIColor clearColor];
-            menButton.backgroundColor = [UIColor grayColor];
+            menButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
 
             
             break;
@@ -1498,10 +1538,10 @@
             [schoolOne setValue:malePopulation forKey:@"Height"];
             [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
             
-            [self resizeBars];
+            [self resizeBarsWithOptionSwitching:NO];
 
             womenButton.backgroundColor = [UIColor clearColor];
-            allButton.backgroundColor = [UIColor grayColor];
+            allButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
             menButton.backgroundColor = [UIColor clearColor];
 
             
@@ -1534,7 +1574,7 @@
     
 }
 
--(void)resizeBars
+-(void)resizeBarsWithOptionSwitching:(BOOL) switching
 {
     float barOneHeightValue = [[schoolOne objectForKey:@"Height"] floatValue];
     float barTwoHeightValue = [[schoolTwo objectForKey:@"Height"] floatValue];
@@ -1548,8 +1588,8 @@
     barOneHeightValue *= -1;
     barTwoHeightValue *= -1;
     
-    float barOneHeightDifference = barOneView.bounds.size.height - barOneHeightValue;
-
+    if (switching == NO) {
+        
     [UIView animateWithDuration:1.0f animations:^{
         
         [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
@@ -1566,11 +1606,28 @@
         
     
     }];
-    
+    }
+    else if (switching == YES)
+    {
+        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
+        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, BOTTOMREFERENCEPOINT, barTwoFrame.size.width, barTwoHeightValue)];
+        
+        
+        
+        
+        [barOneLabel setFrame:CGRectMake(barOneLabel.center.x - (barOneLabel.bounds.size.width/2),
+                                         self.view.bounds.size.height + barOneHeightValue - 28.0, barOneLabel.bounds.size.width, barOneLabel.bounds.size.height)];
+        
+        [barTwoLabel setFrame:CGRectMake(barTwoLabel.center.x - (barTwoLabel.bounds.size.width/2), self.view.bounds.size.height + barTwoHeightValue - 28.0, barTwoLabel.bounds.size.width, barTwoLabel.bounds.size.height)];
+    }
    
     
     
 }
 
+-(void)populationButtonCheck
+{
+    
+}
 
 @end

@@ -34,6 +34,7 @@
 @property (strong, nonatomic) NSMutableArray *labelPlaces;
 
 
+@property (nonatomic, assign) BOOL populationButtonsArePresent;
 
 -(void)setLabel;
 -(void)animateAll;
@@ -42,6 +43,6 @@
 -(void)createHandle;
 -(void)replaceHandle;
 -(void)buttonsForMenAndWomen;
-
+-(void)populationButtonCheck;
 
 @end

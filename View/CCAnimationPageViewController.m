@@ -147,7 +147,7 @@
             }
         }
         
-        if (index == 1) {
+        if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Enrollment Total"]) {
             [theView buttonsForMenAndWomen];
         }
         
