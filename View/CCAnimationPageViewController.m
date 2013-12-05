@@ -29,7 +29,7 @@
     NSMutableArray *chapterTexts;
     
     NSMutableArray *viewControllersForMe;
-    NSDictionary *modifierDictionary;
+    NSMutableDictionary *modifierDictionary;
     
     BOOL Mycompleted;
     
@@ -145,6 +145,10 @@
                 CCAnimationsScreenViewController *newView = [self viewControllerAtIndex:i];
                 [newView removeDuringTransition];
             }
+        }
+        
+        if (index == 1) {
+            [theView buttonsForMenAndWomen];
         }
         
     }
@@ -290,7 +294,7 @@
                                    schoolHeight,
                                    nil];
         
-        NSDictionary *schoolOneSettings = [NSDictionary dictionaryWithObjects:schoolOneValue forKeys:settingKeysForSchool];
+        NSMutableDictionary *schoolOneSettings = [NSMutableDictionary dictionaryWithObjects:schoolOneValue forKeys:settingKeysForSchool];
         
         schoolHeight = [schoolTwoValues objectAtIndex:i];
         
@@ -299,7 +303,7 @@
                                    [self shortenString:dummyCollege.name],
                                    schoolHeight,
                                    nil];
-        NSDictionary *schoolTwoSettings = [NSDictionary dictionaryWithObjects:schoolTwoValue forKeys:settingKeysForSchool];
+        NSMutableDictionary *schoolTwoSettings = [NSMutableDictionary dictionaryWithObjects:schoolTwoValue forKeys:settingKeysForSchool];
         
         NSArray *settingKeysForView = [NSArray arrayWithObjects:
                                        @"Title",
@@ -328,10 +332,10 @@
                                           nil];
         
         NSLog(@"MY INDEX IS: %@", [NSNumber numberWithInt:i]);
-        NSDictionary *generalSettings = [NSDictionary dictionaryWithObjects:settingObjectsForView
+        NSMutableDictionary *generalSettings = [NSMutableDictionary dictionaryWithObjects:settingObjectsForView
                                                                     forKeys:settingKeysForView];
         
-        NSDictionary *viewControllerInformation = [NSDictionary dictionaryWithObjectsAndKeys:
+        NSMutableDictionary *viewControllerInformation = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                    schoolOneSettings, @"One",
                                                    schoolTwoSettings, @"Two",
                                                    generalSettings, @"All",
@@ -437,6 +441,13 @@
     
     collegeOne.percent_receive_financial_aid = 34;
     collegeTwo.percent_receive_financial_aid = 54;
+    
+    
+    collegeOne.enrollment_men = 35000;
+    collegeOne.enrollment_women = 5000;
+    
+    collegeTwo.enrollment_men = 10000;
+    collegeTwo.enrollment_women = 20000;
     
     self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
     
