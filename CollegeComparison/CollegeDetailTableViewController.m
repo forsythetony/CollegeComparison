@@ -48,16 +48,8 @@
 {
     [super viewDidLoad];
     
-    NSMutableDictionary* options = [NSMutableDictionary new];
-    [options setObject:@"University of Missouri-" forKey:@"name"];
+    MUITCollege *college = self.representedCollege;
     
-//    MUITCollege *college = self.representedCollege;
-    
-    MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
-    
-    NSMutableArray *collegeArray = [collegeManager getColleges:options];
-    for(MUITCollege *college in collegeArray)
-    {
     collegeLabel.text = college.name;
     locationLabel.text = college.state;
     inTuitionLabel.text = [NSString stringWithFormat:@"$%d", college.tuition_in_state];
@@ -85,7 +77,7 @@
     satRead.text = [NSString stringWithFormat:@"%d - %d", college.sat_reading_25, college.sat_reading_75];
     satMath.text = [NSString stringWithFormat:@"%d - %d", college.sat_math_25, college.sat_math_75];
     satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
-    }
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,19 +88,19 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 8;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//#warning Potentially incomplete method implementation.
+//    // Return the number of sections.
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//#warning Incomplete method implementation.
+//    // Return the number of rows in the section.
+//    return 8;
+//}
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{

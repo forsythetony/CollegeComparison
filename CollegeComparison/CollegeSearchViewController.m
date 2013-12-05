@@ -26,7 +26,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    colleges = [NSArray arrayWithObjects:@"Mizzou", @"KU", @"Missouri S&T", @"Alabama", @"Colorado University", @"Blue Ridge Community", @"Edgar College", @"Delaware University", @"University of Kentucky", @"Wyoming University", @"Layola College", @"Columbia College", @"Syracuse", @"University of Wisconsin", @"Ole Miss", @"Baltimore College", nil];
+    NSMutableDictionary *options = [NSMutableDictionary new];
+//    [options setObject:@"University of Missouri-" forKey:@"name"];
+    
+    MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
+    colleges = [collegeManager getColleges:options];
+
+    
+//    colleges = [NSArray arrayWithObjects:@"Mizzou", @"KU", @"Missouri S&T", @"Alabama", @"Colorado University", @"Blue Ridge Community", @"Edgar College", @"Delaware University", @"University of Kentucky", @"Wyoming University", @"Layola College", @"Columbia College", @"Syracuse", @"University of Wisconsin", @"Ole Miss", @"Baltimore College", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,9 +64,9 @@
     }
     
     if (collegeTableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [(MUITCollege *)[searchResults objectAtIndex:indexPath.row] name];
     } else {
-        cell.textLabel.text = [colleges objectAtIndex:indexPath.row];
+        cell.textLabel.text = [(MUITCollege *)[colleges objectAtIndex:indexPath.row] name];
     }
     
     return cell;
@@ -73,17 +80,15 @@
         
         if ([self.searchDisplayController isActive]) {
             indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            destViewController.collegeName = [searchResults objectAtIndex:indexPath.row];
-
-//            MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
-//            NSMutableArray *collegeArray = [collegeManager getColleges:options];
-////            instead of passing a college name, pass an MUITCollege object.
-//            NSIndexPath *tappedPath = [self.tableView indexPathForCell:(UITableViewCell *)sender]; //get the index path of the row the user tapped
-//            MUITCollege *tappedCollege = [self.collegeArray objectAtIndex:tappedPath.row]; //get the college at the row the user tapped
-//            destViewController.representedCollege = tappedCollege;
+//            instead of passing a college name, pass an MUITCollege object.
+            NSIndexPath *tappedPath =  [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+            MUITCollege *tappedCollege = [searchResults objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+            destViewController.representedCollege = tappedCollege;
         } else {
-            indexPath = [self.tableView indexPathForSelectedRow];
-            destViewController.collegeName = [colleges objectAtIndex:indexPath.row];
+            //            instead of passing a college name, pass an MUITCollege object.
+            NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+            MUITCollege *tappedCollege = [colleges objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+            destViewController.representedCollege = tappedCollege;
         }
     }
 
@@ -93,7 +98,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
+                                    predicateWithFormat:@"name beginsWith[cd] %@",
                                     searchText];
     
     searchResults = [colleges filteredArrayUsingPredicate:resultPredicate];
