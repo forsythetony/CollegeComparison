@@ -32,7 +32,6 @@
     //Example on getting the enrollment totals for all schools with "Missouri" in their name
     //Uncomment the following lines:
 
-
     NSMutableDictionary* options = [NSMutableDictionary new];
     [options setObject:@"University of Missouri-" forKey:@"name"];
     
@@ -42,6 +41,7 @@
     for(MUITCollege *college in collegeArray)
     {
         NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
+        NSLog(@"Out of state tuition for %@: %ld", college.name, (long)college.tuition_out_state);
     }
 }
 
