@@ -79,6 +79,8 @@
         cell.userInteractionEnabled = YES;
     }
     
+    [self.collegesToCompare removeAllObjects];
+    
     // Retrieve the back button
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
@@ -157,9 +159,7 @@
     [self.storedSchoolsDictionary setObject:cell forKey:[NSString stringWithFormat:@"%i", indexPath.row]];
     [self.allCellsInTable addObject:cell];
     
-    FilteredCollegesTableViewCell *theCell = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
-
-    NSLog(@"%@", theCell.universityNameLabel.text);
+    //FilteredCollegesTableViewCell *theCell = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
     
     return cell;
 }
