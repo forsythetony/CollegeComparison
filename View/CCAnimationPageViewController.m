@@ -442,6 +442,13 @@
     collegeOne.percent_receive_financial_aid = 34;
     collegeTwo.percent_receive_financial_aid = 54;
     
+    
+    collegeOne.enrollment_men = 35000;
+    collegeOne.enrollment_women = 5000;
+    
+    collegeTwo.enrollment_men = 10000;
+    collegeTwo.enrollment_women = 20000;
+    
     self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
     
 }

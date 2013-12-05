@@ -29,6 +29,15 @@
     
     CGPoint lastPoint;
     
+    NSMutableArray *subviewArray;
+    
+    UIView *barOneView, *barTwoView;
+    UILabel *barOneLabel, *barTwoLabel;
+    
+    CGRect barOneFrame, barTwoFrame;
+    
+    float mainHeightMultiplier;
+    
 }
 @end
 
@@ -62,10 +71,11 @@
     UIView *backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
     [backgroundView setBackgroundColor:[UIColor blackColor]];
     [backgroundView setAlpha:0.05];
-    [self.view addSubview:backgroundView];
+    
     
     self.labelPlaces = [[NSMutableArray alloc] init];
     
+    subviewArray = [[NSMutableArray alloc] init];
     
     [self justseeing];
 }
@@ -86,7 +96,10 @@
     schoolTwo = [self.modifierDictionary objectForKey:@"Two"];
     global = [self.modifierDictionary objectForKey:@"All"];
     
-    [self createTitleLabelWithString:[global objectForKey:@"Title"]];
+    if (![[global objectForKey:@"Title"] isEqualToString:@"Enrollment Total"]) {
+         [self createTitleLabelWithString:[global objectForKey:@"Title"]];
+    }
+   
     
     
     [self createBackgroundLinesWithHeightModifier:[[global objectForKey:@"LineSpacing"] floatValue]
@@ -113,7 +126,9 @@
                           andHeight:[[schoolOne objectForKey:@"Height"] floatValue]
                            andWidth:width
                 andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
-                         andCollege:[schoolOne objectForKey:@"Name"]];
+                         andCollege:[schoolOne objectForKey:@"Name"]
+     
+                           andLabel:barOneLabel];
     
     
     mainPoint.x = 320 - (exOrigin + width);
@@ -124,15 +139,17 @@
                           andHeight:[[schoolTwo objectForKey:@"Height"] floatValue]
                            andWidth:width
                 andHeightMultiplier:[[global objectForKey:@"Multiplier"] floatValue]
-                         andCollege:[schoolTwo objectForKey:@"Name"]];
+                         andCollege:[schoolTwo objectForKey:@"Name"]
+     
+                           andLabel:barTwoLabel];
     
     CGRect oldRect = CGRectMake(0.0, BOTTOMREFERENCEPOINT, self.view.bounds.size.width, 50.0);
     
     UIView* newView = [[UIView alloc] initWithFrame:oldRect];
     [newView setBackgroundColor:[UIColor clearColor]];
     [newView setAlpha:0.25];
-    [self.view addSubview:newView];
-    
+   // [self.view addSubview:newView];
+    [self customAddSubview:newView toSuperView:self.view];
     
     [self.view bringSubviewToFront:myView];
     
@@ -164,8 +181,8 @@
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [titleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:20.0f]];
     [titleLabel setAlpha:0.0];
-    [self.view addSubview:titleLabel];
-    
+    //[self.view addSubview:titleLabel];
+    [self customAddSubview:titleLabel toSuperView:self.view];
     
     [UIView animateWithDuration:0.75 animations:^{
         [titleLabel setAlpha:1.0];
@@ -228,7 +245,8 @@
     CGRect theFrame = CGRectMake(point.x, point.y, 1.0f, 1.0);
     
     [lineView setFrame:theFrame];
-    [[self view] addSubview:lineView];
+//    [[self view] addSubview:lineView];
+    [self customAddSubview:lineView toSuperView:self.view];
     
     [lineView setBackgroundColor:[UIColor blackColor]];
     
@@ -258,7 +276,8 @@
     [mainLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:20.0f]];
     [mainLabel setAlpha:0.0];
     [mainLabel setBackgroundColor:[UIColor redColor]];
-    [self.view addSubview:mainLabel];
+  //  [self.view addSubview:mainLabel];
+    [self customAddSubview:mainLabel toSuperView:self.view];
     
     
     [UIView animateWithDuration:0.75 animations:^{
@@ -270,7 +289,9 @@
 {
     
     UILabel* theLabel = [[UILabel alloc] initWithFrame:CGRectMake(point.x, point.y + -5.0, 100.0, 20.0)];
-    [[self view] addSubview:theLabel];
+    //[[self view] addSubview:theLabel];
+    [self customAddSubview:theLabel toSuperView:self.view];
+    
     [theLabel setTextColor:[UIColor blackColor]];
     [theLabel setBackgroundColor:[UIColor clearColor]];
     [theLabel setText:string];
@@ -285,54 +306,68 @@
 
 
 
--(void)createGrowingBarWithPoint:(CGPoint)point andColor:(UIColor*)backgroundColor andHeight:(float)height andWidth:(float)width andHeightMultiplier:(float)multiplier andCollege:(NSString*)college
+-(void)createGrowingBarWithPoint:(CGPoint)point andColor:(UIColor*)backgroundColor andHeight:(float)height andWidth:(float)width andHeightMultiplier:(float)multiplier andCollege:(NSString*)college andLabel:(UILabel*) mainCollegeLabel
 {
-    
-    UIButton *theView = [[UIButton alloc] init];
+
+    UIView *mainBarView = [[UIView alloc] init];
     height *= multiplier;
-    
-    if (point.x < 80.0) {
-        theView.tag = 1;
-        self.schoolOneHeight = height;
-    }
-    else
-    {
-        theView.tag = 2;
-        self.schoolTwoHeight = height;
-    }
-    
+    mainHeightMultiplier = multiplier;
     point.y = BOTTOMREFERENCEPOINT;
     
     CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
     
-    [theView setFrame:framez];
+    [mainBarView setFrame:framez];
     
     CGRect labelFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0 - 10.0, width, 30.0f);
-    UILabel *collegeLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    collegeLabel.numberOfLines = 2;
+    mainCollegeLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    mainCollegeLabel.numberOfLines = 2;
     
     self.mainFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 30.0, width, 20.0f);
-    [collegeLabel setBackgroundColor:[UIColor clearColor]];
-    [[self view] addSubview:collegeLabel];
-    [collegeLabel setTextColor:[UIColor blackColor]];
-    collegeLabel.textAlignment = NSTextAlignmentCenter;
-    [collegeLabel setText:college];
-    [collegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
-    [collegeLabel setAlpha:0.750];
+    [mainCollegeLabel setBackgroundColor:[UIColor clearColor]];
+   // [[self view] addSubview:mainCollegeLabel];
+    [self customAddSubview:mainCollegeLabel toSuperView:self.view];
+    
+    [mainCollegeLabel setTextColor:[UIColor blackColor]];
+    mainCollegeLabel.textAlignment = NSTextAlignmentCenter;
+    [mainCollegeLabel setText:college];
+    [mainCollegeLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0f]];
+    [mainCollegeLabel setAlpha:0.750];
     
     
-    [[self view] addSubview:theView];
+//    [[self view] addSubview:theView];
+    [self customAddSubview:mainBarView toSuperView:self.view];
     
-    [theView setBackgroundColor:backgroundColor];
+    [mainBarView setBackgroundColor:backgroundColor];
     
-    theView.alpha = 0.75f;
+    mainBarView.alpha = 0.75f;
+    
+    NSLog(@"\n\nFrame Origin x = %lf\n\n", framez.origin.x);
+    
+    
+    CGRect testRect = CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height));
+    
+    NSLog(@"\nFrame Value in Creation: %@\n", NSStringFromCGRect(testRect));
+    
+    
+    if (framez.origin.x < 100.0) {
+        barOneFrame = CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height));
+        barOneView = mainBarView;
+        barOneLabel = mainCollegeLabel;
+        
+    }
+   else if (framez.origin.x > 100.0)
+    {
+         barTwoFrame = CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height));
+        barTwoView = mainBarView;
+        barTwoLabel = mainCollegeLabel;
+    }
     
     [UIView animateWithDuration:1.0f animations:^{
         
-        [theView setFrame:CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height))];
-        theView.alpha = 1.0f;
-        [collegeLabel setAlpha:1.0f];
-        [collegeLabel setFrame:CGRectMake(point.x, point.y - height - 17.0 - 10.0, width, 30.0f)];
+        [mainBarView setFrame:CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height))];
+        mainBarView.alpha = 1.0f;
+        [mainCollegeLabel setAlpha:1.0f];
+        [mainCollegeLabel setFrame:CGRectMake(point.x, point.y - height - 27.0, width, 30.0f)];
         
     }];
     
@@ -360,10 +395,13 @@
         
         UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
         
-        [detailViewer addSubview:backgroundImageView];
+//        [detailViewer addSubview:backgroundImageView];
+        [self customAddSubview:backgroundImageView toSuperView:detailViewer];
+        
         [detailViewer sendSubviewToBack:backgroundImageView];
         [detailViewer setBackgroundColor:[UIColor grayColor]];
-        [self.view addSubview:detailViewer];
+      //  [self.view addSubview:detailViewer];
+        [self customAddSubview:detailViewer toSuperView:self.view];
         
         
         // NSLog(@"Width: %f Height: %f", self.view.bounds.size.width, self.view.bounds.size.height);
@@ -375,7 +413,9 @@
         
         [swipeGestureSubview setBackgroundColor:[UIColor clearColor]];
         
-        [detailViewer addSubview:swipeGestureSubview];
+//        [detailViewer addSubview:swipeGestureSubview];
+        [self customAddSubview:swipeGestureSubview toSuperView:detailViewer];
+        
         
     }
 }
@@ -636,7 +676,8 @@
             
             [lines setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.15]];
             
-            [handleView addSubview:lines];
+//            [handleView addSubview:lines];
+            [self customAddSubview:lines toSuperView:handleView];
             
             why += 5.0;
         }
@@ -647,9 +688,12 @@
         
         [handleView addGestureRecognizer:longPressRecognizer];
         
-        [handleView addSubview:moreLabel];
+//        [handleView addSubview:moreLabel];
+        [self customAddSubview:moreLabel toSuperView:handleView];
         
-        [self.view addSubview:handleView];
+//        [self.view addSubview:handleView];
+        [self customAddSubview:handleView toSuperView:self.view];
+        
     }
     
     
@@ -707,8 +751,8 @@
         
         [dismissArea setBackgroundColor:[UIColor clearColor]];
         
-        [self.view addSubview:dismissArea];
-        
+//        [self.view addSubview:dismissArea];
+        [self customAddSubview:dismissArea toSuperView:self.view];
     }
     
     
@@ -779,7 +823,8 @@
                                                        blue:0.0
                                                       alpha:0.15]];
             
-            [handleView addSubview:lines];
+//            [handleView addSubview:lines];
+            [self customAddSubview:lines toSuperView:handleView];
             
             why += 5.0;
         }
@@ -790,9 +835,12 @@
         
         [handleView addGestureRecognizer:longPressRecognizer];
         
-        [handleView addSubview:moreLabel];
+//        [handleView addSubview:moreLabel];
+        [self customAddSubview:moreLabel toSuperView:handleView];
+        
         [handleView setAlpha:0.0];
-        [self.view addSubview:handleView];
+//        [self.view addSubview:handleView];
+        [self customAddSubview:handleView toSuperView:self.view];
         
         [UIView animateWithDuration:0.2 animations:^{
             [handleView setAlpha:1.0];
@@ -814,7 +862,8 @@
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
     [dismissButton setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:dismissButton];
+//    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
     
     CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
     
@@ -904,15 +953,27 @@
     
     [line setBackgroundColor:[UIColor grayColor]];
     
-    [detailViewer addSubview:line];
+//    [detailViewer addSubview:line];
+    [self customAddSubview:line toSuperView:detailViewer];
     
     float newWidth = (float)([titleString length] * 7.5);
     
-    [detailViewer addSubview:mainTitleLabel];
-    [detailViewer addSubview:collegeOne];
-    [detailViewer addSubview:collegeTwo];
-    [detailViewer addSubview:collegeOneTuitionValue];
-    [detailViewer addSubview:collegeTwoTuitionValue];
+//    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    
+    
+//    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+//    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+
+//    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+//    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
+    
     [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
@@ -925,7 +986,8 @@
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
     [dismissButton setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:dismissButton];
+//    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
     
     CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
     
@@ -1015,15 +1077,24 @@
     
     [line setBackgroundColor:[UIColor grayColor]];
     
-    [detailViewer addSubview:line];
+//    [detailViewer addSubview:line];
+    [self customAddSubview:line toSuperView:detailViewer];
     
     float newWidth = (float)([titleString length] * 7.5);
     
-    [detailViewer addSubview:mainTitleLabel];
-    [detailViewer addSubview:collegeOne];
-    [detailViewer addSubview:collegeTwo];
-    [detailViewer addSubview:collegeOneTuitionValue];
-    [detailViewer addSubview:collegeTwoTuitionValue];
+    //    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+    //    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
     [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
@@ -1035,7 +1106,8 @@
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
     [dismissButton setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:dismissButton];
+//    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
     
     CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
     
@@ -1133,15 +1205,26 @@
     
     [line setBackgroundColor:[UIColor grayColor]];
     
-    [detailViewer addSubview:line];
+//    [detailViewer addSubview:line];
+    [self customAddSubview:line toSuperView:detailViewer];
     
     float newWidth = (float)([titleString length] * 7.5);
     
-    [detailViewer addSubview:mainTitleLabel];
-    [detailViewer addSubview:collegeOne];
-    [detailViewer addSubview:collegeTwo];
-    [detailViewer addSubview:collegeOneTuitionValue];
-    [detailViewer addSubview:collegeTwoTuitionValue];
+    //    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    
+    
+    //    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+    //    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
     [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
@@ -1154,7 +1237,8 @@
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
     [dismissButton setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:dismissButton];
+//    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
     
     CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 30.0);
     
@@ -1232,16 +1316,24 @@
     
     [line setBackgroundColor:[UIColor grayColor]];
     
-    [detailViewer addSubview:line];
+//    [detailViewer addSubview:line];
+    [self customAddSubview:detailViewer toSuperView:line];
     
     float newWidth = (float)([titleString length] * 7.5);
     
-    [detailViewer addSubview:mainTitleLabel];
-    [detailViewer addSubview:collegeOne];
-    [detailViewer addSubview:collegeTwo];
-    [detailViewer addSubview:collegeOneTuitionValue];
-    [detailViewer addSubview:collegeTwoTuitionValue];
-    [UIView animateWithDuration:1.0 animations:^{
+    //    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+    //    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];    [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
 }
@@ -1277,7 +1369,7 @@
 {
     
     NSLog(@"I RAN I RAN I RAN");
-    CGRect buttonFrame = CGRectMake(0.0, 40.0, 100.0, 20.0);
+    CGRect buttonFrame = CGRectMake(0.0, 10.0, 75.0, 20.0);
     
     womenButton = [[UIButton alloc] initWithFrame:buttonFrame];
     [womenButton setTag:1];
@@ -1285,38 +1377,72 @@
     [womenButton setTitle:@"By Women"
                  forState:UIControlStateNormal];
     womenButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0];
-    womenButton.titleLabel.textColor = [UIColor blackColor];
-    womenButton.backgroundColor = [UIColor grayColor];
+   // womenButton.titleLabel.textColor = [UIColor blackColor];
     
-    buttonFrame.origin.x = self.view.bounds.size.width - 100.0;
+    [womenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [womenButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    
+    womenButton.backgroundColor = [UIColor clearColor];
+    womenButton.layer.cornerRadius = 4.0;
+    buttonFrame.origin.x = self.view.bounds.size.width - 75.0;
     
     menButton = [[UIButton alloc] initWithFrame:buttonFrame];
     menButton.tag = 2;
     [menButton addTarget:self action:@selector(changePopulationViewWithButton:) forControlEvents:UIControlEventTouchUpInside];
     [menButton setTitle:@"By Men" forState:UIControlStateNormal];
-    menButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0];
+    menButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12.0];
     menButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    menButton.titleLabel.textColor = [UIColor blackColor];
-    menButton.backgroundColor = [UIColor grayColor];
+  //  menButton.titleLabel.textColor = [UIColor blackColor];
+    
+    [menButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [menButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    
+    menButton.backgroundColor = [UIColor clearColor];
+    
+    menButton.layer.cornerRadius = 4.0;
+    
+    CGPoint screenCenter = self.view.center;
+    float width = self.view.bounds.size.width - (75 * 2);
+    
+    buttonFrame = CGRectMake((screenCenter.x - (width/2)), 0.0, width, 40.0);
+    
+    allButton = [[UIButton alloc] initWithFrame:buttonFrame];
+    allButton.tag = 3;
+    [allButton addTarget:self action:@selector(changePopulationViewWithButton:) forControlEvents:UIControlEventTouchUpInside];
+    allButton.backgroundColor = [UIColor blueColor];
+    
+
+    [allButton setTitle:@"Enrollment Total" forState:UIControlStateNormal];
+    
+    [allButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [allButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:20.0f]];
+    
+    [allButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [allButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [allButton setBackgroundColor:[UIColor colorWithWhite:0/255.0 alpha:0.17]];
+    allButton.layer.cornerRadius = 4.0;
+    
+    //[self.view addSubview:titleLabel];
+    [self customAddSubview:allButton toSuperView:self.view];
     
     
     
+    [self customAddSubview:womenButton toSuperView:self.view];
+    [self customAddSubview:menButton toSuperView:self.view];
     
-    
-    [self.view addSubview:womenButton];
-    [self.view addSubview:menButton];
     
 }
 
 -(void)changePopulationViewWithButton:(UIButton*) sender
 {
-    NSNumber *schoolOneValue, *schoolTwoValue;
+    NSNumber *schoolOneValue, *schoolTwoValue, *malePopulation, *malePopulationTwo;
     
     schoolOneValue = [NSNumber new];
     schoolTwoValue = [NSNumber new];
     MUITCollege *collegeOne, *collegeTwo;
     
     UIButton *testButton = (UIButton*)sender;
+    
     
     NSLog(@"\n\n\n\nHELLO THERE\n\n\n\n");
     
@@ -1325,23 +1451,126 @@
             
             
             collegeOne = [global objectForKey:@"Object One"];
-            NSNumber *malePopulation = [NSNumber numberWithInteger:collegeOne.enrollment_men];
+            malePopulation = [NSNumber numberWithInteger:collegeOne.enrollment_women];
             
             collegeTwo = [global objectForKey:@"Object Two"];
-            NSNumber *malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.enrollment_men];
+            malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.enrollment_women];
             
             
             [schoolOne setValue:malePopulation forKey:@"Height"];
             [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
             
-            self.hasAnimated = NO;
-            [self animateAll];
+            
+//            [self customRemoveAllSubviews];
+            [self resizeBars];
+            
+            womenButton.backgroundColor = [UIColor grayColor];
+            allButton.backgroundColor = [UIColor clearColor];
+            menButton.backgroundColor = [UIColor clearColor];
+            break;
+        case 2:
+            
+            collegeOne = [global objectForKey:@"Object One"];
+            malePopulation = [NSNumber numberWithInteger:collegeOne.enrollment_men];
+            
+            collegeTwo = [global objectForKey:@"Object Two"];
+            malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.enrollment_men];
+            
+            [schoolOne setValue:malePopulation forKey:@"Height"];
+            [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
+            
+            [self resizeBars];
+            
+            womenButton.backgroundColor = [UIColor clearColor];
+            allButton.backgroundColor = [UIColor clearColor];
+            menButton.backgroundColor = [UIColor grayColor];
+
+            
+            break;
+        case 3:
+            
+            collegeOne = [global objectForKey:@"Object One"];
+            malePopulation = [NSNumber numberWithInteger:collegeOne.enrollment_total];
+            
+            collegeTwo = [global objectForKey:@"Object Two"];
+            malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.enrollment_total];
+            
+            [schoolOne setValue:malePopulation forKey:@"Height"];
+            [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
+            
+            [self resizeBars];
+
+            womenButton.backgroundColor = [UIColor clearColor];
+            allButton.backgroundColor = [UIColor grayColor];
+            menButton.backgroundColor = [UIColor clearColor];
+
             
             break;
             
     }
 }
 
+-(void)customAddSubview:(UIView*) ourSubview toSuperView:(UIView*) ourSuperView
+{
+    
+    [subviewArray addObject:ourSubview];
+    
+    [ourSuperView addSubview:ourSubview];
+ 
+}
+
+-(void)customRemoveAllSubviews
+{
+    
+    
+    for (int i = 0; i < [subviewArray count]; i++) {
+        UIView *theView = subviewArray[i];
+        
+        [theView removeFromSuperview];
+        theView = nil;
+        [subviewArray removeObject:theView];
+    }
+    
+    
+}
+
+-(void)resizeBars
+{
+    float barOneHeightValue = [[schoolOne objectForKey:@"Height"] floatValue];
+    float barTwoHeightValue = [[schoolTwo objectForKey:@"Height"] floatValue];
+    
+    float multiplier = [[global objectForKey:@"Multiplier"] floatValue];
+    barOneHeightValue *= multiplier;
+    barTwoHeightValue *= multiplier;
+    
+    NSLog(@"Float Value One: %lf", barOneHeightValue);
+    
+    barOneHeightValue *= -1;
+    barTwoHeightValue *= -1;
+    
+    float barOneHeightDifference = barOneView.bounds.size.height - barOneHeightValue;
+
+    [UIView animateWithDuration:1.0f animations:^{
+        
+        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
+        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, BOTTOMREFERENCEPOINT, barTwoFrame.size.width, barTwoHeightValue)];
+        
+      
+        
+        
+        [barOneLabel setFrame:CGRectMake(barOneLabel.center.x - (barOneLabel.bounds.size.width/2),
+                                        self.view.bounds.size.height + barOneHeightValue - 28.0, barOneLabel.bounds.size.width, barOneLabel.bounds.size.height)];
+        
+        [barTwoLabel setFrame:CGRectMake(barTwoLabel.center.x - (barTwoLabel.bounds.size.width/2), self.view.bounds.size.height + barTwoHeightValue - 28.0, barTwoLabel.bounds.size.width, barTwoLabel.bounds.size.height)];
+        
+        
+    
+    }];
+    
+   
+    
+    
+}
 
 
 @end
