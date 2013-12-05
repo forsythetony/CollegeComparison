@@ -36,6 +36,18 @@ static sqlite3_stmt *statement = nil;
     } else if ([[parameters objectForKey:@"school_type"]  isEqual: @"private"]) {
         [parameters setObject:@"=2" forKey:@"school_type"];
     }
+    
+    if (![parameters objectForKey:@"enrollment_total_min"]) {
+        [parameters setObject:@"0" forKey:@"enrollment_total_min"];
+    }
+    
+    if (![parameters objectForKey:@"enrollment_total_max"]) {
+        [parameters setObject:@"" forKey:@"enrollment_total_max"];
+    } else {
+        NSString* str = [NSString stringWithFormat:@"and enrollment_total < %@", [parameters objectForKey:@"enrollment_total_max"]];
+        [parameters setObject:str forKey:@"enrollment_total_max"];
+    }
+    
 
     NSMutableArray *collegeArray = [NSMutableArray new];
 
@@ -52,7 +64,7 @@ static sqlite3_stmt *statement = nil;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &database) == SQLITE_OK)
         {
-            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment, tuition where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and basic_data.UNITID = tuition.UNITID and INSTNM LIKE '%%%@%%' and out_state_tuition > %@ and out_state_tuition < %@ and CONTROL %@", [parameters objectForKey:@"name"], [parameters objectForKey:@"out_state_tuition_min"], [parameters objectForKey:@"out_state_tuition_max"], [parameters objectForKey:@"school_type"]];
+            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment, tuition where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and basic_data.UNITID = tuition.UNITID and INSTNM LIKE '%%%@%%' and out_state_tuition > %@ and out_state_tuition < %@ and CONTROL %@ and enrollment_total > %@ %@", [parameters objectForKey:@"name"], [parameters objectForKey:@"out_state_tuition_min"], [parameters objectForKey:@"out_state_tuition_max"], [parameters objectForKey:@"school_type"], [parameters objectForKey:@"enrollment_total_min"], [parameters objectForKey:@"enrollment_total_max"]];
             NSLog(@"%@", querySQL);
             const char *query_stmt = [querySQL UTF8String];
             if(sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK)

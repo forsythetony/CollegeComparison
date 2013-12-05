@@ -36,6 +36,10 @@
     [options setObject:@"University of Missouri" forKey:@"name"];
     [options setObject:@"30000" forKey:@"out_state_tuition_max"];
     [options setObject:@"20000" forKey:@"out_state_tuition_min"];
+    
+    [options setObject:@"500" forKey:@"enrollment_total_min"];
+    [options setObject:@"1200" forKey:@"enrollment_total_max"];
+    
     [options setObject:@"public" forKey:@"school_type"];
     
     
@@ -45,7 +49,7 @@
     for(MUITCollege *college in collegeArray)
     {
         //NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
-        NSLog(@"%@ out_state_tuition: %ld", college.name, (long)college.tuition_out_state);
+        NSLog(@"%@ enrollment_total: %ld", college.name, (long)college.enrollment_total);
     }
 }
 
