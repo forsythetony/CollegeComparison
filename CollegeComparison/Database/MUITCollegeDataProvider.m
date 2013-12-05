@@ -38,7 +38,7 @@ static sqlite3_stmt *statement = nil;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &database) == SQLITE_OK)
         {
-            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment, tuition where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and basic_data.UNITID = tuition.UNITID and INSTNM LIKE '%%%@%%'", [parameters objectForKey:@"institution"]];
+            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment, tuition where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and basic_data.UNITID = tuition.UNITID and INSTNM LIKE '%%%@%%'", [parameters objectForKey:@"name"]];
             //NSLog(@"%@", querySQL);
             const char *query_stmt = [querySQL UTF8String];
             if(sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK)
@@ -81,8 +81,8 @@ static sqlite3_stmt *statement = nil;
 
                     college.enrollment_total = (int) sqlite3_column_int(statement, 22);
                     
-                    college.tuition_out_state = (int) sqlite3_column_int(statement, 24);
-                    college.tuition_in_state = (int) sqlite3_column_int(statement, 25);
+                    college.tuition_out_state = (int) sqlite3_column_int(statement, 26);
+                    college.tuition_in_state = (int) sqlite3_column_int(statement, 27);
                     
                     [collegeArray addObject:college];
                 }

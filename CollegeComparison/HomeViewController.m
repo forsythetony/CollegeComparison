@@ -33,7 +33,7 @@
     //Uncomment the following lines:
 
     NSMutableDictionary* options = [NSMutableDictionary new];
-    [options setObject:@"University of Missouri-" forKey:@"name"];
+    [options setObject:@"University of Missouri" forKey:@"name"];
     
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     

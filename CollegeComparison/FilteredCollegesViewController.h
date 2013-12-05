@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FilteredCollegesTableViewCell.h"
 #import "CollegeDetailViewController.h"
+#import "MUITCollege.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FilteredCollegesViewController : UITableViewController
