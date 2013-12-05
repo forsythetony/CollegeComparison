@@ -170,7 +170,7 @@ NSArray *searchResults;
     [tuition setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSNumber *amount = [NSNumber numberWithInt:[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] tuition_out_state]];
     
-    if (self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.universityNameLabel.text = [(MUITCollege *)[searchResults objectAtIndex:indexPath.row] name];
         cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
         cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
