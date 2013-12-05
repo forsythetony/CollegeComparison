@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MUITCollegeDataProvider.h"
 
 @interface CCAnimationPageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
+
+@property (nonatomic, strong) NSArray *twoColleges;
 
 @end
