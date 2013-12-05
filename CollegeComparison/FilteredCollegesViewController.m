@@ -16,6 +16,8 @@
 
 @implementation FilteredCollegesViewController
 
+NSArray *searchResults;
+
 - (void)viewDidLoad
 {
     
@@ -130,23 +132,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0)
-    {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+        
+    } else {
         return self.universitiesPassed.count;
+        
     }
-    
-    return 0;
 }
 
 // Tableview cell creation
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MUITCollege *college = self.representedCollege;
+    //MUITCollege *college = self.representedCollege;
     
     // Local variables
-    NSString *cellIdentifier = @"CollegeCell";
+    static NSString *cellIdentifier = @"CollegeCell";
     
-    FilteredCollegesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    FilteredCollegesTableViewCell *cell = (FilteredCollegesTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[FilteredCollegesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     // Cell label customization
     [cell.universityNameLabel setTextColor:[UIColor colorWithRed:0.0/255 green:174.0/255 blue:239.0/255 alpha:1.0]];
@@ -158,19 +165,24 @@
     [cell.universityTuitionLabel setTextColor:[UIColor colorWithRed:147.0/255.0 green:149.0/255 blue:152.0/255 alpha:1.0]];
     [cell.universityTuitionLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:17.0]];
     
-    // Configure cell
-    cell.universityNameLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] name];
-    cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
-    
     NSNumberFormatter *tuition = [[NSNumberFormatter alloc] init];
     [tuition setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [tuition setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSNumber *amount = [NSNumber numberWithInt:[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] tuition_out_state]];
     
-    cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
+    if (self.searchDisplayController.searchResultsTableView) {
+        cell.universityNameLabel.text = [(MUITCollege *)[searchResults objectAtIndex:indexPath.row] name];
+        cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
+        cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
+    }
+    else {
+        cell.universityNameLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] name];
+        cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
+        cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
+    }
+    
     cell.tag = indexPath.row;
     
-    [self.storedSchoolsDictionary setObject:cell forKey:[NSString stringWithFormat:@"%i", indexPath.row]];
     [self.allCellsInTable addObject:cell];
     
     return cell;
@@ -223,19 +235,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilteredCollegesTableViewCell *detailCell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%i", self.collegesToCompare.count);
+    FilteredCollegesTableViewCell *detailCell = (FilteredCollegesTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    if (self.tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier: @"showCollegeDetailSegue" sender: self];
+    }
+    
     if([detailCell.reuseIdentifier isEqualToString:@"CollegeCell"])
     {
         if(!self.tableView.isEditing)
-        {
-            [self performSegueWithIdentifier:@"collegeDetailsSegue" sender:detailCell];
+        { 
+            if([self.title  isEqual:@"schools"])
+            {
+                [self performSegueWithIdentifier:@"showCollegeDetailSegue" sender:detailCell];
+            }
+            else if([self.title isEqual:@"filteredSchools"])
+            {
+                [self performSegueWithIdentifier:@"collegeDetailsSegue" sender:detailCell];
+            }
         }
     }
+    
+    /*if (self.tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier: @"showCollegeDetailSegue" sender: self];
+    }*/
+    
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
         FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        //[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row]
         
         MUITCollege *collegeObject = [self.universitiesPassed objectAtIndex:indexPath.row];
         
@@ -256,7 +285,7 @@
             self.compareButton.enabled = YES;
             
             // Disable all unselected cells
-            for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
+            for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row++)
             {
                 NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
                 FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
@@ -285,21 +314,51 @@
         MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
         destViewController.representedCollege = tappedCollege;
     }
-    
+
+    else if ([segue.identifier isEqualToString:@"showCollegeDetailSegue"]) {
+        CollegeDetailTableViewController *destViewController = segue.destinationViewController;
+        
+        NSIndexPath *indexPath = nil;
+        
+        
+        if ([self.searchDisplayController isActive]) {
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            //            instead of passing a college name, pass an MUITCollege object.
+            NSIndexPath *tappedPath =  [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+            MUITCollege *tappedCollege = [searchResults objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+            destViewController.representedCollege = tappedCollege;
+        } else {
+            //            instead of passing a college name, pass an MUITCollege object.
+            NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+            MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+            destViewController.representedCollege = tappedCollege;
+        }
+
+    }
     else if ([segue.identifier isEqualToString:@"comparisonSegue"])
     {
                  CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
         
                  destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
 
+
     }
 }
 
 - (void)selectCollegesToCompare:(id)sender
  {
+
+     if([self.title isEqual:@"filteredSchools"])
+     {
+         [self performSegueWithIdentifier:@"comparisonSegue" sender:self];
+     }
+     else if ([self.title isEqual:@"schools"])
+     {
+         [self performSegueWithIdentifier:@"comparisonSegueOne" sender:self];
+     }
+
      
-     
-     [self performSegueWithIdentifier:@"comparisonSegue" sender:sender];
+
      
 //     
 //     
@@ -318,4 +377,24 @@
 // }
 
  }
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"name contains[cd] %@",
+                                    searchText];
+    
+    searchResults = [self.universitiesPassed filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 @end
