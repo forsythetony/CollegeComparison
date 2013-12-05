@@ -14,7 +14,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *collegeLabel;
 @property (nonatomic, strong) NSString *collegeName;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tuitionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *inTuitionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *outTuitionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *studentBTotalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *menEnrollLabel;
 @property (weak, nonatomic) IBOutlet UILabel *womenEnrollLabel;
@@ -31,5 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *satRead;
 @property (weak, nonatomic) IBOutlet UILabel *satMath;
 @property (weak, nonatomic) IBOutlet UILabel *satWriting;
+
+@property (strong, nonatomic) MUITCollege *representedCollege;
 
 @end

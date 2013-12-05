@@ -18,7 +18,8 @@
 @synthesize collegeLabel;
 @synthesize collegeName;
 @synthesize locationLabel;
-@synthesize tuitionLabel;
+@synthesize inTuitionLabel;
+@synthesize outTuitionLabel;
 @synthesize studentBTotalLabel;
 @synthesize menEnrollLabel;
 @synthesize womenEnrollLabel;
@@ -46,44 +47,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Set the Label text with the selected recipe
     
     NSMutableDictionary* options = [NSMutableDictionary new];
     [options setObject:@"University of Missouri-" forKey:@"name"];
     
+//    MUITCollege *college = self.representedCollege;
+    
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     
     NSMutableArray *collegeArray = [collegeManager getColleges:options];
-    for(MUITCollege *college in collegeArray){
-        
-        collegeLabel.text = college.name;
-        locationLabel.text = college.state;
-        tuitionLabel.text = @"$16,000";
-        
-        float menEnrollment = college.enrollment_men, totalEnrollment = college.enrollment_total, womenEnrollment = college.enrollment_women;
-        float menPerc = menEnrollment/totalEnrollment, womenPerc = womenEnrollment/totalEnrollment;
+    for(MUITCollege *college in collegeArray)
+    {
+    collegeLabel.text = college.name;
+    locationLabel.text = college.state;
+    inTuitionLabel.text = [NSString stringWithFormat:@"$%d", college.tuition_in_state];
+    outTuitionLabel.text = [NSString stringWithFormat:@"$%d", college.tuition_out_state];
     
-        studentBTotalLabel.text = [NSString stringWithFormat:@"%d", college.enrollment_total];
-        
-        menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
+    float menEnrollment = college.enrollment_men, totalEnrollment = college.enrollment_total, womenEnrollment = college.enrollment_women;
+    float menPerc = menEnrollment/totalEnrollment, womenPerc = womenEnrollment/totalEnrollment;
+
+    studentBTotalLabel.text = [NSString stringWithFormat:@"%d", college.enrollment_total];
     
-        womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
+    menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
+
+    womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
+
+    finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
+    institLabel.text = @"Public";
+    degreeLabel.text = @"Associates";
+    accRateLabel.text = @"60%";
     
-        finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
-        institLabel.text = @"Public";
-        degreeLabel.text = @"Associates";
-        accRateLabel.text = @"60%";
-        
-        actRead.text = [NSString stringWithFormat:@"%d - %d", college.act_english_25, college.act_english_75];
-        actMath.text = [NSString stringWithFormat:@"%d - %d", college.act_math_25, college.act_math_75];
-        actWriting.text = [NSString stringWithFormat:@"%d - %d", college.act_writing_25, college.act_writing_75];
-        actComposite.text = [NSString stringWithFormat:@"%d - %d", college.act_25, college.act_75];
-        
-        satRead.text = [NSString stringWithFormat:@"%d - %d", college.sat_reading_25, college.sat_reading_75];
-        satMath.text = [NSString stringWithFormat:@"%d - %d", college.sat_math_25, college.sat_math_75];
-        satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
-        
-        
+    actRead.text = [NSString stringWithFormat:@"%d - %d", college.act_english_25, college.act_english_75];
+    actMath.text = [NSString stringWithFormat:@"%d - %d", college.act_math_25, college.act_math_75];
+    actWriting.text = [NSString stringWithFormat:@"%d - %d", college.act_writing_25, college.act_writing_75];
+    actComposite.text = [NSString stringWithFormat:@"%d - %d", college.act_25, college.act_75];
+    
+    satRead.text = [NSString stringWithFormat:@"%d - %d", college.sat_reading_25, college.sat_reading_75];
+    satMath.text = [NSString stringWithFormat:@"%d - %d", college.sat_math_25, college.sat_math_75];
+    satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
     }
 }
 

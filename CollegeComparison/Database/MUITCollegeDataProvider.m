@@ -95,7 +95,7 @@ static sqlite3_stmt *statement = nil;
         }
         
     }
-    return NULL;//something happened; file not valid.
+    return nil;//something happened; file not valid.
 }
 
 -(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending

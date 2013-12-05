@@ -41,7 +41,8 @@
     for(MUITCollege *college in collegeArray)
     {
         NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
-        NSLog(@"Out of state tuition for %@: %ld", college.name, (long)college.tuition_out_state);
+        NSLog(@"Out of state tuition for %@: %ld  %ld", college.name, (long)college.tuition_out_state), (long)college.control;
+        
     }
 }
 

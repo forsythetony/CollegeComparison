@@ -70,16 +70,24 @@
         
         NSIndexPath *indexPath = nil;
         
+        
         if ([self.searchDisplayController isActive]) {
             indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             destViewController.collegeName = [searchResults objectAtIndex:indexPath.row];
-            
+
+//            MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
+//            NSMutableArray *collegeArray = [collegeManager getColleges:options];
+////            instead of passing a college name, pass an MUITCollege object.
+//            NSIndexPath *tappedPath = [self.tableView indexPathForCell:(UITableViewCell *)sender]; //get the index path of the row the user tapped
+//            MUITCollege *tappedCollege = [self.collegeArray objectAtIndex:tappedPath.row]; //get the college at the row the user tapped
+//            destViewController.representedCollege = tappedCollege;
         } else {
             indexPath = [self.tableView indexPathForSelectedRow];
             destViewController.collegeName = [colleges objectAtIndex:indexPath.row];
         }
     }
-    
+
+
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
