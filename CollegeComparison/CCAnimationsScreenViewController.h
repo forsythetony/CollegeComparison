@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MUITCollege.h"
 
 @interface CCAnimationsScreenViewController : UIViewController
 

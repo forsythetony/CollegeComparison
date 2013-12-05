@@ -178,33 +178,35 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showCollegeDetailSegue" sender:self];
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
-        FilteredCollegesTableViewCell *cellToCompare = [self.tableView cellForRowAtIndexPath:indexPath];
+        FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
         [self.collegesToCompare removeObject:cellToCompare];
         
         if(self.collegesToCompare.count < 2)
         {
             self.compareButton.enabled = NO;
+            
+            // Enable all cells
+            for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
+            {
+                NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
+                FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
+                if(!cell.selected){
+                cell.enabled = YES;
+                }
+            }
         }
-        
-        // Allow all visible cells to be interactable (THIS NEEDS TO BE FIXED)
-        /*for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
-         {
-         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
-         UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:cellPath];
-         cell.alpha = 1.0;
-         cell.userInteractionEnabled = YES;
-         }*/
     }
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilteredCollegesTableViewCell *detailCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    FilteredCollegesTableViewCell *detailCell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if([detailCell.reuseIdentifier isEqualToString:@"CollegeCell"])
     {
@@ -216,7 +218,7 @@
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
-        FilteredCollegesTableViewCell *cellToCompare = [self.tableView cellForRowAtIndexPath:indexPath];
+        FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
         // If the user has less than two colleges to selected
         if(self.collegesToCompare.count < 2)
@@ -235,22 +237,24 @@
                 NSLog(@"%@", cellToCompare.universityLocationLabel.text);
                 NSLog(@"%@", cellToCompare.universityTuitionLabel.text);
             }*/
-            // Disable all other visible cells (THIS NEEDS TO BE FIXED)
-            /*for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
-             {
-             NSIndexPath *cellPath = [NSIndexPath indexPathForRow:row inSection:0];
-             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:cellPath];
-             
-             if(cell.tag == firstCollegeSelected.tag || cell.tag == secondCollegeSelected.tag)
-             {
-             continue;
-             } else {
-             cell.alpha = 0.5;
-             cell.userInteractionEnabled = NO;
-             }
-             }*/
+            
+            // Disable all unselected cells
+            for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
+            {
+                NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
+                FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
+                if (!cell.selected) {
+                    cell.enabled = NO;
+                }
+            }
         }
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.isEditing)
+        ((FilteredCollegesTableViewCell *)cell).enabled = [[tableView indexPathsForSelectedRows] containsObject:indexPath];
 }
 
 - (void)selectCollegesToCompare:(id)sender
