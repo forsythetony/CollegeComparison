@@ -22,6 +22,12 @@ static sqlite3_stmt *statement = nil;
     if (![parameters objectForKey:@"state"]) {
         [parameters setObject:@"" forKey:@"state"];
     }
+    if (![parameters objectForKey:@"out_state_tuition_min"]) {
+        [parameters setObject:@"0" forKey:@"out_state_tuition_min"];
+    }
+    if (![parameters objectForKey:@"out_state_tuition_max"]) {
+        [parameters setObject:@"1000000" forKey:@"out_state_tuition_max"];
+    }
 
     NSMutableArray *collegeArray = [NSMutableArray new];
 
@@ -38,7 +44,7 @@ static sqlite3_stmt *statement = nil;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &database) == SQLITE_OK)
         {
-            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment, tuition where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and basic_data.UNITID = tuition.UNITID and INSTNM LIKE '%%%@%%'", [parameters objectForKey:@"name"]];
+            NSString *querySQL = [NSString stringWithFormat: @"SELECT DISTINCT * from basic_data, test_scores, financial_aid, enrollment, tuition where basic_data.UNITID = test_scores.UNITID and basic_data.UNITID = financial_aid.UNITID and basic_data.UNITID = enrollment.UNITID and basic_data.UNITID = tuition.UNITID and INSTNM LIKE '%%%@%%' and out_state_tuition > %@ and out_state_tuition < %@", [parameters objectForKey:@"name"], [parameters objectForKey:@"out_state_tuition_min"], [parameters objectForKey:@"out_state_tuition_max"]];
             //NSLog(@"%@", querySQL);
             const char *query_stmt = [querySQL UTF8String];
             if(sqlite3_prepare_v2(database, query_stmt, -1, &statement, NULL) == SQLITE_OK)
