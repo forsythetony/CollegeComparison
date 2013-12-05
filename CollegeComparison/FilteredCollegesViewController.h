@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSMutableArray *universitiesPassed;
 @property (nonatomic, strong) NSMutableArray *allCellsInTable;
 @property (nonatomic, strong) NSMutableArray *collegesToCompare;
-//@property (nonatomic, strong) NSMutableArray *selectedRowsToCompare;
 
 @property (nonatomic, strong) NSDictionary *navigationBarAttributes;
 @property (nonatomic, strong) NSMutableDictionary *storedSchoolsDictionary;
@@ -26,9 +25,6 @@
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) UIBarButtonItem *compareButton;
 
-//@property (nonatomic, strong) IBOutlet UIBarButtonItem *selectCollegesToCompare;
-
-- (void) CollegeCounter:(NSUInteger)selectedCollegeCell;
 - (void)selectCollegesToCompare:(id)sender;
 
 @end
