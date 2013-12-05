@@ -29,9 +29,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
     
-    //Example on getting the enrollment totals for all schools with "Missouri" in their name
-    //Uncomment the following lines:
-
+    //Example for retrieving schools from the database
     NSMutableDictionary* options = [NSMutableDictionary new];
     [options setObject:@"University of Missouri" forKey:@"name"];
     [options setObject:@"30000" forKey:@"out_state_tuition_max"];
@@ -42,13 +40,11 @@
     
     [options setObject:@"public" forKey:@"school_type"];
     
-    
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     
     NSMutableArray *collegeArray = [collegeManager getColleges:options];
     for(MUITCollege *college in collegeArray)
     {
-        //NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
         NSLog(@"%@ enrollment_total: %ld", college.name, (long)college.enrollment_total);
     }
 }
