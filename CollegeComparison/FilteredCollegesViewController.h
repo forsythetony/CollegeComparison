@@ -10,11 +10,13 @@
 #import "FilteredCollegesTableViewCell.h"
 #import "CollegeDetailViewController.h"
 #import "MUITCollege.h"
+#import "MUITCollegeDataProvider.h"
+#import "CollegeDetailTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FilteredCollegesViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *universitiesPassed;
+@property (nonatomic, strong) NSArray *universitiesPassed;
 @property (nonatomic, strong) NSMutableArray *allCellsInTable;
 @property (nonatomic, strong) NSMutableArray *collegesToCompare;
 
@@ -24,6 +26,8 @@
 @property (nonatomic, strong) UIBarButtonItem *selectButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) UIBarButtonItem *compareButton;
+
+@property (strong, nonatomic) MUITCollege *representedCollege;
 
 - (void)selectCollegesToCompare:(id)sender;
 
