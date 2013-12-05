@@ -108,8 +108,8 @@ static sqlite3_stmt *statement = nil;
 
                     college.enrollment_total = (int) sqlite3_column_int(statement, 22);
                     
-                    college.tuition_out_state = (int) sqlite3_column_int(statement, 26);
-                    college.tuition_in_state = (int) sqlite3_column_int(statement, 27);
+                    college.tuition_out_state = (int) sqlite3_column_int(statement, 24);
+                    college.tuition_in_state = (int) sqlite3_column_int(statement, 25);
                     
                     [collegeArray addObject:college];
                 }
@@ -122,7 +122,7 @@ static sqlite3_stmt *statement = nil;
         }
         
     }
-    return NULL;//something happened; file not valid.
+    return nil;//something happened; file not valid.
 }
 
 -(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending
