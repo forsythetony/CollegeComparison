@@ -83,7 +83,7 @@
     institLabel.text = instituteType;
     
     //awesome acceptance rates
-    accRateLabel.text = @".007%";
+    accRateLabel.text = @"80%";
     
     //the following if statements display N/A's if there is no score for each text section
     if (college.act_english_25 <= 0 && college.act_english_75 <= 0) actRead.text = @"N/A";
