@@ -11,6 +11,8 @@
 
 #define NUMBEROFVIEWCONTROLLERS 3
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 
 @interface CCAnimationPageViewController () {
     
@@ -211,8 +213,30 @@
                 dummyCollege = self.twoColleges[1];
                 schoolTwoValue = dummyCollege.tuition_out_state;
                 [lineLabelArray addObject:@"%@k"];
-                moneyValue = 10.0;
-                modifier = 220;
+                
+                float maximum = MAX(schoolTwoValue, schoolOneValue);
+                
+                
+                if (maximum < 10000) {
+                    moneyValue = 1;
+                }
+                else if (maximum < 20000)
+                {
+                    moneyValue = 2;
+                }
+                else if (maximum < 40000)
+                {
+                    moneyValue = 5;
+                }
+                else
+                {
+                    moneyValue = 10;
+                }
+               
+                
+                
+                modifier = 255.0;
+                
                 unitValue = [self determineBestForTuitionWithMoneyValue:(moneyValue) andMaxInteger:MAX(schoolTwoValue, schoolOneValue) andModifier:modifier];
                 heightMultiplier = (unitValue / (moneyValue * 1000));
                 lines = [self determineLineNumberFromUnitValue:unitValue andModifier:modifier];
@@ -271,7 +295,13 @@
                 [lineLabelArray addObject:@"%@%%"];
                 moneyValue = 10.0;
                 lines = 11;
-                unitValue = 29.0;
+                if (IS_IPHONE_5) {
+                    unitValue = 36.0;
+                }
+                else
+                {
+                    unitValue = 28.0;
+                }
                 heightMultiplier = (unitValue / (moneyValue));
                 break;
         }
@@ -422,11 +452,11 @@
 
 -(void)configureNavigationBar
 {
-    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
-    self.navigationController.navigationBar.barTintColor = coralColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.translucent = NO;
-    
+//    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+//    self.navigationController.navigationBar.barTintColor = coralColor;
+//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.translucent = NO;
+//    
     self.navigationItem.title = @"Comparison";
     
     myNavigationItem = self.navigationItem;

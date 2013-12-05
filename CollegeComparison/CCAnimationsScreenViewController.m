@@ -13,6 +13,8 @@
 #define TOPOFDETAILREFERENCEPOINT 100.0
 #define MIDSECTIONREFERENCEPOINT 200.0
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @interface CCAnimationsScreenViewController () {
     
     UIView *detailViewer, *myView;
@@ -52,6 +54,8 @@
     UIView *underlinerView;
     
     NSMutableArray *underLinerViewArray;
+    
+    float onlyTheBestBottomReferencePointEver, evenBetterTopOfDetailReferencePoint, evenBetterMidSection;
     
     
 }
@@ -107,6 +111,21 @@
     underLinerViewArray = [NSMutableArray new];
     [self setArrayOfUnderliners];
     [self justseeing];
+    
+    if (IS_IPHONE_5) {
+        onlyTheBestBottomReferencePointEver = 417.0;
+        evenBetterTopOfDetailReferencePoint = 175.0;
+        evenBetterMidSection = (onlyTheBestBottomReferencePointEver + evenBetterTopOfDetailReferencePoint) / 2.0;
+    }
+    else
+    {
+        onlyTheBestBottomReferencePointEver = 329.0;
+        evenBetterTopOfDetailReferencePoint = 100.0;
+        evenBetterMidSection = 200.0;
+    }
+    
+    
+    
 }
 -(void)animateAll
 {
@@ -172,7 +191,7 @@
      
                            andLabel:barTwoLabel];
     
-    CGRect oldRect = CGRectMake(0.0, BOTTOMREFERENCEPOINT, self.view.bounds.size.width, 50.0);
+    CGRect oldRect = CGRectMake(0.0, onlyTheBestBottomReferencePointEver, self.view.bounds.size.width, 50.0);
     
     UIView* newView = [[UIView alloc] initWithFrame:oldRect];
     [newView setBackgroundColor:[UIColor clearColor]];
@@ -228,7 +247,7 @@
     
     CGPoint lineReferencePoint = self.view.center;
     
-    lineReferencePoint.y = BOTTOMREFERENCEPOINT;
+    lineReferencePoint.y = onlyTheBestBottomReferencePointEver;
     
     for (int i = 0; i < lines; i++)
     {
@@ -238,7 +257,7 @@
         
 //        NSLog(@"LINE REFERENCE Y: %lf", lineReferencePoint.y);
         
-        if (lineReferencePoint.y > 30.0) {
+        if (lineReferencePoint.y > 40.0) {
             [self createLineWithPoint:lineReferencePoint andTime:time andString:moneyString];
         }
         
@@ -342,17 +361,17 @@
     UIView *mainBarView = [[UIView alloc] init];
     height *= multiplier;
     mainHeightMultiplier = multiplier;
-    point.y = BOTTOMREFERENCEPOINT;
+    point.y = onlyTheBestBottomReferencePointEver;
     
     CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
     
     [mainBarView setFrame:framez];
     
-    CGRect labelFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0 - 10.0, width, 30.0f);
+    CGRect labelFrame = CGRectMake(point.x, onlyTheBestBottomReferencePointEver - 15.0 - 10.0, width, 30.0f);
     mainCollegeLabel = [[UILabel alloc] initWithFrame:labelFrame];
     mainCollegeLabel.numberOfLines = 2;
     
-    self.mainFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 30.0, width, 20.0f);
+    self.mainFrame = CGRectMake(point.x, onlyTheBestBottomReferencePointEver - 30.0, width, 20.0f);
     [mainCollegeLabel setBackgroundColor:[UIColor clearColor]];
    // [[self view] addSubview:mainCollegeLabel];
     [self customAddSubview:mainCollegeLabel toSuperView:self.view];
@@ -417,7 +436,7 @@
         
         detailPanelDisplayed = YES;
         
-        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, onlyTheBestBottomReferencePointEver + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
         
         originalDetailViewFrame = detailViewer.bounds;
         
@@ -524,7 +543,7 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         
-        if (thePoint.y >= TOPOFDETAILREFERENCEPOINT && isUp == NO) {
+        if (thePoint.y >= evenBetterTopOfDetailReferencePoint && isUp == NO) {
             
             [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
                                               thePoint.y,
@@ -541,9 +560,9 @@
         {
             
             
-            if (thePoint.y <= TOPOFDETAILREFERENCEPOINT)
+            if (thePoint.y <= evenBetterTopOfDetailReferencePoint)
             {
-                thePoint.y = TOPOFDETAILREFERENCEPOINT;
+                thePoint.y = evenBetterTopOfDetailReferencePoint;
             }
             
             
@@ -558,7 +577,7 @@
                                             20.0)];
         }
         
-        if (thePoint.y > MIDSECTIONREFERENCEPOINT) {
+        if (thePoint.y > evenBetterMidSection) {
             [self andTheyreOff];
         }
         
@@ -569,7 +588,7 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
-        if (thePoint.y < MIDSECTIONREFERENCEPOINT)
+        if (thePoint.y < evenBetterMidSection)
         {
             
             if (lastPoint.y - thePoint.y < - 7.0)
@@ -582,7 +601,7 @@
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    BOTTOMREFERENCEPOINT - 15.0,
+                                                    onlyTheBestBottomReferencePointEver - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -595,12 +614,12 @@
             {
                 [UIView animateWithDuration:0.25 animations:^{
                     [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                                      TOPOFDETAILREFERENCEPOINT,
+                                                      evenBetterTopOfDetailReferencePoint,
                                                       self.view.bounds.size.width,
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    TOPOFDETAILREFERENCEPOINT - 15.0,
+                                                    evenBetterTopOfDetailReferencePoint - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -610,19 +629,19 @@
             
         }
         
-        else if (lastPoint.y >= MIDSECTIONREFERENCEPOINT)
+        else if (lastPoint.y >= evenBetterMidSection)
         {
             if (lastPoint.y - thePoint.y > 7.0) {
                 
                 [UIView animateWithDuration:0.25 animations:^{
                     
                     [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                                      TOPOFDETAILREFERENCEPOINT,
+                                                      evenBetterTopOfDetailReferencePoint,
                                                       self.view.bounds.size.width,
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    TOPOFDETAILREFERENCEPOINT - 15.0,
+                                                    evenBetterTopOfDetailReferencePoint - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -631,7 +650,7 @@
                 
             }
             
-            else if ((int)(lastPoint.y - thePoint.y) == 0 && thePoint.y > BOTTOMREFERENCEPOINT - 15.0)
+            else if ((int)(lastPoint.y - thePoint.y) == 0 && thePoint.y > onlyTheBestBottomReferencePointEver - 15.0)
             {
                 [self createPanelByMove];
                 [self bounceAnimation];
@@ -646,7 +665,7 @@
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    BOTTOMREFERENCEPOINT - 15.0,
+                                                    onlyTheBestBottomReferencePointEver - 15.0,
                                                     35.0,
                                                     20.0)];
                     
@@ -682,7 +701,7 @@
         [self createPanelByMove];
         
         handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                                BOTTOMREFERENCEPOINT - 15.0,
+                                                                onlyTheBestBottomReferencePointEver - 15.0,
                                                                 35.0,
                                                                 20.0)];
         
@@ -744,12 +763,12 @@
     [UIView animateWithDuration:0.35 animations:^{
         
         [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                          BOTTOMREFERENCEPOINT - 70.0,
+                                          onlyTheBestBottomReferencePointEver - 70.0,
                                           self.view.bounds.size.width,
                                           self.view.bounds.size.height)];
         
         [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width/2),
-                                        BOTTOMREFERENCEPOINT - 85.0,
+                                        onlyTheBestBottomReferencePointEver - 85.0,
                                         handleView.bounds.size.width,
                                         handleView.bounds.size.height)];
         
@@ -758,12 +777,12 @@
         [UIView animateWithDuration:.35 animations:^{
             
             [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                              BOTTOMREFERENCEPOINT + 1.0,
+                                              onlyTheBestBottomReferencePointEver + 1.0,
                                               self.view.bounds.size.width,
                                               self.view.bounds.size.height)];
             
             [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2),
-                                            BOTTOMREFERENCEPOINT - 15.0,
+                                            onlyTheBestBottomReferencePointEver - 15.0,
                                             handleView.bounds.size.width,
                                             handleView.bounds.size.height)];
             
@@ -803,12 +822,12 @@
     [UIView animateWithDuration:.6 animations:^{
         
         [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                          BOTTOMREFERENCEPOINT + 1.0,
+                                          onlyTheBestBottomReferencePointEver + 1.0,
                                           self.view.bounds.size.width,
                                           self.view.bounds.size.height)];
         
         [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2),
-                                        BOTTOMREFERENCEPOINT - 15.0,
+                                        onlyTheBestBottomReferencePointEver - 15.0,
                                         handleView.bounds.size.width,
                                         handleView.bounds.size.height)];
         
@@ -831,7 +850,7 @@
         [self createPanelByMove];
         
         handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                                BOTTOMREFERENCEPOINT - 15.0,
+                                                                onlyTheBestBottomReferencePointEver - 15.0,
                                                                 35.0,
                                                                 20.0)];
         
@@ -2407,8 +2426,8 @@ CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:d
         
     [UIView animateWithDuration:1.0f animations:^{
         
-        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
-        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, BOTTOMREFERENCEPOINT, barTwoFrame.size.width, barTwoHeightValue)];
+        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, onlyTheBestBottomReferencePointEver, barOneFrame.size.width, barOneHeightValue)];
+        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, onlyTheBestBottomReferencePointEver, barTwoFrame.size.width, barTwoHeightValue)];
         
       
         
@@ -2424,8 +2443,8 @@ CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:d
     }
     else if (switching == YES)
     {
-        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
-        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, BOTTOMREFERENCEPOINT, barTwoFrame.size.width, barTwoHeightValue)];
+        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, onlyTheBestBottomReferencePointEver, barOneFrame.size.width, barOneHeightValue)];
+        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, onlyTheBestBottomReferencePointEver, barTwoFrame.size.width, barTwoHeightValue)];
         
         
         
