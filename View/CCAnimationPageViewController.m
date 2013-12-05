@@ -432,6 +432,12 @@
 -(void)dataPackager
 {
     
+    
+    
+    if (!self.twoColleges) {
+    
+        
+        NSLog(@"\n\nColleges were not passed.\n\n");
     MUITCollege *collegeOne = [MUITCollege new];
     MUITCollege *collegeTwo = [MUITCollege new];
     
@@ -458,6 +464,13 @@
     collegeTwo.enrollment_women = 20000;
     
     self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
+    
+    
+    }
+    
+    
+    
+    
     
 }
 
