@@ -779,22 +779,22 @@
 
 -(void)buttonToDismiss
 {
-    if (isUp == YES && !dismissArea) {
-        
-        dismissArea = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,
-                                                                 self.view.bounds.origin.y,
-                                                                 self.view.bounds.size.width,
-                                                                 200.0)];
-        
-        
-        [dismissArea addTarget:self action:@selector(dismissInformationPanel) forControlEvents:UIControlEventTouchUpInside];
-        
-        [dismissArea setBackgroundColor:[UIColor clearColor]];
-        
-//        [self.view addSubview:dismissArea];
-        [self customAddSubview:dismissArea toSuperView:self.view];
-    }
-    
+//    if (isUp == YES && !dismissArea) {
+//        
+//        dismissArea = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,
+//                                                                 self.view.bounds.origin.y,
+//                                                                 self.view.bounds.size.width,
+//                                                                 200.0)];
+//        
+//        
+//        [dismissArea addTarget:self action:@selector(dismissInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [dismissArea setBackgroundColor:[UIColor clearColor]];
+//        
+////        [self.view addSubview:dismissArea];
+//        [self customAddSubview:dismissArea toSuperView:self.view];
+//    }
+//    
     
 }
 
@@ -1161,12 +1161,12 @@
     UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
     
     newFrame.origin.y += 35.0;
-    newFrame.origin.x = 85.0;
+    newFrame.origin.x = 95.0;
     newFrame.size.width = 100.0;
     
     UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
     
-    newFrame.origin.x += 110.0;
+    newFrame.origin.x += 100.0;
     
     UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
     
@@ -1557,12 +1557,12 @@ CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:d
     UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
     
     newFrame.origin.y += 35.0;
-    newFrame.origin.x = 85.0;
+    newFrame.origin.x = 95.0;
     newFrame.size.width = 100.0;
     
     UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
     
-    newFrame.origin.x += 110.0;
+    newFrame.origin.x += 100.0;
     
     UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
     
@@ -1927,12 +1927,12 @@ CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:d
     UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
     
     newFrame.origin.y += 35.0;
-    newFrame.origin.x = 85.0;
+    newFrame.origin.x = 95.0;
     newFrame.size.width = 100.0;
     
     UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
     
-    newFrame.origin.x += 110.0;
+    newFrame.origin.x += 100.0;
     
     UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
     
