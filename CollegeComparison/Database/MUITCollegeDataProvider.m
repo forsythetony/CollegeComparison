@@ -127,11 +127,10 @@ static sqlite3_stmt *statement = nil;
     return nil;//something happened; file not valid.
 }
 
--(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending
-{
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:sortKey ascending:ascending];
-    [collegeArray sortUsingDescriptors: @[descriptor]];
-    //location is going to be by keyword (state); multiple states possible.
-}
+//-(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending//NOT CURRENTLY FUNCTIONAL
+//{
+//    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:sortKey ascending:ascending];
+//    [collegeArray sortUsingDescriptors: @[descriptor]];
+//}
 
 @end

@@ -16,6 +16,6 @@
 
 -(NSMutableArray*) getColleges:(NSMutableDictionary*)parameters;
 
--(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending;
+//-(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending;//NOT CURRENTLY FUNCTIONAL
 
 @end
