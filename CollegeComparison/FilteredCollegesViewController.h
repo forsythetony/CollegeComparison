@@ -13,6 +13,7 @@
 #import "MUITCollegeDataProvider.h"
 #import "CollegeDetailTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CCAnimationPageViewController.h"
 
 @interface FilteredCollegesViewController : UITableViewController
 

@@ -432,6 +432,12 @@
 -(void)dataPackager
 {
     
+    
+    
+    if (!self.twoColleges) {
+    
+        
+        NSLog(@"\n\nColleges were not passed.\n\n");
     MUITCollege *collegeOne = [MUITCollege new];
     MUITCollege *collegeTwo = [MUITCollege new];
     
@@ -459,14 +465,21 @@
     
     self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
     
+    
+    }
+    
+    
+    
+    
+    
 }
 
 -(NSString*)shortenString:(NSString*) string
 {
     NSString *theString = [NSString stringWithString:string];
     
-    NSMutableArray *aList = [NSMutableArray arrayWithObjects:@"University", @"Missouri", @"-", nil];
-    NSMutableArray *bList = [NSMutableArray arrayWithObjects:@"U", @"M", @"\n", nil];
+    NSMutableArray *aList = [NSMutableArray arrayWithObjects:@"University", @"Missouri", @"-", @"Alabama", nil];
+    NSMutableArray *bList = [NSMutableArray arrayWithObjects:@"U", @"M", @"\n", @"A", nil];
     
     for (int i = 0; i < [aList count]; i++) {
         theString = [theString stringByReplacingOccurrencesOfString:aList[i] withString:bList[i]];
