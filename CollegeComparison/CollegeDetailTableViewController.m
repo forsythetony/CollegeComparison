@@ -104,13 +104,14 @@
 //{
 //#warning Incomplete method implementation.
 //    // Return the number of rows in the section.
-//    return 8;
+//    return 7;
 //}
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    static NSString *CellIdentifier = @"Cell";
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
 //    
 //    // Configure the cell...
 //    
