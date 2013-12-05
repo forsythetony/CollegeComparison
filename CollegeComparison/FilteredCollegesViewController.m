@@ -334,7 +334,7 @@ NSArray *searchResults;
             destViewController.representedCollege = tappedCollege;
         }
 
-    
+    }
     else if ([segue.identifier isEqualToString:@"comparisonSegue"])
     {
                  CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
@@ -358,8 +358,7 @@ NSArray *searchResults;
      }
 
      
-     
-     [self performSegueWithIdentifier:@"comparisonSegue" sender:sender];
+
      
 //     
 //     
