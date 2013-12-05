@@ -8,7 +8,9 @@
 
 #import "FilteredCollegesViewController.h"
 
-@interface FilteredCollegesViewController ()
+@interface FilteredCollegesViewController (){
+    NSMutableArray *collegesImGoingToCompare;
+}
 
 @end
 
@@ -19,6 +21,7 @@ NSArray *searchResults;
 - (void)viewDidLoad
 {
     
+    collegesImGoingToCompare = [NSMutableArray new];
     NSMutableDictionary *options = [NSMutableDictionary new];
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     
@@ -206,9 +209,11 @@ NSArray *searchResults;
     {
         NSLog(@"%i", self.collegesToCompare.count);
         FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        MUITCollege *dummyCollege = [self.universitiesPassed objectAtIndex:indexPath.row];
+        
         
         [self.collegesToCompare removeObject:cellToCompare];
-        
+        [collegesImGoingToCompare removeObject:dummyCollege];
         if(self.collegesToCompare.count < 2)
         {
             self.compareButton.enabled = NO;
@@ -261,10 +266,16 @@ NSArray *searchResults;
         FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         //[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row]
         
+        MUITCollege *collegeObject = [self.universitiesPassed objectAtIndex:indexPath.row];
+        
+        
+        
         // If the user has less than two colleges to selected
         if(self.collegesToCompare.count < 2)
         {
             [self.collegesToCompare addObject:cellToCompare];
+            [collegesImGoingToCompare addObject:collegeObject];
+            
             self.compareButton.enabled = NO;
         }
         
@@ -303,6 +314,7 @@ NSArray *searchResults;
         MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
         destViewController.representedCollege = tappedCollege;
     }
+
     else if ([segue.identifier isEqualToString:@"showCollegeDetailSegue"]) {
         CollegeDetailTableViewController *destViewController = segue.destinationViewController;
         
@@ -321,11 +333,21 @@ NSArray *searchResults;
             MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
             destViewController.representedCollege = tappedCollege;
         }
+
+    
+    else if ([segue.identifier isEqualToString:@"comparisonSegue"])
+    {
+                 CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
+        
+                 destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
+
+
     }
 }
 
 - (void)selectCollegesToCompare:(id)sender
  {
+
      if([self.title isEqual:@"filteredSchools"])
      {
          [self performSegueWithIdentifier:@"comparisonSegue" sender:self];
@@ -334,6 +356,28 @@ NSArray *searchResults;
      {
          [self performSegueWithIdentifier:@"comparisonSegueOne" sender:self];
      }
+
+     
+     
+     [self performSegueWithIdentifier:@"comparisonSegue" sender:sender];
+     
+//     
+//     
+//     if ([segue.identifier isEqualToString:@"comparisonSegue"]) {
+//         CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
+//         
+//         destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
+//         
+//         NSIndexPath *indexPath = nil;
+//         
+//         //            instead of passing a college name, pass an MUITCollege object.
+//         NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+//         MUITCollege *tappedCollege = [colleges objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+//         destViewController.representedCollege = tappedCollege;
+//     }
+// }
+
+>>>>>>> bcf7283e985ee2a1c214093b53fff376a4cb1603
  }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

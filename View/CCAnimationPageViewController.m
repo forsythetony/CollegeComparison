@@ -231,15 +231,44 @@
                 schoolOneValue = dummyCollege.enrollment_total;
                 dummyCollege = self.twoColleges[1];
                 schoolTwoValue = dummyCollege.enrollment_total;
-                [lineLabelArray addObject:@"%@k"];
                 
                 moneyValue = 10.0;
+                
+                
+                if (ABS((schoolTwoValue - schoolOneValue)) < 1000 && MAX(schoolOneValue, schoolTwoValue) < 2000) {
+                    moneyValue /= 50;
+                    
+                    NSLog(@"\n\nCompare One Ran\n\n");
+                    
+                }
+                else if (ABS((schoolTwoValue - schoolOneValue)) > 1000 && MAX(schoolOneValue, schoolTwoValue) > 2000 && MIN(schoolTwoValue, schoolOneValue) <5000)
+                {
+                    moneyValue /= 5;
+                    NSLog(@"\n\nCompare Two Ran\n\n");
+
+                }
+                else
+                {
+                    NSLog(@"\n\nCompare NONE Ran\n\n");
+
+                    [lineLabelArray addObject:@"%@k"];
+                }
                 modifier = 250;
                 unitValue = [self determineBestForPopulationWithMoneyValue:(moneyValue) andMaxInteger:MAX(schoolOneValue, schoolTwoValue) andModifier:modifier];
                 heightMultiplier = (unitValue / (moneyValue * 1000));
                 
                 lines = [self determineLineNumberFromUnitValue:unitValue andModifier:modifier];
+                if (ABS((schoolTwoValue - schoolOneValue)) < 1000 && MAX(schoolOneValue, schoolTwoValue) < 2000) {
+                    moneyValue *= 1000;
+                    [lineLabelArray addObject:@"%@"];
+                }
+                else if (ABS((schoolTwoValue - schoolOneValue)) > 1000 && MAX(schoolOneValue, schoolTwoValue) > 2000 && MIN(schoolTwoValue, schoolOneValue) <5000)
+                {
+                    moneyValue *= 100;
+                    [lineLabelArray addObject:@"%@"];
+                }
                 
+                NSLog(@"\n\nSchool One Enrollment: %i\n\nSchool Two Enrollment: %i\n\n", schoolOneValue, schoolTwoValue);
                 break;
             case 2:
                 [sectionTitles addObject:@"Financial Aid"];
@@ -432,14 +461,19 @@
 -(void)dataPackager
 {
     
+    
+    
+
+        
+    NSLog(@"\n\nColleges were not passed.\n\n");
     MUITCollege *collegeOne = [MUITCollege new];
     MUITCollege *collegeTwo = [MUITCollege new];
     
     collegeOne.name = @"University of Missouri- Columbia";
     collegeTwo.name = @"University of Missouri- St. Louis";
     
-    collegeOne.enrollment_total = 40000;
-    collegeTwo.enrollment_total = 30000;
+    collegeOne.enrollment_total = 30000;
+    collegeTwo.enrollment_total = 50000;
     
     collegeOne.tuition_in_state = 25000;
     collegeTwo.tuition_in_state= 65000;
@@ -459,14 +493,21 @@
     
     self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
     
+    
+
+    
+    
+    
+    
+    
 }
 
 -(NSString*)shortenString:(NSString*) string
 {
     NSString *theString = [NSString stringWithString:string];
     
-    NSMutableArray *aList = [NSMutableArray arrayWithObjects:@"University", @"Missouri", @"-", nil];
-    NSMutableArray *bList = [NSMutableArray arrayWithObjects:@"U", @"M", @"\n", nil];
+    NSMutableArray *aList = [NSMutableArray arrayWithObjects:@"University", @"Missouri", @"-", @"Alabama", nil];
+    NSMutableArray *bList = [NSMutableArray arrayWithObjects:@"U", @"M", @"\n", @"A", nil];
     
     for (int i = 0; i < [aList count]; i++) {
         theString = [theString stringByReplacingOccurrencesOfString:aList[i] withString:bList[i]];

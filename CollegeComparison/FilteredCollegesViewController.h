@@ -16,6 +16,7 @@
 #import "CollegeDetailTableViewController.h"
 #import "CollegeDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CCAnimationPageViewController.h"
 
 @interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
