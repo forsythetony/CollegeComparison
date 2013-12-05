@@ -68,9 +68,10 @@
     if (womenEnrollment <= 0) womenEnrollLabel.text = @"N/A";
     womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
 
-    finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
+    if (college.percent_receive_financial_aid <= 0) finaidLabel.text = @"N/A";
+    else finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
+    
     institLabel.text = @"Public";
-    degreeLabel.text = @"Associates";
     accRateLabel.text = @"60%";
     
     actRead.text = [NSString stringWithFormat:@"%d - %d", college.act_english_25, college.act_english_75];
