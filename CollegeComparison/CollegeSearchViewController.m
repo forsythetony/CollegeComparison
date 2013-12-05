@@ -31,7 +31,6 @@
     
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     colleges = [collegeManager getColleges:options];
-
     
 //    colleges = [NSArray arrayWithObjects:@"Mizzou", @"KU", @"Missouri S&T", @"Alabama", @"Colorado University", @"Blue Ridge Community", @"Edgar College", @"Delaware University", @"University of Kentucky", @"Wyoming University", @"Layola College", @"Columbia College", @"Syracuse", @"University of Wisconsin", @"Ole Miss", @"Baltimore College", nil];
 }

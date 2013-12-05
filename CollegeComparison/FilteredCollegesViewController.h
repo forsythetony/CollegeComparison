@@ -12,9 +12,12 @@
 #import "MUITCollege.h"
 #import "MUITCollegeDataProvider.h"
 #import "CollegeDetailTableViewController.h"
+#import "CCAnimationPageViewController.h"
+#import "CollegeDetailTableViewController.h"
+#import "CollegeDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FilteredCollegesViewController : UITableViewController
+@interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic, strong) NSArray *universitiesPassed;
 @property (nonatomic, strong) NSMutableArray *allCellsInTable;
@@ -28,6 +31,7 @@
 @property (nonatomic, strong) UIBarButtonItem *compareButton;
 
 @property (strong, nonatomic) MUITCollege *representedCollege;
+
 
 - (void)selectCollegesToCompare:(id)sender;
 
