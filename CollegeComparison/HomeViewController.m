@@ -33,15 +33,18 @@
     //Uncomment the following lines:
 
     NSMutableDictionary* options = [NSMutableDictionary new];
-    [options setObject:@"University of Missouri" forKey:@"name"];
+    //[options setObject:@"University of Missouri" forKey:@"name"];
+    [options setObject:@"30000" forKey:@"out_state_tuition_max"];
+    [options setObject:@"20000" forKey:@"out_state_tuition_min"];
+    
     
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
     
     NSMutableArray *collegeArray = [collegeManager getColleges:options];
     for(MUITCollege *college in collegeArray)
     {
-        NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
-        NSLog(@"Out of state tuition for %@: %ld", college.name, (long)college.tuition_out_state);
+        //NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
+        NSLog(@"%@ out_state_tuition: %ld", college.name, (long)college.tuition_out_state);
     }
 }
 
