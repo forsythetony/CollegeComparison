@@ -45,7 +45,7 @@
     NSMutableArray *collegeArray = [collegeManager getColleges:options];
     for(MUITCollege *college in collegeArray)
     {
-        NSLog(@"%@ enrollment_total: %ld", college.name, (long)college.enrollment_total);
+        NSLog(@"%@ out state tution: %ld", college.name, (long)college.tuition_out_state);
     }
 }
 
