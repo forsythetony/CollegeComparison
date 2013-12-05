@@ -1013,12 +1013,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="veJ-Ug-SuL"/>
-        <segue reference="3BT-dY-ldQ"/>
-=======
+
         <segue reference="Q1s-1n-HqV"/>
         <segue reference="xNf-hx-PXk"/>
->>>>>>> bcf7283e985ee2a1c214093b53fff376a4cb1603
+
     </inferredMetricsTieBreakers>
 </document>

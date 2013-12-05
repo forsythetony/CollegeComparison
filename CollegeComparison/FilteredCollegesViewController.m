@@ -377,7 +377,6 @@ NSArray *searchResults;
 //     }
 // }
 
->>>>>>> bcf7283e985ee2a1c214093b53fff376a4cb1603
  }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
