@@ -12,7 +12,7 @@
 @interface CollegeDetailTableViewController : UITableViewController
 
 @property (nonatomic, strong) IBOutlet UILabel *collegeLabel;
-@property (nonatomic, strong) NSString *collegeName;
+@property (nonatomic, strong) NSString *instituteType;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *inTuitionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *outTuitionLabel;
