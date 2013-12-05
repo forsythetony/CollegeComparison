@@ -790,18 +790,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Degree Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ti-99-Kam">
-                                        <rect key="frame" x="20" y="290" width="111" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="2yA-ER-rFv"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="sFr-ok-g49" customClass="TuitionSegmentedControl">
-                                        <rect key="frame" x="20" y="106" width="280" height="29"/>
+                                        <rect key="frame" x="20" y="118" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="$0-10K"/>
@@ -812,7 +802,7 @@
                                         <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
                                     </segmentedControl>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT2-qP-ZIj">
-                                        <rect key="frame" x="20" y="220" width="111" height="21"/>
+                                        <rect key="frame" x="20" y="280" width="111" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="HL0-PC-C8Y"/>
@@ -821,16 +811,6 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="ySz-4h-c7c" customClass="DegreeTypeSegmentedControl">
-                                        <rect key="frame" x="20" y="318" width="280" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="Associates"/>
-                                            <segment title="Bachelors"/>
-                                            <segment title="Masters"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
-                                    </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CZ-kZ-XNN">
                                         <rect key="frame" x="20" y="387" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -847,7 +827,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Enrollment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb5-9n-1Kf">
-                                        <rect key="frame" x="20" y="146" width="148" height="22"/>
+                                        <rect key="frame" x="20" y="184" width="148" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="148" id="CDz-Jf-XFF"/>
@@ -869,7 +849,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFM-pr-dZ1">
-                                        <rect key="frame" x="20" y="77" width="111" height="21"/>
+                                        <rect key="frame" x="20" y="89" width="111" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="kK7-Vv-M7X"/>
@@ -880,7 +860,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="AfY-H2-gV7" customClass="EnrollmentSegmentedControl">
-                                        <rect key="frame" x="20" y="175" width="280" height="29"/>
+                                        <rect key="frame" x="20" y="213" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="0-5K"/>
@@ -891,7 +871,7 @@
                                         <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="9HI-C3-baB" customClass="SchoolTypeSegmentedControl">
-                                        <rect key="frame" x="20" y="249" width="280" height="29"/>
+                                        <rect key="frame" x="20" y="309" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="Public"/>
@@ -901,35 +881,29 @@
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="nb5-9n-1Kf" firstAttribute="top" secondItem="sFr-ok-g49" secondAttribute="bottom" constant="12" id="1kE-6Z-yvE"/>
+                                    <constraint firstItem="nb5-9n-1Kf" firstAttribute="top" secondItem="sFr-ok-g49" secondAttribute="bottom" constant="38" id="1kE-6Z-yvE"/>
                                     <constraint firstAttribute="trailing" secondItem="wFC-cj-Woh" secondAttribute="trailing" constant="20" symbolic="YES" id="34K-th-9ly"/>
                                     <constraint firstItem="sFr-ok-g49" firstAttribute="top" secondItem="EFM-pr-dZ1" secondAttribute="bottom" constant="8" symbolic="YES" id="3Bw-Zw-X7d"/>
                                     <constraint firstItem="9HI-C3-baB" firstAttribute="leading" secondItem="NT2-qP-ZIj" secondAttribute="leading" id="4Qh-JH-dvI"/>
                                     <constraint firstItem="AfY-H2-gV7" firstAttribute="trailing" secondItem="sFr-ok-g49" secondAttribute="trailing" id="B11-We-Qr5"/>
+                                    <constraint firstItem="7CZ-kZ-XNN" firstAttribute="trailing" secondItem="9HI-C3-baB" secondAttribute="trailing" id="BJK-tn-GH2"/>
                                     <constraint firstItem="9HI-C3-baB" firstAttribute="top" secondItem="NT2-qP-ZIj" secondAttribute="bottom" constant="8" symbolic="YES" id="HmE-VP-KgP"/>
                                     <constraint firstItem="wFC-cj-Woh" firstAttribute="leading" secondItem="EFM-pr-dZ1" secondAttribute="leading" id="IKh-A7-tVo"/>
                                     <constraint firstItem="AfY-H2-gV7" firstAttribute="top" secondItem="nb5-9n-1Kf" secondAttribute="bottom" constant="7" id="Jau-x5-xJV"/>
                                     <constraint firstItem="nb5-9n-1Kf" firstAttribute="leading" secondItem="sFr-ok-g49" secondAttribute="leading" id="QT6-Oh-2Bs"/>
                                     <constraint firstItem="AfY-H2-gV7" firstAttribute="trailing" secondItem="9HI-C3-baB" secondAttribute="trailing" id="RPX-0P-Jpc"/>
+                                    <constraint firstItem="sFr-ok-g49" firstAttribute="centerX" secondItem="9NX-Mc-kne" secondAttribute="centerX" id="Vnq-Nl-CQI"/>
                                     <constraint firstItem="EFM-pr-dZ1" firstAttribute="leading" secondItem="sFr-ok-g49" secondAttribute="leading" id="XET-eV-HPA"/>
-                                    <constraint firstItem="ySz-4h-c7c" firstAttribute="top" secondItem="2Ti-99-Kam" secondAttribute="bottom" constant="7" id="XQd-au-0JD"/>
-                                    <constraint firstItem="ySz-4h-c7c" firstAttribute="trailing" secondItem="7CZ-kZ-XNN" secondAttribute="trailing" id="aIg-cM-C10"/>
-                                    <constraint firstItem="NT2-qP-ZIj" firstAttribute="trailing" secondItem="2Ti-99-Kam" secondAttribute="trailing" id="cER-Gv-xwn"/>
                                     <constraint firstItem="sFr-ok-g49" firstAttribute="trailing" secondItem="wFC-cj-Woh" secondAttribute="trailing" id="cGQ-ls-gF1"/>
-                                    <constraint firstItem="2Ti-99-Kam" firstAttribute="leading" secondItem="ySz-4h-c7c" secondAttribute="leading" id="e3U-kC-Wum"/>
-                                    <constraint firstItem="ySz-4h-c7c" firstAttribute="centerX" secondItem="9NX-Mc-kne" secondAttribute="centerX" id="eCT-Pm-WR8"/>
-                                    <constraint firstItem="NT2-qP-ZIj" firstAttribute="top" secondItem="AfY-H2-gV7" secondAttribute="bottom" constant="17" id="fVs-aR-GiF"/>
-                                    <constraint firstItem="EFM-pr-dZ1" firstAttribute="top" secondItem="wFC-cj-Woh" secondAttribute="bottom" constant="22" id="g7q-AI-x2l"/>
+                                    <constraint firstItem="7CZ-kZ-XNN" firstAttribute="leading" secondItem="9HI-C3-baB" secondAttribute="leading" id="e0I-8B-tZc"/>
+                                    <constraint firstItem="NT2-qP-ZIj" firstAttribute="top" secondItem="AfY-H2-gV7" secondAttribute="bottom" constant="39" id="fVs-aR-GiF"/>
+                                    <constraint firstItem="EFM-pr-dZ1" firstAttribute="top" secondItem="wFC-cj-Woh" secondAttribute="bottom" constant="34" id="g7q-AI-x2l"/>
+                                    <constraint firstItem="7CZ-kZ-XNN" firstAttribute="top" secondItem="9HI-C3-baB" secondAttribute="bottom" constant="50" id="hqH-3Z-N32"/>
                                     <constraint firstItem="NT2-qP-ZIj" firstAttribute="trailing" secondItem="EFM-pr-dZ1" secondAttribute="trailing" id="lIP-Zx-8OF"/>
-                                    <constraint firstItem="2Ti-99-Kam" firstAttribute="top" secondItem="9HI-C3-baB" secondAttribute="bottom" constant="13" id="n1b-uF-mNw"/>
                                     <constraint firstAttribute="bottom" secondItem="7CZ-kZ-XNN" secondAttribute="bottom" constant="38" id="ndp-7L-MNS"/>
                                     <constraint firstItem="wFC-cj-Woh" firstAttribute="top" secondItem="9NX-Mc-kne" secondAttribute="top" constant="21" id="sLy-N3-N9Q"/>
-                                    <constraint firstItem="7CZ-kZ-XNN" firstAttribute="top" secondItem="ySz-4h-c7c" secondAttribute="bottom" constant="41" id="uIQ-of-Ruh"/>
-                                    <constraint firstItem="ySz-4h-c7c" firstAttribute="trailing" secondItem="9HI-C3-baB" secondAttribute="trailing" id="uTK-zc-9LO"/>
                                     <constraint firstItem="AfY-H2-gV7" firstAttribute="leading" secondItem="nb5-9n-1Kf" secondAttribute="leading" id="uWd-Oe-etR"/>
                                     <constraint firstItem="AfY-H2-gV7" firstAttribute="leading" secondItem="NT2-qP-ZIj" secondAttribute="leading" id="uj8-8X-4WB"/>
-                                    <constraint firstItem="ySz-4h-c7c" firstAttribute="leading" secondItem="7CZ-kZ-XNN" secondAttribute="leading" id="uvk-ap-Xl9"/>
-                                    <constraint firstItem="2Ti-99-Kam" firstAttribute="leading" secondItem="9HI-C3-baB" secondAttribute="leading" id="wEm-ms-3Em"/>
                                     <constraint firstItem="wFC-cj-Woh" firstAttribute="leading" secondItem="9NX-Mc-kne" secondAttribute="leading" constant="20" symbolic="YES" id="yXn-FO-7kt"/>
                                 </constraints>
                             </scrollView>
