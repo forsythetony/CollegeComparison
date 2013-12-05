@@ -145,6 +145,7 @@
                 
                 CCAnimationsScreenViewController *newView = [self viewControllerAtIndex:i];
                 [newView removeDuringTransition];
+                
             }
         }
         
@@ -153,7 +154,8 @@
         }
         
         if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Tuition"]) {
-            [theView buttonsForInStateAndOutWithOptionFirst:YES];
+            [theView removeUnderliners];
+           [theView buttonsForInStateAndOutWithOptionFirst:YES];
         }
         
     }
@@ -197,16 +199,7 @@
     
     for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++) {
         switch (i) {
-                //            case 0:
-                //                [sectionTitles addObject:@"Overall"];
-                //                schoolOneValue = 3.0;
-                //                schoolTwoValue = 5.0;
-                //                [lineLabelArray addObject:@""];
-                //                unitValue = 40.0;
-                //                moneyValue = 0.0;
-                //                lines = 10;
-                //                heightMultiplier = 40.0;
-                //                break;
+            
             case 0:
                 [sectionTitles addObject:@"Tuition"];
                 
@@ -238,18 +231,18 @@
                 if (ABS((schoolTwoValue - schoolOneValue)) < 1000 && MAX(schoolOneValue, schoolTwoValue) < 2000) {
                     moneyValue /= 50;
                     
-                    NSLog(@"\n\nCompare One Ran\n\n");
+//                    NSLog(@"\n\nCompare One Ran\n\n");
                     
                 }
                 else if (ABS((schoolTwoValue - schoolOneValue)) > 1000 && MAX(schoolOneValue, schoolTwoValue) > 2000 && MIN(schoolTwoValue, schoolOneValue) <5000)
                 {
                     moneyValue /= 5;
-                    NSLog(@"\n\nCompare Two Ran\n\n");
+//                    NSLog(@"\n\nCompare Two Ran\n\n");
 
                 }
                 else
                 {
-                    NSLog(@"\n\nCompare NONE Ran\n\n");
+//                    NSLog(@"\n\nCompare NONE Ran\n\n");
 
                     [lineLabelArray addObject:@"%@k"];
                 }
@@ -268,7 +261,7 @@
                     [lineLabelArray addObject:@"%@"];
                 }
                 
-                NSLog(@"\n\nSchool One Enrollment: %i\n\nSchool Two Enrollment: %i\n\n", schoolOneValue, schoolTwoValue);
+//                NSLog(@"\n\nSchool One Enrollment: %i\n\nSchool Two Enrollment: %i\n\n", schoolOneValue, schoolTwoValue);
                 break;
             case 2:
                 [sectionTitles addObject:@"Financial Aid"];
@@ -365,7 +358,7 @@
                                           [self.twoColleges objectAtIndex:1],
                                           nil];
         
-        NSLog(@"MY INDEX IS: %@", [NSNumber numberWithInt:i]);
+//        NSLog(@"MY INDEX IS: %@", [NSNumber numberWithInt:i]);
         NSMutableDictionary *generalSettings = [NSMutableDictionary dictionaryWithObjects:settingObjectsForView
                                                                     forKeys:settingKeysForView];
         
@@ -465,33 +458,33 @@
     
 
         
-    NSLog(@"\n\nColleges were not passed.\n\n");
-    MUITCollege *collegeOne = [MUITCollege new];
-    MUITCollege *collegeTwo = [MUITCollege new];
-    
-    collegeOne.name = @"University of Missouri- Columbia";
-    collegeTwo.name = @"University of Missouri- St. Louis";
-    
-    collegeOne.enrollment_total = 30000;
-    collegeTwo.enrollment_total = 50000;
-    
-    collegeOne.tuition_in_state = 25000;
-    collegeTwo.tuition_in_state= 65000;
-    
-    collegeOne.tuition_out_state = 45000;
-    collegeTwo.tuition_out_state = 85000;
-    
-    collegeOne.percent_receive_financial_aid = 34;
-    collegeTwo.percent_receive_financial_aid = 54;
-    
-    
-    collegeOne.enrollment_men = 35000;
-    collegeOne.enrollment_women = 5000;
-    
-    collegeTwo.enrollment_men = 10000;
-    collegeTwo.enrollment_women = 20000;
-    
-    self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
+//    NSLog(@"\n\nColleges were not passed.\n\n");
+//    MUITCollege *collegeOne = [MUITCollege new];
+//    MUITCollege *collegeTwo = [MUITCollege new];
+//    
+//    collegeOne.name = @"University of Missouri- Columbia";
+//    collegeTwo.name = @"University of Missouri- St. Louis";
+//    
+//    collegeOne.enrollment_total = 30000;
+//    collegeTwo.enrollment_total = 50000;
+//    
+//    collegeOne.tuition_in_state = 25000;
+//    collegeTwo.tuition_in_state= 65000;
+//    
+//    collegeOne.tuition_out_state = 45000;
+//    collegeTwo.tuition_out_state = 85000;
+//    
+//    collegeOne.percent_receive_financial_aid = 34;
+//    collegeTwo.percent_receive_financial_aid = 54;
+//    
+//    
+//    collegeOne.enrollment_men = 35000;
+//    collegeOne.enrollment_women = 5000;
+//    
+//    collegeTwo.enrollment_men = 10000;
+//    collegeTwo.enrollment_women = 20000;
+//    
+//    self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
     
     
 
