@@ -25,9 +25,7 @@ static sqlite3_stmt *statement = nil;
     if (![parameters objectForKey:@"out_state_tuition_min"]) {
         [parameters setObject:@"0" forKey:@"out_state_tuition_min"];
     }
-    if (![parameters objectForKey:@"out_state_tuition_max"]) {
-        [parameters setObject:@"" forKey:@"out_state_tuition_max"];
-    } else {
+    if ([parameters objectForKey:@"out_state_tuition_max"]) {
         NSString* str = [NSString stringWithFormat:@"and out_state_tuition < %@", [parameters objectForKey:@"out_state_tuition_max"]];
         [parameters setObject:str forKey:@"out_state_tuition_max"];
     }
