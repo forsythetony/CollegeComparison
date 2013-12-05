@@ -59,13 +59,13 @@
     float menPerc = menEnrollment/totalEnrollment, womenPerc = womenEnrollment/totalEnrollment;
 
     
-    if (college.enrollment_total <= 0) {
-        studentBTotalLabel.text = @"N/A";
-    }
-    studentBTotalLabel.text = [NSString stringWithFormat:@"%d", college.enrollment_total];
+    if (college.enrollment_total <= 0) studentBTotalLabel.text = @"N/A";
+    else studentBTotalLabel.text = [NSString stringWithFormat:@"%d", college.enrollment_total];
     
-    menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
+    if (menEnrollment <= 0) menEnrollLabel.text = @"N/A";
+    else menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
 
+    if (womenEnrollment <= 0) womenEnrollLabel.text = @"N/A";
     womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
 
     finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
