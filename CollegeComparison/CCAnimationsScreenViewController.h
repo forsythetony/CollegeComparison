@@ -45,5 +45,6 @@
 -(void)buttonsForMenAndWomen;
 -(void)populationButtonCheck;
 -(void)buttonsForInStateAndOutWithOptionFirst:(BOOL) first;
+-(void)removeUnderliners;
 
 @end

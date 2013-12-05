@@ -37,6 +37,7 @@
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
 		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
+		BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB2D185075FC00597C1D /* ios-linen.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
 		BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAnimationsScreenViewController.m; sourceTree = "<group>"; };
 		BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCAnimationsScreenViewController.xib; sourceTree = "<group>"; };
+		BAE4EB2D185075FC00597C1D /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ios-linen.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */,
 				BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */,
 				BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */,
+				BAE4EB2D185075FC00597C1D /* ios-linen.jpg */,
 			);
 			name = "Bar Animations";
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
 				532A148D184D7594009C5BAE /* schools.db in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
+				BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,8 @@
 #define TOPOFDETAILREFERENCEPOINT 100.0
 #define MIDSECTIONREFERENCEPOINT 200.0
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @interface CCAnimationsScreenViewController () {
     
     UIView *detailViewer, *myView;
@@ -37,7 +39,24 @@
     
     CGRect barOneFrame, barTwoFrame;
     
-    float mainHeightMultiplier;
+    float mainHeightMultiplier, newWidthForMeAndYou;
+    
+    
+    UIColor *barOneColor, *barTwoColor;
+    
+    
+    UIView *line1, *line2, *line3, *line4, *line5, *line6;
+    
+    BOOL haveRaced;
+    
+    NSArray *arrayOfUnderliners, *arrayOfUnderLinersForTuition;
+    
+    UIView *underlinerView;
+    
+    NSMutableArray *underLinerViewArray;
+    
+    float onlyTheBestBottomReferencePointEver, evenBetterTopOfDetailReferencePoint, evenBetterMidSection;
+    
     
 }
 @end
@@ -52,6 +71,18 @@
     if (self.hasAnimated == NO)
     {
         [self animateAll];
+        
+    }
+    else if([[global objectForKey:@"Title"] isEqualToString:@"Tuition"])
+    {
+        [self buttonsForInStateAndOutWithOptionFirst:YES];
+        
+        NSLog(@"\n\nI RAN SO FAR AWAY\n\n");
+        
+    }
+    else
+    {
+        [self removeUnderliners];
     }
 }
 
@@ -77,12 +108,28 @@
     self.labelPlaces = [[NSMutableArray alloc] init];
     
     subviewArray = [[NSMutableArray alloc] init];
-    
+    underLinerViewArray = [NSMutableArray new];
+    [self setArrayOfUnderliners];
     [self justseeing];
+    
+    if (IS_IPHONE_5) {
+        onlyTheBestBottomReferencePointEver = 417.0;
+        evenBetterTopOfDetailReferencePoint = 175.0;
+        evenBetterMidSection = (onlyTheBestBottomReferencePointEver + evenBetterTopOfDetailReferencePoint) / 2.0;
+    }
+    else
+    {
+        onlyTheBestBottomReferencePointEver = 329.0;
+        evenBetterTopOfDetailReferencePoint = 100.0;
+        evenBetterMidSection = 200.0;
+    }
+    
+    
+    
 }
 -(void)animateAll
 {
-    
+    haveRaced = NO;
     self.hasAnimated = YES;
     detailPanelDisplayed = NO;
     
@@ -109,8 +156,8 @@
                                  andNumberOfLines:[[global objectForKey:@"Lines"] integerValue]];
     
     
-    UIColor *barOneColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];;
-    UIColor *barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
+    barOneColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];;
+    barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
     
     
     float width = 60.0;
@@ -144,7 +191,7 @@
      
                            andLabel:barTwoLabel];
     
-    CGRect oldRect = CGRectMake(0.0, BOTTOMREFERENCEPOINT, self.view.bounds.size.width, 50.0);
+    CGRect oldRect = CGRectMake(0.0, onlyTheBestBottomReferencePointEver, self.view.bounds.size.width, 50.0);
     
     UIView* newView = [[UIView alloc] initWithFrame:oldRect];
     [newView setBackgroundColor:[UIColor clearColor]];
@@ -158,9 +205,10 @@
     [self.view bringSubviewToFront:womenButton];
     
     
+    
     NSArray *subviewsOfView = [self.view subviews];
     
-    NSLog(@"\n\nNumber of Subviews: %i\n\nIndex of WomenButton: %i", [subviewsOfView count], [subviewsOfView indexOfObject:womenButton]);
+//    NSLog(@"\n\nNumber of Subviews: %i\n\nIndex of WomenButton: %i", [subviewsOfView count], [subviewsOfView indexOfObject:womenButton]);
     
     
     
@@ -199,7 +247,7 @@
     
     CGPoint lineReferencePoint = self.view.center;
     
-    lineReferencePoint.y = BOTTOMREFERENCEPOINT;
+    lineReferencePoint.y = onlyTheBestBottomReferencePointEver;
     
     for (int i = 0; i < lines; i++)
     {
@@ -207,9 +255,9 @@
         NSNumber *moneyValueObject = [NSNumber numberWithInt:moneyValue];
         moneyString = [NSString stringWithFormat:label, moneyValueObject];
         
-        NSLog(@"LINE REFERENCE Y: %lf", lineReferencePoint.y);
+//        NSLog(@"LINE REFERENCE Y: %lf", lineReferencePoint.y);
         
-        if (lineReferencePoint.y > 30.0) {
+        if (lineReferencePoint.y > 40.0) {
             [self createLineWithPoint:lineReferencePoint andTime:time andString:moneyString];
         }
         
@@ -313,17 +361,17 @@
     UIView *mainBarView = [[UIView alloc] init];
     height *= multiplier;
     mainHeightMultiplier = multiplier;
-    point.y = BOTTOMREFERENCEPOINT;
+    point.y = onlyTheBestBottomReferencePointEver;
     
     CGRect framez = CGRectMake(point.x, point.y, width, 1.0f);
     
     [mainBarView setFrame:framez];
     
-    CGRect labelFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 15.0 - 10.0, width, 30.0f);
+    CGRect labelFrame = CGRectMake(point.x, onlyTheBestBottomReferencePointEver - 15.0 - 10.0, width, 30.0f);
     mainCollegeLabel = [[UILabel alloc] initWithFrame:labelFrame];
     mainCollegeLabel.numberOfLines = 2;
     
-    self.mainFrame = CGRectMake(point.x, BOTTOMREFERENCEPOINT - 30.0, width, 20.0f);
+    self.mainFrame = CGRectMake(point.x, onlyTheBestBottomReferencePointEver - 30.0, width, 20.0f);
     [mainCollegeLabel setBackgroundColor:[UIColor clearColor]];
    // [[self view] addSubview:mainCollegeLabel];
     [self customAddSubview:mainCollegeLabel toSuperView:self.view];
@@ -342,12 +390,12 @@
     
     mainBarView.alpha = 0.75f;
     
-    NSLog(@"\n\nFrame Origin x = %lf\n\n", framez.origin.x);
+//    NSLog(@"\n\nFrame Origin x = %lf\n\n", framez.origin.x);
     
     
     CGRect testRect = CGRectMake(framez.origin.x, framez.origin.y, framez.size.width, -(height));
     
-    NSLog(@"\nFrame Value in Creation: %@\n", NSStringFromCGRect(testRect));
+//    NSLog(@"\nFrame Value in Creation: %@\n", NSStringFromCGRect(testRect));
     
     
     if (framez.origin.x < 100.0) {
@@ -388,11 +436,11 @@
         
         detailPanelDisplayed = YES;
         
-        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, onlyTheBestBottomReferencePointEver + 1.0, self.view.bounds.size.width, self.view.bounds.size.height)];
         
         originalDetailViewFrame = detailViewer.bounds;
         
-        UIImage *backgroundImage = [UIImage imageNamed:@"ios-linen.png"];
+        UIImage *backgroundImage = [UIImage imageNamed:@"ios-linen.jpg"];
         
         UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
         
@@ -458,15 +506,12 @@
     int index = [[global objectForKey:@"Index"] integerValue];
     switch (index) {
         case 0:
-            [self configureDetailViewForOverall];
+            [self configureDetailViewForTuitionNewBecauseIDontCare];
             break;
         case 1:
-            [self configureDetailViewForTuition];
-            break;
-        case 2:
             [self configureDetailViewForPopulation];
             break;
-        case 3:
+        case 2:
             [self configureDetailViewForAid];
             break;
         default:
@@ -483,6 +528,10 @@
         [self removeInformationPanel];
         resetting = NO;
     }
+//    if (underlinerView) {
+//        [underlinerView removeFromSuperview];
+//        underlinerView = nil;
+//    }
 }
 
 -(void)handleLongPress:(UILongPressGestureRecognizer*) gestureRecognizer
@@ -494,7 +543,7 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         
-        if (thePoint.y >= TOPOFDETAILREFERENCEPOINT && isUp == NO) {
+        if (thePoint.y >= evenBetterTopOfDetailReferencePoint && isUp == NO) {
             
             [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
                                               thePoint.y,
@@ -511,9 +560,9 @@
         {
             
             
-            if (thePoint.y <= TOPOFDETAILREFERENCEPOINT)
+            if (thePoint.y <= evenBetterTopOfDetailReferencePoint)
             {
-                thePoint.y = TOPOFDETAILREFERENCEPOINT;
+                thePoint.y = evenBetterTopOfDetailReferencePoint;
             }
             
             
@@ -528,6 +577,10 @@
                                             20.0)];
         }
         
+        if (thePoint.y > evenBetterMidSection) {
+            [self andTheyreOff];
+        }
+        
         
         [self.view bringSubviewToFront:handleView];
         
@@ -535,7 +588,7 @@
     
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
-        if (thePoint.y < MIDSECTIONREFERENCEPOINT)
+        if (thePoint.y < evenBetterMidSection)
         {
             
             if (lastPoint.y - thePoint.y < - 7.0)
@@ -548,7 +601,7 @@
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    BOTTOMREFERENCEPOINT - 15.0,
+                                                    onlyTheBestBottomReferencePointEver - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -561,12 +614,12 @@
             {
                 [UIView animateWithDuration:0.25 animations:^{
                     [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                                      TOPOFDETAILREFERENCEPOINT,
+                                                      evenBetterTopOfDetailReferencePoint,
                                                       self.view.bounds.size.width,
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    TOPOFDETAILREFERENCEPOINT - 15.0,
+                                                    evenBetterTopOfDetailReferencePoint - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -576,19 +629,19 @@
             
         }
         
-        else if (lastPoint.y >= MIDSECTIONREFERENCEPOINT)
+        else if (lastPoint.y >= evenBetterMidSection)
         {
             if (lastPoint.y - thePoint.y > 7.0) {
                 
                 [UIView animateWithDuration:0.25 animations:^{
                     
                     [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                                      TOPOFDETAILREFERENCEPOINT,
+                                                      evenBetterTopOfDetailReferencePoint,
                                                       self.view.bounds.size.width,
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    TOPOFDETAILREFERENCEPOINT - 15.0,
+                                                    evenBetterTopOfDetailReferencePoint - 15.0,
                                                     35.0,
                                                     20.0)];
                 }];
@@ -597,7 +650,7 @@
                 
             }
             
-            else if ((int)(lastPoint.y - thePoint.y) == 0 && thePoint.y > BOTTOMREFERENCEPOINT - 15.0)
+            else if ((int)(lastPoint.y - thePoint.y) == 0 && thePoint.y > onlyTheBestBottomReferencePointEver - 15.0)
             {
                 [self createPanelByMove];
                 [self bounceAnimation];
@@ -612,7 +665,7 @@
                                                       self.view.bounds.size.height)];
                     
                     [handleView setFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                    BOTTOMREFERENCEPOINT - 15.0,
+                                                    onlyTheBestBottomReferencePointEver - 15.0,
                                                     35.0,
                                                     20.0)];
                     
@@ -636,6 +689,11 @@
 -(void)createHandle
 {
     
+    
+    
+    
+   
+    
     //    NSLog(@"hello there peoples");
     if (!handleView)
     {
@@ -643,7 +701,7 @@
         [self createPanelByMove];
         
         handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                                BOTTOMREFERENCEPOINT - 15.0,
+                                                                onlyTheBestBottomReferencePointEver - 15.0,
                                                                 35.0,
                                                                 20.0)];
         
@@ -705,12 +763,12 @@
     [UIView animateWithDuration:0.35 animations:^{
         
         [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                          BOTTOMREFERENCEPOINT - 70.0,
+                                          onlyTheBestBottomReferencePointEver - 70.0,
                                           self.view.bounds.size.width,
                                           self.view.bounds.size.height)];
         
         [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width/2),
-                                        BOTTOMREFERENCEPOINT - 85.0,
+                                        onlyTheBestBottomReferencePointEver - 85.0,
                                         handleView.bounds.size.width,
                                         handleView.bounds.size.height)];
         
@@ -719,12 +777,12 @@
         [UIView animateWithDuration:.35 animations:^{
             
             [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                              BOTTOMREFERENCEPOINT + 1.0,
+                                              onlyTheBestBottomReferencePointEver + 1.0,
                                               self.view.bounds.size.width,
                                               self.view.bounds.size.height)];
             
             [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2),
-                                            BOTTOMREFERENCEPOINT - 15.0,
+                                            onlyTheBestBottomReferencePointEver - 15.0,
                                             handleView.bounds.size.width,
                                             handleView.bounds.size.height)];
             
@@ -740,22 +798,22 @@
 
 -(void)buttonToDismiss
 {
-    if (isUp == YES && !dismissArea) {
-        
-        dismissArea = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,
-                                                                 self.view.bounds.origin.y,
-                                                                 self.view.bounds.size.width,
-                                                                 200.0)];
-        
-        
-        [dismissArea addTarget:self action:@selector(dismissInformationPanel) forControlEvents:UIControlEventTouchUpInside];
-        
-        [dismissArea setBackgroundColor:[UIColor clearColor]];
-        
-//        [self.view addSubview:dismissArea];
-        [self customAddSubview:dismissArea toSuperView:self.view];
-    }
-    
+//    if (isUp == YES && !dismissArea) {
+//        
+//        dismissArea = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,
+//                                                                 self.view.bounds.origin.y,
+//                                                                 self.view.bounds.size.width,
+//                                                                 200.0)];
+//        
+//        
+//        [dismissArea addTarget:self action:@selector(dismissInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [dismissArea setBackgroundColor:[UIColor clearColor]];
+//        
+////        [self.view addSubview:dismissArea];
+//        [self customAddSubview:dismissArea toSuperView:self.view];
+//    }
+//    
     
 }
 
@@ -764,12 +822,12 @@
     [UIView animateWithDuration:.6 animations:^{
         
         [detailViewer setFrame:CGRectMake(self.view.bounds.origin.x,
-                                          BOTTOMREFERENCEPOINT + 1.0,
+                                          onlyTheBestBottomReferencePointEver + 1.0,
                                           self.view.bounds.size.width,
                                           self.view.bounds.size.height)];
         
         [handleView setFrame:CGRectMake(self.view.center.x - (handleView.bounds.size.width / 2),
-                                        BOTTOMREFERENCEPOINT - 15.0,
+                                        onlyTheBestBottomReferencePointEver - 15.0,
                                         handleView.bounds.size.width,
                                         handleView.bounds.size.height)];
         
@@ -782,11 +840,17 @@
 
 -(void)replaceHandle
 {
+    
+    
+    
+    
+    
+    
     if (!handleView) {
         [self createPanelByMove];
         
         handleView = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - (35.0 / 2.0),
-                                                                BOTTOMREFERENCEPOINT - 15.0,
+                                                                onlyTheBestBottomReferencePointEver - 15.0,
                                                                 35.0,
                                                                 20.0)];
         
@@ -984,6 +1048,8 @@
 
 -(void)configureDetailViewForPopulation
 {
+    
+    /*
     UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
@@ -1100,10 +1166,271 @@
     [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
+     */
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    //    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
+    
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 40.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    newFrame.origin.x = 95.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += 100.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    newFrame.origin.x -= 100.0;
+    newFrame.origin.y += 40.0;
+    
+    
+    newFrame.size.width = 100.0;
+    
+    float rowOneOrigin = newFrame.origin.x;
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += 102.0;
+    
+    line1 = [[UIView alloc] initWithFrame:CGRectMake(20.0, 95.0, 1.0, 1.0)];
+    [line1 setBackgroundColor:[UIColor grayColor]];
+    
+    line2 = [[UIView alloc] initWithFrame:CGRectMake(95.0, 73.0, 1.0, 1.0)];
+    [line2 setBackgroundColor:[UIColor grayColor]];
+    
+    line3 = [[UIView alloc] initWithFrame:CGRectMake(65.0, 135.0, 1.0, 1.0)];
+    [line3 setBackgroundColor:[UIColor grayColor]];
+    
+    line6 = [[UIView alloc] initWithFrame:CGRectMake(65.0, 175.0, 1.0, 1.0)];
+    [line6 setBackgroundColor:[UIColor grayColor]];
+    
+    
+    float rowTwoOrigin = newFrame.origin.x;
+    line5 = [[UIView alloc] initWithFrame:CGRectMake(85.0 + 110.0, 78.0, 1.0, 1.0)];
+    [line5 setBackgroundColor:[UIColor grayColor]];
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.size.width -= 5.0;
+    newFrame.origin.x -= 207.0;
+    
+    UILabel *rowOneString = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 40.0;
+    
+    UILabel *rowTwoString = [[UILabel alloc] initWithFrame:newFrame];
+    
+    CGRect thirdFrame = CGRectMake(newFrame.origin.x, newFrame.origin.y + 40.0, newFrame.size.width, newFrame.size.height);
+    
+    UILabel *rowThreeString = [[UILabel alloc] initWithFrame:thirdFrame];
+    
+    
+    
+    newFrame.origin.x = rowOneOrigin;
+    newFrame.size.width += 5.0;
+    UILabel *row2Col1 = [[UILabel alloc] initWithFrame:newFrame];
+    
+    thirdFrame = newFrame;
+    
+    thirdFrame.origin.y += 40.0;
+    
+    UILabel *row3Col1 = [[UILabel alloc] initWithFrame:thirdFrame];
+    
+    thirdFrame.origin.x = rowTwoOrigin;
+    
+    UILabel *row3Col2 = [[UILabel alloc] initWithFrame:thirdFrame];
+    
+    newFrame.origin.x = rowTwoOrigin;
+    UILabel *row2Col2 = [[UILabel alloc] initWithFrame:newFrame];
+    
+    [rowOneString setBackgroundColor:[UIColor clearColor]];
+    [rowOneString setText:@"Total"];
+    [rowOneString setTextColor:coralColor];
+    [rowOneString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [rowOneString setTextAlignment:NSTextAlignmentRight];
+    
+    [rowTwoString setBackgroundColor:[UIColor clearColor]];
+    [rowTwoString setText:@"Men"];
+    [rowTwoString setTextColor:coralColor];
+    [rowTwoString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [rowTwoString setTextAlignment:NSTextAlignmentRight];
+    
+    [rowThreeString setBackgroundColor:[UIColor clearColor]];
+    [rowThreeString setText:@"Women"];
+    [rowThreeString setTextColor:coralColor];
+    [rowThreeString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [rowThreeString setTextAlignment:NSTextAlignmentRight];
+    
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"Enrollment Stats:"];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:13.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentCenter];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    collegeOne.numberOfLines = 2;
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:13.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentCenter];
+    collegeTwo.numberOfLines = 2;
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    
+    
+    
+    [numberFormatter setGroupingSeparator:@","];
+    [numberFormatter setGroupingSize:3];
+    [numberFormatter setUsesGroupingSeparator:YES];
+    
+    MUITCollege *dummyCollege = [global objectForKey:@"Object Two"];
+    
+    
+    
+    NSString *CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_total]];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    
+    
+    //number = [[schoolTwo objectForKey:@"Height"] floatValue];
+    
+    dummyCollege = [global objectForKey:@"Object One"];
+   CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_total]];
+    
+    
+    //CollegeValueString = [NSString stringWithFormat:@"#%.0f", number];
+    //  CollegeValueString = @"Hello";
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    
+    //Here I am going to put the out of state tuition values
+    
+    dummyCollege = [global objectForKey:@"Object One"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_men]];
+    
+    [row2Col1 setText:CollegeValueString];
+    [row2Col1 setBackgroundColor:[UIColor clearColor]];
+    [row2Col1 setTextColor:coralColor];
+    [row2Col1 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row2Col1 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_men]];
+    
+    [row2Col2 setText:CollegeValueString];
+    [row2Col2 setBackgroundColor:[UIColor clearColor]];
+    [row2Col2 setTextColor:coralColor];
+    [row2Col2 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row2Col2 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_women]];
+    [row3Col1 setText:CollegeValueString];
+    [row3Col1 setBackgroundColor:[UIColor clearColor]];
+    [row3Col1 setTextColor:coralColor];
+    [row3Col1 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row3Col1 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+    
+    
+    
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_women]];
+    
+    [row3Col2 setText:CollegeValueString];
+    [row3Col2 setBackgroundColor:[UIColor clearColor]];
+    [row3Col2 setTextColor:coralColor];
+    [row3Col2 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row3Col2 setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    
+    
+    //    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 50.0;
+    
+    line4 = [[UIView alloc] initWithFrame:CGRectMake(16.0, lineWhy, 1.0, 1.0)];
+    
+    [line4 setBackgroundColor:[UIColor grayColor]];
+    
+    //    [detailViewer addSubview:line];
+    [self customAddSubview:line4 toSuperView:detailViewer];
+    
+    newWidthForMeAndYou = (float)([titleString length] * 7.5);
+    
+    //    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    
+    
+    //    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+    //    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
+    [self customAddSubview:line1 toSuperView:detailViewer];
+    [self customAddSubview:line2 toSuperView:detailViewer];
+    [self customAddSubview:line3 toSuperView:detailViewer];
+    [self customAddSubview:line5 toSuperView:detailViewer];
+    [self customAddSubview:line6 toSuperView:detailViewer];
+    
+    
+    [self customAddSubview:rowOneString toSuperView:detailViewer];
+    [self customAddSubview:rowTwoString toSuperView:detailViewer];
+    [self customAddSubview:rowThreeString toSuperView:detailViewer];
+    [self customAddSubview:row2Col1 toSuperView:detailViewer];
+    [self customAddSubview:row2Col2 toSuperView:detailViewer];
+    [self customAddSubview:row3Col1 toSuperView:detailViewer];
+    [self customAddSubview:row3Col2 toSuperView:detailViewer];
+    
+
     
 }
 -(void)configureDetailViewForAid
 {
+    /*
+    
     UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
@@ -1230,11 +1557,270 @@
     [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
+     
+     */
+    
+    
+    
+    
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    //    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
+    
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 40.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    newFrame.origin.x = 95.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += 100.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    newFrame.origin.x -= 100.0;
+    newFrame.origin.y += 40.0;
+    
+    
+    newFrame.size.width = 100.0;
+    
+    float rowOneOrigin = newFrame.origin.x;
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += 102.0;
+    
+    line1 = [[UIView alloc] initWithFrame:CGRectMake(20.0, 95.0, 1.0, 1.0)];
+    [line1 setBackgroundColor:[UIColor grayColor]];
+    
+    line2 = [[UIView alloc] initWithFrame:CGRectMake(95.0, 73.0, 1.0, 1.0)];
+    [line2 setBackgroundColor:[UIColor grayColor]];
+    
+    line3 = [[UIView alloc] initWithFrame:CGRectMake(65.0, 135.0, 1.0, 1.0)];
+    [line3 setBackgroundColor:[UIColor grayColor]];
+    
+    line6 = [[UIView alloc] initWithFrame:CGRectMake(65.0, 175.0, 1.0, 1.0)];
+    [line6 setBackgroundColor:[UIColor grayColor]];
+    
+    
+    float rowTwoOrigin = newFrame.origin.x;
+    line5 = [[UIView alloc] initWithFrame:CGRectMake(85.0 + 110.0, 78.0, 1.0, 1.0)];
+    [line5 setBackgroundColor:[UIColor grayColor]];
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.size.width -= 5.0;
+    newFrame.origin.x -= 207.0;
+    
+    UILabel *rowOneString = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 40.0;
+    
+    UILabel *rowTwoString = [[UILabel alloc] initWithFrame:newFrame];
+    
+    CGRect thirdFrame = CGRectMake(newFrame.origin.x, newFrame.origin.y + 40.0, newFrame.size.width, newFrame.size.height);
+    
+    UILabel *rowThreeString = [[UILabel alloc] initWithFrame:thirdFrame];
+    
+    
+    
+    newFrame.origin.x = rowOneOrigin;
+    newFrame.size.width += 5.0;
+    UILabel *row2Col1 = [[UILabel alloc] initWithFrame:newFrame];
+    
+    thirdFrame = newFrame;
+    
+    thirdFrame.origin.y += 40.0;
+    
+    UILabel *row3Col1 = [[UILabel alloc] initWithFrame:thirdFrame];
+    
+    thirdFrame.origin.x = rowTwoOrigin;
+    
+    UILabel *row3Col2 = [[UILabel alloc] initWithFrame:thirdFrame];
+    
+    newFrame.origin.x = rowTwoOrigin;
+    UILabel *row2Col2 = [[UILabel alloc] initWithFrame:newFrame];
+    
+    [rowOneString setBackgroundColor:[UIColor clearColor]];
+    [rowOneString setText:@"Percent\nReceive"];
+    [rowOneString setTextColor:coralColor];
+    [rowOneString setFont:[UIFont fontWithName:@"Avenir-Book" size:12.0]];
+    [rowOneString setTextAlignment:NSTextAlignmentRight];
+    rowOneString.numberOfLines = 2;
+    
+    
+//    [rowTwoString setBackgroundColor:[UIColor clearColor]];
+//    [rowTwoString setText:@"Men"];
+//    [rowTwoString setTextColor:coralColor];
+//    [rowTwoString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+//    [rowTwoString setTextAlignment:NSTextAlignmentRight];
+//    
+//    [rowThreeString setBackgroundColor:[UIColor clearColor]];
+//    [rowThreeString setText:@"Women"];
+//    [rowThreeString setTextColor:coralColor];
+//    [rowThreeString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+//    [rowThreeString setTextAlignment:NSTextAlignmentRight];
+    
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"Financial Aid Stats:"];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:13.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentCenter];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    collegeOne.numberOfLines = 2;
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:13.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentCenter];
+    collegeTwo.numberOfLines = 2;
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    [numberFormatter setGroupingSeparator:@","];
+    [numberFormatter setGroupingSize:3];
+    [numberFormatter setUsesGroupingSeparator:YES];
+    
+    MUITCollege *dummyCollege = [global objectForKey:@"Object Two"];
+    
+    NSString *CollegeValueString = [NSString stringWithFormat:@"%i%%", dummyCollege.percent_receive_financial_aid];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    
+    
+    //number = [[schoolTwo objectForKey:@"Height"] floatValue];
+    
+    dummyCollege = [global objectForKey:@"Object One"];
+   CollegeValueString = [NSString stringWithFormat:@"%i%%", dummyCollege.percent_receive_financial_aid];
+    
+    
+    //CollegeValueString = [NSString stringWithFormat:@"#%.0f", number];
+    //  CollegeValueString = @"Hello";
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    
+    //Here I am going to put the out of state tuition values
+    /*
+    dummyCollege = [global objectForKey:@"Object One"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_men]];
+    
+    [row2Col1 setText:CollegeValueString];
+    [row2Col1 setBackgroundColor:[UIColor clearColor]];
+    [row2Col1 setTextColor:coralColor];
+    [row2Col1 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row2Col1 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_men]];
+    
+    [row2Col2 setText:CollegeValueString];
+    [row2Col2 setBackgroundColor:[UIColor clearColor]];
+    [row2Col2 setTextColor:coralColor];
+    [row2Col2 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row2Col2 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_women]];
+    [row3Col1 setText:CollegeValueString];
+    [row3Col1 setBackgroundColor:[UIColor clearColor]];
+    [row3Col1 setTextColor:coralColor];
+    [row3Col1 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row3Col1 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+    
+    
+    
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.enrollment_women]];
+    
+    [row3Col2 setText:CollegeValueString];
+    [row3Col2 setBackgroundColor:[UIColor clearColor]];
+    [row3Col2 setTextColor:coralColor];
+    [row3Col2 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row3Col2 setTextAlignment:NSTextAlignmentCenter];
+    
+    */
+    
+    
+    //    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 50.0;
+    
+    line4 = [[UIView alloc] initWithFrame:CGRectMake(16.0, lineWhy, 1.0, 1.0)];
+    
+    [line4 setBackgroundColor:[UIColor grayColor]];
+    
+    //    [detailViewer addSubview:line];
+    [self customAddSubview:line4 toSuperView:detailViewer];
+    
+    newWidthForMeAndYou = (float)([titleString length] * 7.5);
+    
+    //    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    
+    
+    //    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+    //    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
+    [self customAddSubview:line1 toSuperView:detailViewer];
+    [self customAddSubview:line2 toSuperView:detailViewer];
+    [self customAddSubview:line3 toSuperView:detailViewer];
+    [self customAddSubview:line5 toSuperView:detailViewer];
+    //[self customAddSubview:line6 toSuperView:detailViewer];
+    
+    
+    [self customAddSubview:rowOneString toSuperView:detailViewer];
+    [self customAddSubview:rowTwoString toSuperView:detailViewer];
+    [self customAddSubview:rowThreeString toSuperView:detailViewer];
+    [self customAddSubview:row2Col1 toSuperView:detailViewer];
+    [self customAddSubview:row2Col2 toSuperView:detailViewer];
+    [self customAddSubview:row3Col1 toSuperView:detailViewer];
+    [self customAddSubview:row3Col2 toSuperView:detailViewer];
 }
--(void)configureDetailViewForTuition
+-(void)configureDetailViewForTuitionNewBecauseIDontCare
 {
     //Create dismiss button
-    
+/*
     UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
     [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
@@ -1293,8 +1879,13 @@
     UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
     
     [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+   
+    MUITCollege *dummyThing = [global objectForKey:@"Object One"];
     
-    NSString *CollegeValueString = [numberFormatter stringFromNumber:[schoolOne objectForKey:@"Height"]];
+    
+    NSString *CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInteger:dummyThing.tuition_out_state]];
+    
+    NSLog(@"\n\nCollegeValueString: %@\n\n", CollegeValueString);
     
     [collegeOneTuitionValue setText:CollegeValueString];
     [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
@@ -1335,9 +1926,222 @@
     [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
     
     //    [detailViewer addSubview:collegeTwoTuitionValue];
-    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];    [UIView animateWithDuration:1.0 animations:^{
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
+    
+    [UIView animateWithDuration:1.0 animations:^{
         [line setFrame:CGRectMake(14.0, lineWhy, newWidth, 1.0)];
     }];
+    
+  */
+    UIColor *coralColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [dismissButton addTarget:self action:@selector(removeInformationPanel) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setBackgroundColor:[UIColor clearColor]];
+    //    [self.view addSubview:dismissButton];
+    [self customAddSubview:dismissButton toSuperView:self.view];
+    
+    CGRect newFrame = CGRectMake(15.0, 20.0, 200.0, 40.0);
+    
+    UILabel *mainTitleLabel = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 35.0;
+    newFrame.origin.x = 95.0;
+    newFrame.size.width = 100.0;
+    
+    UILabel *collegeOne = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += 100.0;
+    
+    UILabel *collegeTwo = [[UILabel alloc] initWithFrame:newFrame];
+    
+    
+    newFrame.origin.x -= 100.0;
+    newFrame.origin.y += 40.0;
+    
+    
+    newFrame.size.width = 100.0;
+    
+    float rowOneOrigin = newFrame.origin.x;
+    UILabel *collegeTwoTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x += 102.0;
+    
+    line1 = [[UIView alloc] initWithFrame:CGRectMake(20.0, 95.0, 1.0, 1.0)];
+    [line1 setBackgroundColor:[UIColor grayColor]];
+    
+    line2 = [[UIView alloc] initWithFrame:CGRectMake(95.0, 73.0, 1.0, 1.0)];
+    [line2 setBackgroundColor:[UIColor grayColor]];
+    
+    line3 = [[UIView alloc] initWithFrame:CGRectMake(65.0, 135.0, 1.0, 1.0)];
+    [line3 setBackgroundColor:[UIColor grayColor]];
+    
+    
+    
+    
+    float rowTwoOrigin = newFrame.origin.x;
+    line5 = [[UIView alloc] initWithFrame:CGRectMake(85.0 + 110.0, 78.0, 1.0, 1.0)];
+    [line5 setBackgroundColor:[UIColor grayColor]];
+    
+    UILabel *collegeOneTuitionValue = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.size.width -= 5.0;
+    newFrame.origin.x -= 207.0;
+    
+    UILabel *rowOneString = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.y += 40.0;
+    
+    UILabel *rowTwoString = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x = rowOneOrigin;
+    newFrame.size.width += 5.0;
+    UILabel *row2Col1 = [[UILabel alloc] initWithFrame:newFrame];
+    
+    newFrame.origin.x = rowTwoOrigin;
+    UILabel *row2Col2 = [[UILabel alloc] initWithFrame:newFrame];
+    
+    [rowOneString setBackgroundColor:[UIColor clearColor]];
+    [rowOneString setText:@"In State"];
+    [rowOneString setTextColor:coralColor];
+    [rowOneString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [rowOneString setTextAlignment:NSTextAlignmentRight];
+    
+    [rowTwoString setBackgroundColor:[UIColor clearColor]];
+    [rowTwoString setText:@"Out of State"];
+    [rowTwoString setTextColor:coralColor];
+    [rowTwoString setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [rowTwoString setTextAlignment:NSTextAlignmentRight];
+
+    
+    
+    
+    
+    NSString *titleFromDictionary = [global objectForKey:@"Title"];
+    NSString *titleString = [NSString stringWithFormat:@"%@ Stats:", titleFromDictionary];
+    
+    [mainTitleLabel setText:titleString];
+    [mainTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [mainTitleLabel setTextColor:[UIColor whiteColor]];
+    [mainTitleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:15.0]];
+    
+    NSString *collegeOneNameString = [NSString stringWithFormat:@"%@", [schoolOne objectForKey:@"Name"]];
+    
+    [collegeOne setText:collegeOneNameString];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    [collegeOne setTextColor:[UIColor whiteColor]];
+    [collegeOne setFont:[UIFont fontWithName:@"Avenir-Book" size:13.0]];
+    [collegeOne setTextAlignment:NSTextAlignmentCenter];
+    [collegeOne setBackgroundColor:[UIColor clearColor]];
+    collegeOne.numberOfLines = 2;
+    
+    NSString *CollegeTwoNameString = [NSString stringWithFormat:@"%@", [schoolTwo objectForKey:@"Name"]];
+    
+    [collegeTwo setText:CollegeTwoNameString];
+    [collegeTwo setBackgroundColor:[UIColor clearColor]];
+    [collegeTwo setTextColor:[UIColor whiteColor]];
+    [collegeTwo setFont:[UIFont fontWithName:@"Avenir-Book" size:13.0]];
+    [collegeTwo setTextAlignment:NSTextAlignmentCenter];
+    collegeTwo.numberOfLines = 2;
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
+    
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    MUITCollege *dummyCollege = [global objectForKey:@"Object Two"];
+    
+    
+    
+    NSString *CollegeValueString = [NSString stringWithFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.tuition_in_state]]];
+    
+    [collegeOneTuitionValue setText:CollegeValueString];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    
+    
+    //number = [[schoolTwo objectForKey:@"Height"] floatValue];
+    
+    dummyCollege = [global objectForKey:@"Object One"];
+    CollegeValueString = [NSString stringWithFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.tuition_in_state]]];
+    
+    
+    //CollegeValueString = [NSString stringWithFormat:@"#%.0f", number];
+  //  CollegeValueString = @"Hello";
+    [collegeTwoTuitionValue setText:CollegeValueString];
+    [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeTwoTuitionValue setTextColor:coralColor];
+    [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    
+    //Here I am going to put the out of state tuition values
+    
+    dummyCollege = [global objectForKey:@"Object One"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.tuition_out_state]];
+    
+    [row2Col1 setText:CollegeValueString];
+    [row2Col1 setBackgroundColor:[UIColor clearColor]];
+    [row2Col1 setTextColor:coralColor];
+    [row2Col1 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row2Col1 setTextAlignment:NSTextAlignmentCenter];
+    
+    dummyCollege = [global objectForKey:@"Object Two"];
+    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:dummyCollege.tuition_out_state]];
+    
+    [row2Col2 setText:CollegeValueString];
+    [row2Col2 setBackgroundColor:[UIColor clearColor]];
+    [row2Col2 setTextColor:coralColor];
+    [row2Col2 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [row2Col2 setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    
+    
+    //    NSLog(@"Length of String: %i", [titleString length]);
+    
+    float lineWhy = 50.0;
+    
+    line4 = [[UIView alloc] initWithFrame:CGRectMake(16.0, lineWhy, 1.0, 1.0)];
+    
+    [line4 setBackgroundColor:[UIColor grayColor]];
+    
+    //    [detailViewer addSubview:line];
+    [self customAddSubview:line4 toSuperView:detailViewer];
+    
+    newWidthForMeAndYou = (float)([titleString length] * 7.5);
+    
+    //    [detailViewer addSubview:mainTitleLabel];
+    [self customAddSubview:mainTitleLabel toSuperView:detailViewer];
+    
+    
+    
+    //    [detailViewer addSubview:collegeOne];
+    [self customAddSubview:collegeOne toSuperView:detailViewer];
+    //    [detailViewer addSubview:collegeTwo];
+    [self customAddSubview:collegeTwo toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeOneTuitionValue];
+    [self customAddSubview:collegeOneTuitionValue toSuperView:detailViewer];
+    
+    //    [detailViewer addSubview:collegeTwoTuitionValue];
+    [self customAddSubview:collegeTwoTuitionValue toSuperView:detailViewer];
+    [self customAddSubview:line1 toSuperView:detailViewer];
+    [self customAddSubview:line2 toSuperView:detailViewer];
+    [self customAddSubview:line3 toSuperView:detailViewer];
+    [self customAddSubview:line5 toSuperView:detailViewer];
+    
+
+    
+    [self customAddSubview:rowOneString toSuperView:detailViewer];
+    [self customAddSubview:rowTwoString toSuperView:detailViewer];
+    [self customAddSubview:row2Col1 toSuperView:detailViewer];
+    [self customAddSubview:row2Col2 toSuperView:detailViewer];
+    
 }
 
 #pragma mark Helper Methods -
@@ -1411,12 +2215,36 @@
     NSLog(@"I RAN I RAN I RAN");
     CGRect buttonFrame = CGRectMake(0.0, 10.0, 75.0, 20.0);
     
+        
+        
+        underlinerView = [[UIView alloc] initWithFrame:[[arrayOfUnderliners objectAtIndex:2] CGRectValue]];
+        
+        underlinerView.backgroundColor = barTwoColor;
+        
+        underlinerView.layer.cornerRadius = 5.0;
+        
+        [underLinerViewArray addObject:underlinerView];
+//        underlinerView.layer.masksToBounds = NO;
+//        underlinerView.layer.shadowOffset = CGSizeMake(2, 2);
+//        underlinerView.layer.shadowRadius = 2;
+//        underlinerView.layer.shadowOpacity = 0.5;
+//        underlinerView.layer.shadowColor = [barTwoColor CGColor];
+        
+        
+        
+        
+        
+        
+        
+        
     womenButton = [[UIButton alloc] initWithFrame:buttonFrame];
     [womenButton setTag:1];
     [womenButton addTarget:self action:@selector(changePopulationViewWithButton:) forControlEvents:UIControlEventTouchDown];
     [womenButton setTitle:@"By Women"
                  forState:UIControlStateNormal];
-    womenButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0];
+    womenButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12.0];
+    womenButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+        
    // womenButton.titleLabel.textColor = [UIColor blackColor];
     
     [womenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -1431,7 +2259,7 @@
     [menButton addTarget:self action:@selector(changePopulationViewWithButton:) forControlEvents:UIControlEventTouchUpInside];
     [menButton setTitle:@"By Men" forState:UIControlStateNormal];
     menButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12.0];
-    menButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    menButton.titleLabel.textAlignment = NSTextAlignmentRight;
   //  menButton.titleLabel.textColor = [UIColor blackColor];
     
     [menButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -1444,12 +2272,12 @@
     CGPoint screenCenter = self.view.center;
     float width = self.view.bounds.size.width - (75 * 2);
     
-    buttonFrame = CGRectMake((screenCenter.x - (width/2)), 0.0, width, 40.0);
+    buttonFrame = CGRectMake((screenCenter.x - (width/2)), 1.0, width, 40.0);
     
     allButton = [[UIButton alloc] initWithFrame:buttonFrame];
     allButton.tag = 3;
     [allButton addTarget:self action:@selector(changePopulationViewWithButton:) forControlEvents:UIControlEventTouchUpInside];
-    allButton.backgroundColor = [UIColor blueColor];
+   // allButton.backgroundColor = [UIColor blueColor];
     
 
     [allButton setTitle:@"Enrollment Total" forState:UIControlStateNormal];
@@ -1459,7 +2287,7 @@
     
     [allButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [allButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [allButton setBackgroundColor:[UIColor colorWithWhite:0/255.0 alpha:0.17]];
+   // [allButton setBackgroundColor:[UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75]];
     allButton.layer.cornerRadius = 4.0;
     
     //[self.view addSubview:titleLabel];
@@ -1469,6 +2297,7 @@
     
     [self customAddSubview:womenButton toSuperView:self.view];
     [self customAddSubview:menButton toSuperView:self.view];
+        [self customAddSubview:underlinerView toSuperView:self.view];
     }
     
     
@@ -1505,9 +2334,12 @@
 //            [self customRemoveAllSubviews];
             [self resizeBarsWithOptionSwitching:NO];
             
-            womenButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+           // womenButton.backgroundColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75];
             allButton.backgroundColor = [UIColor clearColor];
             menButton.backgroundColor = [UIColor clearColor];
+            
+            [self shiftWithFrameValue:[arrayOfUnderliners objectAtIndex:0]];
+            
             break;
         case 2:
             
@@ -1524,9 +2356,9 @@
             
             womenButton.backgroundColor = [UIColor clearColor];
             allButton.backgroundColor = [UIColor clearColor];
-            menButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+           // menButton.backgroundColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75];
 
-            
+            [self shiftWithFrameValue:[arrayOfUnderliners objectAtIndex:1]];
             break;
         case 3:
             
@@ -1542,9 +2374,10 @@
             [self resizeBarsWithOptionSwitching:NO];
 
             womenButton.backgroundColor = [UIColor clearColor];
-            allButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+           // allButton.backgroundColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75];
             menButton.backgroundColor = [UIColor clearColor];
-
+            [self shiftWithFrameValue:[arrayOfUnderliners objectAtIndex:2]];
+            
             
             break;
             
@@ -1593,8 +2426,8 @@
         
     [UIView animateWithDuration:1.0f animations:^{
         
-        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
-        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, BOTTOMREFERENCEPOINT, barTwoFrame.size.width, barTwoHeightValue)];
+        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, onlyTheBestBottomReferencePointEver, barOneFrame.size.width, barOneHeightValue)];
+        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, onlyTheBestBottomReferencePointEver, barTwoFrame.size.width, barTwoHeightValue)];
         
       
         
@@ -1610,8 +2443,8 @@
     }
     else if (switching == YES)
     {
-        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, BOTTOMREFERENCEPOINT, barOneFrame.size.width, barOneHeightValue)];
-        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, BOTTOMREFERENCEPOINT, barTwoFrame.size.width, barTwoHeightValue)];
+        [barOneView setFrame:CGRectMake(barOneFrame.origin.x, onlyTheBestBottomReferencePointEver, barOneFrame.size.width, barOneHeightValue)];
+        [barTwoView setFrame:CGRectMake(barTwoFrame.origin.x, onlyTheBestBottomReferencePointEver, barTwoFrame.size.width, barTwoHeightValue)];
         
         
         
@@ -1630,15 +2463,16 @@
 {
     if (inState) {
         
+       
         
         MUITCollege *collegeOne, *collegeTwo;
         NSNumber *inStateTutionOne, *inStateTutionTwo;
         
         collegeOne = [global objectForKey:@"Object One"];
-        inStateTutionOne = [NSNumber numberWithInteger:collegeOne.tuition_in_state];
+        inStateTutionOne = [NSNumber numberWithInteger:collegeOne.tuition_out_state];
         
         collegeTwo = [global objectForKey:@"Object Two"];
-        inStateTutionTwo = [NSNumber numberWithInteger:collegeTwo.tuition_in_state];
+        inStateTutionTwo = [NSNumber numberWithInteger:collegeTwo.tuition_out_state];
         
         [schoolOne setValue:inStateTutionOne forKey:@"Height"];
         [schoolTwo setValue:inStateTutionTwo forKey:@"Height"];
@@ -1646,7 +2480,7 @@
         [self resizeBarsWithOptionSwitching:YES];
         
         inState.backgroundColor = [UIColor clearColor];
-        outState.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+        outState.backgroundColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75];
         
         [allButton removeFromSuperview];
         allButton = nil;
@@ -1657,6 +2491,8 @@
         [outState removeFromSuperview];
         outState = nil;
         
+       
+        
         
     }
     
@@ -1666,16 +2502,31 @@
         
         CGRect buttonFrame = CGRectMake(0.0, 10.0, 75.0, 20.0);
         
+        
+        underlinerView = [[UIView alloc] initWithFrame:[[arrayOfUnderLinersForTuition objectAtIndex:1] CGRectValue]];
+        
+        underlinerView.backgroundColor = barTwoColor;
+        
+        underlinerView.layer.cornerRadius = 5.0;
+//        underlinerView.layer.masksToBounds = NO;
+//        underlinerView.layer.shadowOffset = CGSizeMake(2, 2);
+//        underlinerView.layer.shadowRadius = 2;
+//        underlinerView.layer.shadowOpacity = 0.5;
+//        underlinerView.layer.shadowColor = [barTwoColor CGColor];
+        
+
+        [underLinerViewArray addObject:underlinerView];
+        
         inState = [[UIButton alloc] initWithFrame:buttonFrame];
         [inState setTag:1];
-        [inState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchDown];
+        [inState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchUpInside];
         [inState setTitle:@"In State"
                      forState:UIControlStateNormal];
-        inState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0];
+        inState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:13.0];
         // inState.titleLabel.textColor = [UIColor blackColor];
         
         [inState setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [inState setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        [inState setTitleColor:[UIColor whiteColor] forState:UIControlStateReserved];
         [inState.titleLabel setTextAlignment:NSTextAlignmentRight];
         
         inState.backgroundColor = [UIColor clearColor];
@@ -1686,12 +2537,12 @@
         outState.tag = 2;
         [outState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchUpInside];
         [outState setTitle:@"Out of State" forState:UIControlStateNormal];
-        outState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12.0];
+        outState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:13.0];
         outState.titleLabel.textAlignment = NSTextAlignmentLeft;
         //  outState.titleLabel.textColor = [UIColor blackColor];
         
         [outState setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [outState setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        [outState setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         
         outState.backgroundColor = [UIColor clearColor];
         
@@ -1699,12 +2550,15 @@
         
         if (first) {
             [inState setBackgroundColor:[UIColor clearColor]];
-            [outState setBackgroundColor:[UIColor colorWithWhite:0/255.0 alpha:0.17]];
+            //[outState setBackgroundColor:[UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75]];
+            [self shiftWithFrameValue:[arrayOfUnderLinersForTuition objectAtIndex:1]];
+            
         }
         
         
         [self customAddSubview:inState toSuperView:self.view];
         [self customAddSubview:outState toSuperView:self.view];
+        [self customAddSubview:underlinerView toSuperView:self.view];
     }
     
 
@@ -1737,8 +2591,9 @@
             //            [self customRemoveAllSubviews];
             [self resizeBarsWithOptionSwitching:NO];
             
-            womenButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
-            menButton.backgroundColor = [UIColor clearColor];
+            //inState.backgroundColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75];
+            outState.backgroundColor = [UIColor clearColor];
+            [self shiftWithFrameValue:[arrayOfUnderLinersForTuition objectAtIndex:0]];
             break;
         case 2:
             
@@ -1753,14 +2608,154 @@
             
             [self resizeBarsWithOptionSwitching:NO];
             
-            womenButton.backgroundColor = [UIColor clearColor];
-            menButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+            inState.backgroundColor = [UIColor clearColor];
+            //outState.backgroundColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75];
             
-            
+            [self shiftWithFrameValue:[arrayOfUnderLinersForTuition objectAtIndex:1]];
             break;
 
             
     }
 }
 
+
+-(void)addAgain:(BOOL) first
+{
+    CGRect buttonFrame = CGRectMake(0.0, 10.0, 75.0, 20.0);
+    
+    inState = [[UIButton alloc] initWithFrame:buttonFrame];
+    [inState setTag:1];
+    [inState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchDown];
+    [inState setTitle:@"In State"
+             forState:UIControlStateNormal];
+    inState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0];
+    // inState.titleLabel.textColor = [UIColor blackColor];
+    
+    [inState setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [inState setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [inState.titleLabel setTextAlignment:NSTextAlignmentRight];
+    
+    inState.backgroundColor = [UIColor clearColor];
+    inState.layer.cornerRadius = 4.0;
+    buttonFrame.origin.x = self.view.bounds.size.width - 75.0;
+    
+    outState = [[UIButton alloc] initWithFrame:buttonFrame];
+    outState.tag = 2;
+    [outState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchUpInside];
+    [outState setTitle:@"Out of State" forState:UIControlStateNormal];
+    outState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12.0];
+    outState.titleLabel.textAlignment = NSTextAlignmentLeft;
+    //  outState.titleLabel.textColor = [UIColor blackColor];
+    
+    [outState setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [outState setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    
+    outState.backgroundColor = [UIColor clearColor];
+    
+    outState.layer.cornerRadius = 4.0;
+    
+    if (first) {
+        [inState setBackgroundColor:[UIColor clearColor]];
+        [outState setBackgroundColor:[UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:0.75]];
+    }
+    
+    
+    [self customAddSubview:inState toSuperView:self.view];
+    [self customAddSubview:outState toSuperView:self.view];
+    
+    [self.view bringSubviewToFront:inState];
+    [self.view bringSubviewToFront:outState];
+}
+
+-(void)andTheyreOff
+{
+    
+        
+        NSLog(@"\n\nHELLO THERE POPLES\n\n");
+    
+    float theBoat;
+    
+    if ([[global objectForKey:@"Title"] isEqualToString:@"Financial Aid"]) {
+        theBoat = 50.0;
+    }
+    else
+    {
+        theBoat = 0.0;
+    }
+    
+    
+        [UIView animateWithDuration:1.0 animations:^{
+            [line1 setFrame:CGRectMake(20.0, 95.0, 275.0, 1.0)];
+            [line1 setAlpha:0.5];
+            [line2 setAlpha:0.5];
+            [line2 setFrame:CGRectMake(95.0, 73.0, 1.0, 140.0 - theBoat)];
+            [line3 setAlpha:0.2];
+            [line3 setFrame:CGRectMake(65, 135.0, 230.0, 1.0)];
+            [line4 setFrame:CGRectMake(16.0, 50.0, newWidthForMeAndYou, 1.0)];
+            [line4 setAlpha:0.8];
+            [line5 setFrame:CGRectMake(85.0 + 110.0, 82.0, 1.0, 131.0 - theBoat)];
+            [line5 setAlpha:0.2];
+            [line6 setFrame:CGRectMake(65.0, 175.0, 230.0, 1.0)];
+            [line6 setAlpha:0.2];
+        }];
+        
+   
+    
+}
+
+-(void)setArrayOfUnderliners
+{
+    NSMutableArray *mutableUnderliners = [NSMutableArray new];
+    
+   float width = self.view.bounds.size.width - (75 * 2);
+    float widthOne = 76.0;
+    CGRect leftFrame = CGRectMake(womenButton.center.x, 29.0, widthOne, 3.0);
+    [mutableUnderliners addObject:[NSValue valueWithCGRect:leftFrame]];
+    
+    widthOne = 60.0;
+    CGRect rightFrame = CGRectMake(self.view.bounds.size.width - widthOne - 7.0, 29.0, widthOne, 3.0);
+    [mutableUnderliners addObject:[NSValue valueWithCGRect:rightFrame]];
+    
+    CGRect middleFrame = CGRectMake((self.view.center.x - (width/2)), 32.0, width, 3.0);
+    [mutableUnderliners addObject:[NSValue valueWithCGRect:middleFrame]];
+    
+    if (!arrayOfUnderliners) {
+        arrayOfUnderliners = [NSArray arrayWithArray:mutableUnderliners];
+        
+    }
+    
+    [mutableUnderliners removeAllObjects];
+    
+    width = self.view.bounds.size.width - (75 * 2);
+    widthOne = 43.0;
+     leftFrame = CGRectMake(womenButton.center.x + 16.0, 29.0, widthOne, 3.0);
+    [mutableUnderliners addObject:[NSValue valueWithCGRect:leftFrame]];
+    
+    widthOne = 60.0;
+     rightFrame = CGRectMake(self.view.bounds.size.width - widthOne - 7.0, 29.0, widthOne, 3.0);
+    [mutableUnderliners addObject:[NSValue valueWithCGRect:rightFrame]];
+    
+    if (!arrayOfUnderLinersForTuition) {
+        arrayOfUnderLinersForTuition = [NSArray arrayWithArray:mutableUnderliners];
+    }
+}
+
+-(void)shiftWithFrameValue:(NSValue*) frameValue
+{
+    CGRect frame = [frameValue CGRectValue];
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [underlinerView setFrame:frame];
+    }];
+ 
+    
+}
+-(void)removeUnderliners
+{
+    for (UIView* theView in underLinerViewArray) {
+        [theView removeFromSuperview];
+        
+    }
+}
 @end
