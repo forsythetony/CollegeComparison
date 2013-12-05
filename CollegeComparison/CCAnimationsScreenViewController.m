@@ -26,6 +26,7 @@
     BOOL detailPanelDisplayed, resetting, isUp;
     
     UIButton *handleView, *dismissArea, *womenButton, *menButton, *allButton;
+    UIButton *inState, *outState;
     
     CGPoint lastPoint;
     
@@ -1625,9 +1626,141 @@
     
 }
 
--(void)populationButtonCheck
+-(void)buttonsForInStateAndOutWithOptionFirst:(BOOL)first
 {
+    if (inState) {
+        
+        
+        MUITCollege *collegeOne, *collegeTwo;
+        NSNumber *inStateTutionOne, *inStateTutionTwo;
+        
+        collegeOne = [global objectForKey:@"Object One"];
+        inStateTutionOne = [NSNumber numberWithInteger:collegeOne.tuition_in_state];
+        
+        collegeTwo = [global objectForKey:@"Object Two"];
+        inStateTutionTwo = [NSNumber numberWithInteger:collegeTwo.tuition_in_state];
+        
+        [schoolOne setValue:inStateTutionOne forKey:@"Height"];
+        [schoolTwo setValue:inStateTutionTwo forKey:@"Height"];
+        
+        [self resizeBarsWithOptionSwitching:YES];
+        
+        inState.backgroundColor = [UIColor clearColor];
+        outState.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+        
+        [allButton removeFromSuperview];
+        allButton = nil;
+        
+        [inState removeFromSuperview];
+        inState = nil;
+        
+        [outState removeFromSuperview];
+        outState = nil;
+        
+        
+    }
     
+    
+    
+    if (!inState) {
+        
+        CGRect buttonFrame = CGRectMake(0.0, 10.0, 75.0, 20.0);
+        
+        inState = [[UIButton alloc] initWithFrame:buttonFrame];
+        [inState setTag:1];
+        [inState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchDown];
+        [inState setTitle:@"In State"
+                     forState:UIControlStateNormal];
+        inState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14.0];
+        // inState.titleLabel.textColor = [UIColor blackColor];
+        
+        [inState setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [inState setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        [inState.titleLabel setTextAlignment:NSTextAlignmentRight];
+        
+        inState.backgroundColor = [UIColor clearColor];
+        inState.layer.cornerRadius = 4.0;
+        buttonFrame.origin.x = self.view.bounds.size.width - 75.0;
+        
+        outState = [[UIButton alloc] initWithFrame:buttonFrame];
+        outState.tag = 2;
+        [outState addTarget:self action:@selector(changeTuitionWithButton:) forControlEvents:UIControlEventTouchUpInside];
+        [outState setTitle:@"Out of State" forState:UIControlStateNormal];
+        outState.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12.0];
+        outState.titleLabel.textAlignment = NSTextAlignmentLeft;
+        //  outState.titleLabel.textColor = [UIColor blackColor];
+        
+        [outState setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [outState setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        
+        outState.backgroundColor = [UIColor clearColor];
+        
+        outState.layer.cornerRadius = 4.0;
+        
+        if (first) {
+            [inState setBackgroundColor:[UIColor clearColor]];
+            [outState setBackgroundColor:[UIColor colorWithWhite:0/255.0 alpha:0.17]];
+        }
+        
+        
+        [self customAddSubview:inState toSuperView:self.view];
+        [self customAddSubview:outState toSuperView:self.view];
+    }
+    
+
+}
+-(void)changeTuitionWithButton:(UIButton*) sender
+{
+    NSNumber *schoolOneValue, *schoolTwoValue, *malePopulation, *malePopulationTwo;
+    
+    schoolOneValue = [NSNumber new];
+    schoolTwoValue = [NSNumber new];
+    MUITCollege *collegeOne, *collegeTwo;
+    
+    UIButton *testButton = (UIButton*)sender;
+
+    switch (testButton.tag) {
+        case 1:
+            
+            
+            collegeOne = [global objectForKey:@"Object One"];
+            malePopulation = [NSNumber numberWithInteger:collegeOne.tuition_in_state];
+            
+            collegeTwo = [global objectForKey:@"Object Two"];
+            malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.tuition_in_state];
+            
+            
+            [schoolOne setValue:malePopulation forKey:@"Height"];
+            [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
+            
+            
+            //            [self customRemoveAllSubviews];
+            [self resizeBarsWithOptionSwitching:NO];
+            
+            womenButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+            menButton.backgroundColor = [UIColor clearColor];
+            break;
+        case 2:
+            
+            collegeOne = [global objectForKey:@"Object One"];
+            malePopulation = [NSNumber numberWithInteger:collegeOne.tuition_out_state];
+            
+            collegeTwo = [global objectForKey:@"Object Two"];
+            malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.tuition_out_state];
+            
+            [schoolOne setValue:malePopulation forKey:@"Height"];
+            [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
+            
+            [self resizeBarsWithOptionSwitching:NO];
+            
+            womenButton.backgroundColor = [UIColor clearColor];
+            menButton.backgroundColor = [UIColor colorWithWhite:0/255.0 alpha:0.17];
+            
+            
+            break;
+
+            
+    }
 }
 
 @end
