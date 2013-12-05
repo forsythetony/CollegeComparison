@@ -71,7 +71,7 @@
     else menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
 
     if (womenEnrollment <= 0) womenEnrollLabel.text = @"N/A";
-    womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
+    else womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
 
     if (college.percent_receive_financial_aid <= 0) finaidLabel.text = @"N/A";
     else finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
@@ -96,7 +96,7 @@
     else actWriting.text = [NSString stringWithFormat:@"%d - %d", college.act_writing_25, college.act_writing_75];
     
     if (college.act_25 <= 0 && college.act_75 <= 0) actComposite.text = @"N/A";
-    actComposite.text = [NSString stringWithFormat:@"%d - %d", college.act_25, college.act_75];
+    else actComposite.text = [NSString stringWithFormat:@"%d - %d", college.act_25, college.act_75];
     
     if (college.sat_reading_25 <= 0 && college.sat_reading_75 <= 0) satRead.text = @"N/A";
     else satRead.text = [NSString stringWithFormat:@"%d - %d", college.sat_reading_25, college.sat_reading_75];
