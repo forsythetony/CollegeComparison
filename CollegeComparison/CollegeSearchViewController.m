@@ -98,7 +98,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"name beginsWith[cd] %@",
+                                    predicateWithFormat:@"name contains[cd] %@",
                                     searchText];
     
     searchResults = [colleges filteredArrayUsingPredicate:resultPredicate];
