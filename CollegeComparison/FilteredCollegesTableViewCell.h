@@ -13,5 +13,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *universityNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *universityLocationLabel;
 @property (nonatomic, weak) IBOutlet UILabel *universityTuitionLabel;
+@property (nonatomic) BOOL enabled;
 
 @end
