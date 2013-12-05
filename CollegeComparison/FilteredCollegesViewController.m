@@ -30,10 +30,9 @@
     self.selectButton = [[UIBarButtonItem alloc] initWithTitle:@"Select" style:UIBarButtonItemStyleBordered target:self action:@selector(selectButton:)];
     self.selectButton.tintColor = [UIColor whiteColor];
     
-    self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare" style:UIBarButtonItemStyleBordered target:self action:@selector(compareButton)];
+    self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare" style:UIBarButtonItemStyleBordered target:self action:@selector(selectCollegesToCompare:)];
     self.compareButton.tintColor = [UIColor whiteColor];
     self.compareButton.enabled = NO;
-    self.compareButton.action = @selector(selectCollegesToCompare:);
     
     self.cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton:)];
     self.cancelButton.tintColor = [UIColor whiteColor];
@@ -79,6 +78,10 @@
         cell.alpha = 1.0;
         cell.userInteractionEnabled = YES;
     }
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem;
+
 }
 
 #pragma mark - Table View Datasource
@@ -194,14 +197,14 @@
             {
                 NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
                 FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
-                if(!cell.selected){
-                cell.enabled = YES;
+                if(!cell.selected)
+                {
+                    cell.enabled = YES;
+                    cell.userInteractionEnabled = YES;
                 }
             }
         }
     }
-    
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -231,12 +234,6 @@
         if (self.collegesToCompare.count == 2)
         {
             self.compareButton.enabled = YES;
-            /*for(cellToCompare in self.collegesToCompare)
-            {
-                NSLog(@"%@", cellToCompare.universityNameLabel.text);
-                NSLog(@"%@", cellToCompare.universityLocationLabel.text);
-                NSLog(@"%@", cellToCompare.universityTuitionLabel.text);
-            }*/
             
             // Disable all unselected cells
             for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
@@ -245,6 +242,7 @@
                 FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
                 if (!cell.selected) {
                     cell.enabled = NO;
+                    cell.userInteractionEnabled = NO;
                 }
             }
         }
@@ -253,7 +251,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.isEditing)
+    if (tableView.isEditing && tableView.indexPathsForSelectedRows.count == 2)
         ((FilteredCollegesTableViewCell *)cell).enabled = [[tableView indexPathsForSelectedRows] containsObject:indexPath];
 }
 
