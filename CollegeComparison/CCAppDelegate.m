@@ -37,11 +37,12 @@
     NSLog(@"%@", databasePath);
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
+    /*
     if ([fileManager fileExistsAtPath:databasePath] == YES)
     {
         [fileManager removeItemAtPath:databasePath error:&error];
     }
+     */
     
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
     [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
