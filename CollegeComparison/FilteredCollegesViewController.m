@@ -16,12 +16,15 @@
 
 - (void)viewDidLoad
 {
+    
+    NSMutableDictionary *options = [NSMutableDictionary new];
+    MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
+    
     self.collegesToCompare = [[NSMutableArray alloc] init];
     self.storedSchoolsDictionary = [[NSMutableDictionary alloc] init];
-    //self.selectedRowsToCompare = [[NSMutableArray alloc] init];
     
     // Passed data
-    self.universitiesPassed = [[NSMutableArray alloc] initWithObjects:@"University 1", @"University 2", @"University 3", @"University 4", @"University 5", @"University 6", @"University 7", @"University 8", nil];
+    self.universitiesPassed = [collegeManager getColleges:options];
     
     // Set custom attributes for navigation bar
     [self setCustomAttributesForNavigationBar];
@@ -135,6 +138,8 @@
 // Tableview cell creation
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MUITCollege *college = self.representedCollege;
+    
     // Local variables
     NSString *cellIdentifier = @"CollegeCell";
     
@@ -151,15 +156,19 @@
     [cell.universityTuitionLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:17.0]];
     
     // Configure cell
-    cell.universityNameLabel.text = self.universitiesPassed[indexPath.row];
-    cell.universityLocationLabel.text = @"Location (City, State)";
-    cell.universityTuitionLabel.text = @"Tuition";
+    cell.universityNameLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] name];
+    cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
+    
+    NSNumberFormatter *tuition = [[NSNumberFormatter alloc] init];
+    [tuition setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [tuition setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSNumber *amount = [NSNumber numberWithInt:[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] tuition_out_state]];
+    
+    cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
     cell.tag = indexPath.row;
     
     [self.storedSchoolsDictionary setObject:cell forKey:[NSString stringWithFormat:@"%i", indexPath.row]];
     [self.allCellsInTable addObject:cell];
-    
-    //FilteredCollegesTableViewCell *theCell = [self.storedSchoolsDictionary objectForKey:[NSString stringWithFormat:@"%i", indexPath.row]];
     
     return cell;
 }
@@ -255,8 +264,31 @@
         ((FilteredCollegesTableViewCell *)cell).enabled = [[tableView indexPathsForSelectedRows] containsObject:indexPath];
 }
 
-- (void)selectCollegesToCompare:(id)sender
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"collegeDetailsSegue"]) {
+        CollegeDetailTableViewController *destViewController = segue.destinationViewController;
+        
+        NSIndexPath *indexPath = nil;
+        
+        //            instead of passing a college name, pass an MUITCollege object.
+        NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+        MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+        destViewController.representedCollege = tappedCollege;
+    }
+}
+
+/*- (void)selectCollegesToCompare:(UIStoryboardSegue *)segue sender:(id)sender
  {
-    [self performSegueWithIdentifier:@"comparisonSegue" sender:sender];
- }
+     if ([segue.identifier isEqualToString:@"collegeDetailsSegue"]) {
+         CollegeDetailTableViewController *destViewController = segue.destinationViewController;
+         
+         NSIndexPath *indexPath = nil;
+         
+         //            instead of passing a college name, pass an MUITCollege object.
+         NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
+         MUITCollege *tappedCollege = [colleges objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+         destViewController.representedCollege = tappedCollege;
+     }
+ }*/
 @end
