@@ -268,27 +268,23 @@
 {
     if ([segue.identifier isEqualToString:@"collegeDetailsSegue"]) {
         CollegeDetailTableViewController *destViewController = segue.destinationViewController;
-        
-        NSIndexPath *indexPath = nil;
-        
-        //            instead of passing a college name, pass an MUITCollege object.
+
+        // instead of passing a college name, pass an MUITCollege object.
         NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
         MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
         destViewController.representedCollege = tappedCollege;
     }
 }
 
-/*- (void)selectCollegesToCompare:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)selectCollegesToCompare:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     if ([segue.identifier isEqualToString:@"collegeDetailsSegue"]) {
+     if ([segue.identifier isEqualToString:@"comparisonSegue"]) {
          CollegeDetailTableViewController *destViewController = segue.destinationViewController;
-         
-         NSIndexPath *indexPath = nil;
-         
-         //            instead of passing a college name, pass an MUITCollege object.
+
+         // instead of passing a college name, pass an MUITCollege object.
          NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
-         MUITCollege *tappedCollege = [colleges objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
+         MUITCollege *tappedCollege = [self.universitiesPassed objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
          destViewController.representedCollege = tappedCollege;
      }
- }*/
+ }
 @end
