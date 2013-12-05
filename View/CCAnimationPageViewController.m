@@ -81,6 +81,7 @@
     
     [[viewControllers objectAtIndex:0] animateAll];
     [[viewControllers objectAtIndex:0] createHandle];
+    [[viewControllers objectAtIndex:0] buttonsForInStateAndOutWithOptionFirst:YES];
 }
 
 
@@ -151,6 +152,10 @@
             [theView buttonsForMenAndWomen];
         }
         
+        if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Tuition"]) {
+            [theView buttonsForInStateAndOutWithOptionFirst:YES];
+        }
+        
     }
 }
 -(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
@@ -208,10 +213,10 @@
                 
                 
                 dummyCollege = self.twoColleges[0];
-                schoolOneValue= dummyCollege.tuition_in_state;
+                schoolOneValue= dummyCollege.tuition_out_state;
                 
                 dummyCollege = self.twoColleges[1];
-                schoolTwoValue = dummyCollege.tuition_in_state;
+                schoolTwoValue = dummyCollege.tuition_out_state;
                 [lineLabelArray addObject:@"%@k"];
                 moneyValue = 10.0;
                 modifier = 220;
@@ -438,6 +443,9 @@
     
     collegeOne.tuition_in_state = 25000;
     collegeTwo.tuition_in_state= 65000;
+    
+    collegeOne.tuition_out_state = 45000;
+    collegeTwo.tuition_out_state = 85000;
     
     collegeOne.percent_receive_financial_aid = 34;
     collegeTwo.percent_receive_financial_aid = 54;

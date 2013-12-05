@@ -44,5 +44,6 @@
 -(void)replaceHandle;
 -(void)buttonsForMenAndWomen;
 -(void)populationButtonCheck;
+-(void)buttonsForInStateAndOutWithOptionFirst:(BOOL) first;
 
 @end
