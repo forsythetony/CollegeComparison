@@ -55,9 +55,11 @@
 // Select two universites to compare
 - (void)selectButton:(id)sender
 {
-    self.navigationItem.rightBarButtonItem = self.cancelButton;
-    self.navigationItem.leftBarButtonItem = self.compareButton;
+    [self.navigationItem setRightBarButtonItem:self.cancelButton animated:YES];
+    
+    [self.navigationItem setLeftBarButtonItem:self.compareButton animated:YES];
     self.compareButton.title = @"Compare";
+    
     [self.tableView setEditing:YES animated:YES];
 }
 
@@ -65,10 +67,8 @@
 - (void) cancelButton:(id)sender
 {
     [self.tableView setEditing:NO animated:YES];
-    self.navigationItem.rightBarButtonItem = self.selectButton;
-    self.compareButton.enabled = NO;
-    self.compareButton.style = UIBarButtonItemStylePlain;
-    self.compareButton.title = nil;
+    
+    [self.navigationItem setRightBarButtonItem:self.selectButton];
     
     // Make all visible cells interactable
     for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row++)
@@ -79,9 +79,8 @@
         cell.userInteractionEnabled = YES;
     }
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem;
-
+    // Retrieve the back button
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
 #pragma mark - Table View Datasource
@@ -184,6 +183,7 @@
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
+        NSLog(@"%i", self.collegesToCompare.count);
         FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         
         [self.collegesToCompare removeObject:cellToCompare];
@@ -210,7 +210,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FilteredCollegesTableViewCell *detailCell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    
+    NSLog(@"%i", self.collegesToCompare.count);
     if([detailCell.reuseIdentifier isEqualToString:@"CollegeCell"])
     {
         if(!self.tableView.isEditing)
