@@ -178,7 +178,9 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showCollegeDetailSegue" sender:self];
+   
+    
+//    [self performSegueWithIdentifier:@"showCollegeDetailSegue" sender:self];
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
@@ -200,6 +202,8 @@
          cell.userInteractionEnabled = YES;
          }*/
     }
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
