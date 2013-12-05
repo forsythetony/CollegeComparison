@@ -41,7 +41,7 @@
 -(void)removeDuringTransition;
 -(void)createHandle;
 -(void)replaceHandle;
-
+-(void)buttonsForMenAndWomen;
 
 
 @end

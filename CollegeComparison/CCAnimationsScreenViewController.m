@@ -19,7 +19,7 @@
     
     UILabel *titleLabel;
     
-    NSDictionary *global, *schoolOne, *schoolTwo;
+    NSMutableDictionary *global, *schoolOne, *schoolTwo;
     
     CGRect originalMainViewFrame, originalDetailViewFrame;
     
@@ -78,7 +78,9 @@
     originalMainViewFrame = self.view.bounds;
     
     
-    
+    schoolOne = [NSMutableDictionary new];
+    schoolTwo = [NSMutableDictionary new];
+    global = [NSMutableDictionary new];
     
     schoolOne = [self.modifierDictionary objectForKey:@"One"];
     schoolTwo = [self.modifierDictionary objectForKey:@"Two"];
@@ -1322,18 +1324,21 @@
         case 1:
             
             
-            collegeOne = [global objectForKey:@"School One"];
-            NSLog(@"\n\n%@\n\n", collegeOne.name);
+            collegeOne = [global objectForKey:@"Object One"];
+            NSNumber *malePopulation = [NSNumber numberWithInteger:collegeOne.enrollment_men];
+            
+            collegeTwo = [global objectForKey:@"Object Two"];
+            NSNumber *malePopulationTwo = [NSNumber numberWithInteger:collegeTwo.enrollment_men];
             
             
+            [schoolOne setValue:malePopulation forKey:@"Height"];
+            [schoolTwo setValue:malePopulationTwo forKey:@"Height"];
             
-            
-            
+            self.hasAnimated = NO;
+            [self animateAll];
             
             break;
             
-        default:
-            break;
     }
 }
 
