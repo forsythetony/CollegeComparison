@@ -9,6 +9,9 @@
 #import "CCAnimationPageViewController.h"
 #import "CCAnimationsScreenViewController.h"
 
+#define NUMBEROFVIEWCONTROLLERS 3
+
+
 @interface CCAnimationPageViewController () {
     
     NSMutableArray *sectionTitles;
@@ -50,6 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self dataPackager];
     [self configureNavigationBar];
     //Set up all arrays with data and create view controllers based on those arrays
     [self setAllArrays];
@@ -112,7 +116,7 @@
 }
 
 -(NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController{
-    return 4;
+    return NUMBEROFVIEWCONTROLLERS;
 }
 
 -(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
@@ -131,7 +135,7 @@
         
         int index = [[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] integerValue];
         
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++) {
             if (i == index) {
                 [theView createHandle];
             }
@@ -143,7 +147,7 @@
             }
         }
         
-        }
+    }
 }
 -(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
@@ -171,74 +175,85 @@
     
     
     
-    float floatValueOne;
-    float floatValueTwo;
+    int schoolOneValue;
+    int schoolTwoValue;
     float unitValue;
     float moneyValue;
     float heightMultiplier;
     int lines;
     float modifier;
     
-    for (int i = 0; i < 4; i++) {
+    MUITCollege *dummyCollege;
+    
+    
+    for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++) {
         switch (i) {
+                //            case 0:
+                //                [sectionTitles addObject:@"Overall"];
+                //                schoolOneValue = 3.0;
+                //                schoolTwoValue = 5.0;
+                //                [lineLabelArray addObject:@""];
+                //                unitValue = 40.0;
+                //                moneyValue = 0.0;
+                //                lines = 10;
+                //                heightMultiplier = 40.0;
+                //                break;
             case 0:
-                [sectionTitles addObject:@"Overall"];
-                floatValueOne = 3.0;
-                floatValueTwo = 5.0;
-                [lineLabelArray addObject:@""];
-                unitValue = 40.0;
-                moneyValue = 0.0;
-                lines = 10;
-                heightMultiplier = 40.0;
-                break;
-            case 1:
                 [sectionTitles addObject:@"Tuition"];
-                floatValueOne= 23366.0;
-                floatValueTwo = 43204.0;
+                
+                
+                
+                dummyCollege = self.twoColleges[0];
+                schoolOneValue= dummyCollege.tuition_in_state;
+                
+                dummyCollege = self.twoColleges[1];
+                schoolTwoValue = dummyCollege.tuition_in_state;
                 [lineLabelArray addObject:@"%@k"];
                 moneyValue = 10.0;
-                modifier = 200;
-                unitValue = [self determineBestForTuitionWithMoneyValue:(moneyValue) andMaxFloat:MAX(floatValueTwo, floatValueOne) andModifier:modifier];
+                modifier = 220;
+                unitValue = [self determineBestForTuitionWithMoneyValue:(moneyValue) andMaxInteger:MAX(schoolTwoValue, schoolOneValue) andModifier:modifier];
                 heightMultiplier = (unitValue / (moneyValue * 1000));
                 lines = [self determineLineNumberFromUnitValue:unitValue andModifier:modifier];
                 break;
-            case 2:
-                [sectionTitles addObject:@"Population"];
-                floatValueOne = 22280.0;
-                floatValueTwo = 25992.0;
+            case 1:
+                [sectionTitles addObject:@"Enrollment Total"];
+                
+                dummyCollege = self.twoColleges[0];
+                schoolOneValue = dummyCollege.enrollment_total;
+                dummyCollege = self.twoColleges[1];
+                schoolTwoValue = dummyCollege.enrollment_total;
                 [lineLabelArray addObject:@"%@k"];
                 
                 moneyValue = 10.0;
                 modifier = 250;
-                unitValue = [self determineBestForPopulationWithMoneyValue:(moneyValue) andMaxFloat:MAX(floatValueOne, floatValueTwo) andModifier:modifier];
+                unitValue = [self determineBestForPopulationWithMoneyValue:(moneyValue) andMaxInteger:MAX(schoolOneValue, schoolTwoValue) andModifier:modifier];
                 heightMultiplier = (unitValue / (moneyValue * 1000));
                 
                 lines = [self determineLineNumberFromUnitValue:unitValue andModifier:modifier];
                 
                 break;
-            case 3:
-                [sectionTitles addObject:@"Aid"];
-                floatValueOne = 56.7;
-                floatValueTwo = 54.5;
+            case 2:
+                [sectionTitles addObject:@"Financial Aid"];
+                NSArray *schoolAidValues = [self checkFinancialAidValues];
+                schoolOneValue = [[schoolAidValues objectAtIndex:0] intValue];
+                schoolTwoValue = [[schoolAidValues objectAtIndex:1] intValue];
                 [lineLabelArray addObject:@"%@%%"];
                 moneyValue = 10.0;
                 lines = 11;
-                unitValue = 34.0;
+                unitValue = 29.0;
                 heightMultiplier = (unitValue / (moneyValue));
-                break;
-            default:
                 break;
         }
         
-        NSNumber *numberValue = [NSNumber numberWithFloat:floatValueOne];
+        NSNumber *numberValue = [NSNumber numberWithFloat:schoolOneValue];
         [schoolOneValues addObject:numberValue];
         
-        numberValue = [NSNumber numberWithFloat:floatValueTwo];
+        numberValue = [NSNumber numberWithFloat:schoolTwoValue];
         [schoolTwoValues addObject:numberValue];
         
         numberValue = [NSNumber numberWithFloat:unitValue];
         [labelModifier addObject:numberValue];
-
+        
         numberValue = [NSNumber numberWithFloat:moneyValue];
         [moneyValueArray addObject:numberValue];
         
@@ -257,6 +272,11 @@
     
     viewControllersForMe = [[NSMutableArray alloc] init];
     
+    MUITCollege *dummyCollege;
+    
+    if (self.twoColleges == nil) {
+        [self dataPackager];
+    }
     
     for (int i = 0; i < capacity; i++) {
         
@@ -264,34 +284,48 @@
         
         NSArray *settingKeysForSchool = [NSArray arrayWithObjects:@"Name", @"Height", nil];
         
-        NSArray *schoolOneValue = [NSArray arrayWithObjects:@"Mizzou", schoolHeight, nil];
+        dummyCollege = self.twoColleges[0];
+        NSArray *schoolOneValue = [NSArray arrayWithObjects:
+                                   [self shortenString:dummyCollege.name],
+                                   schoolHeight,
+                                   nil];
+        
         NSDictionary *schoolOneSettings = [NSDictionary dictionaryWithObjects:schoolOneValue forKeys:settingKeysForSchool];
         
         schoolHeight = [schoolTwoValues objectAtIndex:i];
-        NSArray *schoolTwoValue = [NSArray arrayWithObjects:@"NYU", schoolHeight, nil];
+        
+        dummyCollege = self.twoColleges[1];
+        NSArray *schoolTwoValue = [NSArray arrayWithObjects:
+                                   [self shortenString:dummyCollege.name],
+                                   schoolHeight,
+                                   nil];
         NSDictionary *schoolTwoSettings = [NSDictionary dictionaryWithObjects:schoolTwoValue forKeys:settingKeysForSchool];
         
         NSArray *settingKeysForView = [NSArray arrayWithObjects:
-                                                                @"Title",
-                                                                @"LineSpacing",
-                                                                @"LineLabel",
-                                                                @"Index",
-                                                                @"Lines",
-                                                                @"MoneyValue",
-                                                                @"Multiplier",
-                                                                @"My Navigation Item",
-                                                                nil];
+                                       @"Title",
+                                       @"LineSpacing",
+                                       @"LineLabel",
+                                       @"Index",
+                                       @"Lines",
+                                       @"MoneyValue",
+                                       @"Multiplier",
+                                       @"My Navigation Item",
+                                       @"Object One",
+                                       @"Object Two",
+                                       nil];
         
         NSArray *settingObjectsForView = [NSArray arrayWithObjects:
-                                                                    [sectionTitles objectAtIndex:i],
-                                                                    [labelModifier objectAtIndex:i],
-                                                                    [lineLabelArray objectAtIndex:i],
-                                                                    [NSNumber numberWithInt:i],
-                                                                    [linesArray objectAtIndex:i],
-                                                                    [moneyValueArray objectAtIndex:i],
-                                                                    [heightMultiplierArray objectAtIndex:i],
-                                                                    myNavigationItem,
-                                                                    nil];
+                                          [sectionTitles objectAtIndex:i],
+                                          [labelModifier objectAtIndex:i],
+                                          [lineLabelArray objectAtIndex:i],
+                                          [NSNumber numberWithInt:i],
+                                          [linesArray objectAtIndex:i],
+                                          [moneyValueArray objectAtIndex:i],
+                                          [heightMultiplierArray objectAtIndex:i],
+                                          myNavigationItem,
+                                          [self.twoColleges objectAtIndex:0],
+                                          [self.twoColleges objectAtIndex:1],
+                                          nil];
         
         NSLog(@"MY INDEX IS: %@", [NSNumber numberWithInt:i]);
         NSDictionary *generalSettings = [NSDictionary dictionaryWithObjects:settingObjectsForView
@@ -316,7 +350,7 @@
 
 #pragma mark Methods for Dynamic Bar Height
 
--(float)determineBestForTuitionWithMoneyValue:(float) moneyValue andMaxFloat:(float)max andModifier:(float)modifier
+-(float)determineBestForTuitionWithMoneyValue:(float) moneyValue andMaxInteger:(NSInteger)max andModifier:(float)modifier
 {
     moneyValue *= 1000;
     
@@ -324,12 +358,12 @@
     
     viewHeight -= modifier;
     
-    float user = max / moneyValue;
+    float user = (float)max / moneyValue;
     
     return viewHeight/user;
 }
 
--(float)determineBestForPopulationWithMoneyValue:(float) moneyValue andMaxFloat:(float)maxFloat andModifier:(float)modifier
+-(float)determineBestForPopulationWithMoneyValue:(float) moneyValue andMaxInteger:(NSInteger)maxFloat andModifier:(float)modifier
 {
     
     moneyValue *= 1000;
@@ -338,7 +372,7 @@
     
     viewHeight -= modifier;
     
-    float user = maxFloat / moneyValue;
+    float user = (float)maxFloat / moneyValue;
     
     return viewHeight/user;
 }
@@ -386,5 +420,71 @@
     
 }
 
+-(void)dataPackager
+{
+    
+    MUITCollege *collegeOne = [MUITCollege new];
+    MUITCollege *collegeTwo = [MUITCollege new];
+    
+    collegeOne.name = @"University of Missouri- Columbia";
+    collegeTwo.name = @"University of Missouri- St. Louis";
+    
+    collegeOne.enrollment_total = 40000;
+    collegeTwo.enrollment_total = 30000;
+    
+    collegeOne.tuition_in_state = 25000;
+    collegeTwo.tuition_in_state= 65000;
+    
+    collegeOne.percent_receive_financial_aid = 34;
+    collegeTwo.percent_receive_financial_aid = 54;
+    
+    self.twoColleges = [[NSArray alloc] initWithObjects:collegeOne, collegeTwo, nil];
+    
+}
+
+-(NSString*)shortenString:(NSString*) string
+{
+    NSString *theString = [NSString stringWithString:string];
+    
+    NSMutableArray *aList = [NSMutableArray arrayWithObjects:@"University", @"Missouri", @"-", nil];
+    NSMutableArray *bList = [NSMutableArray arrayWithObjects:@"U", @"M", @"\n", nil];
+    
+    for (int i = 0; i < [aList count]; i++) {
+        theString = [theString stringByReplacingOccurrencesOfString:aList[i] withString:bList[i]];
+    }
+    
+    return theString;
+    
+}
+
+-(NSArray*)checkFinancialAidValues {
+    
+    if (self.twoColleges) {
+        MUITCollege *dummyCollege = self.twoColleges[0];
+        
+        NSInteger schoolOneValue = dummyCollege.percent_receive_financial_aid;
+        
+        if (schoolOneValue > 100 || schoolOneValue < 0) {
+            schoolOneValue = 0;
+        }
+        
+        dummyCollege = self.twoColleges[1];
+        
+        NSInteger schoolTwoValue = dummyCollege.percent_receive_financial_aid;
+        
+        if (schoolTwoValue > 100 || schoolTwoValue < 0) {
+            schoolTwoValue = 0;
+        }
+        
+        
+        NSArray *arrayToReturn = [NSArray arrayWithObjects:[NSNumber numberWithInt:schoolOneValue], [NSNumber numberWithInt:schoolTwoValue], nil];
+        
+        
+        return arrayToReturn;
+        
+    }
+    
+    return nil;
+}
 
 @end
