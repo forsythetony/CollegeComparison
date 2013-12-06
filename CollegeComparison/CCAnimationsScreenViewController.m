@@ -17,46 +17,62 @@
 
 @interface CCAnimationsScreenViewController () {
     
-    UIView *detailViewer, *myView;
+    UIView  *detailViewer,
+            *myView,
+            *barOneView,
+            *barTwoView,
+            *line1,
+            *line2,
+            *line3,
+            *line4,
+            *line5,
+            *line6,
+            *underlinerView;
     
-    UILabel *titleLabel;
+    UILabel *titleLabel,
+            *barOneLabel,
+            *barTwoLabel;
     
-    NSMutableDictionary *global, *schoolOne, *schoolTwo;
+    NSArray *arrayOfUnderliners,
+            *arrayOfUnderLinersForTuition;
     
-    CGRect originalMainViewFrame, originalDetailViewFrame;
+    NSMutableDictionary *global,
+                        *schoolOne,
+                        *schoolTwo;
     
-    BOOL detailPanelDisplayed, resetting, isUp;
+    NSMutableArray  *subViewArray,
+                    *subviewArray,
+                    *underLinerViewArray;
     
-    UIButton *handleView, *dismissArea, *womenButton, *menButton, *allButton;
-    UIButton *inState, *outState;
+    UIButton *handleView,
+             *dismissArea,
+             *womenButton,
+             *menButton,
+             *allButton,
+             *inState,
+             *outState;
+    
+    UIColor *barOneColor,
+            *barTwoColor;
+    
+    float   mainHeightMultiplier,
+            newWidthForMeAndYou,
+            onlyTheBestBottomReferencePointEver,
+            evenBetterTopOfDetailReferencePoint,
+            evenBetterMidSection;
+
+    BOOL    haveRaced,
+            detailPanelDisplayed,
+            resetting,
+            isUp;
+    
     
     CGPoint lastPoint;
     
-    NSMutableArray *subviewArray;
-    
-    UIView *barOneView, *barTwoView;
-    UILabel *barOneLabel, *barTwoLabel;
-    
-    CGRect barOneFrame, barTwoFrame;
-    
-    float mainHeightMultiplier, newWidthForMeAndYou;
-    
-    
-    UIColor *barOneColor, *barTwoColor;
-    
-    
-    UIView *line1, *line2, *line3, *line4, *line5, *line6;
-    
-    BOOL haveRaced;
-    
-    NSArray *arrayOfUnderliners, *arrayOfUnderLinersForTuition;
-    
-    UIView *underlinerView;
-    
-    NSMutableArray *underLinerViewArray;
-    
-    float onlyTheBestBottomReferencePointEver, evenBetterTopOfDetailReferencePoint, evenBetterMidSection;
-    
+    CGRect  barOneFrame,
+            barTwoFrame,
+            originalMainViewFrame,
+            originalDetailViewFrame;
     
 }
 @end
@@ -67,7 +83,6 @@
 
 -(void)checkBeforeAnimation
 {
-    
     if (self.hasAnimated == NO)
     {
         [self animateAll];
@@ -76,9 +91,6 @@
     else if([[global objectForKey:@"Title"] isEqualToString:@"Tuition"])
     {
         [self buttonsForInStateAndOutWithOptionFirst:YES];
-        
-        NSLog(@"\n\nI RAN SO FAR AWAY\n\n");
-        
     }
     else
     {
@@ -104,15 +116,15 @@
     [backgroundView setBackgroundColor:[UIColor blackColor]];
     [backgroundView setAlpha:0.05];
     
-    
-    self.labelPlaces = [[NSMutableArray alloc] init];
-    
-    subviewArray = [[NSMutableArray alloc] init];
+    self.labelPlaces = [NSMutableArray new];
+    subviewArray = [NSMutableArray new];
     underLinerViewArray = [NSMutableArray new];
+    
     [self setArrayOfUnderliners];
     [self justseeing];
     
-    if (IS_IPHONE_5) {
+    if (IS_IPHONE_5)
+    {
         onlyTheBestBottomReferencePointEver = 417.0;
         evenBetterTopOfDetailReferencePoint = 175.0;
         evenBetterMidSection = (onlyTheBestBottomReferencePointEver + evenBetterTopOfDetailReferencePoint) / 2.0;
@@ -123,8 +135,6 @@
         evenBetterTopOfDetailReferencePoint = 100.0;
         evenBetterMidSection = 200.0;
     }
-    
-    
     
 }
 -(void)animateAll
@@ -153,21 +163,23 @@
     [self createBackgroundLinesWithHeightModifier:[[global objectForKey:@"LineSpacing"] floatValue]
                                          andLabel:[global objectForKey:@"LineLabel"]
                                  andMoneyModifier:[[global objectForKey:@"MoneyValue"] floatValue]
-                                 andNumberOfLines:[[global objectForKey:@"Lines"] integerValue]];
+                                 andNumberOfLines:(int)[[global objectForKey:@"Lines"] integerValue]];
     
-    
-    barOneColor = [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];;
-    barTwoColor = [UIColor colorWithRed:113.0/255.0 green:173.0/255.0 blue:237.0/255.0 alpha:1.0];;
-    
+    //This is a coral color
+    barOneColor = [UIColor colorWithRed:205.0/255.0
+                                  green:86.0/255.0
+                                   blue:72.0/255.0
+                                  alpha:1.0];
+    //This is a blue color
+    barTwoColor = [UIColor colorWithRed:113.0/255.0
+                                  green:173.0/255.0
+                                   blue:237.0/255.0
+                                  alpha:1.0];
     
     float width = 60.0;
     float exOrigin = 60.0;
     
     CGPoint mainPoint = CGPointMake(exOrigin, 40.0);
-    
-//    if ([[global objectForKey:@"Title"] isEqualToString:@"Financial Aid"]) {
-//        [self buttonsForMenAndWomen];
-//    }
     
     [self createGrowingBarWithPoint:mainPoint
                            andColor:barOneColor
