@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 
+//Array that holds the two college objects handed to it by the previous view controller
 @property (nonatomic, strong) NSArray *twoColleges;
 
 @end
