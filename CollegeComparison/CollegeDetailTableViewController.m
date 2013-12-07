@@ -7,6 +7,7 @@
 //
 
 #import "CollegeDetailTableViewController.h"
+#import "CCAppDelegate.h"
 
 @interface CollegeDetailTableViewController ()
 
@@ -49,6 +50,9 @@
     [super viewDidLoad];
     
     MUITCollege *college = self.representedCollege;
+    
+    
+    [self addToRecents:college];
     
     collegeLabel.text = college.name;   //Displays the name of the university/college selected
     locationLabel.text = college.state; //Displays the state in 2 letter format
@@ -141,4 +145,24 @@
 //    return cell;
 //}
 
+-(void)addToRecents:(MUITCollege*) college
+{
+    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    BOOL wasEqual = NO;
+    
+    for (MUITCollege *dummyCollege in appDelegate.recentlyVisited) {
+        if ([college.name isEqualToString:dummyCollege.name]) {
+            [appDelegate.recentlyVisited removeObject:dummyCollege];
+            [appDelegate.recentlyVisited insertObject:dummyCollege atIndex:0];
+            wasEqual = YES;
+        }
+    }
+    
+    if (wasEqual == NO && [appDelegate.recentlyVisited count] <= 5) {
+            [appDelegate.recentlyVisited addObject:college];
+    }
+
+
+}
 @end

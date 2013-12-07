@@ -38,6 +38,7 @@
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
 		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
 		BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB2D185075FC00597C1D /* ios-linen.jpg */; };
+		BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE4EB301852F29900597C1D /* CCBookmarksPage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAnimationsScreenViewController.m; sourceTree = "<group>"; };
 		BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCAnimationsScreenViewController.xib; sourceTree = "<group>"; };
 		BAE4EB2D185075FC00597C1D /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ios-linen.jpg"; sourceTree = "<group>"; };
+		BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = View/CCBookmarksPage.h; sourceTree = SOURCE_ROOT; };
+		BAE4EB301852F29900597C1D /* CCBookmarksPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCBookmarksPage.m; path = View/CCBookmarksPage.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,8 @@
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */,
+				BAE4EB301852F29900597C1D /* CCBookmarksPage.m */,
 				535EA91418297637003D289A /* Main.storyboard */,
 				BA852071183AF40D002CC626 /* Bar Animations */,
 				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
@@ -363,6 +368,7 @@
 				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
 				49EB4CC0184458B400C9C4AB /* StateViewController.m in Sources */,
 				532A148B184D7594009C5BAE /* MUITCollege.m in Sources */,
+				BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */,
 				BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */,
 				BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */,
 				49EB4CB71843FDBB00C9C4AB /* HomeViewController.m in Sources */,

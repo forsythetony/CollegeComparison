@@ -47,6 +47,9 @@
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
     [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
     
+    self.recentlyVisited = [NSMutableArray new];
+    
+    
     return YES;
 }
 
