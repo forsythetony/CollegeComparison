@@ -43,7 +43,6 @@
 -(void)createHandle;
 -(void)replaceHandle;
 -(void)buttonsForMenAndWomen;
--(void)populationButtonCheck;
 -(void)buttonsForInStateAndOutWithOptionFirst:(BOOL) first;
 -(void)removeUnderliners;
 
