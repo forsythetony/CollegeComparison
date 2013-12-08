@@ -894,6 +894,7 @@
                     <navigationItem key="navigationItem" title="Udecide" id="jz2-Oo-jWe"/>
                     <connections>
                         <outlet property="favoritesOrRect" destination="BhL-WJ-62d" id="ZdU-PU-IoT"/>
+                        <segue destination="bsp-Og-61H" kind="push" identifier="showCollegeDetailPageSegue" id="tDF-Sv-HEI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egY-GL-Pzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1017,6 +1018,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="xNf-hx-PXk"/>
-        <segue reference="Q1s-1n-HqV"/>
+        <segue reference="tDF-Sv-HEI"/>
     </inferredMetricsTieBreakers>
 </document>

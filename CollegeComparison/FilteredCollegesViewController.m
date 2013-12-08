@@ -207,7 +207,7 @@ NSArray *searchResults;
     // If user is selecting colleges to compare
     if (self.tableView.isEditing)
     {
-        NSLog(@"%i", self.collegesToCompare.count);
+        NSLog(@"%lu", (unsigned long)self.collegesToCompare.count);
         FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         MUITCollege *dummyCollege = [self.universitiesPassed objectAtIndex:indexPath.row];
         

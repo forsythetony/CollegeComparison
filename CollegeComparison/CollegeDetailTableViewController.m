@@ -9,7 +9,14 @@
 #import "CollegeDetailTableViewController.h"
 #import "CCAppDelegate.h"
 
-@interface CollegeDetailTableViewController ()
+@interface CollegeDetailTableViewController () {
+    NSMutableArray *favorites, *recents;
+    BOOL favorited;
+    
+    UIImage *highlightedStarImage, *unhighlightedStarImage;
+    
+    UIButton *favoritesButton;
+}
 
 @end
 
@@ -51,16 +58,8 @@
     
     MUITCollege *college = self.representedCollege;
     
-    
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"my_star_icon"] forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(addToFavorites:) forControlEvents:UIControlEventTouchUpInside];
-    [button setFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = barButton;
-    
+    [self configureGobalVariables];
+    [self configureFavoritesButton];
     
     
     [self addToRecents:college];
@@ -69,10 +68,10 @@
     locationLabel.text = college.state; //Displays the state in 2 letter format
     
     if (college.tuition_in_state <= 0) inTuitionLabel.text = @"N/A"; //checks to make sure value exists
-    else inTuitionLabel.text = [NSString stringWithFormat:@"$%d", college.tuition_in_state];
+    else inTuitionLabel.text = [NSString stringWithFormat:@"$%ld", (long)college.tuition_in_state];
     
     if (college.tuition_out_state <= 0) outTuitionLabel.text = @"N/A";
-    else outTuitionLabel.text = [NSString stringWithFormat:@"$%d", college.tuition_out_state];
+    else outTuitionLabel.text = [NSString stringWithFormat:@"$%ld", (long)college.tuition_out_state];
     
     //logic for making the percentages of the enrollment of men and women
     float menEnrollment = college.enrollment_men, totalEnrollment = college.enrollment_total, womenEnrollment = college.enrollment_women;
@@ -122,7 +121,40 @@
     if (college.sat_writing_25 <= 0 && college.sat_writing_75 <= 0) satWriting.text = @"N/A";
     else satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
 }
+-(void)viewDidAppear:(BOOL)animated
+{
 
+
+
+
+    
+    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    favorites = appDelegate.bookmarked;
+    
+    recents = [[NSMutableArray alloc] initWithArray:appDelegate.recentlyVisited];
+    
+    NSString *thisCollegeString = self.representedCollege.name;
+    
+    favorited = NO;
+    
+    for (MUITCollege *dummyCollege in favorites)
+    {
+        if ([dummyCollege.name isEqualToString:thisCollegeString])
+        {
+            favorited = YES;
+        }
+    }
+
+    if (favorited == YES) {
+        [favoritesButton setImage:highlightedStarImage forState:UIControlStateNormal];
+    }
+    else
+    {
+        [favoritesButton setImage:unhighlightedStarImage forState:UIControlStateNormal];
+    }
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -164,10 +196,23 @@
     
     BOOL wasEqual = NO;
     
-    for (MUITCollege *dummyCollege in appDelegate.recentlyVisited) {
-        if ([college.name isEqualToString:dummyCollege.name]) {
-            [appDelegate.recentlyVisited removeObject:dummyCollege];
-            [appDelegate.recentlyVisited insertObject:dummyCollege atIndex:0];
+   
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+   [DateFormatter setDateFormat:@"EEE, d MMM yyyy hh:mm:ss"];
+    NSString *currentDateAndTime = [DateFormatter stringFromDate:[NSDate date]];
+    
+    NSDictionary *recentsObject = [NSDictionary dictionaryWithObjectsAndKeys:college, @"College", currentDateAndTime, @"Time", nil];
+    
+    
+    
+    for (NSDictionary *dictionary in appDelegate.recentlyVisited)
+    {
+        MUITCollege *theCollege = [dictionary objectForKey:@"College"];
+    
+        if ([college.name isEqualToString:theCollege.name]) {
+            [appDelegate.recentlyVisited removeObject:dictionary];
+            [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
             wasEqual = YES;
         }
     }
@@ -175,44 +220,82 @@
     NSInteger counter = [appDelegate.recentlyVisited count];
     
     if (wasEqual == NO && counter < maxSizeOfRecents) {
-            [appDelegate.recentlyVisited insertObject:college atIndex:0];
+            [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
     }
     else if (wasEqual == NO && counter >= maxSizeOfRecents)
     {
         [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
-        [appDelegate.recentlyVisited insertObject:college atIndex:0];
+        [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
     }
 
 }
 
+
+
+-(void)configureFavoritesButton
+{
+    favoritesButton = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    if (favorited == YES)
+    {
+        [favoritesButton setImage:highlightedStarImage forState:UIControlStateNormal];
+    }
+    else if (favorited == NO)
+    {
+        [favoritesButton setImage:unhighlightedStarImage forState:UIControlStateNormal];
+    }
+    
+    
+    
+    [favoritesButton addTarget:self action:@selector(addToFavorites:) forControlEvents:UIControlEventTouchUpInside];
+    [favoritesButton setFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:favoritesButton];
+    self.navigationItem.rightBarButtonItem = barButton;
+
+}
 -(void)addToFavorites:(UIButton*) sender
 {
-    [UIView animateWithDuration:2.0 animations:^{
-        [sender setFrame:CGRectMake(0.0, 0.0, 20.0, 40.0)];
+    if (favorited == YES) {
+//        [sender setImage:unhighlightedStarImage forState:UIControlStateNormal];
+//        
+//        
+//        
+//        [favorites insertObject:self.representedCollege atIndex:0];
 
-    }];
-    
-    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    BOOL wasEqual = NO;
-    
-    MUITCollege *theCollege = self.representedCollege;
-    
-    for (MUITCollege *college in appDelegate.bookmarked)
+        [sender setImage:unhighlightedStarImage forState:UIControlStateNormal];
+        
+        [favorites removeObject:self.representedCollege];
+    }
+    else if (favorited == NO)
     {
-        if ([college.name isEqualToString:theCollege.name]) {
-            [appDelegate.bookmarked removeObject:college];
-            [appDelegate.bookmarked insertObject:college atIndex:0];
-            wasEqual = YES;
+        [sender setImage:highlightedStarImage forState:UIControlStateNormal];
+        
+        [favorites insertObject:self.representedCollege atIndex:0];
+    }
+ 
+}
+-(void)configureGobalVariables
+{
+    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    favorites = appDelegate.bookmarked;
+    
+    recents = [[NSMutableArray alloc] initWithArray:appDelegate.recentlyVisited];
+    
+    highlightedStarImage = [UIImage imageNamed:@"star.png"];
+    unhighlightedStarImage = [UIImage imageNamed:@"trying_now"];
+
+    
+    NSString *thisCollegeString = self.representedCollege.name;
+    
+    
+    for (MUITCollege *dummyCollege in favorites)
+    {
+        if ([dummyCollege.name isEqualToString:thisCollegeString])
+        {
+            favorited = YES;
         }
     }
-    
-    if (wasEqual == NO) {
-        [appDelegate.bookmarked insertObject:theCollege atIndex:0];
-    }
-    
-    
-    
-    
+
 }
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MUITCollege.h"
+#import "CollegeDetailTableViewController.h"
 
 @interface CCBookmarksPage : UIViewController < UITableViewDataSource, UITableViewDelegate>
 

@@ -8,11 +8,15 @@
 
 #import "CCBookmarksPage.h"
 #import "CCAppDelegate.h"
+#import "CCFavoriteSCell.h"
+
 
 @interface CCBookmarksPage () {
     NSMutableArray *tableViews;
     NSInteger currentTableView;
-    NSMutableArray *recentItems;
+    NSMutableArray *recentItems, *favoriteItems;
+    UIColor *coralColor, *blueColor;
+    UIImage *starHighlighted, *starUnhighlighted;
     
 }
 
@@ -20,6 +24,8 @@
 
 @implementation CCBookmarksPage
 
+#pragma mark Initialization -
+#pragma mark System
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,17 +38,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    // Do any additional setup after loading the view.
+    [self getData];
+    [self configureGlobalVariables];
     [self addTableViews];
     
     
-    [tableViews[0] reloadData];
     
+    [tableViews[0] reloadData];
 
     [self configureNavigationBar];
     [self configureSegmentedControl];
     
     [self populateArrays];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(handleStarClick:)];
+    
+    [self.navigationItem setRightBarButtonItem:barButtonItem];
+    
     
     
 }
@@ -57,9 +71,22 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark Data Packaging
+-(void)getData
+{
+    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    recentItems = [NSMutableArray arrayWithArray:appDelegate.recentlyVisited] ;
+    
+    favoriteItems = [NSMutableArray arrayWithArray:appDelegate.bookmarked];
+    
+    
+    
+}
+#pragma mark Custom Configuration
 -(void)populateArrays
 {
-    self.favoritesArray = [NSMutableArray arrayWithObjects:@"University of Miissouri", @"University of Mexico", @"University of Florida", nil];
+    self.favoritesArray = [NSMutableArray arrayWithObjects:@"University of Missouri", @"University of Mexico", @"University of Florida", nil];
     self.recentArray = [NSMutableArray arrayWithObjects:@"Recent 1", @"Recent Two", @"Recent Tres", nil];
 }
 -(void)configureNavigationBar
@@ -77,7 +104,7 @@
 {
     [self.favoritesOrRect setTitle:@"Favorites" forSegmentAtIndex:0];
     [self.favoritesOrRect setTitle:@"Recent" forSegmentAtIndex:1];
-    [self.favoritesOrRect setTintColor:[UIColor redColor]];
+    [self.favoritesOrRect setTintColor:coralColor];
     [self.favoritesOrRect setMomentary:NO];
     
     UIFont *fontForSegmentedControl = [UIFont fontWithName:@"Avenir-Book" size:13.0];
@@ -91,6 +118,137 @@
     
 }
 
+-(void)configureGlobalVariables
+{
+    //This is a coral color
+    coralColor = [UIColor colorWithRed:205.0/255.0
+                                 green:86.0/255.0
+                                  blue:72.0/255.0
+                                 alpha:1.0];
+    //This is a blue color
+    blueColor = [UIColor colorWithRed:113.0/255.0
+                                green:173.0/255.0
+                                 blue:237.0/255.0
+                                alpha:1.0];
+    starHighlighted = [UIImage imageNamed:@"star.png"];
+    starUnhighlighted = [UIImage imageNamed:@"trying_now"];
+}
+
+#pragma mark Tableview Configuration
+-(void)addTableViews
+{
+    float heightOffset = 50.0;
+    CGRect tableViewRect = CGRectMake(0.0, heightOffset, self.view.bounds.size.width, self.view.bounds.size.height - heightOffset);
+    UITableView *tableViewFavorites = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
+    
+    //[tableViewFavorites setBackgroundColor:[UIColor redColor]];
+    [tableViewFavorites setDataSource:self];
+    [tableViewFavorites setDelegate:self];
+    
+    UITableView *recentTableView = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
+    [recentTableView setDataSource:self];
+    [recentTableView setDelegate:self];
+    //[recentTableView setBackgroundColor:[UIColor greenColor]];
+    
+    
+    
+    
+    [self.view addSubview:tableViewFavorites];
+    [self.view addSubview:recentTableView];
+    
+    tableViews = [[NSMutableArray alloc] initWithObjects:tableViewFavorites, recentTableView, nil];
+    
+    
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (currentTableView == 0) {
+        return [favoriteItems count];
+    }
+    else
+    {
+        return [recentItems count];
+    }
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self getData];
+    
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    NSString *collegeName = [NSString new];
+    NSString *dateString = [NSString new];
+    
+    if (currentTableView == 0) {
+        collegeName = [[favoriteItems objectAtIndex:indexPath.row] name];
+        
+        UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40.0, 5.0, 40.0, 40.0)];
+        
+        [button1 setImage:starHighlighted forState:UIControlStateNormal];
+        [button1 addTarget:self action:@selector(handleStarClick:) forControlEvents:UIControlEventTouchUpInside];
+        button1.tag = indexPath.row;
+        
+        [cell.contentView addSubview:button1];
+        
+        [cell setEditing:YES];
+    }
+    else
+    {
+        NSDictionary *collegeDictionary = [recentItems objectAtIndex:indexPath.row];
+        
+        MUITCollege *theCollege = [collegeDictionary objectForKey:@"College"];
+        collegeName = theCollege.name;
+        dateString = [collegeDictionary objectForKey:@"Time"];
+
+        
+    }
+    
+    
+        [cell.textLabel setText:collegeName];
+    
+    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [cell.textLabel setTextColor:coralColor];
+    
+    
+    
+    [cell.detailTextLabel setText:dateString];
+    [cell.detailTextLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0]];
+    [cell.detailTextLabel setTextColor:blueColor];
+
+    
+    if ([self.favoritesOrRect selectedSegmentIndex] == 0) {
+    }
+    
+    return cell;
+}
+-(CCFavoriteSCell*)ConfigurecellWithIndex:(NSInteger) indexOfCell
+{
+    
+    CCFavoriteSCell *newCell = [CCFavoriteSCell new];
+    
+    [newCell.starButton setImage:starHighlighted forState:UIControlStateNormal];
+    
+    MUITCollege *college = [favoriteItems objectAtIndex:indexOfCell];
+    
+    newCell.collegeName.text = college.name;
+
+        
+    
+    return newCell;
+    // NSLog(@"Text label bounds: %@", NSStringFromCGRect(boundsForLabel));
+    
+}
+#pragma mark Runtime -
 -(void)respondToSegmentedControl:(UISegmentedControl*) sender
 {
     NSInteger selectedItem = [sender selectedSegmentIndex];
@@ -110,76 +268,77 @@
     
 }
 
-
--(void)addTableViews
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float heightOffset = 50.0;
-    CGRect tableViewRect = CGRectMake(0.0, heightOffset, self.view.bounds.size.width, self.view.bounds.size.height - heightOffset);
-    UITableView *tableViewFavorites = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
     
-    //[tableViewFavorites setBackgroundColor:[UIColor redColor]];
-    [tableViewFavorites setDataSource:self];
+    NSInteger currentIndex = [self.favoritesOrRect selectedSegmentIndex];
     
-    UITableView *recentTableView = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
-    [recentTableView setDataSource:self];
+    NSArray *ar1 = [NSArray new];
     
-    //[recentTableView setBackgroundColor:[UIColor greenColor]];
+    MUITCollege *dummyCollege = [MUITCollege new];
     
-    [self.view addSubview:tableViewFavorites];
-    [self.view addSubview:recentTableView];
-    
-    tableViews = [[NSMutableArray alloc] initWithObjects:tableViewFavorites, recentTableView, nil];
-    
-    
-    
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (currentTableView == 0) {
-        return [self.favoritesArray count];
+    if (currentIndex == 0)
+    {
+        ar1 = favoriteItems;
+        dummyCollege = [ar1 objectAtIndex:indexPath.row];
     }
     else
     {
-        return [recentItems count];
+        ar1 = recentItems;
+        dummyCollege = [[ar1 objectAtIndex:indexPath.row] objectForKey:@"College"];
     }
-        
+    
+    [self performSegueWithIdentifier:@"showCollegeDetailPageSegue" sender:dummyCollege];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    CollegeDetailTableViewController *dest = (CollegeDetailTableViewController*)segue.destinationViewController;
+    
+    MUITCollege *theCollege = (MUITCollege*)sender;
+    
+    dest.representedCollege = theCollege;
+    
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     [self getData];
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
+
+-(void)handleStarClick:(UIBarButtonItem*) sender
+{
+    NSInteger sectionNumber = [self.favoritesOrRect selectedSegmentIndex];
     
-    static NSString *cellIdentifier = @"Cell";
-   
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil)
-        {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-       }
-    
-    NSString *collegeName = [NSString new];
-    if (currentTableView == 0) {
-        collegeName = [self.favoritesArray objectAtIndex:indexPath.row];
+    if ([tableViews[0] isEditing] == YES)
+    {
+        NSLog(@"Table view IS editing.");
     }
     else
     {
-        MUITCollege *theCollege = [recentItems objectAtIndex:indexPath.row];
-        
-        
-        
-        collegeName = theCollege.name;
+    NSLog(@"Tableview is NOT editing.");
     }
     
-    [cell.textLabel setText:collegeName];
-    [cell.detailTextLabel setText:@"by Tony"];
-    return cell;
+    if ([tableViews[0] isEditing] == NO) {
+        [tableViews[0] setEditing:YES animated:YES];
+
+    }
+    
+    
+    if ([tableViews[0] isEditing] == YES)
+    {
+        NSLog(@"Table view IS editing.");
+    }
+    else
+    {
+        NSLog(@"Tableview is NOT editing.");
+    }
+
+    
+    
 }
 
--(void)getData
-{
-    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    recentItems = appDelegate.recentlyVisited;
-}
+
+
+
+
 @end
