@@ -49,6 +49,7 @@
     
     self.recentlyVisited = [NSMutableArray new];
     
+    self.bookmarked = [NSMutableArray new];
     
     return YES;
 }
@@ -79,6 +80,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSMutableArray* myArray = [[NSMutableArray alloc]init];
+    int i = 0;
+    while(i < self.recentlyVisited.count){
+        [myArray addObject: [self.recentlyVisited objectAtIndex: i]];
+        i ++;
+    }
+    [myArray writeToFile:[self saveFilePath] atomically:YES];
+}
+-(NSString*) saveFilePath{
+    NSString* path = [NSString stringWithFormat:@"%@%@",
+                      [[NSBundle mainBundle] resourcePath],
+                      @"myfilename.plist"];
+    return path;
 }
 
 

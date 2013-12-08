@@ -33,20 +33,25 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    [self addTableViews];
     
     
     [tableViews[0] reloadData];
-    [self getData];
+    
 
     [self configureNavigationBar];
     [self configureSegmentedControl];
-    [self addTableViews];
+    
     [self populateArrays];
     
     
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self getData];
+    [tableViews[0] reloadData];
+    [tableViews[1] reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -112,13 +117,13 @@
     CGRect tableViewRect = CGRectMake(0.0, heightOffset, self.view.bounds.size.width, self.view.bounds.size.height - heightOffset);
     UITableView *tableViewFavorites = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
     
-    [tableViewFavorites setBackgroundColor:[UIColor redColor]];
+    //[tableViewFavorites setBackgroundColor:[UIColor redColor]];
     [tableViewFavorites setDataSource:self];
     
     UITableView *recentTableView = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
     [recentTableView setDataSource:self];
     
-    [recentTableView setBackgroundColor:[UIColor greenColor]];
+    //[recentTableView setBackgroundColor:[UIColor greenColor]];
     
     [self.view addSubview:tableViewFavorites];
     [self.view addSubview:recentTableView];

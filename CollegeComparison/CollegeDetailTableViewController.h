@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *instituteType;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *inTuitionLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *aStar;
 @property (weak, nonatomic) IBOutlet UILabel *outTuitionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *studentBTotalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *menEnrollLabel;

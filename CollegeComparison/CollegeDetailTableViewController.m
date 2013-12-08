@@ -52,6 +52,17 @@
     MUITCollege *college = self.representedCollege;
     
     
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"my_star_icon"] forState:UIControlStateNormal];
+    
+    [button addTarget:self action:@selector(addToFavorites:) forControlEvents:UIControlEventTouchUpInside];
+    [button setFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = barButton;
+    
+    
+    
     [self addToRecents:college];
     
     collegeLabel.text = college.name;   //Displays the name of the university/college selected
@@ -149,6 +160,8 @@
 {
     CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
     
+    NSInteger maxSizeOfRecents = 30;
+    
     BOOL wasEqual = NO;
     
     for (MUITCollege *dummyCollege in appDelegate.recentlyVisited) {
@@ -159,10 +172,47 @@
         }
     }
     
-    if (wasEqual == NO && [appDelegate.recentlyVisited count] <= 5) {
-            [appDelegate.recentlyVisited addObject:college];
+    NSInteger counter = [appDelegate.recentlyVisited count];
+    
+    if (wasEqual == NO && counter < maxSizeOfRecents) {
+            [appDelegate.recentlyVisited insertObject:college atIndex:0];
+    }
+    else if (wasEqual == NO && counter >= maxSizeOfRecents)
+    {
+        [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
+        [appDelegate.recentlyVisited insertObject:college atIndex:0];
     }
 
+}
 
+-(void)addToFavorites:(UIButton*) sender
+{
+    [UIView animateWithDuration:2.0 animations:^{
+        [sender setFrame:CGRectMake(0.0, 0.0, 20.0, 40.0)];
+
+    }];
+    
+    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    BOOL wasEqual = NO;
+    
+    MUITCollege *theCollege = self.representedCollege;
+    
+    for (MUITCollege *college in appDelegate.bookmarked)
+    {
+        if ([college.name isEqualToString:theCollege.name]) {
+            [appDelegate.bookmarked removeObject:college];
+            [appDelegate.bookmarked insertObject:college atIndex:0];
+            wasEqual = YES;
+        }
+    }
+    
+    if (wasEqual == NO) {
+        [appDelegate.bookmarked insertObject:theCollege atIndex:0];
+    }
+    
+    
+    
+    
 }
 @end

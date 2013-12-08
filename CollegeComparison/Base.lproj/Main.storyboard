@@ -157,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="1354" y="-2353"/>
         </scene>
-        <!--College Detail Table View Controller - College Details-->
+        <!--College Detail Table View Controller - Title-->
         <scene sceneID="NIc-eQ-J0d">
             <objects>
                 <tableViewController id="bsp-Og-61H" customClass="CollegeDetailTableViewController" sceneMemberID="viewController">
@@ -527,7 +527,7 @@
                             <outlet property="delegate" destination="bsp-Og-61H" id="ge1-vd-Pol"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="College Details" id="toa-nF-faO"/>
+                    <navigationItem key="navigationItem" title="Title" id="gM4-eB-PLr"/>
                     <connections>
                         <outlet property="accRateLabel" destination="Uti-B4-7Oo" id="SvQ-CR-38c"/>
                         <outlet property="actComposite" destination="SfH-09-QBx" id="g0N-QS-Jzr"/>
@@ -883,7 +883,6 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhL-WJ-62d">
                                 <rect key="frame" x="57" y="12" width="196" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.58846382470000003" green="0.14277563909999999" blue="0.1155509473" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>

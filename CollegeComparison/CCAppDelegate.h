@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) NSMutableArray *recentlyVisited;
+@property (strong, nonatomic) NSMutableArray *recentlyVisited, *bookmarked;
 
 @end
