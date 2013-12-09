@@ -282,8 +282,8 @@
     
     recents = [[NSMutableArray alloc] initWithArray:appDelegate.recentlyVisited];
     
-    highlightedStarImage = [UIImage imageNamed:@"star.png"];
-    unhighlightedStarImage = [UIImage imageNamed:@"trying_now"];
+    highlightedStarImage = [UIImage imageNamed:@"highlighted_star.png"];
+    unhighlightedStarImage = [UIImage imageNamed:@"unhighlighted_star.png"];
 
     
     NSString *thisCollegeString = self.representedCollege.name;

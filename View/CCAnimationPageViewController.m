@@ -57,6 +57,9 @@
     //Initial Configuration of View
     [self configureNavigationBar];
     
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     //Data packaging and setting methods
     [self dataPackager];
     [self setAllArrays];

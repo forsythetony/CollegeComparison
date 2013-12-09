@@ -27,6 +27,11 @@
                                                        [UIColor whiteColor], NSForegroundColorAttributeName,
                                                        [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
+    
+
+    
+    
+    
     // Override point for customization after application launch.
 
     NSError *error;
@@ -43,7 +48,7 @@
         [fileManager removeItemAtPath:databasePath error:&error];
     }
      */
-    
+        
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
     [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
     

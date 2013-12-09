@@ -130,8 +130,8 @@
                                 green:173.0/255.0
                                  blue:237.0/255.0
                                 alpha:1.0];
-    starHighlighted = [UIImage imageNamed:@"star.png"];
-    starUnhighlighted = [UIImage imageNamed:@"trying_now"];
+    starHighlighted = [UIImage imageNamed:@"highlighted_star.png"];
+    starUnhighlighted = [UIImage imageNamed:@"unhighlighted_star.png"];
 }
 
 #pragma mark Tableview Configuration
