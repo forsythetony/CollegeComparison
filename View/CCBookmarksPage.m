@@ -326,7 +326,7 @@
     
     if ([tableViews[0] isEditing] == YES)
     {
-        NSLog(@"Table view IS editing.");
+        NSLog(@"Table view SHOULD BE editing.");
     }
     else
     {
