@@ -83,10 +83,24 @@
                                      completion:nil];
     
     [self.pageViewController.view setFrame:[self.view bounds]];
-    
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    
+    UIColor *coralColorMuted = [UIColor colorWithRed:205.0/255.0
+                                               green:86.0/255.0
+                                                blue:72.0/255.0
+                                               alpha:0.5];
+    
+    UIColor *blueishColor = [UIColor colorWithRed:113.0/255.0
+                                         green:173.0/255.0
+                                          blue:237.0/255.0
+                                         alpha:1.0];
+
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = coralColorMuted;
+    pageControl.currentPageIndicatorTintColor = blueishColor;
+    
     
     [[viewControllers objectAtIndex:0] animateAll];
     [[viewControllers objectAtIndex:0] createHandle];
