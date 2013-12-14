@@ -47,6 +47,11 @@
     {
         NSLog(@"Enrollment_total for %@: %ld", college.name, (long)college.enrollment_total);
     }
+    
+    [self callToApi];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,5 +59,42 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+    
+- (void)callToApi
+{
+    NSString *UrlString = @"http://54.201.179.180/api/api.php?method=getAll";
+    
+    NSURL *Url = [NSURL URLWithString:UrlString];
+    
+    NSURLRequest *theRequest = [[NSURLRequest alloc] initWithURL:Url];
+    NSOperationQueue *theQueue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:theRequest queue:theQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        
+        if (httpResponse.statusCode == 200 && data) {
+            [self parseData:data];
+            
+            
+        }
+    }];
+ 
+}
 
+    
+    -(void)parseData:(NSData*)data
+    {
+        NSError *error;
+        
+        NSDictionary *theDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        
+        NSArray *colleges = theDictionary[@"colleges"];
+        
+        NSLog(@"\n\n\nCall to Api\n\n");
+        for (NSDictionary* dictionary in colleges) {
+            NSLog(@"\nCollege Name: %@\nTuition: %@", [dictionary objectForKey:@"name"], [dictionary objectForKey:@"tuition"]);
+        }
+        
+    }
+    
 @end
