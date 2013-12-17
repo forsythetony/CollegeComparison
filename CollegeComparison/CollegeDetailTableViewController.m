@@ -228,6 +228,7 @@
         [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
     }
 
+    self.title = self.representedCollege.name;
 }
 
 

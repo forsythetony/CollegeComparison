@@ -91,12 +91,7 @@
 }
 -(void)configureNavigationBar
 {
-    UIFont *navBarFont = [UIFont fontWithName:@"Avenir-Book" size:14.0];
-    
-    NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:navBarFont, @"UITextAttributeFont", nil];
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
-    
+
     self.title = @"Udecide";
     
 }
