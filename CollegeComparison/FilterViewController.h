@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "FilteredCollegesViewController.h"
 
-@interface FilterViewController : UIViewController
+@interface FilterViewController : UIViewController <UIPickerViewDelegate ,UIPickerViewDataSource>
+
+@property (nonatomic, strong) NSArray *statesForPicker;
 
 @end
