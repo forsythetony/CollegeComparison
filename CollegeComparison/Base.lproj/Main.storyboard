@@ -1,143 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SfO-Mq-Kho">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SfO-Mq-Kho">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="LPr-Xe-ZwA">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="dOu-4q-5XI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YBc-yG-OqX">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="iJe-gj-N9J" kind="relationship" relationship="rootViewController" id="l7q-PC-Boj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o6I-LF-hoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-701" y="46"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="R7i-Ib-bg0">
-            <objects>
-                <viewController id="iJe-gj-N9J" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9wX-SV-JX8"/>
-                        <viewControllerLayoutGuide type="bottom" id="cod-Ws-qgc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SGA-Vb-mUd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Root View Controller" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvh-8W-hnN">
-                                <rect key="frame" x="81" y="94" width="159" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhu-CS-ydh">
-                                <rect key="frame" x="44" y="293" width="233" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button to Comparison Animations">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5L5-s5-ccx" kind="push" id="sPd-e1-Ix8"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="VO5-Ec-Pkf"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KFT-hs-m5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-177" y="46"/>
-        </scene>
-        <!--Animation Page View Controller-->
-        <scene sceneID="EKm-LZ-80I">
-            <objects>
-                <viewController id="5L5-s5-ccx" customClass="CCAnimationPageViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RRI-w6-0x1"/>
-                        <viewControllerLayoutGuide type="bottom" id="Dzd-CP-QDJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fh9-y5-ZUg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="8AK-9L-laU"/>
-                    <connections>
-                        <outlet property="navigationItem" destination="8AK-9L-laU" id="LA8-u7-XFO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Aw4-x9-IBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="387" y="46"/>
-        </scene>
-        <!--Filtered Colleges View Controller - filteredSchools-->
-        <scene sceneID="ueq-ds-Esm">
-            <objects>
-                <tableViewController title="filteredSchools" id="JWq-aC-Y1g" customClass="FilteredCollegesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="cpB-Oa-DcH">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CollegeCell" rowHeight="99" id="hvr-7M-snz" customClass="FilteredCollegesTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="99"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hvr-7M-snz" id="eFX-LQ-6vg">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="98"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ss3-kp-y47">
-                                            <rect key="frame" x="20" y="14" width="280" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BM9-Th-fIV">
-                                            <rect key="frame" x="20" y="38" width="280" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcD-bN-KPy">
-                                            <rect key="frame" x="20" y="62" width="280" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="universityLocationLabel" destination="BM9-Th-fIV" id="raD-RZ-fcz"/>
-                                    <outlet property="universityNameLabel" destination="Ss3-kp-y47" id="9Kt-Ep-Sb6"/>
-                                    <outlet property="universityTuitionLabel" destination="HcD-bN-KPy" id="UQT-7g-Ac1"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JWq-aC-Y1g" id="sWA-Sc-t1W"/>
-                            <outlet property="delegate" destination="JWq-aC-Y1g" id="PxI-2O-pdr"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="dPF-3o-HVv"/>
-                    <connections>
-                        <segue destination="bsp-Og-61H" kind="push" identifier="collegeDetailsSegue" id="Q1s-1n-HqV"/>
-                        <segue destination="1sJ-ZE-tet" kind="push" identifier="comparisonSegue" id="xNf-hx-PXk"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bJi-WG-x1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1366" y="-277"/>
-        </scene>
         <!--Animation Page View Controller-->
         <scene sceneID="sFL-EM-lMZ">
             <objects>
@@ -155,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLQ-cI-VIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="-2353"/>
+            <point key="canvasLocation" x="1478" y="-1989"/>
         </scene>
         <!--College Detail Table View Controller - Title-->
         <scene sceneID="NIc-eQ-J0d">
@@ -550,7 +416,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ATO-Mg-zXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="-1638"/>
+            <point key="canvasLocation" x="1824" y="-1262"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="KMS-1g-QzD">
@@ -695,7 +561,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="JWq-aC-Y1g" kind="push" id="kyK-Eq-ex7"/>
+                                            <segue destination="D19-1R-X0e" kind="push" id="gte-0V-F6b"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Enrollment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nb5-9n-1Kf">
@@ -792,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHA-6i-lno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="-957"/>
+            <point key="canvasLocation" x="826" y="-799"/>
         </scene>
         <!--State View Controller - States-->
         <scene sceneID="Ibl-zE-9W0">
@@ -841,7 +707,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogF-mR-LCK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1366" y="-955"/>
+            <point key="canvasLocation" x="1366" y="-797"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tTC-eE-WLf">
@@ -866,7 +732,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qC9-UT-ria" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="-635"/>
+            <point key="canvasLocation" x="-167" y="-151"/>
         </scene>
         <!--Bookmarks Page - Udecide-->
         <scene sceneID="kMM-kF-Cvb">
@@ -899,7 +765,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egY-GL-Pzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317" y="-625"/>
+            <point key="canvasLocation" x="317" y="-151"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mIQ-tr-Jcr">
@@ -919,7 +785,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWE-U4-uvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-709" y="-976"/>
+            <point key="canvasLocation" x="-707" y="-730"/>
         </scene>
         <!--Filtered Colleges View Controller - schools-->
         <scene sceneID="M0P-le-QJN">
@@ -996,7 +862,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="826" y="-1633"/>
+            <point key="canvasLocation" x="826" y="-1691"/>
         </scene>
     </scenes>
     <resources>
@@ -1017,7 +883,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="xNf-hx-PXk"/>
-        <segue reference="tDF-Sv-HEI"/>
+        <segue reference="gte-0V-F6b"/>
+        <segue reference="veJ-Ug-SuL"/>
     </inferredMetricsTieBreakers>
 </document>
