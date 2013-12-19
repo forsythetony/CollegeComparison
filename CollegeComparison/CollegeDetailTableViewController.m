@@ -121,13 +121,10 @@
     if (college.sat_writing_25 <= 0 && college.sat_writing_75 <= 0) satWriting.text = @"N/A";
     else satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
 
-
-
-
-    
     CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     favorites = appDelegate.bookmarked;
@@ -227,8 +224,6 @@
         [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
         [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
     }
-
-    self.title = self.representedCollege.name;
 }
 
 
