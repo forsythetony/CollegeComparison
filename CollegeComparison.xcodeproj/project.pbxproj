@@ -14,7 +14,6 @@
 		49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */; };
 		49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */; };
 		49EB4CB71843FDBB00C9C4AB /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */; };
-		49EB4CC0184458B400C9C4AB /* StateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CBF184458B400C9C4AB /* StateViewController.m */; };
 		53290F431830A1F800781050 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53290F421830A1F800781050 /* libsqlite3.dylib */; };
 		53290F491830A9D000781050 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 53290F481830A9D000781050 /* schools.db */; };
 		532A148B184D7594009C5BAE /* MUITCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1487184D7594009C5BAE /* MUITCollege.m */; };
@@ -75,8 +74,6 @@
 		49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		49EB4CBE184458B400C9C4AB /* StateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StateViewController.h; sourceTree = "<group>"; };
-		49EB4CBF184458B400C9C4AB /* StateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StateViewController.m; sourceTree = "<group>"; };
 		53290F421830A1F800781050 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		53290F481830A9D000781050 /* schools.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = schools.db; sourceTree = "<group>"; };
 		532A1486184D7594009C5BAE /* MUITCollege.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITCollege.h; sourceTree = "<group>"; };
@@ -253,8 +250,6 @@
 				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
 				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
 				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
-				49EB4CBE184458B400C9C4AB /* StateViewController.h */,
-				49EB4CBF184458B400C9C4AB /* StateViewController.m */,
 				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
 				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
 				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
@@ -424,7 +419,6 @@
 				49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */,
 				3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */,
 				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
-				49EB4CC0184458B400C9C4AB /* StateViewController.m in Sources */,
 				532A148B184D7594009C5BAE /* MUITCollege.m in Sources */,
 				BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */,
 				BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */,
