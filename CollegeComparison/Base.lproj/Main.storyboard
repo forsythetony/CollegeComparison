@@ -532,7 +532,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="sFr-ok-g49" customClass="TuitionSegmentedControl">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="sFr-ok-g49">
                                         <rect key="frame" x="20" y="211" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
@@ -542,6 +542,9 @@
                                             <segment title="$30K+"/>
                                         </segments>
                                         <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <connections>
+                                            <action selector="segmentAction" destination="JJf-y7-7oN" eventType="touchUpInside" id="WPQ-8u-HLC"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT2-qP-ZIj">
                                         <rect key="frame" x="20" y="363" width="87" height="21"/>
@@ -553,8 +556,8 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CZ-kZ-XNN">
-                                        <rect key="frame" x="20" y="465" width="280" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CZ-kZ-XNN">
+                                        <rect key="frame" x="20" y="465" width="303" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -589,18 +592,21 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="AfY-H2-gV7" customClass="EnrollmentSegmentedControl">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="AfY-H2-gV7">
                                         <rect key="frame" x="20" y="302" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
-                                            <segment title="0-5K"/>
-                                            <segment title="5K-15K"/>
-                                            <segment title="15K-30K"/>
-                                            <segment title="30K+"/>
+                                            <segment title="$0-5K"/>
+                                            <segment title="$5K-15K"/>
+                                            <segment title="$15K-30K"/>
+                                            <segment title="$30K+"/>
                                         </segments>
                                         <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <connections>
+                                            <action selector="segmentAction" destination="JJf-y7-7oN" eventType="touchUpInside" id="BWJ-zb-5X6"/>
+                                        </connections>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="9HI-C3-baB" customClass="SchoolTypeSegmentedControl">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="9HI-C3-baB">
                                         <rect key="frame" x="20" y="392" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
@@ -608,6 +614,9 @@
                                             <segment title="Private"/>
                                         </segments>
                                         <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <connections>
+                                            <action selector="segmentAction" destination="JJf-y7-7oN" eventType="touchUpInside" id="Trx-vD-dcG"/>
+                                        </connections>
                                     </segmentedControl>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zoi-d0-Cmh">
                                         <rect key="frame" x="0.0" y="30" width="320" height="162"/>
@@ -666,6 +675,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="q7i-BJ-kDh"/>
+                    <connections>
+                        <outlet property="enrollmentSegmentedControl" destination="AfY-H2-gV7" id="847-B0-lYi"/>
+                        <outlet property="schoolTypeSegmentedControl" destination="9HI-C3-baB" id="zjS-7c-KcL"/>
+                        <outlet property="tuitionSegmentedControl" destination="sFr-ok-g49" id="YU8-aj-T6d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHA-6i-lno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -761,6 +775,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="D19-1R-X0e" id="0jJ-yM-h2G"/>
                             </connections>
@@ -845,7 +863,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tDF-Sv-HEI"/>
         <segue reference="gte-0V-F6b"/>
+        <segue reference="veJ-Ug-SuL"/>
     </inferredMetricsTieBreakers>
 </document>

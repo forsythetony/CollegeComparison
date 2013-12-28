@@ -20,7 +20,6 @@ NSArray *searchResults;
 
 - (void)viewDidLoad
 {
-    
     collegesImGoingToCompare = [NSMutableArray new];
     NSMutableDictionary *options = [NSMutableDictionary new];
     MUITCollegeDataProvider *collegeManager = [MUITCollegeDataProvider new];
@@ -108,6 +107,7 @@ NSArray *searchResults;
     NSUInteger collegesReturned = self.universitiesPassed.count;
     
     UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
+    
     [tableHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
     
     // Label properties for custon UIView
