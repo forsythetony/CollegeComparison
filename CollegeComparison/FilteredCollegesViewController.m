@@ -111,7 +111,7 @@ NSArray *searchResults;
     [tableHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
     
     // Label properties for custon UIView
-    UILabel *labelInHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 320.0f, 40.0f)];
+    UILabel *labelInHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 300.0f, 40.0f)];
     labelInHeaderView.textAlignment = NSTextAlignmentLeft;
     [labelInHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0]];
     [labelInHeaderView setTextColor:[UIColor grayColor]];
