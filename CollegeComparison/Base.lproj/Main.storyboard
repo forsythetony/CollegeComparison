@@ -596,10 +596,10 @@
                                         <rect key="frame" x="20" y="302" width="280" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
-                                            <segment title="$0-5K"/>
-                                            <segment title="$5K-15K"/>
-                                            <segment title="$15K-30K"/>
-                                            <segment title="$30K+"/>
+                                            <segment title="0-5K"/>
+                                            <segment title="5K-15K"/>
+                                            <segment title="15K-30K"/>
+                                            <segment title="30K+"/>
                                         </segments>
                                         <color key="tintColor" red="0.94117647059999998" green="0.3411764706" blue="0.27450980390000002" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
