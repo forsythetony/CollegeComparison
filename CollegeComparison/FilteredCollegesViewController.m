@@ -106,8 +106,8 @@ NSArray *searchResults;
     // Get the number of colleges returned
     NSUInteger collegesReturned = self.universitiesPassed.count;
     
+    // Create custom view for behind the label
     UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
-    
     [tableHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
     
     // Label properties for custon UIView
@@ -118,7 +118,7 @@ NSArray *searchResults;
     labelInHeaderView.font = [UIFont fontWithName:@"Avenir-Book" size:13.0];
     labelInHeaderView.text = [[NSString stringWithFormat:@"%d", collegesReturned] stringByAppendingString:@" COLLEGES RETURNED"];
     
-    // Add label to the view
+    // Add label to custom view
     [tableHeaderView addSubview:labelInHeaderView];
     
     return tableHeaderView;
