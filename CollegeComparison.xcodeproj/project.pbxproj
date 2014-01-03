@@ -33,6 +33,7 @@
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
 		53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91418297637003D289A /* Main.storyboard */; };
 		53F82003184D808C000466E4 /* CollegeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */; };
+		BA25267C187637260088583A /* CCSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA25267B187637260088583A /* CCSharedData.m */; };
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
 		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
@@ -100,6 +101,8 @@
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
 		53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeDetailTableViewController.h; sourceTree = "<group>"; };
 		53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeDetailTableViewController.m; sourceTree = "<group>"; };
+		BA25267A187637260088583A /* CCSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSharedData.h; sourceTree = "<group>"; };
+		BA25267B187637260088583A /* CCSharedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSharedData.m; sourceTree = "<group>"; };
 		BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = ../View/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = ../View/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				532A1488184D7594009C5BAE /* MUITCollegeDataProvider.h */,
 				532A1489184D7594009C5BAE /* MUITCollegeDataProvider.m */,
 				532A148A184D7594009C5BAE /* schools.db */,
+				BA25267A187637260088583A /* CCSharedData.h */,
+				BA25267B187637260088583A /* CCSharedData.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA25267C187637260088583A /* CCSharedData.m in Sources */,
 				535EA90F18297637003D289A /* main.m in Sources */,
 				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
 				3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */,

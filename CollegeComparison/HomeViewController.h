@@ -10,5 +10,7 @@
 #import "MUITCollegeDataProvider.h"
 
 @interface HomeViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+
 
 @end

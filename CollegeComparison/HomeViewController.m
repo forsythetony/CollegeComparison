@@ -7,8 +7,13 @@
 //
 
 #import "HomeViewController.h"
+#import "CCSharedData.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () {
+    UIProgressView *progressViewIndicator;
+    UIActivityIndicatorView *actView;
+    CCSharedData *dataObject;
+}
 
 @end
 
@@ -26,6 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collegesDidFinishLoading:) name:@"didFinishDownloadingColleges" object:nil];
+    [self configureView];
+    [self createActivityIndicator];
+    
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
     
@@ -96,5 +106,67 @@
         }
         
     }
+
+-(void)createActivityIndicator
+{
+    
+//    progressViewIndicator = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+//    
+//    [self.view addSubview:progressViewIndicator];
+//    
+//    [progressViewIndicator setTrackTintColor:[UIColor whiteColor]];
+//    [progressViewIndicator setTintColor:[UIColor redColor]];
+//    
+//    [progressViewIndicator setFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 5.0)];
+//    [progressViewIndicator setProgress:0.5 animated:YES];
+//    
+    
+    dataObject = [CCSharedData sharedDataObject];
+
+}
+
+-(void)collegesDidFinishLoading:(NSNotification*) notify
+{
+    [self removeLoadView];
+    
+    [self testing];
+}
+-(void)configureView
+{
+    [self.loadingView setBackgroundColor:[UIColor grayColor]];
+    [self.loadingView setAlpha:0.75f];
+    
+    actView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    [self.loadingView addSubview:actView];
+    [actView setFrame:CGRectMake((self.view.bounds.size.width / 2) - 20.0, 160.0, 40.0, 40.0)];
+    [actView startAnimating];
+}
+-(void)removeLoadView
+{
+    
+    [actView stopAnimating];
+    [actView removeFromSuperview];
+    
+    [self.loadingView removeFromSuperview];
+
+    
+}
+
+-(void)testing
+{
+    
+    
+    
+    NSArray *sortedColleges = [dataObject getCollegesSortedByValue:@"name" AndAscending:NO];
+    
+    for (NSDictionary *dict in sortedColleges)
+    {
+        NSLog(@"\n\nCOLLEGE NAME: %@\n\n", [dict objectForKey:@"name"]);
+    }
+    
+    
+    
+}
     
 @end
