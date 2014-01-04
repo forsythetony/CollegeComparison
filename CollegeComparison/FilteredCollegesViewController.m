@@ -28,8 +28,16 @@ NSArray *searchResults;
     self.collegesToCompare = [[NSMutableArray alloc] init];
     self.storedSchoolsDictionary = [[NSMutableDictionary alloc] init];
     
-    // Passed data
-    self.universitiesPassed = [collegeManager getColleges:options];
+    //Data from college data provider object. If database is not working properly 3 dummy colleges will be returned
+    NSArray *collegesPassed = [collegeManager getColleges:options];
+    
+    if ([collegesPassed count] == 0) {
+        collegesPassed = [collegeManager getDummyColleges];
+    }
+    
+    self.universitiesPassed = collegesPassed;
+    
+    
     
     // Set custom attributes for navigation bar
     [self setCustomAttributesForNavigationBar];
@@ -337,11 +345,18 @@ NSArray *searchResults;
     }
     else if ([segue.identifier isEqualToString:@"comparisonSegue"])
     {
-                 CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
+        CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
         
-                 destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
+        destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
 
 
+    }
+    
+    else if ([segue.identifier isEqualToString:@"comparisonSegueOne"])
+    {
+        CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
+        
+        destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
     }
 }
 

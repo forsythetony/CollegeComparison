@@ -247,6 +247,7 @@
     float time = 0.90f;
     
     int moneyValue = 0;
+    
     NSString *moneyString = [[NSString alloc] init];
     
     CGPoint lineReferencePoint = self.view.center;
@@ -1094,65 +1095,69 @@
     [numberFormatter setGroupingSize:3];
     [numberFormatter setUsesGroupingSeparator:YES];
     
-    MUITCollege *dummyCollege = [global objectForKey:@"Object Two"];
+    
+    MUITCollege *theFirstCollege = [global objectForKey:@"Object One"];
+    MUITCollege *theSecondCollege = [global objectForKey:@"Object Two"];
+    
+    //Set strings for enrollment labels
+    NSString *theFirstEnrollmentTotal = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)theFirstCollege.enrollment_total]];
+    NSString *theSecondEnrollmentTotal = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)theSecondCollege.enrollment_total]];
     
     
-    NSString *CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)dummyCollege.enrollment_total]];
+    NSString *theFirstEnrollmentMen = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)theFirstCollege.enrollment_men]];
+    NSString *theSecondEnrollmentMen = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)theSecondCollege.enrollment_men]];
     
-    [collegeOneTuitionValue setText:CollegeValueString];
-    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
-    [collegeOneTuitionValue setTextColor:coralColor];
-    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
-    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentCenter];
-    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
     
-    dummyCollege = [global objectForKey:@"Object One"];
+    NSString *theFirstEnrollmentWomen = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)theFirstCollege.enrollment_women]];
+    NSString *theSecondEnrollmentWomen = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)theSecondCollege.enrollment_women]];
+
     
-    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)dummyCollege.enrollment_total]];
+
+
     
-    [collegeTwoTuitionValue setText:CollegeValueString];
+    //Values for enrollment Totals
+    [collegeTwoTuitionValue setText:theFirstEnrollmentTotal];
     [collegeTwoTuitionValue setBackgroundColor:[UIColor clearColor]];
     [collegeTwoTuitionValue setTextColor:coralColor];
     [collegeTwoTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book"
                                                     size:14.0]];
     [collegeTwoTuitionValue setTextAlignment:NSTextAlignmentCenter];
     
-    dummyCollege = [global objectForKey:@"Object One"];
+    [collegeOneTuitionValue setText:theSecondEnrollmentTotal];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+    [collegeOneTuitionValue setTextColor:coralColor];
+    [collegeOneTuitionValue setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [collegeOneTuitionValue setTextAlignment:NSTextAlignmentCenter];
+    [collegeOneTuitionValue setBackgroundColor:[UIColor clearColor]];
+
     
-    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)dummyCollege.enrollment_men]];
-    
-    [row2Col1 setText:CollegeValueString];
+    //Values for enrollment Men
+    [row2Col1 setText:theFirstEnrollmentMen];
     [row2Col1 setBackgroundColor:[UIColor clearColor]];
     [row2Col1 setTextColor:coralColor];
     [row2Col1 setFont:[UIFont fontWithName:@"Avenir-Book"
                                       size:14.0]];
     [row2Col1 setTextAlignment:NSTextAlignmentCenter];
+  
     
-    dummyCollege = [global objectForKey:@"Object Two"];
-    
-    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)dummyCollege.enrollment_men]];
-    
-    [row2Col2 setText:CollegeValueString];
+    [row2Col2 setText:theSecondEnrollmentMen];
     [row2Col2 setBackgroundColor:[UIColor clearColor]];
     [row2Col2 setTextColor:coralColor];
     [row2Col2 setFont:[UIFont fontWithName:@"Avenir-Book"
                                       size:14.0]];
     [row2Col2 setTextAlignment:NSTextAlignmentCenter];
+   
     
-    dummyCollege = [global objectForKey:@"Object Two"];
-    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)dummyCollege.enrollment_women]];
-    [row3Col1 setText:CollegeValueString];
+    //Values for enrollment women
+    [row3Col1 setText:theFirstEnrollmentWomen];
     [row3Col1 setBackgroundColor:[UIColor clearColor]];
     [row3Col1 setTextColor:coralColor];
     [row3Col1 setFont:[UIFont fontWithName:@"Avenir-Book"
                                       size:14.0]];
     [row3Col1 setTextAlignment:NSTextAlignmentCenter];
     
-    dummyCollege = [global objectForKey:@"Object Two"];
     
-    CollegeValueString = [numberFormatter stringFromNumber:[NSNumber numberWithInt:(int)dummyCollege.enrollment_women]];
-    
-    [row3Col2 setText:CollegeValueString];
+    [row3Col2 setText:theSecondEnrollmentWomen];
     [row3Col2 setBackgroundColor:[UIColor clearColor]];
     [row3Col2 setTextColor:coralColor];
     [row3Col2 setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];

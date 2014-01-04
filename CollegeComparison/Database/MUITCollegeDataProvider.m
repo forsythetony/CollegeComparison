@@ -133,4 +133,183 @@ static sqlite3_stmt *statement = nil;
 //    [collegeArray sortUsingDescriptors: @[descriptor]];
 //}
 
+//A dummy data function to return 3 MUITCollege objects
+-(NSArray *)getDummyColleges
+{
+
+    NSMutableArray *protoDummyColleges = [NSMutableArray new];
+    
+    for (int i = 0; i < 3; i++) {
+        
+        MUITCollege *dummyCollege = [MUITCollege new];
+        NSDictionary *valuesDictionary;
+        NSArray *ar1, *ar2;
+        
+        ar1 = [NSArray arrayWithObjects:
+               @"name",
+               @"id",
+               @"control",
+               @"state",
+               @"sat_reading_25",
+               @"sat_reading_75",
+               @"sat_math_25",
+               @"sat_math_75",
+               @"sat_writing_25",
+               @"sat_writing_75",
+               @"act_25",
+               @"act_75",
+               @"act_english_25",
+               @"act_english_75",
+               @"act_math_25",
+               @"act_math_75",
+               @"act_writing_25",
+               @"act_writing_75",
+               @"percent_receive_financial_aid",
+               @"enrollment_men",
+               @"enrollment_women",
+               @"enrollment_total",
+               @"tuition_out_state",
+               @"tuition_in_state",
+               nil];
+        
+        switch (i) {
+            case 0:
+                ar2 = [NSArray arrayWithObjects:
+                       @"University of Missouri - St. Louis", //School Name
+                       [NSNumber numberWithInt:88732], //id
+                       [NSNumber numberWithInt:3], //control
+                       @"MO", //State
+                       [NSNumber numberWithInt:0], //sat_reading_25
+                       [NSNumber numberWithInt:0], //sat_reading_75
+                       [NSNumber numberWithInt:480], //sat_math_25
+                       [NSNumber numberWithInt:660], //sat_math_75
+                       [NSNumber numberWithInt:0], //sat_writing_25
+                       [NSNumber numberWithInt:0], //sat_writing_75
+                       [NSNumber numberWithInt:22], //act_25
+                       [NSNumber numberWithInt:27], //act_75
+                       [NSNumber numberWithInt:21], //act_english_25
+                       [NSNumber numberWithInt:27], //act_english_75
+                       [NSNumber numberWithInt:20], //act_math_25
+                       [NSNumber numberWithInt:26], //act_math_75
+                       [NSNumber numberWithInt:0], //act_writing_25
+                       [NSNumber numberWithInt:0], //act_writing_75
+                       [NSNumber numberWithInt:33], //percent_receive_financial_aid
+                       [NSNumber numberWithInt:320], //enrollment_men
+                       [NSNumber numberWithInt:226], //enrollment_women
+                       [NSNumber numberWithInt:546], //enrollment_total
+                       [NSNumber numberWithInt:21537], //tuition_out_state
+                       [NSNumber numberWithInt:7968], //tuition_in_state
+                       nil];
+                break;
+                
+            case 1:
+                ar2 = [NSArray arrayWithObjects:
+                       @"New York University", //School Name
+                       [NSNumber numberWithInt:193900], //id
+                       [NSNumber numberWithInt:6], //control
+                       @"NY", //State
+                       [NSNumber numberWithInt:620], //sat_reading_25
+                       [NSNumber numberWithInt:710], //sat_reading_75
+                       [NSNumber numberWithInt:630], //sat_math_25
+                       [NSNumber numberWithInt:640], //sat_math_75
+                       [NSNumber numberWithInt:640], //sat_writing_25
+                       [NSNumber numberWithInt:730], //sat_writing_75
+                       [NSNumber numberWithInt:28], //act_25
+                       [NSNumber numberWithInt:31], //act_75
+                       [NSNumber numberWithInt:0], //act_english_25
+                       [NSNumber numberWithInt:0], //act_english_75
+                       [NSNumber numberWithInt:0], //act_math_25
+                       [NSNumber numberWithInt:0], //act_math_75
+                       [NSNumber numberWithInt:0], //act_writing_25
+                       [NSNumber numberWithInt:0], //act_writing_75
+                       [NSNumber numberWithInt:25], //percent_receive_financial_aid
+                       [NSNumber numberWithInt:3087], //enrollment_men
+                       [NSNumber numberWithInt:2054], //enrollment_women
+                       [NSNumber numberWithInt:5141], //enrollment_total
+                       [NSNumber numberWithInt:40878], //tuition_out_state
+                       [NSNumber numberWithInt:40878], //tuition_in_state
+                       nil];
+                break;
+            case 2:
+                ar2 = [NSArray arrayWithObjects:
+                       @"University of Arkansas", //School Name
+                       [NSNumber numberWithInt:106397], //id
+                       [NSNumber numberWithInt:1], //control
+                       @"AR", //State
+                       [NSNumber numberWithInt:500], //sat_reading_25
+                       [NSNumber numberWithInt:610], //sat_reading_75
+                       [NSNumber numberWithInt:520], //sat_math_25
+                       [NSNumber numberWithInt:630], //sat_math_75
+                       [NSNumber numberWithInt:0], //sat_writing_25
+                       [NSNumber numberWithInt:0], //sat_writing_75
+                       [NSNumber numberWithInt:23], //act_25
+                       [NSNumber numberWithInt:28], //act_75
+                       [NSNumber numberWithInt:22], //act_english_25
+                       [NSNumber numberWithInt:29], //act_english_75
+                       [NSNumber numberWithInt:23], //act_math_25
+                       [NSNumber numberWithInt:28], //act_math_75
+                       [NSNumber numberWithInt:0], //act_writing_25
+                       [NSNumber numberWithInt:0], //act_writing_75
+                       [NSNumber numberWithInt:44], //percent_receive_financial_aid
+                       [NSNumber numberWithInt:2382], //enrollment_men
+                       [NSNumber numberWithInt:2192], //enrollment_women
+                       [NSNumber numberWithInt:4574], //enrollment_total
+                       [NSNumber numberWithInt:17022], //tuition_out_state
+                       [NSNumber numberWithInt:6142], //tuition_in_state
+                       nil];
+                break;
+            default:
+                break;
+        }
+        
+        valuesDictionary = [NSDictionary dictionaryWithObjects:ar2 forKeys:ar1];
+        
+                
+                
+                dummyCollege.name = [valuesDictionary objectForKey:@"name"];
+                
+                dummyCollege.id = [[valuesDictionary objectForKey:@"id"] integerValue];
+                dummyCollege.control = [valuesDictionary[@"control"] integerValue];
+                dummyCollege.state = valuesDictionary[@"state"];
+                
+                dummyCollege.sat_reading_25 = [valuesDictionary[@"sat_reading_25"] integerValue];
+                dummyCollege.sat_reading_75 = [[valuesDictionary objectForKey:@"sat_reading_75"] integerValue];
+                
+                dummyCollege.sat_math_25 = [[valuesDictionary objectForKey:@"sat_math_25"] integerValue];
+                dummyCollege.sat_math_75 = [[valuesDictionary objectForKey:@"sat_math_75"] integerValue];
+                
+                dummyCollege.sat_writing_25 = [[valuesDictionary objectForKey:@"sat_writing_25"] integerValue];
+                dummyCollege.sat_writing_75 = [[valuesDictionary objectForKey:@"sat_writing_75"] integerValue];
+                
+                dummyCollege.act_25 = [[valuesDictionary objectForKey:@"act_25"] integerValue];
+                dummyCollege.act_75 = [[valuesDictionary objectForKey:@"act_75"] integerValue];
+                
+                dummyCollege.act_english_25 = [[valuesDictionary objectForKey:@"act_english_25"] integerValue];
+                dummyCollege.act_english_75 = [[valuesDictionary objectForKey:@"act_english_75"] integerValue];
+                
+                dummyCollege.act_math_25 = [[valuesDictionary objectForKey:@"act_math_25"] integerValue];
+                dummyCollege.act_math_75 = [[valuesDictionary objectForKey:@"act_math_75"] integerValue];
+                
+                dummyCollege.act_writing_25 = [[valuesDictionary objectForKey:@"act_writing_25"] integerValue];
+                dummyCollege.act_writing_75 = [[valuesDictionary objectForKey:@"act_writing_75"] integerValue];
+                
+                dummyCollege.percent_receive_financial_aid = [[valuesDictionary objectForKey:@"percent_receive_financial_aid"] integerValue];
+                
+                dummyCollege.enrollment_men = [[valuesDictionary objectForKey:@"enrollment_men"] integerValue];
+                dummyCollege.enrollment_women = [[valuesDictionary objectForKey:@"enrollment_women"] integerValue];
+                
+                dummyCollege.enrollment_total = [[valuesDictionary objectForKey:@"enrollment_total"] integerValue];
+                
+                dummyCollege.tuition_out_state = [[valuesDictionary objectForKey:@"tuition_out_state"] integerValue];
+                dummyCollege.tuition_in_state = [[valuesDictionary objectForKey:@"tuition_in_state"] integerValue];
+        
+        [protoDummyColleges addObject:dummyCollege];
+        
+    }
+    
+    NSArray *dummyColleges = [NSArray arrayWithArray:protoDummyColleges];
+    
+    return dummyColleges;
+}
+
 @end

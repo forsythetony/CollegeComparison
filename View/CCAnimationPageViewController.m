@@ -312,6 +312,11 @@
                          && MAX(schoolOneValue, schoolTwoValue) > 2000
                          && MIN(schoolTwoValue, schoolOneValue) <5000)
                 {
+                    moneyValue *= 1000;
+                    [lineLabelArray addObject:@"%@"];
+                }
+                else
+                {
                     moneyValue *= 100;
                     [lineLabelArray addObject:@"%@"];
                 }

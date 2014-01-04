@@ -18,4 +18,6 @@
 
 //-(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending;//NOT CURRENTLY FUNCTIONAL
 
+-(NSArray*)getDummyColleges;
+
 @end
