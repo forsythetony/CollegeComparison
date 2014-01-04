@@ -32,8 +32,10 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collegesDidFinishLoading:) name:@"didFinishDownloadingColleges" object:nil];
+    dataObject = [CCSharedData sharedInstance];
+    [self testing];
+
     [self configureView];
-    [self createActivityIndicator];
     
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
@@ -121,7 +123,7 @@
 //    [progressViewIndicator setProgress:0.5 animated:YES];
 //    
     
-    dataObject = [CCSharedData sharedDataObject];
+ //   dataObject = [CCSharedData sharedDataObject];
 
 }
 
@@ -129,7 +131,6 @@
 {
     [self removeLoadView];
     
-    [self testing];
 }
 -(void)configureView
 {
@@ -156,13 +157,11 @@
 -(void)testing
 {
     
-    
-    
-    NSArray *sortedColleges = [dataObject getCollegesSortedByValue:@"name" AndAscending:NO];
+    NSArray *sortedColleges = [dataObject getCollegesSortedByValue:@"out_state_tuition" AndAscending:NO];
     
     for (NSDictionary *dict in sortedColleges)
     {
-        NSLog(@"\n\nCOLLEGE NAME: %@\n\n", [dict objectForKey:@"name"]);
+        NSLog(@"\n\nCOLLEGE NAME: %@\nTuition: %@\n ID: %@\n\n", [dict objectForKey:@"name"], [dict objectForKey:@"enrollment_total"], [dict objectForKey:@"id"]);
     }
     
     

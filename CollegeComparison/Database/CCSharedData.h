@@ -13,7 +13,7 @@
 }
 
 
-+ (CCSharedData*)sharedDataObject;
++ (instancetype)sharedInstance;
 
 -(NSArray*)getCollegesSortedByValue:(NSString*) value AndAscending:(BOOL) ascending;
 
