@@ -199,17 +199,17 @@
     }
     else
     {
-        NSDictionary *collegeDictionary = [recentItems objectAtIndex:indexPath.row];
         
-        MUITCollege *theCollege = [collegeDictionary objectForKey:@"College"];
+        MUITCollege *theCollege = [recentItems objectAtIndex:indexPath.row];
+        
         collegeName = theCollege.name;
-        dateString = [collegeDictionary objectForKey:@"Time"];
+        dateString = theCollege.dateAccessed;
 
         
     }
     
     
-        [cell.textLabel setText:collegeName];
+    [cell.textLabel setText:collegeName];
     
     [cell.textLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
     [cell.textLabel setTextColor:coralColor];
@@ -280,7 +280,7 @@
     else
     {
         ar1 = recentItems;
-        dummyCollege = [[ar1 objectAtIndex:indexPath.row] objectForKey:@"College"];
+        dummyCollege = [ar1 objectAtIndex:indexPath.row];
     }
     
     [self performSegueWithIdentifier:@"showCollegeDetailPageSegue" sender:dummyCollege];
@@ -291,7 +291,10 @@
     
     MUITCollege *theCollege = (MUITCollege*)sender;
     
+    theCollege.pushedFromFavorites = YES;
+    
     dest.representedCollege = theCollege;
+    
     
 }
 

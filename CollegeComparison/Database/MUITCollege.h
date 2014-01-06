@@ -8,7 +8,39 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MUITCollege : NSObject
+@interface MUITCollege : NSObject <NSCoding> {
+    NSString *name;
+    NSString *state;
+    NSInteger id;
+    NSInteger control;
+    
+    NSInteger sat_reading_25;
+    NSInteger sat_reading_75;
+    NSInteger sat_math_25;
+    NSInteger sat_math_75;
+    NSInteger sat_writing_25;
+    NSInteger sat_writing_75;
+    
+    NSInteger act_25;
+    NSInteger act_75;
+    NSInteger act_english_25;
+    NSInteger act_english_75;
+    NSInteger act_math_25;
+    NSInteger act_math_75;
+    NSInteger act_writing_25;
+    NSInteger act_writing_75;
+    
+    NSInteger percent_receive_financial_aid;
+    
+    NSInteger enrollment_men;
+    NSInteger enrollment_women;
+    NSInteger enrollment_total;
+    
+    NSInteger tuition_in_state;
+    NSInteger tuition_out_state;
+    
+    NSString *dateAccessed;
+}
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *state;
@@ -39,6 +71,10 @@
 
 @property (nonatomic, assign) NSInteger tuition_out_state;
 @property (nonatomic, assign) NSInteger tuition_in_state;
+
+@property (nonatomic, assign) BOOL pushedFromFavorites;
+
+@property (nonatomic, strong) NSString *dateAccessed;
 
 
 @end

@@ -237,6 +237,7 @@
 			children = (
 				535EA91418297637003D289A /* Main.storyboard */,
 				535EA91218297637003D289A /* CCAppDelegate.m */,
+				535EA91118297637003D289A /* CCAppDelegate.h */,
 				BAE4EB501854FE8100597C1D /* favoritesCell.xib */,
 				BA852071183AF40D002CC626 /* Bar Animations */,
 				BAE4EB481854EDC400597C1D /* Bookmarking */,
@@ -276,7 +277,6 @@
 			children = (
 				BAE4EB521854FEB200597C1D /* CCFavoriteSCell.h */,
 				BAE4EB531854FEB200597C1D /* CCFavoriteSCell.m */,
-				535EA91118297637003D289A /* CCAppDelegate.h */,
 				BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */,
 				BAE4EB301852F29900597C1D /* CCBookmarksPage.m */,
 				BAE4EB491854EDD900597C1D /* Images */,

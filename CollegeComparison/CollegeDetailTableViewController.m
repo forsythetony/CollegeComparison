@@ -190,46 +190,62 @@
 
 -(void)addToRecents:(MUITCollege*) college
 {
-    CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    NSInteger maxSizeOfRecents = 30;
-    
-    BOOL wasEqual = NO;
-    
-   
-    
-    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-   [DateFormatter setDateFormat:@"EEE, d MMM yyyy hh:mm:ss"];
-    NSString *currentDateAndTime = [DateFormatter stringFromDate:[NSDate date]];
-    
-    NSDictionary *recentsObject = [NSDictionary dictionaryWithObjectsAndKeys:college, @"College", currentDateAndTime, @"Time", nil];
-    
-    
-    
-    for (NSDictionary *dictionary in appDelegate.recentlyVisited)
-    {
-        MUITCollege *theCollege = [dictionary objectForKey:@"College"];
-    
-        if ([college.name isEqualToString:theCollege.name]) {
-            [appDelegate.recentlyVisited removeObject:dictionary];
-            [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
-            wasEqual = YES;
+    if (college.pushedFromFavorites == NO) {
+        CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        NSInteger maxSizeOfRecents = 30;
+        
+        BOOL wasEqual = NO;
+        
+        
+        
+        NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+        [DateFormatter setDateFormat:@"EEE, d MMM yyyy hh:mm:ss"];
+        NSString *currentDateAndTime = [DateFormatter stringFromDate:[NSDate date]];
+        
+        
+        self.representedCollege.dateAccessed = currentDateAndTime;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //    NSDictionary *recentsObject = [NSDictionary dictionaryWithObjectsAndKeys:college, @"College", currentDateAndTime, @"Time", nil];
+        
+        
+        
+        //    for (NSDictionary *dictionary in appDelegate.recentlyVisited)
+        //    {
+        //        MUITCollege *theCollege = [dictionary objectForKey:@"College"];
+        //
+        //        if ([college.name isEqualToString:theCollege.name]) {
+        //            [appDelegate.recentlyVisited removeObject:dictionary];
+        //            [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
+        //            wasEqual = YES;
+        //        }
+        //    }
+        
+        NSInteger counter = [appDelegate.recentlyVisited count];
+        
+        if (wasEqual == NO && counter < maxSizeOfRecents) {
+            [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
         }
-    }
-    
-    NSInteger counter = [appDelegate.recentlyVisited count];
-    
-    if (wasEqual == NO && counter < maxSizeOfRecents) {
-            [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
-    }
-    else if (wasEqual == NO && counter >= maxSizeOfRecents)
-    {
-        [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
-        [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
-    }
+        else if (wasEqual == NO && counter >= maxSizeOfRecents)
+        {
+            [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
+            [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
+        }
+        
+        self.title = self.representedCollege.name;
 
-    self.title = self.representedCollege.name;
-}
+    }
+    
+   }
 
 
 

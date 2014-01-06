@@ -52,7 +52,7 @@
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
     [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
     
-    self.recentlyVisited = [NSMutableArray new];
+    self.recentlyVisited = [self reloadBookmarked];
     
     self.bookmarked = [NSMutableArray new];
     
@@ -64,6 +64,8 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self saveBookmarked];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -85,19 +87,29 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    NSMutableArray* myArray = [[NSMutableArray alloc]init];
-    int i = 0;
-    while(i < self.recentlyVisited.count){
-        [myArray addObject: [self.recentlyVisited objectAtIndex: i]];
-        i ++;
-    }
-    [myArray writeToFile:[self saveFilePath] atomically:YES];
+
+
 }
--(NSString*) saveFilePath{
-    NSString* path = [NSString stringWithFormat:@"%@%@",
-                      [[NSBundle mainBundle] resourcePath],
-                      @"myfilename.plist"];
-    return path;
+
+
+-(void)saveBookmarked
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.recentlyVisited];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"recentlyVisited"];
+    
+}
+
+-(NSMutableArray*)reloadBookmarked
+{
+    NSData *bookmarksData = [[NSUserDefaults standardUserDefaults] objectForKey:@"recentlyVisited"];
+    
+    if (bookmarksData == nil) {
+        return [NSMutableArray new];
+    }
+    
+    NSMutableArray *bookmarks = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarksData];
+    
+    return bookmarks;
 }
 
 

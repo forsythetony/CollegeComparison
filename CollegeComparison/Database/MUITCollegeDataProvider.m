@@ -303,6 +303,9 @@ static sqlite3_stmt *statement = nil;
                 dummyCollege.tuition_out_state = [[valuesDictionary objectForKey:@"tuition_out_state"] integerValue];
                 dummyCollege.tuition_in_state = [[valuesDictionary objectForKey:@"tuition_in_state"] integerValue];
         
+                dummyCollege.pushedFromFavorites = NO;
+        
+        
         [protoDummyColleges addObject:dummyCollege];
         
     }
