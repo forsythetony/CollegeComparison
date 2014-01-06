@@ -58,6 +58,8 @@
     
     MUITCollege *college = self.representedCollege;
     
+    self.title = self.representedCollege.name;
+    
     [self configureGobalVariables];
     [self configureFavoritesButton];
     
@@ -124,10 +126,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 
-
-
-
-    
     CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     favorites = appDelegate.bookmarked;
@@ -162,31 +160,6 @@
 }
 
 #pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 7;
-//}
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
 
 -(void)addToRecents:(MUITCollege*) college
 {
@@ -272,13 +245,8 @@
 }
 -(void)addToFavorites:(UIButton*) sender
 {
-    if (favorited == YES) {
-//        [sender setImage:unhighlightedStarImage forState:UIControlStateNormal];
-//        
-//        
-//        
-//        [favorites insertObject:self.representedCollege atIndex:0];
-
+    if (favorited == YES)
+    {
         [sender setImage:unhighlightedStarImage forState:UIControlStateNormal];
         
         [favorites removeObject:self.representedCollege];

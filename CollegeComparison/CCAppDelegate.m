@@ -101,8 +101,6 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.recentlyVisited];
   
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"recentlyVisited"];
-    
-
 
 }
 
