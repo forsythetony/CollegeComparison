@@ -13,6 +13,7 @@
 static sqlite3 *database = nil;
 static sqlite3_stmt *statement = nil;
 
+#pragma mark Actual Data Methods -
 -(NSMutableArray*) getColleges:(NSMutableDictionary*)parameters
 {
     //default parameters
@@ -127,13 +128,7 @@ static sqlite3_stmt *statement = nil;
     return nil;//something happened; file not valid.
 }
 
-//-(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending//NOT CURRENTLY FUNCTIONAL
-//{
-//    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:sortKey ascending:ascending];
-//    [collegeArray sortUsingDescriptors: @[descriptor]];
-//}
-
-//A dummy data function to return 3 MUITCollege objects
+#pragma mark Dummy Data Methods -
 -(NSArray *)getDummyColleges
 {
 

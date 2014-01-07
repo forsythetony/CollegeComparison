@@ -12,11 +12,8 @@
 
 @interface MUITCollegeDataProvider : NSObject
 
-//METHODS:
-
+//Public methods to retrieve data
 -(NSMutableArray*) getColleges:(NSMutableDictionary*)parameters;
-
-//-(void) sortCollegeArray:(NSMutableArray*)collegeArray sortKey:(NSString*)sortKey ascending:(BOOL) ascending;//NOT CURRENTLY FUNCTIONAL
 
 -(NSArray*)getDummyColleges;
 
