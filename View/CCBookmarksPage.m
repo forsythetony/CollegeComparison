@@ -93,7 +93,7 @@
 -(void)configureNavigationBar
 {
 
-    self.title = @"Udecide";
+    self.title = @"Ucompare";
     
 }
 -(void)configureSegmentedControl
