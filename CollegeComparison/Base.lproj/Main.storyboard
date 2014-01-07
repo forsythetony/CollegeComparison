@@ -715,7 +715,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Udecide" id="jz2-Oo-jWe"/>
+                    <navigationItem key="navigationItem" title="Ucompare" id="jz2-Oo-jWe"/>
                     <connections>
                         <outlet property="favoritesOrRect" destination="BhL-WJ-62d" id="ZdU-PU-IoT"/>
                         <segue destination="bsp-Og-61H" kind="push" identifier="showCollegeDetailPageSegue" id="tDF-Sv-HEI"/>

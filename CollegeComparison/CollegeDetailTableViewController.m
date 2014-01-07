@@ -81,7 +81,7 @@
 
     //error checking then displays
     if (college.enrollment_total <= 0) studentBTotalLabel.text = @"N/A";
-    else studentBTotalLabel.text = [NSString stringWithFormat:@"%d", college.enrollment_total];
+    else studentBTotalLabel.text = [NSString stringWithFormat:@"%ld", (long)college.enrollment_total];
     
     if (menEnrollment <= 0) menEnrollLabel.text = @"N/A";
     else menEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (menPerc*100)];
@@ -163,7 +163,7 @@
 
 -(void)addToRecents:(MUITCollege*) college
 {
-    if (college.pushedFromFavorites == NO) {
+
         CCAppDelegate *appDelegate = (CCAppDelegate*)[[UIApplication sharedApplication] delegate];
         
         NSInteger maxSizeOfRecents = 30;
@@ -180,29 +180,6 @@
         self.representedCollege.dateAccessed = currentDateAndTime;
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        //    NSDictionary *recentsObject = [NSDictionary dictionaryWithObjectsAndKeys:college, @"College", currentDateAndTime, @"Time", nil];
-        
-        
-        
-        //    for (NSDictionary *dictionary in appDelegate.recentlyVisited)
-        //    {
-        //        MUITCollege *theCollege = [dictionary objectForKey:@"College"];
-        //
-        //        if ([college.name isEqualToString:theCollege.name]) {
-        //            [appDelegate.recentlyVisited removeObject:dictionary];
-        //            [appDelegate.recentlyVisited insertObject:recentsObject atIndex:0];
-        //            wasEqual = YES;
-        //        }
-        //    }
-        
         NSInteger counter = [appDelegate.recentlyVisited count];
         
         if (wasEqual == NO && counter < maxSizeOfRecents) {
@@ -213,12 +190,33 @@
             [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
             [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
         }
+    
+    
+    BOOL foundInArray = [appDelegate.recentlyVisited containsObject:college];
+    NSInteger arrayCount = [appDelegate.recentlyVisited count];
+    
+    
+    if (foundInArray == YES) {
         
-        self.title = self.representedCollege.name;
+        if (arrayCount < maxSizeOfRecents) {
+            [appDelegate.recentlyVisited removeObject:college];
+            [appDelegate.recentlyVisited insertObject:college atIndex:0];
+        }
+        else {
+            [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
 
+            [appDelegate.recentlyVisited removeObject:college];
+            [appDelegate.recentlyVisited insertObject:college atIndex:0];
+        }
+    
+    }
+    else if (foundInArray == NO){
+        [appDelegate.recentlyVisited insertObject:college atIndex:0];
     }
     
-   }
+}
+    
+
 
 
 
@@ -282,5 +280,20 @@
         }
     }
 
+}
+
+-(MUITCollege*)doesCollegeExistInArray:(MUITCollege*) college
+{    
+    for (MUITCollege *myCollege in recents) {
+        
+        NSString *collegeName = myCollege.name;
+        
+        if ([collegeName isEqualToString:college.name]) {
+            return myCollege;
+        }
+    }
+    
+    
+    return nil;
 }
 @end

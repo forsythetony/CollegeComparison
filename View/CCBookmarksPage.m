@@ -137,17 +137,12 @@
     CGRect tableViewRect = CGRectMake(0.0, heightOffset, self.view.bounds.size.width, self.view.bounds.size.height - heightOffset);
     UITableView *tableViewFavorites = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
     
-    //[tableViewFavorites setBackgroundColor:[UIColor redColor]];
     [tableViewFavorites setDataSource:self];
     [tableViewFavorites setDelegate:self];
     
     UITableView *recentTableView = [[UITableView alloc] initWithFrame:tableViewRect style:UITableViewStylePlain];
     [recentTableView setDataSource:self];
     [recentTableView setDelegate:self];
-    //[recentTableView setBackgroundColor:[UIColor greenColor]];
-    
-    
-    
     
     [self.view addSubview:tableViewFavorites];
     [self.view addSubview:recentTableView];
@@ -299,14 +294,8 @@
     
 }
 
-//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//}
-
 -(void)handleStarClick:(UIBarButtonItem*) sender
 {
-    NSInteger sectionNumber = [self.favoritesOrRect selectedSegmentIndex];
     
     if ([tableViews[0] isEditing] == YES)
     {
@@ -335,9 +324,5 @@
     
     
 }
-
-
-
-
 
 @end
