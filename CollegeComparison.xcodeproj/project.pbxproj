@@ -33,6 +33,8 @@
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
 		53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91418297637003D289A /* Main.storyboard */; };
 		53F82003184D808C000466E4 /* CollegeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */; };
+		BA28B450187BD035004C1721 /* home_navbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA28B44E187BD035004C1721 /* home_navbar_icon.png */; };
+		BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA28B44F187BD035004C1721 /* home_navbar_icon@2x.png */; };
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
 		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
@@ -100,6 +102,8 @@
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
 		53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeDetailTableViewController.h; sourceTree = "<group>"; };
 		53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeDetailTableViewController.m; sourceTree = "<group>"; };
+		BA28B44E187BD035004C1721 /* home_navbar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_navbar_icon.png; path = images/home_navbar_icon.png; sourceTree = SOURCE_ROOT; };
+		BA28B44F187BD035004C1721 /* home_navbar_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_navbar_icon@2x.png"; path = "images/home_navbar_icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = ../View/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = ../View/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		535EA90818297637003D289A /* CollegeComparison */ = {
 			isa = PBXGroup;
 			children = (
+				BA28B449187BCF59004C1721 /* Images */,
 				532A1485184D7594009C5BAE /* Database */,
 				BA852066183AE2E4002CC626 /* View */,
 				535EA91A18297637003D289A /* Images.xcassets */,
@@ -230,6 +235,15 @@
 				535EA92A18297638003D289A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA28B449187BCF59004C1721 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BA28B44E187BD035004C1721 /* home_navbar_icon.png */,
+				BA28B44F187BD035004C1721 /* home_navbar_icon@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		BA852066183AE2E4002CC626 /* View */ = {
@@ -376,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA28B450187BD035004C1721 /* home_navbar_icon.png in Resources */,
 				53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */,
 				BAE4EB421854EC1C00597C1D /* unhighlighted_star.png in Resources */,
 				BAE4EB431854EC1C00597C1D /* unhighlighted_star@2x.png in Resources */,
@@ -385,6 +400,7 @@
 				BAE4EB3718542BB100597C1D /* star_icon.png in Resources */,
 				BAE4EB4F1854F67F00597C1D /* highlighted_star@2x.png in Resources */,
 				53290F491830A9D000781050 /* schools.db in Resources */,
+				BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */,
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
 				532A148D184D7594009C5BAE /* schools.db in Resources */,
 				BAE4EB3918543B2900597C1D /* my_star_icon.png in Resources */,

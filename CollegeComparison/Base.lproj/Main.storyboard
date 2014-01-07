@@ -423,7 +423,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ixq-OL-otI" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="gek-mz-0Pg">
+                    <tabBarItem key="tabBarItem" title="Home" image="home_navbar_icon.png" id="gek-mz-0Pg">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -829,10 +829,10 @@
         <image name="Background2" width="435" height="210"/>
         <image name="Check" width="183" height="183"/>
         <image name="Financial Aid" width="183" height="197"/>
-        <image name="Home" width="25" height="25"/>
         <image name="Institution Type" width="183" height="183"/>
         <image name="Student Body" width="183" height="183"/>
         <image name="Tuition" width="183" height="206"/>
+        <image name="home_navbar_icon.png" width="60" height="65"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
