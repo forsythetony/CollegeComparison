@@ -25,10 +25,18 @@
     }
     return self;
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (toggleButton) {
+        [toggleButton removeFromSuperview];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (toggleButton) {
+        [toggleButton removeFromSuperview];
+    }
     [self slidingPanelSetup];   
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.

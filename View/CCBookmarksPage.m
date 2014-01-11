@@ -42,6 +42,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (toggleButton) {
+        [toggleButton removeFromSuperview];
+    }
 	[self slidingPanelSetup];
     // Do any additional setup after loading the view.
     [self getData];
@@ -67,6 +70,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self getData];
+    if (toggleButton) {
+        [toggleButton removeFromSuperview];
+    }
     [tableViews[0] reloadData];
     [tableViews[1] reloadData];
 }
