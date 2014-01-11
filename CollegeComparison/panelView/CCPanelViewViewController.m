@@ -42,7 +42,7 @@
     
     self.revealViewController.rearViewRevealWidth = WIDTHOFPANEL;
     
-    _menuItems = @[@"Home", @"Bookmarks", @"Settings"];
+    _menuItems = @[@"Home", @"Bookmarks", @"Settings", @"sync"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -98,6 +98,11 @@
 #pragma mark Configure Cell -
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell WithIdentifier:(NSString*) name
 {
+    
+    if ([name isEqualToString:@"sync"]) {
+        return [self configureSyncCell:theCell];
+    }
+    
     //Configure 'global' variables
     UIFont *titleFont = [UIFont
                          fontWithName:@"Avenir-Book"
@@ -231,4 +236,46 @@
     }
     
 }
+-(UITableViewCell*)configureSyncCell:(UITableViewCell*) cell
+{
+    
+    [cell.contentView setBackgroundColor:[UIColor colorWithWhite:0.3 alpha:1.0]];
+    //Create button frame
+    float widthOfButton = 100.0;
+    float topPadding = 5.0;
+    
+    CGRect buttonFrame;
+    
+    buttonFrame.origin.x = (WIDTHOFPANEL / 2) - (widthOfButton / 2);
+    buttonFrame.origin.y = topPadding;
+    buttonFrame.size.width = widthOfButton;
+    buttonFrame.size.height = 20.0;
+    
+    //Instant button
+    UIButton *syncButton = [[UIButton alloc] initWithFrame:buttonFrame];
+    
+    //Configure button
+    syncButton.layer.cornerRadius = 8.0;
+    [syncButton setTitle:@"sync" forState:UIControlStateNormal];
+    [syncButton setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:103.0/255.0 blue:65.0/255.0 alpha:0.8]];
+    [syncButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
+    [syncButton.titleLabel setTextColor:[UIColor whiteColor]];
+    
+    
+    //Add as subview
+    [cell.contentView addSubview:syncButton];
+    
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 3) {
+        return 30.0;
+    }
+    else
+    {
+        return 40.0;
+    }
+}
+
 @end
