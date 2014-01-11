@@ -46,6 +46,7 @@
 		BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AC18815C5600752303 /* bookmarkHigh.png */; };
 		BA98F1B018815C9800752303 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AE18815C9800752303 /* map.png */; };
 		BA98F1B118815C9800752303 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AF18815C9800752303 /* news.png */; };
+		BA98F1CD18816B7700752303 /* sync_image.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1CC18816B7700752303 /* sync_image.png */; };
 		BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB2D185075FC00597C1D /* ios-linen.jpg */; };
 		BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE4EB301852F29900597C1D /* CCBookmarksPage.m */; };
 		BAE4EB3718542BB100597C1D /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB3618542BB100597C1D /* star_icon.png */; };
@@ -129,6 +130,7 @@
 		BA98F1AC18815C5600752303 /* bookmarkHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookmarkHigh.png; path = panelView/images/bookmarkHigh.png; sourceTree = "<group>"; };
 		BA98F1AE18815C9800752303 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = panelView/images/map.png; sourceTree = "<group>"; };
 		BA98F1AF18815C9800752303 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = news.png; path = panelView/images/news.png; sourceTree = "<group>"; };
+		BA98F1CC18816B7700752303 /* sync_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sync_image.png; path = panelView/images/sync_image.png; sourceTree = "<group>"; };
 		BAE4EB2D185075FC00597C1D /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ios-linen.jpg"; sourceTree = "<group>"; };
 		BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = View/CCBookmarksPage.h; sourceTree = SOURCE_ROOT; };
 		BAE4EB301852F29900597C1D /* CCBookmarksPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCBookmarksPage.m; path = View/CCBookmarksPage.m; sourceTree = SOURCE_ROOT; };
@@ -319,6 +321,7 @@
 		BA98F19818814B6100752303 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA98F1CC18816B7700752303 /* sync_image.png */,
 				BA98F1AE18815C9800752303 /* map.png */,
 				BA98F1AF18815C9800752303 /* news.png */,
 				BA98F1AC18815C5600752303 /* bookmarkHigh.png */,
@@ -486,6 +489,7 @@
 				BA98F19E1881512200752303 /* pixel_weave.png in Resources */,
 				BAE4EB431854EC1C00597C1D /* unhighlighted_star@2x.png in Resources */,
 				BAE4EB3F1854E9F000597C1D /* custom_star_icon.png in Resources */,
+				BA98F1CD18816B7700752303 /* sync_image.png in Resources */,
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
 				BAE4EB511854FE8100597C1D /* favoritesCell.xib in Resources */,
 				BAE4EB3718542BB100597C1D /* star_icon.png in Resources */,

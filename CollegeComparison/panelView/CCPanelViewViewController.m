@@ -15,7 +15,10 @@
 
 #define CORAL [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
 
-@interface CCPanelViewViewController ()
+@interface CCPanelViewViewController () {
+    UIImageView *syncImage;
+    BOOL animating;
+}
 
 @property (nonatomic, strong) NSArray *menuItems;
 
@@ -265,6 +268,25 @@
     //Add as subview
     [cell.contentView addSubview:syncButton];
     
+    //Configure sync image
+    float syncImageLeftPadding = 0.0;
+    CGRect syncFrame;
+    syncFrame.origin.x = 0.0;
+    syncFrame.origin.y = topPadding;
+    syncFrame.size.width = 20.0;
+    syncFrame.size.width = 20.0;
+    
+    syncImage = [[ UIImageView alloc] initWithImage:[UIImage imageNamed:@"sync_image.png"]];
+    
+    [syncImage setFrame:CGRectMake(widthOfButton - 30.0, 3.0, 15.0, 15.0)];
+    
+    //Configure button target
+    [syncButton addTarget:self action:@selector(startSpin) forControlEvents:UIControlEventTouchUpInside];
+    [syncButton addSubview:syncImage];
+    
+    
+    
+    
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -278,4 +300,37 @@
     }
 }
 
+- (void) startSpin {
+    if (!animating || animating == NO) {
+        animating = YES;
+        [self spinWithOptions: UIViewAnimationOptionCurveLinear];
+    }
+    else {
+        [self stopSpin];
+    }
+}
+- (void) spinWithOptions: (UIViewAnimationOptions) options {
+    // this spin completes 360 degrees every 2 seconds
+    [UIView animateWithDuration: 0.5f
+                          delay: 0.0f
+                        options: options
+                     animations: ^{
+                         syncImage.transform = CGAffineTransformRotate(syncImage.transform, M_PI / 2);
+                     }
+                     completion: ^(BOOL finished) {
+                         if (finished) {
+                             if (animating) {
+                                 // if flag still set, keep spinning with constant speed
+                                 [self spinWithOptions: UIViewAnimationOptionCurveLinear];
+                             } else if (options != UIViewAnimationOptionCurveEaseOut) {
+                                 // one last spin, with deceleration
+                                 [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
+                             }
+                         }
+                     }];
+}
+- (void) stopSpin {
+    // set the flag to stop spinning after one last 90 degree increment
+    animating = NO;
+}
 @end
