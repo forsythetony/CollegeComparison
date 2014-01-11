@@ -76,7 +76,7 @@
     //NSString *selectedUniversity = self.universityNames[selectedRowToPass];
     
     // Segue identifiers
-    NSString *comparisonSegueIdentifier = @"ComparisonSegue";
+    //NSString *comparisonSegueIdentifier = @"ComparisonSegue";
     NSString *filteredSchoolsSegueIdentifier = @"FilteredSchoolsSegue";
     
     /*if([segue.identifier isEqualToString:comparisonSegueIdentifier] && self.collegesToCompare.count == 2)
@@ -91,7 +91,7 @@
     if([segue.identifier isEqualToString:filteredSchoolsSegueIdentifier])
      {
      // Implement the segue to a new view controller to display the details page
-     FilteredCollegesViewController *detailsViewController = segue.destinationViewController;
+     //FilteredCollegesViewController *detailsViewController = segue.destinationViewController;
      //detailsViewController.university = selectedUniversity;
      //detailsViewController.location = selectedUniversity;
      //detailsViewController.tuition = selectedUniversity;

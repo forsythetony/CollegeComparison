@@ -18,7 +18,6 @@
 		53290F491830A9D000781050 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 53290F481830A9D000781050 /* schools.db */; };
 		532A148B184D7594009C5BAE /* MUITCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1487184D7594009C5BAE /* MUITCollege.m */; };
 		532A148C184D7594009C5BAE /* MUITCollegeDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1489184D7594009C5BAE /* MUITCollegeDataProvider.m */; };
-		532A148D184D7594009C5BAE /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 532A148A184D7594009C5BAE /* schools.db */; };
 		535EA90318297637003D289A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90218297637003D289A /* Foundation.framework */; };
 		535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90418297637003D289A /* CoreGraphics.framework */; };
 		535EA90718297637003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
@@ -495,7 +494,6 @@
 				BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */,
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
 				BA98F19B18814BA500752303 /* menu.png in Resources */,
-				532A148D184D7594009C5BAE /* schools.db in Resources */,
 				BAE4EB3918543B2900597C1D /* my_star_icon.png in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
 				BAE4EB4E1854F67F00597C1D /* highlighted_star.png in Resources */,
