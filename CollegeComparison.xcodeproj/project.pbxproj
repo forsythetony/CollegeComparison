@@ -43,12 +43,9 @@
 		BA75EDF61881EBCC0087BC15 /* Filter Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EDEA1881EBCC0087BC15 /* Filter Icon.png */; };
 		BA75EDF71881EBCC0087BC15 /* Filter NEW-1.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EDEB1881EBCC0087BC15 /* Filter NEW-1.png */; };
 		BA75EDF81881EBCC0087BC15 /* Home Navigation Bar.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EDEC1881EBCC0087BC15 /* Home Navigation Bar.png */; };
-		BA75EDF91881EBCC0087BC15 /* home_navbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EDED1881EBCC0087BC15 /* home_navbar_icon.png */; };
 		BA75EDFA1881EBCC0087BC15 /* home_navbar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EDEE1881EBCC0087BC15 /* home_navbar_icon@2x.png */; };
 		BA75EDFB1881EBCC0087BC15 /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EDEF1881EBCC0087BC15 /* Star.png */; };
 		BA75EDFE1881EBD90087BC15 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDFD1881EBD90087BC15 /* SWRevealViewController.m */; };
-		BA75EE151881EC280087BC15 /* home_navbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE091881EC280087BC15 /* home_navbar_icon.png */; };
-		BA75EE161881EC280087BC15 /* home_navbar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE0A1881EC280087BC15 /* home_navbar_icon@2x.png */; };
 		BA75EE1A1881EC640087BC15 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EE191881EC630087BC15 /* HomeViewController.m */; };
 		BA75EE231881EC700087BC15 /* CollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EE1C1881EC700087BC15 /* CollegeSearchViewController.m */; };
 		BA75EE241881EC700087BC15 /* FilteredCollegesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EE1E1881EC700087BC15 /* FilteredCollegesTableViewCell.m */; };
@@ -190,7 +187,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		532A1485184D7594009C5BAE /* Database */ = {
+		532A1485184D7594009C5BAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				BA75EE301881ECD20087BC15 /* MUITCollege.h */,
@@ -198,6 +195,7 @@
 				BA75EE321881ECD20087BC15 /* MUITCollegeDataProvider.h */,
 				BA75EE331881ECD20087BC15 /* MUITCollegeDataProvider.m */,
 			);
+			name = Model;
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -239,7 +237,7 @@
 				BA75EE391881ED040087BC15 /* CCAppDelegate.h */,
 				BA75EE3A1881ED040087BC15 /* CCAppDelegate.m */,
 				BA75EE361881ECFF0087BC15 /* Main.storyboard */,
-				532A1485184D7594009C5BAE /* Database */,
+				532A1485184D7594009C5BAE /* Model */,
 				BA852066183AE2E4002CC626 /* View */,
 				535EA90918297637003D289A /* Supporting Files */,
 			);
@@ -515,37 +513,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA75EDD01881EB7A0087BC15 /* my_star_icon.png in Resources */,
-				BA75EE471881EDAF0087BC15 /* InfoPlist.strings in Resources */,
+				BA75EDF11881EBCC0087BC15 /* Background.png in Resources */,
+				BA75EDF21881EBCC0087BC15 /* Background2.png in Resources */,
+				BA75EDF31881EBCC0087BC15 /* Bookmark.png in Resources */,
+				BA75EDF01881EBCC0087BC15 /* Back Arrow.png in Resources */,
+				BA75EDF41881EBCC0087BC15 /* bookmarks_navbar_icon.png in Resources */,
+				BA75EDF51881EBCC0087BC15 /* bookmarks_navbar_icon@2x.png in Resources */,
 				BA75EDDB1881EB900087BC15 /* CCAnimationsScreenViewController.xib in Resources */,
-				BA75EDF91881EBCC0087BC15 /* home_navbar_icon.png in Resources */,
+				BA75EDCC1881EB7A0087BC15 /* custom_star_icon.png in Resources */,
 				BA75EDCE1881EB7A0087BC15 /* highlighted_star.png in Resources */,
-				BA75EE491881EDBB0087BC15 /* schools.db in Resources */,
+				BA75EE471881EDAF0087BC15 /* InfoPlist.strings in Resources */,
 				BA75EDF61881EBCC0087BC15 /* Filter Icon.png in Resources */,
 				BA75EE3D1881ED340087BC15 /* Images.xcassets in Resources */,
 				BA75EE421881ED5E0087BC15 /* CollegeSearch-Info.plist in Resources */,
 				BA75EDF71881EBCC0087BC15 /* Filter NEW-1.png in Resources */,
-				BA75EDF11881EBCC0087BC15 /* Background.png in Resources */,
-				BA75EE151881EC280087BC15 /* home_navbar_icon.png in Resources */,
 				BA75EE411881ED5E0087BC15 /* CollegeComparison-Info.plist in Resources */,
-				BA75EDF21881EBCC0087BC15 /* Background2.png in Resources */,
-				BA75EDF31881EBCC0087BC15 /* Bookmark.png in Resources */,
 				BA75EDC31881EB670087BC15 /* favoritesCell.xib in Resources */,
-				BA75EDFB1881EBCC0087BC15 /* Star.png in Resources */,
 				BA75EDDD1881EBA00087BC15 /* ios-linen.jpg in Resources */,
-				BA75EDD21881EB7A0087BC15 /* unhighlighted_star.png in Resources */,
 				BA75EDCF1881EB7A0087BC15 /* highlighted_star@2x.png in Resources */,
-				BA75EDD11881EB7A0087BC15 /* star_icon.png in Resources */,
 				BA75EDF81881EBCC0087BC15 /* Home Navigation Bar.png in Resources */,
-				BA75EDF41881EBCC0087BC15 /* bookmarks_navbar_icon.png in Resources */,
-				BA75EDCC1881EB7A0087BC15 /* custom_star_icon.png in Resources */,
-				BA75EDF01881EBCC0087BC15 /* Back Arrow.png in Resources */,
-				BA75EDF51881EBCC0087BC15 /* bookmarks_navbar_icon@2x.png in Resources */,
 				BA75EDCD1881EB7A0087BC15 /* gold_star.png in Resources */,
-				BA75EDD31881EB7A0087BC15 /* unhighlighted_star@2x.png in Resources */,
 				BA75EDFA1881EBCC0087BC15 /* home_navbar_icon@2x.png in Resources */,
 				BA75EE381881ECFF0087BC15 /* Main.storyboard in Resources */,
-				BA75EE161881EC280087BC15 /* home_navbar_icon@2x.png in Resources */,
+				BA75EDD01881EB7A0087BC15 /* my_star_icon.png in Resources */,
+				BA75EE491881EDBB0087BC15 /* schools.db in Resources */,
+				BA75EDFB1881EBCC0087BC15 /* Star.png in Resources */,
+				BA75EDD21881EB7A0087BC15 /* unhighlighted_star.png in Resources */,
+				BA75EDD11881EB7A0087BC15 /* star_icon.png in Resources */,
+				BA75EDD31881EB7A0087BC15 /* unhighlighted_star@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
