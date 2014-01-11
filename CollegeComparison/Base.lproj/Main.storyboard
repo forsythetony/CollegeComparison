@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="YTR-ro-rd1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uo7-9p-ggl">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -28,7 +28,7 @@
             <objects>
                 <tableViewController id="bsp-Og-61H" customClass="CollegeDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zwV-al-eEH">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -557,11 +557,11 @@
                         <viewControllerLayoutGuide type="bottom" id="CL0-fc-j2E"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NxA-1w-b00">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="4bo-uE-aBy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="515"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="579"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDt-92-5yR">
@@ -630,11 +630,11 @@
                         <viewControllerLayoutGuide type="bottom" id="7aO-Se-Nbp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tIr-W9-XLe">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9NX-Mc-kne">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="sFr-ok-g49" customClass="TuitionSegmentedControl">
@@ -832,7 +832,7 @@
                         <viewControllerLayoutGuide type="bottom" id="V59-Pf-HoH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vOF-wK-DmC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhL-WJ-62d">
@@ -866,7 +866,7 @@
             <objects>
                 <tableViewController title="schools" id="D19-1R-X0e" customClass="FilteredCollegesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="aac-xY-HNN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Colleges" id="5tw-a3-ZgU">
@@ -958,10 +958,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uAA-ye-iUd"/>
-        <segue reference="gte-0V-F6b"/>
-        <segue reference="fQO-6l-DGL"/>
-        <segue reference="mf6-lD-9Jg"/>
+        <segue reference="66y-3N-wv6"/>
+        <segue reference="ig0-rz-hxb"/>
+        <segue reference="rfW-Pj-EdF"/>
         <segue reference="tDF-Sv-HEI"/>
+        <segue reference="gte-0V-F6b"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -213,6 +213,9 @@
 		535EA90818297637003D289A /* CollegeComparison */ = {
 			isa = PBXGroup;
 			children = (
+				535EA91418297637003D289A /* Main.storyboard */,
+				535EA91218297637003D289A /* CCAppDelegate.m */,
+				535EA91118297637003D289A /* CCAppDelegate.h */,
 				BA28B449187BCF59004C1721 /* Images */,
 				532A1485184D7594009C5BAE /* Database */,
 				BA852066183AE2E4002CC626 /* View */,
@@ -264,28 +267,13 @@
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA98F1A51881592E00752303 /* College View */,
+				BA98F1A4188158DB00752303 /* Search */,
+				BA98F1A3188158C900752303 /* Home */,
+				BAE4EB481854EDC400597C1D /* Bookmarking */,
+				BA852071183AF40D002CC626 /* Bar Animations */,
 				BA98F19F1881531D00752303 /* Settings */,
 				BA98F1901881489D00752303 /* Panel View */,
-				535EA91418297637003D289A /* Main.storyboard */,
-				535EA91218297637003D289A /* CCAppDelegate.m */,
-				535EA91118297637003D289A /* CCAppDelegate.h */,
-				BAE4EB501854FE8100597C1D /* favoritesCell.xib */,
-				BA852071183AF40D002CC626 /* Bar Animations */,
-				BAE4EB481854EDC400597C1D /* Bookmarking */,
-				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
-				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
-				49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */,
-				49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */,
-				49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */,
-				49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */,
-				49EB4CAD1843FDBB00C9C4AB /* FilterViewController.h */,
-				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
-				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
-				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
-				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
-				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
-				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
-				3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -340,6 +328,42 @@
 				BA98F1A11881533C00752303 /* CCSettingsViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		BA98F1A3188158C900752303 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
+				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		BA98F1A4188158DB00752303 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */,
+				49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */,
+				49EB4CAD1843FDBB00C9C4AB /* FilterViewController.h */,
+				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
+				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
+				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
+				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
+				3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		BA98F1A51881592E00752303 /* College View */ = {
+			isa = PBXGroup;
+			children = (
+				BAE4EB501854FE8100597C1D /* favoritesCell.xib */,
+				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
+				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
+				49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */,
+				49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */,
+			);
+			name = "College View";
 			sourceTree = "<group>";
 		};
 		BAE4EB481854EDC400597C1D /* Bookmarking */ = {

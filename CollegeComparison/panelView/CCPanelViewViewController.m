@@ -198,11 +198,7 @@
         
         
         [headerView addSubview:titleLabel];
-        
-        
-        
-        
-        
+
         return headerView;
         
         
