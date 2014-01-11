@@ -8,16 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3D581DC3184C4A5B00645179 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D581DC2184C4A5A00645179 /* QuartzCore.framework */; };
-		3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */; };
-		3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */; };
-		49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */; };
-		49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */; };
-		49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */; };
-		49EB4CB71843FDBB00C9C4AB /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */; };
 		53290F431830A1F800781050 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53290F421830A1F800781050 /* libsqlite3.dylib */; };
 		53290F491830A9D000781050 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 53290F481830A9D000781050 /* schools.db */; };
-		532A148B184D7594009C5BAE /* MUITCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1487184D7594009C5BAE /* MUITCollege.m */; };
-		532A148C184D7594009C5BAE /* MUITCollegeDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1489184D7594009C5BAE /* MUITCollegeDataProvider.m */; };
 		535EA90318297637003D289A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90218297637003D289A /* Foundation.framework */; };
 		535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90418297637003D289A /* CoreGraphics.framework */; };
 		535EA90718297637003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
@@ -31,34 +23,46 @@
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
 		53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535EA91418297637003D289A /* Main.storyboard */; };
-		53F82003184D808C000466E4 /* CollegeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */; };
-		BA28B450187BD035004C1721 /* home_navbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA28B44E187BD035004C1721 /* home_navbar_icon.png */; };
-		BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA28B44F187BD035004C1721 /* home_navbar_icon@2x.png */; };
-		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
-		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
-		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
-		BA98F1941881492D00752303 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1931881492D00752303 /* SWRevealViewController.m */; };
-		BA98F1971881495C00752303 /* CCPanelViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1961881495C00752303 /* CCPanelViewViewController.m */; };
-		BA98F19B18814BA500752303 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19918814BA500752303 /* menu.png */; };
-		BA98F19C18814BA500752303 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19A18814BA500752303 /* menu@2x.png */; };
-		BA98F19E1881512200752303 /* pixel_weave.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19D1881512200752303 /* pixel_weave.png */; };
-		BA98F1A21881533C00752303 /* CCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1A11881533C00752303 /* CCSettingsViewController.m */; };
-		BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AC18815C5600752303 /* bookmarkHigh.png */; };
-		BA98F1B018815C9800752303 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AE18815C9800752303 /* map.png */; };
-		BA98F1B118815C9800752303 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AF18815C9800752303 /* news.png */; };
-		BA98F1CD18816B7700752303 /* sync_image.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1CC18816B7700752303 /* sync_image.png */; };
+		BA75ED271881DE030087BC15 /* custom_star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED211881DE030087BC15 /* custom_star_icon.png */; };
+		BA75ED281881DE030087BC15 /* highlighted_star.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED221881DE030087BC15 /* highlighted_star.png */; };
+		BA75ED291881DE030087BC15 /* highlighted_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED231881DE030087BC15 /* highlighted_star@2x.png */; };
+		BA75ED2A1881DE030087BC15 /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED241881DE030087BC15 /* star_icon.png */; };
+		BA75ED2B1881DE030087BC15 /* unhighlighted_star.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED251881DE030087BC15 /* unhighlighted_star.png */; };
+		BA75ED2C1881DE030087BC15 /* unhighlighted_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED261881DE030087BC15 /* unhighlighted_star@2x.png */; };
+		BA75ED311881DE710087BC15 /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED2E1881DE710087BC15 /* CCBookmarksPage.m */; };
+		BA75ED321881DE710087BC15 /* CCFavoriteSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED301881DE710087BC15 /* CCFavoriteSCell.m */; };
+		BA75ED381881DF220087BC15 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED341881DF220087BC15 /* CCAnimationPageViewController.m */; };
+		BA75ED391881DF220087BC15 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED361881DF220087BC15 /* CCAnimationsScreenViewController.m */; };
+		BA75ED3A1881DF220087BC15 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED371881DF220087BC15 /* CCAnimationsScreenViewController.xib */; };
+		BA75ED3D1881DFBE0087BC15 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED3C1881DFBE0087BC15 /* HomeViewController.m */; };
+		BA75ED511881E12D0087BC15 /* CollegeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED4A1881E12D0087BC15 /* CollegeSearchViewController.m */; };
+		BA75ED521881E12D0087BC15 /* FilteredCollegesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED4C1881E12D0087BC15 /* FilteredCollegesTableViewCell.m */; };
+		BA75ED531881E12D0087BC15 /* FilteredCollegesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED4E1881E12D0087BC15 /* FilteredCollegesViewController.m */; };
+		BA75ED541881E12D0087BC15 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED501881E12D0087BC15 /* FilterViewController.m */; };
+		BA75ED5B1881E1B40087BC15 /* CollegeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED561881E1B40087BC15 /* CollegeDetailTableViewController.m */; };
+		BA75ED5C1881E1B40087BC15 /* CollegeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED581881E1B40087BC15 /* CollegeDetailViewController.m */; };
+		BA75ED5D1881E1B40087BC15 /* CollegeSavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED5A1881E1B40087BC15 /* CollegeSavedViewController.m */; };
+		BA75ED5F1881E2050087BC15 /* favoritesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED5E1881E2050087BC15 /* favoritesCell.xib */; };
+		BA75ED691881E2530087BC15 /* bookmarkHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED601881E2530087BC15 /* bookmarkHigh.png */; };
+		BA75ED6A1881E2530087BC15 /* debut_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED611881E2530087BC15 /* debut_dark.png */; };
+		BA75ED6B1881E2530087BC15 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED621881E2530087BC15 /* map.png */; };
+		BA75ED6C1881E2530087BC15 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED631881E2530087BC15 /* menu.png */; };
+		BA75ED6D1881E2530087BC15 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED641881E2530087BC15 /* menu@2x.png */; };
+		BA75ED6E1881E2530087BC15 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED651881E2530087BC15 /* news.png */; };
+		BA75ED6F1881E2530087BC15 /* pixel_weave.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED661881E2530087BC15 /* pixel_weave.png */; };
+		BA75ED701881E2530087BC15 /* sync_image.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED671881E2530087BC15 /* sync_image.png */; };
+		BA75ED711881E2530087BC15 /* wild_olivia.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED681881E2530087BC15 /* wild_olivia.png */; };
+		BA75ED741881E26D0087BC15 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED731881E26D0087BC15 /* SWRevealViewController.m */; };
+		BA75ED771881E2830087BC15 /* CCPanelViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED761881E2830087BC15 /* CCPanelViewViewController.m */; };
+		BA75ED7A1881E2DC0087BC15 /* CCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED791881E2DC0087BC15 /* CCSettingsViewController.m */; };
+		BA75ED7E1881E3B90087BC15 /* home_navbar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED7C1881E3B90087BC15 /* home_navbar_icon.png */; };
+		BA75ED7F1881E3B90087BC15 /* home_navbar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED7D1881E3B90087BC15 /* home_navbar_icon@2x.png */; };
+		BA75ED851881E4280087BC15 /* MUITCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED811881E4280087BC15 /* MUITCollege.m */; };
+		BA75ED861881E4280087BC15 /* MUITCollegeDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75ED831881E4280087BC15 /* MUITCollegeDataProvider.m */; };
+		BA75ED871881E4280087BC15 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = BA75ED841881E4280087BC15 /* schools.db */; };
 		BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB2D185075FC00597C1D /* ios-linen.jpg */; };
-		BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE4EB301852F29900597C1D /* CCBookmarksPage.m */; };
-		BAE4EB3718542BB100597C1D /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB3618542BB100597C1D /* star_icon.png */; };
 		BAE4EB3918543B2900597C1D /* my_star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB3818543B2900597C1D /* my_star_icon.png */; };
 		BAE4EB3B18543BB200597C1D /* gold_star.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB3A18543BB200597C1D /* gold_star.png */; };
-		BAE4EB3F1854E9F000597C1D /* custom_star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB3E1854E9F000597C1D /* custom_star_icon.png */; };
-		BAE4EB421854EC1C00597C1D /* unhighlighted_star.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB401854EC1C00597C1D /* unhighlighted_star.png */; };
-		BAE4EB431854EC1C00597C1D /* unhighlighted_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB411854EC1C00597C1D /* unhighlighted_star@2x.png */; };
-		BAE4EB4E1854F67F00597C1D /* highlighted_star.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB4C1854F67F00597C1D /* highlighted_star.png */; };
-		BAE4EB4F1854F67F00597C1D /* highlighted_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB4D1854F67F00597C1D /* highlighted_star@2x.png */; };
-		BAE4EB511854FE8100597C1D /* favoritesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB501854FE8100597C1D /* favoritesCell.xib */; };
-		BAE4EB541854FEB200597C1D /* CCFavoriteSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE4EB531854FEB200597C1D /* CCFavoriteSCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,25 +77,8 @@
 
 /* Begin PBXFileReference section */
 		3D581DC2184C4A5A00645179 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesViewController.h; sourceTree = "<group>"; };
-		3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesViewController.m; sourceTree = "<group>"; };
-		3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredCollegesTableViewCell.h; sourceTree = "<group>"; };
-		3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredCollegesTableViewCell.m; sourceTree = "<group>"; };
-		49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeSavedViewController.h; sourceTree = "<group>"; };
-		49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeSavedViewController.m; sourceTree = "<group>"; };
-		49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeSearchViewController.h; sourceTree = "<group>"; };
-		49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeSearchViewController.m; sourceTree = "<group>"; };
-		49EB4CAD1843FDBB00C9C4AB /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
-		49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
-		49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		53290F421830A1F800781050 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		53290F481830A9D000781050 /* schools.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = schools.db; sourceTree = "<group>"; };
-		532A1486184D7594009C5BAE /* MUITCollege.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITCollege.h; sourceTree = "<group>"; };
-		532A1487184D7594009C5BAE /* MUITCollege.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUITCollege.m; sourceTree = "<group>"; };
-		532A1488184D7594009C5BAE /* MUITCollegeDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITCollegeDataProvider.h; sourceTree = "<group>"; };
-		532A1489184D7594009C5BAE /* MUITCollegeDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUITCollegeDataProvider.m; sourceTree = "<group>"; };
-		532A148A184D7594009C5BAE /* schools.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = schools.db; sourceTree = "<group>"; };
 		535EA8FF18297637003D289A /* CollegeComparison.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeComparison.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		535EA90218297637003D289A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		535EA90418297637003D289A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,42 +96,63 @@
 		535EA92918297638003D289A /* CollegeComparisonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollegeComparisonTests-Info.plist"; sourceTree = "<group>"; };
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
-		53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollegeDetailTableViewController.h; sourceTree = "<group>"; };
-		53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollegeDetailTableViewController.m; sourceTree = "<group>"; };
-		BA28B44E187BD035004C1721 /* home_navbar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_navbar_icon.png; path = images/home_navbar_icon.png; sourceTree = SOURCE_ROOT; };
-		BA28B44F187BD035004C1721 /* home_navbar_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_navbar_icon@2x.png"; path = "images/home_navbar_icon@2x.png"; sourceTree = SOURCE_ROOT; };
-		BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = ../View/CCAnimationPageViewController.h; sourceTree = "<group>"; };
-		BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = ../View/CCAnimationPageViewController.m; sourceTree = "<group>"; };
-		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
-		BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAnimationsScreenViewController.m; sourceTree = "<group>"; };
-		BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCAnimationsScreenViewController.xib; sourceTree = "<group>"; };
-		BA98F1921881492D00752303 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = panelView/SWRevealViewController.h; sourceTree = "<group>"; };
-		BA98F1931881492D00752303 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = panelView/SWRevealViewController.m; sourceTree = "<group>"; };
-		BA98F1951881495C00752303 /* CCPanelViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCPanelViewViewController.h; path = panelView/CCPanelViewViewController.h; sourceTree = "<group>"; };
-		BA98F1961881495C00752303 /* CCPanelViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCPanelViewViewController.m; path = panelView/CCPanelViewViewController.m; sourceTree = "<group>"; };
-		BA98F19918814BA500752303 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = panelView/images/menu.png; sourceTree = "<group>"; };
-		BA98F19A18814BA500752303 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu@2x.png"; path = "panelView/images/menu@2x.png"; sourceTree = "<group>"; };
-		BA98F19D1881512200752303 /* pixel_weave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pixel_weave.png; path = panelView/images/pixel_weave.png; sourceTree = "<group>"; };
-		BA98F1A01881533C00752303 /* CCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSettingsViewController.h; sourceTree = "<group>"; };
-		BA98F1A11881533C00752303 /* CCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSettingsViewController.m; sourceTree = "<group>"; };
-		BA98F1AC18815C5600752303 /* bookmarkHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookmarkHigh.png; path = panelView/images/bookmarkHigh.png; sourceTree = "<group>"; };
-		BA98F1AE18815C9800752303 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = panelView/images/map.png; sourceTree = "<group>"; };
-		BA98F1AF18815C9800752303 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = news.png; path = panelView/images/news.png; sourceTree = "<group>"; };
-		BA98F1CC18816B7700752303 /* sync_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sync_image.png; path = panelView/images/sync_image.png; sourceTree = "<group>"; };
+		BA75ED211881DE030087BC15 /* custom_star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_star_icon.png; sourceTree = "<group>"; };
+		BA75ED221881DE030087BC15 /* highlighted_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highlighted_star.png; sourceTree = "<group>"; };
+		BA75ED231881DE030087BC15 /* highlighted_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highlighted_star@2x.png"; sourceTree = "<group>"; };
+		BA75ED241881DE030087BC15 /* star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_icon.png; sourceTree = "<group>"; };
+		BA75ED251881DE030087BC15 /* unhighlighted_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unhighlighted_star.png; sourceTree = "<group>"; };
+		BA75ED261881DE030087BC15 /* unhighlighted_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unhighlighted_star@2x.png"; sourceTree = "<group>"; };
+		BA75ED2D1881DE710087BC15 /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBookmarksPage.h; sourceTree = "<group>"; };
+		BA75ED2E1881DE710087BC15 /* CCBookmarksPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBookmarksPage.m; sourceTree = "<group>"; };
+		BA75ED2F1881DE710087BC15 /* CCFavoriteSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFavoriteSCell.h; sourceTree = "<group>"; };
+		BA75ED301881DE710087BC15 /* CCFavoriteSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFavoriteSCell.m; sourceTree = "<group>"; };
+		BA75ED331881DF220087BC15 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = View/comparisonAnimations/CCAnimationPageViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED341881DF220087BC15 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = View/comparisonAnimations/CCAnimationPageViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED351881DF220087BC15 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationsScreenViewController.h; path = View/comparisonAnimations/CCAnimationsScreenViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED361881DF220087BC15 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationsScreenViewController.m; path = View/comparisonAnimations/CCAnimationsScreenViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED371881DF220087BC15 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CCAnimationsScreenViewController.xib; path = View/comparisonAnimations/CCAnimationsScreenViewController.xib; sourceTree = SOURCE_ROOT; };
+		BA75ED3B1881DFBE0087BC15 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = View/home/HomeViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED3C1881DFBE0087BC15 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = View/home/HomeViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED491881E12D0087BC15 /* CollegeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeSearchViewController.h; path = View/search/CollegeSearchViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED4A1881E12D0087BC15 /* CollegeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeSearchViewController.m; path = View/search/CollegeSearchViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED4B1881E12D0087BC15 /* FilteredCollegesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredCollegesTableViewCell.h; path = View/search/FilteredCollegesTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		BA75ED4C1881E12D0087BC15 /* FilteredCollegesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredCollegesTableViewCell.m; path = View/search/FilteredCollegesTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		BA75ED4D1881E12D0087BC15 /* FilteredCollegesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilteredCollegesViewController.h; path = View/search/FilteredCollegesViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED4E1881E12D0087BC15 /* FilteredCollegesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilteredCollegesViewController.m; path = View/search/FilteredCollegesViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED4F1881E12D0087BC15 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterViewController.h; path = View/search/FilterViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED501881E12D0087BC15 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterViewController.m; path = View/search/FilterViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED551881E1B40087BC15 /* CollegeDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeDetailTableViewController.h; path = View/collegeView/CollegeDetailTableViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED561881E1B40087BC15 /* CollegeDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeDetailTableViewController.m; path = View/collegeView/CollegeDetailTableViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED571881E1B40087BC15 /* CollegeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeDetailViewController.h; path = View/collegeView/CollegeDetailViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED581881E1B40087BC15 /* CollegeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeDetailViewController.m; path = View/collegeView/CollegeDetailViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED591881E1B40087BC15 /* CollegeSavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeSavedViewController.h; path = View/collegeView/CollegeSavedViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED5A1881E1B40087BC15 /* CollegeSavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeSavedViewController.m; path = View/collegeView/CollegeSavedViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED5E1881E2050087BC15 /* favoritesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = favoritesCell.xib; path = View/bookmarks/favoritesCell.xib; sourceTree = SOURCE_ROOT; };
+		BA75ED601881E2530087BC15 /* bookmarkHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookmarkHigh.png; path = View/panelView/images/bookmarkHigh.png; sourceTree = SOURCE_ROOT; };
+		BA75ED611881E2530087BC15 /* debut_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = debut_dark.png; path = View/panelView/images/debut_dark.png; sourceTree = SOURCE_ROOT; };
+		BA75ED621881E2530087BC15 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = View/panelView/images/map.png; sourceTree = SOURCE_ROOT; };
+		BA75ED631881E2530087BC15 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = View/panelView/images/menu.png; sourceTree = SOURCE_ROOT; };
+		BA75ED641881E2530087BC15 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu@2x.png"; path = "View/panelView/images/menu@2x.png"; sourceTree = SOURCE_ROOT; };
+		BA75ED651881E2530087BC15 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = news.png; path = View/panelView/images/news.png; sourceTree = SOURCE_ROOT; };
+		BA75ED661881E2530087BC15 /* pixel_weave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pixel_weave.png; path = View/panelView/images/pixel_weave.png; sourceTree = SOURCE_ROOT; };
+		BA75ED671881E2530087BC15 /* sync_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sync_image.png; path = View/panelView/images/sync_image.png; sourceTree = SOURCE_ROOT; };
+		BA75ED681881E2530087BC15 /* wild_olivia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wild_olivia.png; path = View/panelView/images/wild_olivia.png; sourceTree = SOURCE_ROOT; };
+		BA75ED721881E26D0087BC15 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = View/panelView/SWRevealViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED731881E26D0087BC15 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = View/panelView/SWRevealViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED751881E2830087BC15 /* CCPanelViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCPanelViewViewController.h; path = View/panelView/CCPanelViewViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED761881E2830087BC15 /* CCPanelViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCPanelViewViewController.m; path = View/panelView/CCPanelViewViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED781881E2DC0087BC15 /* CCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCSettingsViewController.h; path = View/settings/CCSettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		BA75ED791881E2DC0087BC15 /* CCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCSettingsViewController.m; path = View/settings/CCSettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		BA75ED7C1881E3B90087BC15 /* home_navbar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_navbar_icon.png; path = View/images/home_navbar_icon.png; sourceTree = SOURCE_ROOT; };
+		BA75ED7D1881E3B90087BC15 /* home_navbar_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_navbar_icon@2x.png"; path = "View/images/home_navbar_icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		BA75ED801881E4280087BC15 /* MUITCollege.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITCollege.h; path = model/MUITCollege.h; sourceTree = SOURCE_ROOT; };
+		BA75ED811881E4280087BC15 /* MUITCollege.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITCollege.m; path = model/MUITCollege.m; sourceTree = SOURCE_ROOT; };
+		BA75ED821881E4280087BC15 /* MUITCollegeDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITCollegeDataProvider.h; path = model/MUITCollegeDataProvider.h; sourceTree = SOURCE_ROOT; };
+		BA75ED831881E4280087BC15 /* MUITCollegeDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITCollegeDataProvider.m; path = model/MUITCollegeDataProvider.m; sourceTree = SOURCE_ROOT; };
+		BA75ED841881E4280087BC15 /* schools.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = schools.db; path = model/schools.db; sourceTree = SOURCE_ROOT; };
 		BAE4EB2D185075FC00597C1D /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ios-linen.jpg"; sourceTree = "<group>"; };
-		BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = View/CCBookmarksPage.h; sourceTree = SOURCE_ROOT; };
-		BAE4EB301852F29900597C1D /* CCBookmarksPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCBookmarksPage.m; path = View/CCBookmarksPage.m; sourceTree = SOURCE_ROOT; };
-		BAE4EB3618542BB100597C1D /* star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_icon.png; path = ../star_icon.png; sourceTree = "<group>"; };
 		BAE4EB3818543B2900597C1D /* my_star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_star_icon.png; sourceTree = "<group>"; };
 		BAE4EB3A18543BB200597C1D /* gold_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold_star.png; sourceTree = "<group>"; };
-		BAE4EB3E1854E9F000597C1D /* custom_star_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_star_icon.png; path = ../custom_star_icon.png; sourceTree = "<group>"; };
-		BAE4EB401854EC1C00597C1D /* unhighlighted_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unhighlighted_star.png; path = ../unhighlighted_star.png; sourceTree = "<group>"; };
-		BAE4EB411854EC1C00597C1D /* unhighlighted_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unhighlighted_star@2x.png"; path = "../unhighlighted_star@2x.png"; sourceTree = "<group>"; };
-		BAE4EB4C1854F67F00597C1D /* highlighted_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highlighted_star.png; path = ../highlighted_star.png; sourceTree = "<group>"; };
-		BAE4EB4D1854F67F00597C1D /* highlighted_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "highlighted_star@2x.png"; path = "../highlighted_star@2x.png"; sourceTree = "<group>"; };
-		BAE4EB501854FE8100597C1D /* favoritesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = favoritesCell.xib; sourceTree = "<group>"; };
-		BAE4EB521854FEB200597C1D /* CCFavoriteSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFavoriteSCell.h; sourceTree = "<group>"; };
-		BAE4EB531854FEB200597C1D /* CCFavoriteSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFavoriteSCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,11 +184,11 @@
 		532A1485184D7594009C5BAE /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				532A1486184D7594009C5BAE /* MUITCollege.h */,
-				532A1487184D7594009C5BAE /* MUITCollege.m */,
-				532A1488184D7594009C5BAE /* MUITCollegeDataProvider.h */,
-				532A1489184D7594009C5BAE /* MUITCollegeDataProvider.m */,
-				532A148A184D7594009C5BAE /* schools.db */,
+				BA75ED801881E4280087BC15 /* MUITCollege.h */,
+				BA75ED811881E4280087BC15 /* MUITCollege.m */,
+				BA75ED821881E4280087BC15 /* MUITCollegeDataProvider.h */,
+				BA75ED831881E4280087BC15 /* MUITCollegeDataProvider.m */,
+				BA75ED841881E4280087BC15 /* schools.db */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -223,7 +231,6 @@
 				535EA91418297637003D289A /* Main.storyboard */,
 				535EA91218297637003D289A /* CCAppDelegate.m */,
 				535EA91118297637003D289A /* CCAppDelegate.h */,
-				BA28B449187BCF59004C1721 /* Images */,
 				532A1485184D7594009C5BAE /* Database */,
 				BA852066183AE2E4002CC626 /* View */,
 				535EA91A18297637003D289A /* Images.xcassets */,
@@ -262,13 +269,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BA28B449187BCF59004C1721 /* Images */ = {
+		BA75ED7B1881E30D0087BC15 /* NavBar */ = {
 			isa = PBXGroup;
 			children = (
-				BA28B44E187BD035004C1721 /* home_navbar_icon.png */,
-				BA28B44F187BD035004C1721 /* home_navbar_icon@2x.png */,
+				BA75ED7C1881E3B90087BC15 /* home_navbar_icon.png */,
+				BA75ED7D1881E3B90087BC15 /* home_navbar_icon@2x.png */,
 			);
-			name = Images;
+			name = NavBar;
 			sourceTree = "<group>";
 		};
 		BA852066183AE2E4002CC626 /* View */ = {
@@ -281,6 +288,7 @@
 				BA852071183AF40D002CC626 /* Bar Animations */,
 				BA98F19F1881531D00752303 /* Settings */,
 				BA98F1901881489D00752303 /* Panel View */,
+				BA75ED7B1881E30D0087BC15 /* NavBar */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -288,11 +296,11 @@
 		BA852071183AF40D002CC626 /* Bar Animations */ = {
 			isa = PBXGroup;
 			children = (
-				BA852067183AECF6002CC626 /* CCAnimationPageViewController.h */,
-				BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */,
-				BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */,
-				BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */,
-				BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */,
+				BA75ED331881DF220087BC15 /* CCAnimationPageViewController.h */,
+				BA75ED341881DF220087BC15 /* CCAnimationPageViewController.m */,
+				BA75ED351881DF220087BC15 /* CCAnimationsScreenViewController.h */,
+				BA75ED361881DF220087BC15 /* CCAnimationsScreenViewController.m */,
+				BA75ED371881DF220087BC15 /* CCAnimationsScreenViewController.xib */,
 				BAE4EB2D185075FC00597C1D /* ios-linen.jpg */,
 			);
 			name = "Bar Animations";
@@ -301,10 +309,10 @@
 		BA98F1901881489D00752303 /* Panel View */ = {
 			isa = PBXGroup;
 			children = (
+				BA75ED751881E2830087BC15 /* CCPanelViewViewController.h */,
+				BA75ED761881E2830087BC15 /* CCPanelViewViewController.m */,
 				BA98F19818814B6100752303 /* Images */,
 				BA98F191188148A500752303 /* Library */,
-				BA98F1951881495C00752303 /* CCPanelViewViewController.h */,
-				BA98F1961881495C00752303 /* CCPanelViewViewController.m */,
 			);
 			name = "Panel View";
 			sourceTree = "<group>";
@@ -312,8 +320,8 @@
 		BA98F191188148A500752303 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				BA98F1921881492D00752303 /* SWRevealViewController.h */,
-				BA98F1931881492D00752303 /* SWRevealViewController.m */,
+				BA75ED721881E26D0087BC15 /* SWRevealViewController.h */,
+				BA75ED731881E26D0087BC15 /* SWRevealViewController.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -321,13 +329,15 @@
 		BA98F19818814B6100752303 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BA98F1CC18816B7700752303 /* sync_image.png */,
-				BA98F1AE18815C9800752303 /* map.png */,
-				BA98F1AF18815C9800752303 /* news.png */,
-				BA98F1AC18815C5600752303 /* bookmarkHigh.png */,
-				BA98F19D1881512200752303 /* pixel_weave.png */,
-				BA98F19918814BA500752303 /* menu.png */,
-				BA98F19A18814BA500752303 /* menu@2x.png */,
+				BA75ED601881E2530087BC15 /* bookmarkHigh.png */,
+				BA75ED611881E2530087BC15 /* debut_dark.png */,
+				BA75ED621881E2530087BC15 /* map.png */,
+				BA75ED631881E2530087BC15 /* menu.png */,
+				BA75ED641881E2530087BC15 /* menu@2x.png */,
+				BA75ED651881E2530087BC15 /* news.png */,
+				BA75ED661881E2530087BC15 /* pixel_weave.png */,
+				BA75ED671881E2530087BC15 /* sync_image.png */,
+				BA75ED681881E2530087BC15 /* wild_olivia.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -335,8 +345,8 @@
 		BA98F19F1881531D00752303 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				BA98F1A01881533C00752303 /* CCSettingsViewController.h */,
-				BA98F1A11881533C00752303 /* CCSettingsViewController.m */,
+				BA75ED781881E2DC0087BC15 /* CCSettingsViewController.h */,
+				BA75ED791881E2DC0087BC15 /* CCSettingsViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -344,8 +354,8 @@
 		BA98F1A3188158C900752303 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
-				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
+				BA75ED3B1881DFBE0087BC15 /* HomeViewController.h */,
+				BA75ED3C1881DFBE0087BC15 /* HomeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -353,14 +363,14 @@
 		BA98F1A4188158DB00752303 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */,
-				49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */,
-				49EB4CAD1843FDBB00C9C4AB /* FilterViewController.h */,
-				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
-				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
-				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
-				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
-				3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */,
+				BA75ED491881E12D0087BC15 /* CollegeSearchViewController.h */,
+				BA75ED4A1881E12D0087BC15 /* CollegeSearchViewController.m */,
+				BA75ED4B1881E12D0087BC15 /* FilteredCollegesTableViewCell.h */,
+				BA75ED4C1881E12D0087BC15 /* FilteredCollegesTableViewCell.m */,
+				BA75ED4D1881E12D0087BC15 /* FilteredCollegesViewController.h */,
+				BA75ED4E1881E12D0087BC15 /* FilteredCollegesViewController.m */,
+				BA75ED4F1881E12D0087BC15 /* FilterViewController.h */,
+				BA75ED501881E12D0087BC15 /* FilterViewController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -368,11 +378,12 @@
 		BA98F1A51881592E00752303 /* College View */ = {
 			isa = PBXGroup;
 			children = (
-				BAE4EB501854FE8100597C1D /* favoritesCell.xib */,
-				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
-				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
-				49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */,
-				49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */,
+				BA75ED551881E1B40087BC15 /* CollegeDetailTableViewController.h */,
+				BA75ED561881E1B40087BC15 /* CollegeDetailTableViewController.m */,
+				BA75ED571881E1B40087BC15 /* CollegeDetailViewController.h */,
+				BA75ED581881E1B40087BC15 /* CollegeDetailViewController.m */,
+				BA75ED591881E1B40087BC15 /* CollegeSavedViewController.h */,
+				BA75ED5A1881E1B40087BC15 /* CollegeSavedViewController.m */,
 			);
 			name = "College View";
 			sourceTree = "<group>";
@@ -380,10 +391,11 @@
 		BAE4EB481854EDC400597C1D /* Bookmarking */ = {
 			isa = PBXGroup;
 			children = (
-				BAE4EB521854FEB200597C1D /* CCFavoriteSCell.h */,
-				BAE4EB531854FEB200597C1D /* CCFavoriteSCell.m */,
-				BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */,
-				BAE4EB301852F29900597C1D /* CCBookmarksPage.m */,
+				BA75ED2D1881DE710087BC15 /* CCBookmarksPage.h */,
+				BA75ED2E1881DE710087BC15 /* CCBookmarksPage.m */,
+				BA75ED2F1881DE710087BC15 /* CCFavoriteSCell.h */,
+				BA75ED301881DE710087BC15 /* CCFavoriteSCell.m */,
+				BA75ED5E1881E2050087BC15 /* favoritesCell.xib */,
 				BAE4EB491854EDD900597C1D /* Images */,
 			);
 			name = Bookmarking;
@@ -392,12 +404,12 @@
 		BAE4EB491854EDD900597C1D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BAE4EB4C1854F67F00597C1D /* highlighted_star.png */,
-				BAE4EB4D1854F67F00597C1D /* highlighted_star@2x.png */,
-				BAE4EB401854EC1C00597C1D /* unhighlighted_star.png */,
-				BAE4EB411854EC1C00597C1D /* unhighlighted_star@2x.png */,
-				BAE4EB3E1854E9F000597C1D /* custom_star_icon.png */,
-				BAE4EB3618542BB100597C1D /* star_icon.png */,
+				BA75ED211881DE030087BC15 /* custom_star_icon.png */,
+				BA75ED221881DE030087BC15 /* highlighted_star.png */,
+				BA75ED231881DE030087BC15 /* highlighted_star@2x.png */,
+				BA75ED241881DE030087BC15 /* star_icon.png */,
+				BA75ED251881DE030087BC15 /* unhighlighted_star.png */,
+				BA75ED261881DE030087BC15 /* unhighlighted_star@2x.png */,
 				BAE4EB3A18543BB200597C1D /* gold_star.png */,
 				BAE4EB3818543B2900597C1D /* my_star_icon.png */,
 			);
@@ -481,28 +493,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA28B450187BD035004C1721 /* home_navbar_icon.png in Resources */,
+				BA75ED711881E2530087BC15 /* wild_olivia.png in Resources */,
+				BA75ED7F1881E3B90087BC15 /* home_navbar_icon@2x.png in Resources */,
 				53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */,
-				BA98F1B118815C9800752303 /* news.png in Resources */,
-				BA98F1B018815C9800752303 /* map.png in Resources */,
-				BAE4EB421854EC1C00597C1D /* unhighlighted_star.png in Resources */,
-				BA98F19E1881512200752303 /* pixel_weave.png in Resources */,
-				BAE4EB431854EC1C00597C1D /* unhighlighted_star@2x.png in Resources */,
-				BAE4EB3F1854E9F000597C1D /* custom_star_icon.png in Resources */,
-				BA98F1CD18816B7700752303 /* sync_image.png in Resources */,
+				BA75ED701881E2530087BC15 /* sync_image.png in Resources */,
+				BA75ED2A1881DE030087BC15 /* star_icon.png in Resources */,
+				BA75ED6F1881E2530087BC15 /* pixel_weave.png in Resources */,
+				BA75ED3A1881DF220087BC15 /* CCAnimationsScreenViewController.xib in Resources */,
+				BA75ED7E1881E3B90087BC15 /* home_navbar_icon.png in Resources */,
+				BA75ED6B1881E2530087BC15 /* map.png in Resources */,
+				BA75ED6A1881E2530087BC15 /* debut_dark.png in Resources */,
+				BA75ED281881DE030087BC15 /* highlighted_star.png in Resources */,
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
-				BAE4EB511854FE8100597C1D /* favoritesCell.xib in Resources */,
-				BAE4EB3718542BB100597C1D /* star_icon.png in Resources */,
-				BAE4EB4F1854F67F00597C1D /* highlighted_star@2x.png in Resources */,
+				BA75ED271881DE030087BC15 /* custom_star_icon.png in Resources */,
+				BA75ED691881E2530087BC15 /* bookmarkHigh.png in Resources */,
 				53290F491830A9D000781050 /* schools.db in Resources */,
-				BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */,
-				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
-				BA98F19B18814BA500752303 /* menu.png in Resources */,
+				BA75ED871881E4280087BC15 /* schools.db in Resources */,
+				BA75ED6D1881E2530087BC15 /* menu@2x.png in Resources */,
+				BA75ED6C1881E2530087BC15 /* menu.png in Resources */,
 				BAE4EB3918543B2900597C1D /* my_star_icon.png in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
-				BAE4EB4E1854F67F00597C1D /* highlighted_star.png in Resources */,
-				BA98F19C18814BA500752303 /* menu@2x.png in Resources */,
-				BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */,
+				BA75ED6E1881E2530087BC15 /* news.png in Resources */,
+				BA75ED2B1881DE030087BC15 /* unhighlighted_star.png in Resources */,
+				BA75ED2C1881DE030087BC15 /* unhighlighted_star@2x.png in Resources */,
+				BA75ED291881DE030087BC15 /* highlighted_star@2x.png in Resources */,
+				BA75ED5F1881E2050087BC15 /* favoritesCell.xib in Resources */,
 				BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */,
 				BAE4EB3B18543BB200597C1D /* gold_star.png in Resources */,
 			);
@@ -524,23 +539,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				535EA90F18297637003D289A /* main.m in Sources */,
+				BA75ED741881E26D0087BC15 /* SWRevealViewController.m in Sources */,
+				BA75ED771881E2830087BC15 /* CCPanelViewViewController.m in Sources */,
 				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
-				3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */,
-				532A148C184D7594009C5BAE /* MUITCollegeDataProvider.m in Sources */,
-				BA98F1971881495C00752303 /* CCPanelViewViewController.m in Sources */,
-				49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */,
-				BAE4EB541854FEB200597C1D /* CCFavoriteSCell.m in Sources */,
-				49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */,
-				3D686782184BBB6A00A189ED /* FilteredCollegesViewController.m in Sources */,
-				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
-				532A148B184D7594009C5BAE /* MUITCollege.m in Sources */,
-				BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */,
-				BA98F1941881492D00752303 /* SWRevealViewController.m in Sources */,
-				BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */,
-				BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */,
-				BA98F1A21881533C00752303 /* CCSettingsViewController.m in Sources */,
-				49EB4CB71843FDBB00C9C4AB /* HomeViewController.m in Sources */,
-				53F82003184D808C000466E4 /* CollegeDetailTableViewController.m in Sources */,
+				BA75ED851881E4280087BC15 /* MUITCollege.m in Sources */,
+				BA75ED3D1881DFBE0087BC15 /* HomeViewController.m in Sources */,
+				BA75ED861881E4280087BC15 /* MUITCollegeDataProvider.m in Sources */,
+				BA75ED321881DE710087BC15 /* CCFavoriteSCell.m in Sources */,
+				BA75ED5D1881E1B40087BC15 /* CollegeSavedViewController.m in Sources */,
+				BA75ED311881DE710087BC15 /* CCBookmarksPage.m in Sources */,
+				BA75ED511881E12D0087BC15 /* CollegeSearchViewController.m in Sources */,
+				BA75ED7A1881E2DC0087BC15 /* CCSettingsViewController.m in Sources */,
+				BA75ED5B1881E1B40087BC15 /* CollegeDetailTableViewController.m in Sources */,
+				BA75ED541881E12D0087BC15 /* FilterViewController.m in Sources */,
+				BA75ED521881E12D0087BC15 /* FilteredCollegesTableViewCell.m in Sources */,
+				BA75ED5C1881E1B40087BC15 /* CollegeDetailViewController.m in Sources */,
+				BA75ED391881DF220087BC15 /* CCAnimationsScreenViewController.m in Sources */,
+				BA75ED381881DF220087BC15 /* CCAnimationPageViewController.m in Sources */,
+				BA75ED531881E12D0087BC15 /* FilteredCollegesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
