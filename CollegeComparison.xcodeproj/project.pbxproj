@@ -44,9 +44,6 @@
 		BA98F19C18814BA500752303 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19A18814BA500752303 /* menu@2x.png */; };
 		BA98F19E1881512200752303 /* pixel_weave.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19D1881512200752303 /* pixel_weave.png */; };
 		BA98F1A21881533C00752303 /* CCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1A11881533C00752303 /* CCSettingsViewController.m */; };
-		BA98F1A918815B7E00752303 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1A618815B7E00752303 /* bookmark.png */; };
-		BA98F1AA18815B7E00752303 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1A718815B7E00752303 /* gear.png */; };
-		BA98F1AB18815B7E00752303 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1A818815B7E00752303 /* home.png */; };
 		BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AC18815C5600752303 /* bookmarkHigh.png */; };
 		BA98F1B018815C9800752303 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AE18815C9800752303 /* map.png */; };
 		BA98F1B118815C9800752303 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AF18815C9800752303 /* news.png */; };
@@ -130,9 +127,6 @@
 		BA98F19D1881512200752303 /* pixel_weave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pixel_weave.png; path = panelView/images/pixel_weave.png; sourceTree = "<group>"; };
 		BA98F1A01881533C00752303 /* CCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSettingsViewController.h; sourceTree = "<group>"; };
 		BA98F1A11881533C00752303 /* CCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSettingsViewController.m; sourceTree = "<group>"; };
-		BA98F1A618815B7E00752303 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookmark.png; path = panelView/images/bookmark.png; sourceTree = "<group>"; };
-		BA98F1A718815B7E00752303 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = panelView/images/gear.png; sourceTree = "<group>"; };
-		BA98F1A818815B7E00752303 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home.png; path = panelView/images/home.png; sourceTree = "<group>"; };
 		BA98F1AC18815C5600752303 /* bookmarkHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookmarkHigh.png; path = panelView/images/bookmarkHigh.png; sourceTree = "<group>"; };
 		BA98F1AE18815C9800752303 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = panelView/images/map.png; sourceTree = "<group>"; };
 		BA98F1AF18815C9800752303 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = news.png; path = panelView/images/news.png; sourceTree = "<group>"; };
@@ -329,9 +323,6 @@
 				BA98F1AE18815C9800752303 /* map.png */,
 				BA98F1AF18815C9800752303 /* news.png */,
 				BA98F1AC18815C5600752303 /* bookmarkHigh.png */,
-				BA98F1A618815B7E00752303 /* bookmark.png */,
-				BA98F1A718815B7E00752303 /* gear.png */,
-				BA98F1A818815B7E00752303 /* home.png */,
 				BA98F19D1881512200752303 /* pixel_weave.png */,
 				BA98F19918814BA500752303 /* menu.png */,
 				BA98F19A18814BA500752303 /* menu@2x.png */,
@@ -495,14 +486,12 @@
 				BAE4EB421854EC1C00597C1D /* unhighlighted_star.png in Resources */,
 				BA98F19E1881512200752303 /* pixel_weave.png in Resources */,
 				BAE4EB431854EC1C00597C1D /* unhighlighted_star@2x.png in Resources */,
-				BA98F1AA18815B7E00752303 /* gear.png in Resources */,
 				BAE4EB3F1854E9F000597C1D /* custom_star_icon.png in Resources */,
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
 				BAE4EB511854FE8100597C1D /* favoritesCell.xib in Resources */,
 				BAE4EB3718542BB100597C1D /* star_icon.png in Resources */,
 				BAE4EB4F1854F67F00597C1D /* highlighted_star@2x.png in Resources */,
 				53290F491830A9D000781050 /* schools.db in Resources */,
-				BA98F1A918815B7E00752303 /* bookmark.png in Resources */,
 				BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */,
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
 				BA98F19B18814BA500752303 /* menu.png in Resources */,
@@ -510,7 +499,6 @@
 				BAE4EB3918543B2900597C1D /* my_star_icon.png in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
 				BAE4EB4E1854F67F00597C1D /* highlighted_star.png in Resources */,
-				BA98F1AB18815B7E00752303 /* home.png in Resources */,
 				BA98F19C18814BA500752303 /* menu@2x.png in Resources */,
 				BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */,
 				BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */,
