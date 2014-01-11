@@ -59,7 +59,6 @@
 		BA75EE381881ECFF0087BC15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE361881ECFF0087BC15 /* Main.storyboard */; };
 		BA75EE3B1881ED040087BC15 /* CCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EE3A1881ED040087BC15 /* CCAppDelegate.m */; };
 		BA75EE3D1881ED340087BC15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE3C1881ED340087BC15 /* Images.xcassets */; };
-		BA75EE411881ED5E0087BC15 /* CollegeComparison-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE3E1881ED5E0087BC15 /* CollegeComparison-Info.plist */; };
 		BA75EE421881ED5E0087BC15 /* CollegeSearch-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE401881ED5E0087BC15 /* CollegeSearch-Info.plist */; };
 		BA75EE441881ED780087BC15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EE431881ED780087BC15 /* main.m */; };
 		BA75EE471881EDAF0087BC15 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE451881EDAF0087BC15 /* InfoPlist.strings */; };
@@ -527,7 +526,6 @@
 				BA75EE3D1881ED340087BC15 /* Images.xcassets in Resources */,
 				BA75EE421881ED5E0087BC15 /* CollegeSearch-Info.plist in Resources */,
 				BA75EDF71881EBCC0087BC15 /* Filter NEW-1.png in Resources */,
-				BA75EE411881ED5E0087BC15 /* CollegeComparison-Info.plist in Resources */,
 				BA75EDC31881EB670087BC15 /* favoritesCell.xib in Resources */,
 				BA75EDDD1881EBA00087BC15 /* ios-linen.jpg in Resources */,
 				BA75EDCF1881EB7A0087BC15 /* highlighted_star@2x.png in Resources */,
