@@ -7,9 +7,11 @@
 //
 
 #import "HomeViewController.h"
+#import "SWRevealViewController.h"
 
-@interface HomeViewController ()
-
+@interface HomeViewController () {
+    
+}
 @end
 
 @implementation HomeViewController
@@ -22,10 +24,15 @@
     }
     return self;
 }
+-(void)viewDidAppear:(BOOL)animated
+{
 
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self slidingPanelSetup];   
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
     
@@ -96,5 +103,22 @@
         }
         
     }
+
+-(void)slidingPanelSetup
+{
+    //Set up panel view things
     
+    
+    _panelViewButton.target = self;
+    _panelViewButton.action = @selector(panelPressed:);
+    //Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+
+}
+-(void)panelPressed:(id) sender
+{
+    
+    [self.revealViewController revealToggle:sender];
+}
 @end

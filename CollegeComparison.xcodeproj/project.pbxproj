@@ -18,7 +18,6 @@
 		53290F491830A9D000781050 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 53290F481830A9D000781050 /* schools.db */; };
 		532A148B184D7594009C5BAE /* MUITCollege.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1487184D7594009C5BAE /* MUITCollege.m */; };
 		532A148C184D7594009C5BAE /* MUITCollegeDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 532A1489184D7594009C5BAE /* MUITCollegeDataProvider.m */; };
-		532A148D184D7594009C5BAE /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = 532A148A184D7594009C5BAE /* schools.db */; };
 		535EA90318297637003D289A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90218297637003D289A /* Foundation.framework */; };
 		535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90418297637003D289A /* CoreGraphics.framework */; };
 		535EA90718297637003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
@@ -38,6 +37,16 @@
 		BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA852068183AECF6002CC626 /* CCAnimationPageViewController.m */; };
 		BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */; };
 		BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */; };
+		BA98F1941881492D00752303 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1931881492D00752303 /* SWRevealViewController.m */; };
+		BA98F1971881495C00752303 /* CCPanelViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1961881495C00752303 /* CCPanelViewViewController.m */; };
+		BA98F19B18814BA500752303 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19918814BA500752303 /* menu.png */; };
+		BA98F19C18814BA500752303 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19A18814BA500752303 /* menu@2x.png */; };
+		BA98F19E1881512200752303 /* pixel_weave.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F19D1881512200752303 /* pixel_weave.png */; };
+		BA98F1A21881533C00752303 /* CCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA98F1A11881533C00752303 /* CCSettingsViewController.m */; };
+		BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AC18815C5600752303 /* bookmarkHigh.png */; };
+		BA98F1B018815C9800752303 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AE18815C9800752303 /* map.png */; };
+		BA98F1B118815C9800752303 /* news.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1AF18815C9800752303 /* news.png */; };
+		BA98F1CD18816B7700752303 /* sync_image.png in Resources */ = {isa = PBXBuildFile; fileRef = BA98F1CC18816B7700752303 /* sync_image.png */; };
 		BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB2D185075FC00597C1D /* ios-linen.jpg */; };
 		BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE4EB301852F29900597C1D /* CCBookmarksPage.m */; };
 		BAE4EB3718542BB100597C1D /* star_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE4EB3618542BB100597C1D /* star_icon.png */; };
@@ -109,6 +118,19 @@
 		BA85206C183AF3FB002CC626 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
 		BA85206D183AF3FB002CC626 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAnimationsScreenViewController.m; sourceTree = "<group>"; };
 		BA85206E183AF3FB002CC626 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCAnimationsScreenViewController.xib; sourceTree = "<group>"; };
+		BA98F1921881492D00752303 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = panelView/SWRevealViewController.h; sourceTree = "<group>"; };
+		BA98F1931881492D00752303 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = panelView/SWRevealViewController.m; sourceTree = "<group>"; };
+		BA98F1951881495C00752303 /* CCPanelViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCPanelViewViewController.h; path = panelView/CCPanelViewViewController.h; sourceTree = "<group>"; };
+		BA98F1961881495C00752303 /* CCPanelViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCPanelViewViewController.m; path = panelView/CCPanelViewViewController.m; sourceTree = "<group>"; };
+		BA98F19918814BA500752303 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = panelView/images/menu.png; sourceTree = "<group>"; };
+		BA98F19A18814BA500752303 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu@2x.png"; path = "panelView/images/menu@2x.png"; sourceTree = "<group>"; };
+		BA98F19D1881512200752303 /* pixel_weave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pixel_weave.png; path = panelView/images/pixel_weave.png; sourceTree = "<group>"; };
+		BA98F1A01881533C00752303 /* CCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSettingsViewController.h; sourceTree = "<group>"; };
+		BA98F1A11881533C00752303 /* CCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSettingsViewController.m; sourceTree = "<group>"; };
+		BA98F1AC18815C5600752303 /* bookmarkHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bookmarkHigh.png; path = panelView/images/bookmarkHigh.png; sourceTree = "<group>"; };
+		BA98F1AE18815C9800752303 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = panelView/images/map.png; sourceTree = "<group>"; };
+		BA98F1AF18815C9800752303 /* news.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = news.png; path = panelView/images/news.png; sourceTree = "<group>"; };
+		BA98F1CC18816B7700752303 /* sync_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sync_image.png; path = panelView/images/sync_image.png; sourceTree = "<group>"; };
 		BAE4EB2D185075FC00597C1D /* ios-linen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ios-linen.jpg"; sourceTree = "<group>"; };
 		BAE4EB2F1852F29900597C1D /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = View/CCBookmarksPage.h; sourceTree = SOURCE_ROOT; };
 		BAE4EB301852F29900597C1D /* CCBookmarksPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCBookmarksPage.m; path = View/CCBookmarksPage.m; sourceTree = SOURCE_ROOT; };
@@ -198,6 +220,9 @@
 		535EA90818297637003D289A /* CollegeComparison */ = {
 			isa = PBXGroup;
 			children = (
+				535EA91418297637003D289A /* Main.storyboard */,
+				535EA91218297637003D289A /* CCAppDelegate.m */,
+				535EA91118297637003D289A /* CCAppDelegate.h */,
 				BA28B449187BCF59004C1721 /* Images */,
 				532A1485184D7594009C5BAE /* Database */,
 				BA852066183AE2E4002CC626 /* View */,
@@ -249,26 +274,13 @@
 		BA852066183AE2E4002CC626 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				535EA91418297637003D289A /* Main.storyboard */,
-				535EA91218297637003D289A /* CCAppDelegate.m */,
-				535EA91118297637003D289A /* CCAppDelegate.h */,
-				BAE4EB501854FE8100597C1D /* favoritesCell.xib */,
-				BA852071183AF40D002CC626 /* Bar Animations */,
+				BA98F1A51881592E00752303 /* College View */,
+				BA98F1A4188158DB00752303 /* Search */,
+				BA98F1A3188158C900752303 /* Home */,
 				BAE4EB481854EDC400597C1D /* Bookmarking */,
-				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
-				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
-				49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */,
-				49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */,
-				49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */,
-				49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */,
-				49EB4CAD1843FDBB00C9C4AB /* FilterViewController.h */,
-				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
-				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
-				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
-				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
-				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
-				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
-				3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */,
+				BA852071183AF40D002CC626 /* Bar Animations */,
+				BA98F19F1881531D00752303 /* Settings */,
+				BA98F1901881489D00752303 /* Panel View */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -284,6 +296,85 @@
 				BAE4EB2D185075FC00597C1D /* ios-linen.jpg */,
 			);
 			name = "Bar Animations";
+			sourceTree = "<group>";
+		};
+		BA98F1901881489D00752303 /* Panel View */ = {
+			isa = PBXGroup;
+			children = (
+				BA98F19818814B6100752303 /* Images */,
+				BA98F191188148A500752303 /* Library */,
+				BA98F1951881495C00752303 /* CCPanelViewViewController.h */,
+				BA98F1961881495C00752303 /* CCPanelViewViewController.m */,
+			);
+			name = "Panel View";
+			sourceTree = "<group>";
+		};
+		BA98F191188148A500752303 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				BA98F1921881492D00752303 /* SWRevealViewController.h */,
+				BA98F1931881492D00752303 /* SWRevealViewController.m */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		BA98F19818814B6100752303 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BA98F1CC18816B7700752303 /* sync_image.png */,
+				BA98F1AE18815C9800752303 /* map.png */,
+				BA98F1AF18815C9800752303 /* news.png */,
+				BA98F1AC18815C5600752303 /* bookmarkHigh.png */,
+				BA98F19D1881512200752303 /* pixel_weave.png */,
+				BA98F19918814BA500752303 /* menu.png */,
+				BA98F19A18814BA500752303 /* menu@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		BA98F19F1881531D00752303 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BA98F1A01881533C00752303 /* CCSettingsViewController.h */,
+				BA98F1A11881533C00752303 /* CCSettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		BA98F1A3188158C900752303 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				49EB4CAF1843FDBB00C9C4AB /* HomeViewController.h */,
+				49EB4CB01843FDBB00C9C4AB /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		BA98F1A4188158DB00752303 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				49EB4CAB1843FDBB00C9C4AB /* CollegeSearchViewController.h */,
+				49EB4CAC1843FDBB00C9C4AB /* CollegeSearchViewController.m */,
+				49EB4CAD1843FDBB00C9C4AB /* FilterViewController.h */,
+				49EB4CAE1843FDBB00C9C4AB /* FilterViewController.m */,
+				3D686780184BBB6A00A189ED /* FilteredCollegesViewController.h */,
+				3D686781184BBB6A00A189ED /* FilteredCollegesViewController.m */,
+				3D686783184BBC6D00A189ED /* FilteredCollegesTableViewCell.h */,
+				3D686784184BBC6D00A189ED /* FilteredCollegesTableViewCell.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		BA98F1A51881592E00752303 /* College View */ = {
+			isa = PBXGroup;
+			children = (
+				BAE4EB501854FE8100597C1D /* favoritesCell.xib */,
+				53F82002184D808C000466E4 /* CollegeDetailTableViewController.m */,
+				53F82001184D808C000466E4 /* CollegeDetailTableViewController.h */,
+				49EB4CA51843FDBB00C9C4AB /* CollegeSavedViewController.h */,
+				49EB4CA61843FDBB00C9C4AB /* CollegeSavedViewController.m */,
+			);
+			name = "College View";
 			sourceTree = "<group>";
 		};
 		BAE4EB481854EDC400597C1D /* Bookmarking */ = {
@@ -392,9 +483,13 @@
 			files = (
 				BA28B450187BD035004C1721 /* home_navbar_icon.png in Resources */,
 				53E4E7DD184E6711001A1B34 /* Main.storyboard in Resources */,
+				BA98F1B118815C9800752303 /* news.png in Resources */,
+				BA98F1B018815C9800752303 /* map.png in Resources */,
 				BAE4EB421854EC1C00597C1D /* unhighlighted_star.png in Resources */,
+				BA98F19E1881512200752303 /* pixel_weave.png in Resources */,
 				BAE4EB431854EC1C00597C1D /* unhighlighted_star@2x.png in Resources */,
 				BAE4EB3F1854E9F000597C1D /* custom_star_icon.png in Resources */,
+				BA98F1CD18816B7700752303 /* sync_image.png in Resources */,
 				535EA91B18297637003D289A /* Images.xcassets in Resources */,
 				BAE4EB511854FE8100597C1D /* favoritesCell.xib in Resources */,
 				BAE4EB3718542BB100597C1D /* star_icon.png in Resources */,
@@ -402,10 +497,12 @@
 				53290F491830A9D000781050 /* schools.db in Resources */,
 				BA28B451187BD035004C1721 /* home_navbar_icon@2x.png in Resources */,
 				BA852070183AF3FB002CC626 /* CCAnimationsScreenViewController.xib in Resources */,
-				532A148D184D7594009C5BAE /* schools.db in Resources */,
+				BA98F19B18814BA500752303 /* menu.png in Resources */,
 				BAE4EB3918543B2900597C1D /* my_star_icon.png in Resources */,
 				535EA90D18297637003D289A /* InfoPlist.strings in Resources */,
 				BAE4EB4E1854F67F00597C1D /* highlighted_star.png in Resources */,
+				BA98F19C18814BA500752303 /* menu@2x.png in Resources */,
+				BA98F1AD18815C5600752303 /* bookmarkHigh.png in Resources */,
 				BAE4EB2E185075FC00597C1D /* ios-linen.jpg in Resources */,
 				BAE4EB3B18543BB200597C1D /* gold_star.png in Resources */,
 			);
@@ -430,6 +527,7 @@
 				535EA91318297637003D289A /* CCAppDelegate.m in Sources */,
 				3D686785184BBC6D00A189ED /* FilteredCollegesTableViewCell.m in Sources */,
 				532A148C184D7594009C5BAE /* MUITCollegeDataProvider.m in Sources */,
+				BA98F1971881495C00752303 /* CCPanelViewViewController.m in Sources */,
 				49EB4CB51843FDBB00C9C4AB /* CollegeSearchViewController.m in Sources */,
 				BAE4EB541854FEB200597C1D /* CCFavoriteSCell.m in Sources */,
 				49EB4CB61843FDBB00C9C4AB /* FilterViewController.m in Sources */,
@@ -437,8 +535,10 @@
 				49EB4CB21843FDBB00C9C4AB /* CollegeSavedViewController.m in Sources */,
 				532A148B184D7594009C5BAE /* MUITCollege.m in Sources */,
 				BAE4EB311852F29900597C1D /* CCBookmarksPage.m in Sources */,
+				BA98F1941881492D00752303 /* SWRevealViewController.m in Sources */,
 				BA85206F183AF3FB002CC626 /* CCAnimationsScreenViewController.m in Sources */,
 				BA85206A183AECF6002CC626 /* CCAnimationPageViewController.m in Sources */,
+				BA98F1A21881533C00752303 /* CCSettingsViewController.m in Sources */,
 				49EB4CB71843FDBB00C9C4AB /* HomeViewController.m in Sources */,
 				53F82003184D808C000466E4 /* CollegeDetailTableViewController.m in Sources */,
 			);

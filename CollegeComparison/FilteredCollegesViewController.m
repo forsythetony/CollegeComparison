@@ -124,7 +124,7 @@ NSArray *searchResults;
     [labelInHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0]];
     [labelInHeaderView setTextColor:[UIColor grayColor]];
     labelInHeaderView.font = [UIFont fontWithName:@"Avenir-Book" size:13.0];
-    labelInHeaderView.text = [[NSString stringWithFormat:@"%d", collegesReturned] stringByAppendingString:@" COLLEGES RETURNED"];
+    labelInHeaderView.text = [[NSString stringWithFormat:@"%lu", (unsigned long)collegesReturned] stringByAppendingString:@" COLLEGES RETURNED"];
     
     // Add label to the view
     [tableHeaderView addSubview:labelInHeaderView];
@@ -176,7 +176,7 @@ NSArray *searchResults;
     NSNumberFormatter *tuition = [[NSNumberFormatter alloc] init];
     [tuition setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [tuition setNumberStyle:NSNumberFormatterCurrencyStyle];
-    NSNumber *amount = [NSNumber numberWithInt:[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] tuition_out_state]];
+    NSNumber *amount = [NSNumber numberWithInteger:[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] tuition_out_state]];
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.universityNameLabel.text = [(MUITCollege *)[searchResults objectAtIndex:indexPath.row] name];

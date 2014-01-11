@@ -90,7 +90,7 @@
     else womenEnrollLabel.text = [NSString stringWithFormat:@"%.2f%%", (womenPerc*100)];
 
     if (college.percent_receive_financial_aid <= 0) finaidLabel.text = @"N/A";
-    else finaidLabel.text = [NSString stringWithFormat:@"%d%%", college.percent_receive_financial_aid];
+    else finaidLabel.text = [NSString stringWithFormat:@"%ld%%", (long)college.percent_receive_financial_aid];
     
     //logic to determine the institution type
     if (college.control == 1) instituteType = @"Public";
@@ -103,25 +103,25 @@
     
     //the following if statements display N/A's if there is no score for each text section
     if (college.act_english_25 <= 0 && college.act_english_75 <= 0) actRead.text = @"N/A";
-    else actRead.text = [NSString stringWithFormat:@"%d - %d", college.act_english_25, college.act_english_75];
+    else actRead.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.act_english_25, (long)college.act_english_75];
     
     if (college.act_math_25 <= 0 && college.act_math_75 <= 0) actMath.text = @"N/A";
-    else actMath.text = [NSString stringWithFormat:@"%d - %d", college.act_math_25, college.act_math_75];
+    else actMath.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.act_math_25, (long)college.act_math_75];
     
     if (college.act_writing_25 <= 0 && college.act_writing_75 <= 0) actWriting.text = @"N/A";
-    else actWriting.text = [NSString stringWithFormat:@"%d - %d", college.act_writing_25, college.act_writing_75];
+    else actWriting.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.act_writing_25, (long)college.act_writing_75];
     
     if (college.act_25 <= 0 && college.act_75 <= 0) actComposite.text = @"N/A";
-    else actComposite.text = [NSString stringWithFormat:@"%d - %d", college.act_25, college.act_75];
+    else actComposite.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.act_25, (long)college.act_75];
     
     if (college.sat_reading_25 <= 0 && college.sat_reading_75 <= 0) satRead.text = @"N/A";
-    else satRead.text = [NSString stringWithFormat:@"%d - %d", college.sat_reading_25, college.sat_reading_75];
+    else satRead.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.sat_reading_25, (long)college.sat_reading_75];
     
     if (college.sat_math_25 <= 0 && college.sat_math_75 <= 0) satMath.text = @"N/A";
-    else satMath.text = [NSString stringWithFormat:@"%d - %d", college.sat_math_25, college.sat_math_75];
+    else satMath.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.sat_math_25, (long)college.sat_math_75];
     
     if (college.sat_writing_25 <= 0 && college.sat_writing_75 <= 0) satWriting.text = @"N/A";
-    else satWriting.text = [NSString stringWithFormat:@"%d - %d", college.sat_writing_25, college.sat_writing_75];
+    else satWriting.text = [NSString stringWithFormat:@"%ld - %ld", (long)college.sat_writing_25, (long)college.sat_writing_75];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
