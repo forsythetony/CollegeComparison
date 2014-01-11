@@ -9,6 +9,7 @@
 #import "CCBookmarksPage.h"
 #import "CCAppDelegate.h"
 #import "CCFavoriteSCell.h"
+#import "SWRevealViewController.h"
 
 
 @interface CCBookmarksPage () {
@@ -18,6 +19,8 @@
     UIColor *coralColor, *blueColor;
     UIImage *starHighlighted, *starUnhighlighted;
     
+    UIButton *toggleButton;
+
 }
 
 @end
@@ -39,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	[self slidingPanelSetup];
     // Do any additional setup after loading the view.
     [self getData];
     [self configureGlobalVariables];
@@ -323,6 +326,32 @@
 
     
     
+}
+-(void)slidingPanelSetup
+{
+    //Set up panel view things
+    
+    if (toggleButton) {
+        [toggleButton removeFromSuperview];
+    }
+    
+    _panelViewButton.target = self;
+    _panelViewButton.action = @selector(panelPressed:);
+    //Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    
+}
+-(void)panelPressed:(id) sender
+{
+    
+    toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [toggleButton addTarget:self.revealViewController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:toggleButton];
+    
+    [self.revealViewController revealToggle:sender];
 }
 
 @end

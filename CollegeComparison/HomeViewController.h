@@ -11,4 +11,7 @@
 
 @interface HomeViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *panelViewButton;
+
+
 @end

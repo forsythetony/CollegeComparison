@@ -16,5 +16,7 @@
 
 
 @property (strong, nonatomic) NSMutableArray *favoritesArray, *recentArray;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *panelViewButton;
+
 
 @end

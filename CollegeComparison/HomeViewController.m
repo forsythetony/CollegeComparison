@@ -7,9 +7,12 @@
 //
 
 #import "HomeViewController.h"
+#import "SWRevealViewController.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () {
+    UIButton *toggleButton;
 
+}
 @end
 
 @implementation HomeViewController
@@ -26,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self slidingPanelSetup];   
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
     
@@ -96,5 +100,31 @@
         }
         
     }
+
+-(void)slidingPanelSetup
+{
+    //Set up panel view things
     
+    if (toggleButton) {
+        [toggleButton removeFromSuperview];
+    }
+    
+    _panelViewButton.target = self;
+    _panelViewButton.action = @selector(panelPressed:);
+    //Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+
+}
+-(void)panelPressed:(id) sender
+{
+    
+    toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    [toggleButton addTarget:self.revealViewController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:toggleButton];
+    
+    [self.revealViewController revealToggle:sender];
+}
 @end
