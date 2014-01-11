@@ -112,7 +112,7 @@
     //Create title
     float heightOfTitle = 30.0;
     float bottomPadding = 3.0;
-    float leftPadding = 7.0;
+    float leftPadding = 40.0;
     
     CGRect titleFrame;
     
@@ -173,7 +173,7 @@
         
         //Create label
         
-        float leftPadding = 14.0;
+        float leftPadding = 10.0;
         float bottomPadding = -3.0;
         float titleHeight = 30.0;
         

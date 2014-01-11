@@ -433,6 +433,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Sg-ah-UeR" id="Ag1-53-XY9">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map.png" translatesAutoresizingMaskIntoConstraints="NO" id="MZg-cd-SZ1">
+                                            <rect key="frame" x="5" y="10" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="g9c-ZR-neY" kind="custom" customClass="SWRevealViewControllerSegue" id="66y-3N-wv6"/>
@@ -444,6 +451,12 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bXK-gv-xNo" id="ERf-Bw-ATY">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookmarkHigh.png" translatesAutoresizingMaskIntoConstraints="NO" id="LqQ-w5-1F5">
+                                            <rect key="frame" x="5" y="10" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="BAG-kq-uQS" kind="custom" customClass="SWRevealViewControllerSegue" id="rfW-Pj-EdF"/>
@@ -455,6 +468,12 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UwR-23-LWT" id="SgO-Zz-97r">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="news.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ycd-dc-eTh">
+                                            <rect key="frame" x="5" y="10" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="tRX-q0-aDh" kind="custom" customClass="SWRevealViewControllerSegue" id="ig0-rz-hxb"/>
@@ -948,8 +967,11 @@
         <image name="Institution Type" width="183" height="183"/>
         <image name="Student Body" width="183" height="183"/>
         <image name="Tuition" width="183" height="206"/>
+        <image name="bookmarkHigh.png" width="1024" height="1024"/>
         <image name="home_navbar_icon.png" width="30" height="30"/>
+        <image name="map.png" width="1024" height="1024"/>
         <image name="menu.png" width="28" height="20"/>
+        <image name="news.png" width="1024" height="1024"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
