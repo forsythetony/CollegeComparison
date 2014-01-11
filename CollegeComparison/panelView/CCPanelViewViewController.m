@@ -259,7 +259,7 @@
     
     //Configure button
     syncButton.layer.cornerRadius = 8.0;
-    [syncButton setTitle:@"sync" forState:UIControlStateNormal];
+    [syncButton setTitle:@"update" forState:UIControlStateNormal];
     [syncButton setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:103.0/255.0 blue:65.0/255.0 alpha:0.8]];
     [syncButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
     [syncButton.titleLabel setTextColor:[UIColor whiteColor]];
@@ -269,7 +269,7 @@
     [cell.contentView addSubview:syncButton];
     
     //Configure sync image
-    float syncImageLeftPadding = 0.0;
+   // float syncImageLeftPadding = 0.0;
     CGRect syncFrame;
     syncFrame.origin.x = 0.0;
     syncFrame.origin.y = topPadding;
@@ -278,7 +278,7 @@
     
     syncImage = [[ UIImageView alloc] initWithImage:[UIImage imageNamed:@"sync_image.png"]];
     
-    [syncImage setFrame:CGRectMake(widthOfButton - 30.0, 3.0, 15.0, 15.0)];
+    [syncImage setFrame:CGRectMake(widthOfButton - 25.0, 3.0, 15.0, 15.0)];
     
     //Configure button target
     [syncButton addTarget:self action:@selector(startSpin) forControlEvents:UIControlEventTouchUpInside];
