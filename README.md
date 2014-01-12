@@ -1,4 +1,4 @@
-Udecide
+Ucompare
 ==================
 ######A College Comparison iOS Application
 ##Info
