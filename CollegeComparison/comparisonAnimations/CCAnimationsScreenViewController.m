@@ -125,7 +125,7 @@
     
     if (IS_IPHONE_5)
     {
-        BOTTOMREFERENCEPOINT = MIDSECTIONREFERENCEPOINT + 200.0 + 50.0;
+        BOTTOMREFERENCEPOINT = MIDSECTIONREFERENCEPOINT + 200.0 + 66.0;
         TOPOFDETAILREFERENCEPOINT = 175.0;
         MIDDLEOFDETAILVIEWREFERENCEPOINT = (BOTTOMREFERENCEPOINT + TOPOFDETAILREFERENCEPOINT) / 2.0;
     }
@@ -2193,8 +2193,6 @@
 }
 -(void)setGlobalVariables
 {
-    float sizeOfScreen = self.view.bounds.size.height;
-    
-    NSLog(@"\n\nSize of Screen: %lf\n", sizeOfScreen);
+
 }
 @end
