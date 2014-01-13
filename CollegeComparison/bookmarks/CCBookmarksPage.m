@@ -11,6 +11,7 @@
 #import "CCFavoriteSCell.h"
 #import "SWRevealViewController.h"
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface CCBookmarksPage () {
     NSMutableArray *tableViews;
@@ -62,6 +63,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self getData];
     [tableViews[0] reloadData];
     [tableViews[1] reloadData];
 }
@@ -164,59 +166,27 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self getData];
     
-    static NSString *cellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    }
-    
-    NSString *collegeName = [NSString new];
-    NSString *dateString = [NSString new];
+    static NSString *favoritesIdentifier = @"favoritesCell";
+    static NSString *recentsIdentifier = @"recentsCell";
+    NSString *reuseIdentifier;
     
     if (currentTableView == 0) {
-        collegeName = [[favoriteItems objectAtIndex:indexPath.row] name];
-        
-        UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 40.0, 5.0, 40.0, 40.0)];
-        
-        [button1 setImage:starHighlighted forState:UIControlStateNormal];
-        [button1 addTarget:self action:@selector(handleStarClick:) forControlEvents:UIControlEventTouchUpInside];
-        button1.tag = indexPath.row;
-        
-        [cell.contentView addSubview:button1];
-        
-        [cell setEditing:YES];
+        reuseIdentifier = favoritesIdentifier;
     }
     else
     {
-        
-        MUITCollege *theCollege = [recentItems objectAtIndex:indexPath.row];
-        
-        collegeName = theCollege.name;
-        dateString = theCollege.dateAccessed;
-
-        
+        reuseIdentifier = recentsIdentifier;
+    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     }
     
-    
-    [cell.textLabel setText:collegeName];
-    
-    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:14.0]];
-    [cell.textLabel setTextColor:coralColor];
-    
-    
-    
-    [cell.detailTextLabel setText:dateString];
-    [cell.detailTextLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:10.0]];
-    [cell.detailTextLabel setTextColor:blueColor];
-
-    
-    if ([self.favoritesOrRect selectedSegmentIndex] == 0) {
-    }
+    cell = [self configureCell:cell andRow:indexPath.row];
     
     return cell;
 }
@@ -338,6 +308,54 @@
 {
         
     [self.revealViewController revealToggle:sender];
+}
+-(UITableViewCell*)configureCell:(UITableViewCell*) theCell andRow:(NSInteger) row
+{
+    MUITCollege *theCollege;
+    
+    
+    if ([theCell.reuseIdentifier isEqualToString:@"favoritesCell"]) {
+        
+        //---Configure the font for the cell
+        UIFont *cellTextFont = [UIFont fontWithName:@"Avenir-Book" size:15.0];
+        [theCell.textLabel setFont:cellTextFont];
+        
+        UIFont *cellDetailTextFont = [UIFont fontWithName:@"Avenir-Book" size:11.0];
+        [theCell.detailTextLabel setFont:cellDetailTextFont];
+        
+        theCollege = [favoriteItems objectAtIndex:row];
+        [theCell.textLabel setText:theCollege.name];
+        
+    }
+    else
+    {
+        
+        //---Configure the font for the cell
+        
+        UIFont *recentsFont = [UIFont fontWithName:@"Avenir-Book" size:15.0];
+        
+        
+        UIFont *recentsDetailFont = [UIFont fontWithName:@"Avenir-light" size:10.0];
+        
+        UIColor *detailsColor = UIColorFromRGB(0xF05746);
+        
+        [theCell.detailTextLabel setTextColor:detailsColor];
+        [theCell.detailTextLabel setFont:recentsDetailFont];
+        
+        [theCell.textLabel setFont:recentsFont];
+        
+        
+        
+        
+        theCollege = [recentItems objectAtIndex:row];
+        [theCell.textLabel setText:theCollege.name];
+        [theCell.detailTextLabel setText:theCollege.dateAccessed];
+        
+        
+        
+    }
+    
+    return theCell;
 }
 
 @end
