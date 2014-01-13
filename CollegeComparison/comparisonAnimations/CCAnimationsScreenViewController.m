@@ -668,10 +668,6 @@
         UILabel *moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(-3.0, -25.0,
                                                                        40.0, 40.0)];
         
-        [moreLabel setText:@"Info"];
-        moreLabel.font = [UIFont fontWithName:@"Avenir-Book" size:10.0];
-        moreLabel.textAlignment = NSTextAlignmentCenter;
-        
         float why = 5.0;
         
         for (int i = 0; i < 2; i++)
@@ -772,13 +768,6 @@
                                                        alpha:0.3]];
         
         
-        UILabel *moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(-3.0, -25.0,
-                                                                       40.0, 40.0)];
-        
-        [moreLabel setText:@"Info"];
-        moreLabel.font = [UIFont fontWithName:@"Avenir-Book" size:10.0];
-        moreLabel.textAlignment = NSTextAlignmentCenter;
-        
         float why = 5.0;
         
         for (int i = 0; i < 2; i++)
@@ -804,9 +793,7 @@
         longPressRecognizer.minimumPressDuration = .001;
         
         [handleView addGestureRecognizer:longPressRecognizer];
-        
-        [self customAddSubview:moreLabel toSuperView:handleView];
-        
+
         [handleView setAlpha:0.0];
 
         [self customAddSubview:handleView toSuperView:self.view];
