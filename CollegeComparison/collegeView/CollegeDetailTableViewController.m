@@ -248,12 +248,16 @@
         [sender setImage:unhighlightedStarImage forState:UIControlStateNormal];
         
         [favorites removeObject:self.representedCollege];
+        
+        favorited = NO;
     }
     else if (favorited == NO)
     {
         [sender setImage:highlightedStarImage forState:UIControlStateNormal];
         
         [favorites insertObject:self.representedCollege atIndex:0];
+        
+        favorited = YES;
     }
  
 }

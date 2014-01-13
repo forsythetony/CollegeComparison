@@ -313,6 +313,7 @@
 {
     MUITCollege *theCollege;
     
+    [theCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     if ([theCell.reuseIdentifier isEqualToString:@"favoritesCell"]) {
         
