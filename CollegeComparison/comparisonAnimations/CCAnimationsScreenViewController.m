@@ -121,17 +121,19 @@
     [self setArrayOfUnderliners];
     [self justseeing];
     
+    [self setGlobalVariables];
+    
     if (IS_IPHONE_5)
     {
-        BOTTOMREFERENCEPOINT = 417.0;
+        BOTTOMREFERENCEPOINT = MIDSECTIONREFERENCEPOINT + 200.0 + 50.0;
         TOPOFDETAILREFERENCEPOINT = 175.0;
         MIDDLEOFDETAILVIEWREFERENCEPOINT = (BOTTOMREFERENCEPOINT + TOPOFDETAILREFERENCEPOINT) / 2.0;
     }
     else
     {
-        BOTTOMREFERENCEPOINT = 329.0;
+        BOTTOMREFERENCEPOINT = MIDSECTIONREFERENCEPOINT + 178.0;
         TOPOFDETAILREFERENCEPOINT = 100.0;
-        MIDDLEOFDETAILVIEWREFERENCEPOINT = 200.0;
+        MIDDLEOFDETAILVIEWREFERENCEPOINT = MIDSECTIONREFERENCEPOINT;
     }
     
 }
@@ -445,8 +447,10 @@
         
         detailPanelDisplayed = YES;
         
-        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, BOTTOMREFERENCEPOINT + 1.0,
-                                                                self.view.bounds.size.width, self.view.bounds.size.height)];
+        detailViewer = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x,
+                                                                MIDDLEOFDETAILVIEWREFERENCEPOINT + 179.0,
+                                                                self.view.bounds.size.width,
+                                                                self.view.bounds.size.height)];
         
         originalDetailViewFrame = detailViewer.bounds;
         
@@ -2187,7 +2191,10 @@
     }
     
 }
-
-
-
+-(void)setGlobalVariables
+{
+    float sizeOfScreen = self.view.bounds.size.height;
+    
+    NSLog(@"\n\nSize of Screen: %lf\n", sizeOfScreen);
+}
 @end
