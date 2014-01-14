@@ -73,9 +73,12 @@
         self.enrollment_total = [[aDecoder decodeObjectForKey:@"enrollment_total"] integerValue];
         
         self.dateAccessed = [aDecoder decodeObjectForKey:@"dateAccessed"];
+        
+        return self;
     }
     
-    return self;
+    return nil;
+    
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder

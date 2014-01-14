@@ -42,24 +42,18 @@
     NSLog(@"%@", databasePath);
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    /*
-    if ([fileManager fileExistsAtPath:databasePath] == YES)
-    {
-        [fileManager removeItemAtPath:databasePath error:&error];
-    }
-     */
         
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
     [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
     
-    self.recentlyVisited = [self reloadBookmarked];
+    self.recentlyVisited = [self reloadRecentlyVisited];
     
-    self.bookmarked = [NSMutableArray new];
+    self.bookmarked = [self reloadFavorited];
     
     return YES;
 }
 
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -73,7 +67,6 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [self saveBookmarked];
 
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     
 }
@@ -98,13 +91,18 @@
 
 -(void)saveBookmarked
 {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.recentlyVisited];
-  
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"recentlyVisited"];
+    NSData *recentlyVisitedData = [NSKeyedArchiver archivedDataWithRootObject:self.recentlyVisited];
+    NSData *favoritedData = [NSKeyedArchiver archivedDataWithRootObject:self.bookmarked];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:recentlyVisitedData forKey:@"recentlyVisited"];
+    [[NSUserDefaults standardUserDefaults] setObject:favoritedData forKey:@"favoritedData"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
 
 }
 
--(NSMutableArray*)reloadBookmarked
+-(NSMutableArray*)reloadRecentlyVisited
 {
     NSData *bookmarksData = [[NSUserDefaults standardUserDefaults] objectForKey:@"recentlyVisited"];
     
@@ -115,6 +113,19 @@
     NSMutableArray *bookmarks = [NSKeyedUnarchiver unarchiveObjectWithData:bookmarksData];
     
     return bookmarks;
+}
+-(NSMutableArray*)reloadFavorited
+{
+    NSData *favoritedData = [[NSUserDefaults standardUserDefaults] objectForKey:@"favoritedData"];
+    
+    if (favoritedData == nil) {
+        return [NSMutableArray new];
+    }
+    
+    NSMutableArray *favorited = [NSKeyedUnarchiver unarchiveObjectWithData:favoritedData];
+    
+    return favorited;
+    
 }
 
 

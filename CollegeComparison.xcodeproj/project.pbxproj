@@ -61,6 +61,8 @@
 		BA75EE491881EDBB0087BC15 /* schools.db in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE481881EDBB0087BC15 /* schools.db */; };
 		BA75EE5E188460240087BC15 /* menuBarsWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE5C188460240087BC15 /* menuBarsWhite.png */; };
 		BA75EE5F188460240087BC15 /* menuBarsWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE5D188460240087BC15 /* menuBarsWhite@2x.png */; };
+		BA75EE621884CEE50087BC15 /* unhighlighted_star.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE601884CEE50087BC15 /* unhighlighted_star.png */; };
+		BA75EE631884CEE50087BC15 /* unhighlighted_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA75EE611884CEE50087BC15 /* unhighlighted_star@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +156,8 @@
 		BA75EE481881EDBB0087BC15 /* schools.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = schools.db; path = model/schools.db; sourceTree = "<group>"; };
 		BA75EE5C188460240087BC15 /* menuBarsWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuBarsWhite.png; path = panelView/images/menuBarsWhite.png; sourceTree = "<group>"; };
 		BA75EE5D188460240087BC15 /* menuBarsWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuBarsWhite@2x.png"; path = "panelView/images/menuBarsWhite@2x.png"; sourceTree = "<group>"; };
+		BA75EE601884CEE50087BC15 /* unhighlighted_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unhighlighted_star.png; path = bookmarks/images/unhighlighted_star.png; sourceTree = "<group>"; };
+		BA75EE611884CEE50087BC15 /* unhighlighted_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unhighlighted_star@2x.png"; path = "bookmarks/images/unhighlighted_star@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +425,8 @@
 		BAE4EB491854EDD900597C1D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA75EE601884CEE50087BC15 /* unhighlighted_star.png */,
+				BA75EE611884CEE50087BC15 /* unhighlighted_star@2x.png */,
 				BA75EDC41881EB7A0087BC15 /* custom_star_icon.png */,
 				BA75EDC51881EB7A0087BC15 /* gold_star.png */,
 				BA75EDC61881EB7A0087BC15 /* highlighted_star.png */,
@@ -506,6 +512,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA75EE621884CEE50087BC15 /* unhighlighted_star.png in Resources */,
 				BA75EDF11881EBCC0087BC15 /* Background.png in Resources */,
 				BA75EDF21881EBCC0087BC15 /* Background2.png in Resources */,
 				BA75EDF31881EBCC0087BC15 /* Bookmark.png in Resources */,
@@ -518,6 +525,7 @@
 				BA75EE471881EDAF0087BC15 /* InfoPlist.strings in Resources */,
 				BA75EE5E188460240087BC15 /* menuBarsWhite.png in Resources */,
 				BA75EDF61881EBCC0087BC15 /* Filter Icon.png in Resources */,
+				BA75EE631884CEE50087BC15 /* unhighlighted_star@2x.png in Resources */,
 				BA75EE3D1881ED340087BC15 /* Images.xcassets in Resources */,
 				BA75EE5F188460240087BC15 /* menuBarsWhite@2x.png in Resources */,
 				BA75EE421881ED5E0087BC15 /* CollegeSearch-Info.plist in Resources */,
