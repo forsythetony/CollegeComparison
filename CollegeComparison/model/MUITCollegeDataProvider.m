@@ -79,7 +79,7 @@ static sqlite3_stmt *statement = nil;
                     
                     college.name = [NSString stringWithCString:(const char *) sqlite3_column_text(statement, 1) encoding:NSUTF8StringEncoding];
 
-                    college.id = (int)sqlite3_column_int(statement, 0);
+                    college.identifier = (int)sqlite3_column_int(statement, 0);
                     college.control = (int)sqlite3_column_int(statement, 3);
                     college.state = [NSString stringWithCString:(const char *) sqlite3_column_text(statement, 2) encoding:NSUTF8StringEncoding];
                     
@@ -263,7 +263,7 @@ static sqlite3_stmt *statement = nil;
                 
                 dummyCollege.name = [valuesDictionary objectForKey:@"name"];
                 
-                dummyCollege.id = [[valuesDictionary objectForKey:@"id"] integerValue];
+                dummyCollege.identifier = [[valuesDictionary objectForKey:@"id"] integerValue];
                 dummyCollege.control = [valuesDictionary[@"control"] integerValue];
                 dummyCollege.state = valuesDictionary[@"state"];
                 

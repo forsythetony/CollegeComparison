@@ -11,7 +11,7 @@
 @interface MUITCollege : NSObject <NSCoding> {
     NSString *name;
     NSString *state;
-    NSInteger id;
+    NSInteger identifier;
     NSInteger control;
     
     NSInteger sat_reading_25;
@@ -44,7 +44,7 @@
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *state;
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, assign) NSInteger identifier;
 @property (nonatomic, assign) NSInteger control;
 
 @property (nonatomic, assign) NSInteger sat_reading_25;

@@ -182,24 +182,25 @@
         
         NSInteger counter = [appDelegate.recentlyVisited count];
         
-        if (wasEqual == NO && counter < maxSizeOfRecents) {
-            [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
-        }
-        else if (wasEqual == NO && counter >= maxSizeOfRecents)
-        {
-            [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
-            [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
-        }
+//        if (wasEqual == NO && counter < maxSizeOfRecents) {
+//            [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
+//        }
+//        else if (wasEqual == NO && counter >= maxSizeOfRecents)
+//        {
+//            [appDelegate.recentlyVisited removeObject:[appDelegate.recentlyVisited lastObject]];
+//            [appDelegate.recentlyVisited insertObject:self.representedCollege atIndex:0];
+//        }
     
     
-    BOOL foundInArray = [appDelegate.recentlyVisited containsObject:college];
+    BOOL foundInArray = [self doesCollege:college ExistInArray:appDelegate.recentlyVisited];
+    
     NSInteger arrayCount = [appDelegate.recentlyVisited count];
     
     
     if (foundInArray == YES) {
         
         if (arrayCount < maxSizeOfRecents) {
-            [appDelegate.recentlyVisited removeObject:college];
+            [self removeCollege:college fromArray:appDelegate.recentlyVisited];
             [appDelegate.recentlyVisited insertObject:college atIndex:0];
         }
         else {
@@ -211,7 +212,15 @@
     
     }
     else if (foundInArray == NO){
-        [appDelegate.recentlyVisited insertObject:college atIndex:0];
+        
+        if (arrayCount <= 30) {
+            [appDelegate.recentlyVisited insertObject:college atIndex:0];
+        }
+        else
+        {
+            [appDelegate.recentlyVisited removeLastObject];
+            [appDelegate.recentlyVisited insertObject:college atIndex:0];
+        }
     }
     
 }
@@ -299,5 +308,38 @@
     
     
     return nil;
+}
+-(BOOL)doesCollege:(MUITCollege*) theCollege ExistInArray:(NSMutableArray*) theArray
+{
+    NSInteger theID = theCollege.identifier;
+    
+    for (MUITCollege* college in theArray)
+    {
+        if (college.identifier == theID) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+-(void)removeCollege:(MUITCollege*) theCollege fromArray:(NSMutableArray*) theArray
+{
+    NSInteger collegeID = theCollege.identifier;
+    
+    MUITCollege *collegeToDelete;
+    
+    for (MUITCollege *college in theArray)
+    {
+        if (collegeID == college.identifier) {
+            collegeToDelete = college;
+        }
+    }
+    
+    [theArray removeObject:collegeToDelete];
+    
+    
+    
+    
+    
 }
 @end

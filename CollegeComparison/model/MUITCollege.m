@@ -12,7 +12,7 @@
 
 @synthesize name;
 @synthesize state;
-@synthesize id;
+@synthesize identifier;
 @synthesize control;
 
 @synthesize sat_reading_25;
@@ -47,7 +47,7 @@
     if (self = [super init]) {
         self.name = [aDecoder decodeObjectForKey:@"name"];
         self.state = [aDecoder decodeObjectForKey:@"state"];
-        self.id = [[aDecoder decodeObjectForKey:@"id"] integerValue];
+        self.identifier = [[aDecoder decodeObjectForKey:@"id"] integerValue];
         self.control = [[aDecoder decodeObjectForKey:@"id"] integerValue];
         
         self.sat_reading_25 = [[aDecoder decodeObjectForKey:@"sat_reading_25"] integerValue];
@@ -86,7 +86,7 @@
     
     [aCoder encodeObject:name forKey:@"name"];
     [aCoder encodeObject:state forKey:@"state"];
-    [aCoder encodeObject:[NSNumber numberWithInteger:self.id] forKey:@"id"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.identifier] forKey:@"id"];
     [aCoder encodeObject:[NSNumber numberWithInteger:control] forKey:@"control"];
     
     [aCoder encodeObject:[NSNumber numberWithInteger:sat_reading_25] forKey:@"sat_reading_25"];
