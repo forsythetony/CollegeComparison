@@ -314,6 +314,7 @@
     MUITCollege *theCollege;
     
     [theCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [theCell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
     if ([theCell.reuseIdentifier isEqualToString:@"favoritesCell"]) {
         
