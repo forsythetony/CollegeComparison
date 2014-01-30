@@ -342,31 +342,6 @@
     self.revealViewController.rightViewRevealDisplacement = 0.0;
     self.revealViewController.rightViewRevealOverdraw = 60.0;
     self.revealViewController.bounceBackOnLeftOverdraw = NO;
-    //self.revealViewController.toggleAnimationDuration = 0.0;
-    
-//    [self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
-//    self.revealViewController.presentFrontViewHierarchically = YES;
-    
-    //Create mock status bar background
-    /*
-    CGRect mockStatusBarFrame;
-    
-    mockStatusBarFrame.origin = self.view.bounds.origin;
-    mockStatusBarFrame.size = self.view.bounds.size;
-    
-    CGSize statusBarSize = [UIApplication sharedApplication].statusBarFrame.size;
-    
-    mockStatusBarFrame.origin.y -= statusBarSize.height;
-    
-    mockStatusBarFrame.size = statusBarSize;
-    
-    UIView *mockStatusBarBackground = [[UIView alloc] initWithFrame:mockStatusBarFrame];
-    
-    [mockStatusBarBackground setBackgroundColor:[UIColor redColor]];
-    
-    [self.view addSubview:mockStatusBarBackground];
-    
-    [self.view bringSubviewToFront:mockStatusBarBackground];
-     */
+    self.revealViewController.toggleCloseAnimationDuration = 0.18;
 }
 @end

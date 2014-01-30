@@ -433,6 +433,10 @@ const int FrontViewPositionNone = 0xff;
     _presentFrontViewHierarchically = NO;
     _quickFlickVelocity = 250.0f;
     _toggleAnimationDuration = 0.25;
+    
+    //Anthony Forsythe
+    _toggleCloseAnimationDuration = 0.15;
+    
     _frontViewShadowRadius = 2.5f;
     _frontViewShadowOffset = CGSizeMake(0.0f, 2.5f);
     _frontViewShadowOpacity = 1.0f;
@@ -1090,9 +1094,9 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 {
     NSTimeInterval duration = animated?_toggleAnimationDuration:0.0;
     
-    //ANTHONY FORSYTHE wrote these next few lines
+    //Anthony Forsythe
     if (frontViewPosition == FrontViewPositionLeft) {
-        duration = 0.15;
+        duration = _toggleCloseAnimationDuration;
     }
     __weak SWRevealViewController *theSelf = self;
     _enqueue( [theSelf _setFrontViewPosition:frontViewPosition withDuration:duration] );

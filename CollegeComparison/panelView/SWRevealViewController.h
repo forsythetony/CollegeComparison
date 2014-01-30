@@ -200,6 +200,7 @@ typedef enum
 
 // Default duration for the revealToggle animation, default is 0.25
 @property (assign, nonatomic) NSTimeInterval toggleAnimationDuration;
+@property (assign, nonatomic) NSTimeInterval toggleCloseAnimationDuration;
 
 // Defines the radius of the front view's shadow, default is 2.5f
 @property (assign, nonatomic) CGFloat frontViewShadowRadius;
