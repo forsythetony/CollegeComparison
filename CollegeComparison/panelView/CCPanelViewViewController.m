@@ -342,7 +342,7 @@
     self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
 
     self.revealViewController.rightViewRevealDisplacement = 0.0;
-    self.revealViewController.rightViewRevealOverdraw = 60.0;
+    self.revealViewController.rightViewRevealOverdraw = 40.0;
     self.revealViewController.bounceBackOnLeftOverdraw = NO;
     self.revealViewController.toggleCloseAnimationDuration = 0.18;
 }
