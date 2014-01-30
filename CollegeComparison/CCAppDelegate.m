@@ -11,6 +11,8 @@
 
 @implementation CCAppDelegate
 
+@synthesize background;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
@@ -31,7 +33,6 @@
 
     
     
-    
     // Override point for customization after application launch.
 
     NSError *error;
@@ -49,6 +50,20 @@
     self.recentlyVisited = [self reloadRecentlyVisited];
     
     self.bookmarked = [self reloadFavorited];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        [application setStatusBarStyle:UIStatusBarStyleDefault];
+        self.window.clipsToBounds =YES;
+        self.window.frame =  CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20);
+        
+        //Added on 19th Sep 2013
+        self.window.bounds = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height);
+        background = [[UIWindow alloc] initWithFrame: CGRectMake(0, 0, self.window.frame.size.width, 20)];
+        background.backgroundColor =UIColorFromRGB(0xF05746);
+        [background setHidden:NO];
+    }
+    
+    
     
     return YES;
 }

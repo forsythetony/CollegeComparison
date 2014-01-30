@@ -156,10 +156,13 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     {
         _c = controller;
         CGRect bounds = self.bounds;
-    
+        
+        bounds.origin.y += 20.0;
+        
         _frontView = [[UIView alloc] initWithFrame:bounds];
         _frontView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-
+        
+        
         [self addSubview:_frontView];
 
         CALayer *frontViewLayer = _frontView.layer;
@@ -192,8 +195,9 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 
     CGRect bounds = self.bounds;
     
+//    CGFloat xLocation = [self frontLocationForPosition:_c.frontViewPosition];
     CGFloat xLocation = [self frontLocationForPosition:_c.frontViewPosition];
-    
+
     [self _layoutRearViewsForLocation:xLocation];
     
     CGRect frame = CGRectMake(xLocation, 0.0f, bounds.size.width, bounds.size.height);
@@ -286,6 +290,15 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     if ( rightRevealWidth < 0) rightRevealWidth = bounds.size.width + _c.rightViewRevealWidth;
     
     CGFloat rightXLocation = scaledValue(xLocation, 0, _c.rightViewRevealDisplacement, -rightRevealWidth, 0);
+    
+    
+    //Very dangerous code right here
+    if (rightXLocation != 0.0) {
+        rightXLocation += 100.0;
+    }
+    
+    
+    
     
     CGFloat rightWidth = rightRevealWidth + _c.rightViewRevealOverdraw;
     _rightView.frame = CGRectMake(bounds.size.width-rightWidth+rightXLocation, 0.0f, rightWidth, bounds.size.height);
@@ -1187,6 +1200,13 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 // Primitive method for right controller transition
 - (void)_setRightViewController:(UIViewController*)newRightViewController
 {
+    
+    
+    if (_rightViewController) {
+        
+    }
+    
+    
     UIViewController *old = _rightViewController;
     _rightViewController = newRightViewController;
     [self _transitionFromViewController:old toViewController:newRightViewController inView:_contentView.rightView]();
@@ -1314,6 +1334,8 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     
     UIView *controllerView = controller.view;
     controllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+   // frame.origin.x = 200.0;
+    
     controllerView.frame = frame;
     
     if ( [controller respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [controllerView isKindOfClass:[UIScrollView class]] )

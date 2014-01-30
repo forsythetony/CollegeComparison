@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self slidingPanelSetup];   
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
@@ -121,4 +121,5 @@
 {
     [self.revealViewController rightRevealToggle:sender];
 }
+
 @end

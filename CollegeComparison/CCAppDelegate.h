@@ -11,7 +11,7 @@
 @interface CCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (retain, nonatomic) UIWindow *background;
 @property (strong, nonatomic) NSMutableArray *recentlyVisited, *bookmarked;
 
 @end

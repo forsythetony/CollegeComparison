@@ -39,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
@@ -235,7 +234,7 @@
             
             UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
             [navController setViewControllers: @[dvc] animated: NO ];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+            [self.revealViewController setFrontViewPosition: FrontViewPositionRightMost animated: NO];
         };
         
     }
@@ -337,10 +336,37 @@
 }
 -(void)revealViewControllerConfiguration
 {
-    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
     [self.revealViewController setRightViewController:self];
-    self.revealViewController.rightViewRevealDisplacement = 20.0;
+    self.revealViewController.rightViewRevealWidth = 200.0;
+
+    self.revealViewController.rightViewRevealDisplacement = 0.0;
     self.revealViewController.rightViewRevealOverdraw = 60.0;
     self.revealViewController.bounceBackOnLeftOverdraw = NO;
+    //self.revealViewController.toggleAnimationDuration = 0.0;
+    
+//    [self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
+//    self.revealViewController.presentFrontViewHierarchically = YES;
+    
+    //Create mock status bar background
+    /*
+    CGRect mockStatusBarFrame;
+    
+    mockStatusBarFrame.origin = self.view.bounds.origin;
+    mockStatusBarFrame.size = self.view.bounds.size;
+    
+    CGSize statusBarSize = [UIApplication sharedApplication].statusBarFrame.size;
+    
+    mockStatusBarFrame.origin.y -= statusBarSize.height;
+    
+    mockStatusBarFrame.size = statusBarSize;
+    
+    UIView *mockStatusBarBackground = [[UIView alloc] initWithFrame:mockStatusBarFrame];
+    
+    [mockStatusBarBackground setBackgroundColor:[UIColor redColor]];
+    
+    [self.view addSubview:mockStatusBarBackground];
+    
+    [self.view bringSubviewToFront:mockStatusBarBackground];
+     */
 }
 @end
