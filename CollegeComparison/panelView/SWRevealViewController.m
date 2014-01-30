@@ -294,7 +294,7 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     CGFloat rightXLocation = scaledValue(xLocation, 0, _c.rightViewRevealDisplacement, -rightRevealWidth, 0);
     
     
-    //Very dangerous code right here
+    //Anthony Forsythe
     if (rightXLocation != 0.0) {
         rightXLocation += REARVIEWPADDING;
     }

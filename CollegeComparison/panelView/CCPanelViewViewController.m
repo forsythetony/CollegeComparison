@@ -46,7 +46,7 @@
     
     [self revealViewControllerConfiguration];
     
-    _menuItems = @[@"Home", @"Bookmarks", @"Settings", @"sync"];
+    _menuItems = @[@"Home", @"Bookmarks", @"Settings"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -103,9 +103,9 @@
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell WithIdentifier:(NSString*) name
 {
     
-    if ([name isEqualToString:@"sync"]) {
-        return [self configureSyncCell:theCell];
-    }
+//    if ([name isEqualToString:@"sync"]) {
+//        return [self configureSyncCell:theCell];
+//    }
     
     //Configure 'global' variables
     UIFont *titleFont = [UIFont
@@ -120,8 +120,8 @@
     
     //Create title
     float heightOfTitle = 30.0;
-    float bottomPadding = 3.0;
-    float leftPadding = 5.0 + LEFTPADDINGFORTABLECELLS;
+    float bottomPadding = 7.0;
+    float leftPadding = 7.0 + LEFTPADDINGFORTABLECELLS;
     
     CGRect titleFrame;
     
@@ -337,7 +337,7 @@
 -(void)revealViewControllerConfiguration
 {
     [self.revealViewController setRightViewController:self];
-    self.revealViewController.rightViewRevealWidth = 200.0;
+    self.revealViewController.rightViewRevealWidth = 150.0;
 
     self.revealViewController.rightViewRevealDisplacement = 0.0;
     self.revealViewController.rightViewRevealOverdraw = 60.0;
