@@ -43,8 +43,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+   
     
-    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
+    [self revealViewControllerConfiguration];
     
     _menuItems = @[@"Home", @"Bookmarks", @"Settings", @"sync"];
     
@@ -333,5 +334,17 @@
 - (void) stopSpin {
     // set the flag to stop spinning after one last 90 degree increment
     animating = NO;
+}
+-(void)revealViewControllerConfiguration
+{
+    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
+    
+    [self.revealViewController setRightViewController:self];
+    
+    self.revealViewController.rightViewRevealDisplacement = 20.0;
+    self.revealViewController.rightViewRevealOverdraw = 20.0;
+    
+    
+    
 }
 @end

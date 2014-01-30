@@ -113,7 +113,7 @@
     //Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    [self.revealViewController setFrontViewPosition:FrontViewPositionLeftSide animated:YES];
+    [self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
 
 }
 -(void)panelPressed:(id) sender
