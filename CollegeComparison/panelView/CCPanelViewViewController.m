@@ -11,7 +11,7 @@
 
 #define CORALCOLOR [UIColor colorWithRed:207.0/255.0 green:103.0/255.0 blue:65.0/255.0 alpha:1.0]
 #define SECTIONHEADERHEIGHT 30.0
-#define WIDTHOFPANEL 175.0
+#define WIDTHOFPANEL 150.0
 #define LEFTPADDINGFORTABLECELLS 65.0
 
 #define CORAL [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
@@ -168,7 +168,7 @@
     if (section == 0) {
         //Create rect for view
         CGRect headerFrame;
-        headerFrame.origin.x = 20.0;
+        headerFrame.origin.x = LEFTPADDINGFORTABLECELLS;
         headerFrame.origin.y = 0.0;
         headerFrame.size.width = tableView.bounds.size.width;
         headerFrame.size.height = SECTIONHEADERHEIGHT;
@@ -182,27 +182,29 @@
         
         //Create label
         
-        float leftPadding = 6 + LEFTPADDINGFORTABLECELLS;
+       // float leftPadding = 6 + LEFTPADDINGFORTABLECELLS;
         float bottomPadding = -3.0;
         float titleHeight = 30.0;
-        
+        float labelWidth = 200.0;
         
         CGRect labelFrame;
         
-        labelFrame.origin.x = leftPadding;
+        labelFrame.origin.x = LEFTPADDINGFORTABLECELLS + ((WIDTHOFPANEL / 2) - (labelWidth/2));
         labelFrame.origin.y = SECTIONHEADERHEIGHT - titleHeight - bottomPadding;
-        labelFrame.size.width = 200.0;
+        labelFrame.size.width = labelWidth;
         labelFrame.size.height = titleHeight;
+        
         
         //Instantiate title label
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
-        
+
         //Configure text of title label
         [titleLabel setText:@"Menu"];
         
         //Configure properties of title label
         [titleLabel setFont:titleFont];
         [titleLabel setTextColor:titleTextColor];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
         
         
         
@@ -337,7 +339,7 @@
 -(void)revealViewControllerConfiguration
 {
     [self.revealViewController setRightViewController:self];
-    self.revealViewController.rightViewRevealWidth = 150.0;
+    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
 
     self.revealViewController.rightViewRevealDisplacement = 0.0;
     self.revealViewController.rightViewRevealOverdraw = 60.0;
