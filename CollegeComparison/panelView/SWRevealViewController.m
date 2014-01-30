@@ -1204,13 +1204,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 // Primitive method for right controller transition
 - (void)_setRightViewController:(UIViewController*)newRightViewController
 {
-    
-    
-    if (_rightViewController) {
-        
-    }
-    
-    
     UIViewController *old = _rightViewController;
     _rightViewController = newRightViewController;
     [self _transitionFromViewController:old toViewController:newRightViewController inView:_contentView.rightView]();
@@ -1338,8 +1331,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     
     UIView *controllerView = controller.view;
     controllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-   // frame.origin.x = 200.0;
-    
     controllerView.frame = frame;
     
     if ( [controller respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && [controllerView isKindOfClass:[UIScrollView class]] )
