@@ -11,7 +11,8 @@
 
 #define CORALCOLOR [UIColor colorWithRed:207.0/255.0 green:103.0/255.0 blue:65.0/255.0 alpha:1.0]
 #define SECTIONHEADERHEIGHT 30.0
-#define WIDTHOFPANEL 200.0
+#define WIDTHOFPANEL 175.0
+#define LEFTPADDINGFORTABLECELLS 65.0
 
 #define CORAL [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
 
@@ -43,7 +44,7 @@
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    //self.revealViewController.rearViewRevealWidth = WIDTHOFPANEL;
+    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
     
     _menuItems = @[@"Home", @"Bookmarks", @"Settings", @"sync"];
     
@@ -120,7 +121,7 @@
     //Create title
     float heightOfTitle = 30.0;
     float bottomPadding = 3.0;
-    float leftPadding = 40.0;
+    float leftPadding = 5.0 + LEFTPADDINGFORTABLECELLS;
     
     CGRect titleFrame;
     
@@ -167,7 +168,7 @@
     if (section == 0) {
         //Create rect for view
         CGRect headerFrame;
-        headerFrame.origin.x = 0.0;
+        headerFrame.origin.x = 20.0;
         headerFrame.origin.y = 0.0;
         headerFrame.size.width = tableView.bounds.size.width;
         headerFrame.size.height = SECTIONHEADERHEIGHT;
@@ -181,7 +182,7 @@
         
         //Create label
         
-        float leftPadding = 10.0;
+        float leftPadding = 6 + LEFTPADDINGFORTABLECELLS;
         float bottomPadding = -3.0;
         float titleHeight = 30.0;
         
@@ -249,7 +250,7 @@
     
     CGRect buttonFrame;
     
-    buttonFrame.origin.x = (WIDTHOFPANEL / 2) - (widthOfButton / 2);
+    buttonFrame.origin.x = (WIDTHOFPANEL / 2) - (widthOfButton / 2) + LEFTPADDINGFORTABLECELLS;
     buttonFrame.origin.y = topPadding;
     buttonFrame.size.width = widthOfButton;
     buttonFrame.size.height = 20.0;
