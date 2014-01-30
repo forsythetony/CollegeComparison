@@ -1089,6 +1089,11 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 - (void)_dispatchSetFrontViewPosition:(FrontViewPosition)frontViewPosition animated:(BOOL)animated
 {
     NSTimeInterval duration = animated?_toggleAnimationDuration:0.0;
+    
+    //ANTHONY FORSYTHE wrote these next few lines
+    if (frontViewPosition == FrontViewPositionLeft) {
+        duration = 0.15;
+    }
     __weak SWRevealViewController *theSelf = self;
     _enqueue( [theSelf _setFrontViewPosition:frontViewPosition withDuration:duration] );
 }
