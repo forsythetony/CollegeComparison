@@ -57,9 +57,6 @@
     
     [self populateArrays];
     
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(handleStarClick:)];
-    
-    [self.navigationItem setRightBarButtonItem:barButtonItem];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -300,6 +297,7 @@
     _panelViewButton.target = self;
     _panelViewButton.action = @selector(panelPressed:);
     //Set the gesture
+    
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
@@ -307,7 +305,7 @@
 -(void)panelPressed:(id) sender
 {
         
-    [self.revealViewController revealToggle:sender];
+    [self.revealViewController rightRevealToggle:sender];
 }
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell andRow:(NSInteger) row
 {

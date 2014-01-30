@@ -338,14 +338,9 @@
 -(void)revealViewControllerConfiguration
 {
     self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
-    
     [self.revealViewController setRightViewController:self];
-    
     self.revealViewController.rightViewRevealDisplacement = 20.0;
     self.revealViewController.rightViewRevealOverdraw = 60.0;
     self.revealViewController.bounceBackOnLeftOverdraw = NO;
-    
-    
-    
 }
 @end

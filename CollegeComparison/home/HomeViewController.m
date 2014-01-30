@@ -89,20 +89,21 @@
 }
 
     
-    -(void)parseData:(NSData*)data
-    {
-        NSError *error;
-        
-        NSDictionary *theDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        
-        NSArray *colleges = theDictionary[@"colleges"];
-        
-        NSLog(@"\n\n\nCall to Api\n\n");
-        for (NSDictionary* dictionary in colleges) {
-            NSLog(@"\nCollege Name: %@\nTuition: %@", [dictionary objectForKey:@"name"], [dictionary objectForKey:@"tuition"]);
-        }
-        
+-(void)parseData:(NSData*)data
+{
+    NSError *error;
+    
+    NSDictionary *theDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    
+    NSArray *colleges = theDictionary[@"colleges"];
+    
+    NSLog(@"\n\n\nCall to Api\n\n");
+    
+    for (NSDictionary* dictionary in colleges) {
+        NSLog(@"\nCollege Name: %@\nTuition: %@", [dictionary objectForKey:@"name"], [dictionary objectForKey:@"tuition"]);
     }
+    
+}
 
 -(void)slidingPanelSetup
 {
@@ -113,12 +114,11 @@
     //Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    [self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
+    //[self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
 
 }
 -(void)panelPressed:(id) sender
 {
-    
-    [self.revealViewController revealToggle:sender];
+    [self.revealViewController rightRevealToggle:sender];
 }
 @end
