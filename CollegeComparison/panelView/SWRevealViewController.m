@@ -31,6 +31,8 @@
 
 #pragma mark - SWDirectionPanGestureRecognizer
 
+#define REARVIEWPADDING 100.0
+
 typedef enum
 {
     SWDirectionPanGestureRecognizerVertical,
@@ -294,11 +296,8 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     
     //Very dangerous code right here
     if (rightXLocation != 0.0) {
-        rightXLocation += 100.0;
+        rightXLocation += REARVIEWPADDING;
     }
-    
-    
-    
     
     CGFloat rightWidth = rightRevealWidth + _c.rightViewRevealOverdraw;
     _rightView.frame = CGRectMake(bounds.size.width-rightWidth+rightXLocation, 0.0f, rightWidth, bounds.size.height);
