@@ -43,7 +43,7 @@
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    self.revealViewController.rearViewRevealWidth = WIDTHOFPANEL;
+    //self.revealViewController.rearViewRevealWidth = WIDTHOFPANEL;
     
     _menuItems = @[@"Home", @"Bookmarks", @"Settings", @"sync"];
     

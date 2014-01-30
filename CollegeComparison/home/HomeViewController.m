@@ -106,14 +106,14 @@
 
 -(void)slidingPanelSetup
 {
+
     //Set up panel view things
-    
-    
     _panelViewButton.target = self;
     _panelViewButton.action = @selector(panelPressed:);
     //Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    [self.revealViewController setFrontViewPosition:FrontViewPositionLeftSide animated:YES];
 
 }
 -(void)panelPressed:(id) sender
