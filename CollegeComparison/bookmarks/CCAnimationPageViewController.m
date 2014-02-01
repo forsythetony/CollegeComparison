@@ -99,9 +99,7 @@
     pageControl.currentPageIndicatorTintColor = blueishColor;
     
     
-    [[viewControllers objectAtIndex:0] animateAll];
-    [[viewControllers objectAtIndex:0] createHandle];
-    [[viewControllers objectAtIndex:0] buttonsForInStateAndOutWithOptionFirst:YES];
+
 }
 
 #pragma mark Data Source Methods -
@@ -146,51 +144,11 @@
 
 -(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
     
-    if ([pendingViewControllers firstObject])
-    {
-        
-        CCAnimationsScreenViewController *theView = [pendingViewControllers firstObject];
-        [theView checkBeforeAnimation];
-        theView.hasAnimated = YES;
-        
-        int index = (int)[[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] integerValue];
-        
-        for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++)
-        {
-            if (i == index) {
-                [theView createHandle];
-            }
-            else
-            {
-                CCAnimationsScreenViewController *newView = [self viewControllerAtIndex:i];
-                [newView removeDuringTransition];
-            }
-        }
-        
-        if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Enrollment Total"])
-        {
-            [theView buttonsForMenAndWomen];
-        }
-        
-        if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Tuition"])
-        {
-            [theView removeUnderliners];
-            [theView buttonsForInStateAndOutWithOptionFirst:YES];
-        }
-        
-    }
+   
 }
 -(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    if (!completed)
-    {
-        if ([previousViewControllers firstObject])
-        {
-            CCAnimationsScreenViewController *theView = [previousViewControllers firstObject];
-            
-            [theView replaceHandle];
-        }
-    }
+    
 }
 
 #pragma mark Data Setup Methods -

@@ -36,14 +36,4 @@
 
 @property (nonatomic, assign) BOOL populationButtonsArePresent;
 
--(void)setLabel;
--(void)animateAll;
--(void)checkBeforeAnimation;
--(void)removeDuringTransition;
--(void)createHandle;
--(void)replaceHandle;
--(void)buttonsForMenAndWomen;
--(void)buttonsForInStateAndOutWithOptionFirst:(BOOL) first;
--(void)removeUnderliners;
-
 @end
