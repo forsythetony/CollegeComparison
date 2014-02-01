@@ -11,7 +11,8 @@
 
 #define CORALCOLOR [UIColor colorWithRed:207.0/255.0 green:103.0/255.0 blue:65.0/255.0 alpha:1.0]
 #define SECTIONHEADERHEIGHT 30.0
-#define WIDTHOFPANEL 200.0
+#define WIDTHOFPANEL 150.0
+#define LEFTPADDINGFORTABLECELLS 65.0
 
 #define CORAL [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
 
@@ -38,14 +39,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+   
     
-    self.revealViewController.rearViewRevealWidth = WIDTHOFPANEL;
+    [self revealViewControllerConfiguration];
     
-    _menuItems = @[@"Home", @"Bookmarks", @"Settings", @"sync"];
+    _menuItems = @[@"Home", @"Bookmarks", @"Settings"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -102,9 +103,9 @@
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell WithIdentifier:(NSString*) name
 {
     
-    if ([name isEqualToString:@"sync"]) {
-        return [self configureSyncCell:theCell];
-    }
+//    if ([name isEqualToString:@"sync"]) {
+//        return [self configureSyncCell:theCell];
+//    }
     
     //Configure 'global' variables
     UIFont *titleFont = [UIFont
@@ -119,8 +120,8 @@
     
     //Create title
     float heightOfTitle = 30.0;
-    float bottomPadding = 3.0;
-    float leftPadding = 40.0;
+    float bottomPadding = 7.0;
+    float leftPadding = 7.0 + LEFTPADDINGFORTABLECELLS;
     
     CGRect titleFrame;
     
@@ -167,7 +168,7 @@
     if (section == 0) {
         //Create rect for view
         CGRect headerFrame;
-        headerFrame.origin.x = 0.0;
+        headerFrame.origin.x = LEFTPADDINGFORTABLECELLS;
         headerFrame.origin.y = 0.0;
         headerFrame.size.width = tableView.bounds.size.width;
         headerFrame.size.height = SECTIONHEADERHEIGHT;
@@ -181,27 +182,29 @@
         
         //Create label
         
-        float leftPadding = 10.0;
+       // float leftPadding = 6 + LEFTPADDINGFORTABLECELLS;
         float bottomPadding = -3.0;
         float titleHeight = 30.0;
-        
+        float labelWidth = 200.0;
         
         CGRect labelFrame;
         
-        labelFrame.origin.x = leftPadding;
+        labelFrame.origin.x = LEFTPADDINGFORTABLECELLS + ((WIDTHOFPANEL / 2) - (labelWidth/2));
         labelFrame.origin.y = SECTIONHEADERHEIGHT - titleHeight - bottomPadding;
-        labelFrame.size.width = 200.0;
+        labelFrame.size.width = labelWidth;
         labelFrame.size.height = titleHeight;
+        
         
         //Instantiate title label
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:labelFrame];
-        
+
         //Configure text of title label
         [titleLabel setText:@"Menu"];
         
         //Configure properties of title label
         [titleLabel setFont:titleFont];
         [titleLabel setTextColor:titleTextColor];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
         
         
         
@@ -233,7 +236,7 @@
             
             UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
             [navController setViewControllers: @[dvc] animated: NO ];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+            [self.revealViewController setFrontViewPosition: FrontViewPositionRightMost animated: NO];
         };
         
     }
@@ -249,7 +252,7 @@
     
     CGRect buttonFrame;
     
-    buttonFrame.origin.x = (WIDTHOFPANEL / 2) - (widthOfButton / 2);
+    buttonFrame.origin.x = (WIDTHOFPANEL / 2) - (widthOfButton / 2) + LEFTPADDINGFORTABLECELLS;
     buttonFrame.origin.y = topPadding;
     buttonFrame.size.width = widthOfButton;
     buttonFrame.size.height = 20.0;
@@ -332,5 +335,15 @@
 - (void) stopSpin {
     // set the flag to stop spinning after one last 90 degree increment
     animating = NO;
+}
+-(void)revealViewControllerConfiguration
+{
+    [self.revealViewController setRightViewController:self];
+    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
+
+    self.revealViewController.rightViewRevealDisplacement = 0.0;
+    self.revealViewController.rightViewRevealOverdraw = 40.0;
+    self.revealViewController.bounceBackOnLeftOverdraw = NO;
+    self.revealViewController.toggleCloseAnimationDuration = 0.18;
 }
 @end

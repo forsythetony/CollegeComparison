@@ -31,6 +31,8 @@
 
 #pragma mark - SWDirectionPanGestureRecognizer
 
+#define REARVIEWPADDING 100.0
+
 typedef enum
 {
     SWDirectionPanGestureRecognizerVertical,
@@ -156,10 +158,13 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     {
         _c = controller;
         CGRect bounds = self.bounds;
-    
+        
+        bounds.origin.y += 20.0;
+        
         _frontView = [[UIView alloc] initWithFrame:bounds];
         _frontView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-
+        
+        
         [self addSubview:_frontView];
 
         CALayer *frontViewLayer = _frontView.layer;
@@ -192,8 +197,9 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 
     CGRect bounds = self.bounds;
     
+//    CGFloat xLocation = [self frontLocationForPosition:_c.frontViewPosition];
     CGFloat xLocation = [self frontLocationForPosition:_c.frontViewPosition];
-    
+
     [self _layoutRearViewsForLocation:xLocation];
     
     CGRect frame = CGRectMake(xLocation, 0.0f, bounds.size.width, bounds.size.height);
@@ -286,6 +292,12 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     if ( rightRevealWidth < 0) rightRevealWidth = bounds.size.width + _c.rightViewRevealWidth;
     
     CGFloat rightXLocation = scaledValue(xLocation, 0, _c.rightViewRevealDisplacement, -rightRevealWidth, 0);
+    
+    
+    //Anthony Forsythe
+    if (rightXLocation != 0.0) {
+        rightXLocation += REARVIEWPADDING;
+    }
     
     CGFloat rightWidth = rightRevealWidth + _c.rightViewRevealOverdraw;
     _rightView.frame = CGRectMake(bounds.size.width-rightWidth+rightXLocation, 0.0f, rightWidth, bounds.size.height);
@@ -421,6 +433,10 @@ const int FrontViewPositionNone = 0xff;
     _presentFrontViewHierarchically = NO;
     _quickFlickVelocity = 250.0f;
     _toggleAnimationDuration = 0.25;
+    
+    //Anthony Forsythe
+    _toggleCloseAnimationDuration = 0.15;
+    
     _frontViewShadowRadius = 2.5f;
     _frontViewShadowOffset = CGSizeMake(0.0f, 2.5f);
     _frontViewShadowOpacity = 1.0f;
@@ -1077,6 +1093,11 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 - (void)_dispatchSetFrontViewPosition:(FrontViewPosition)frontViewPosition animated:(BOOL)animated
 {
     NSTimeInterval duration = animated?_toggleAnimationDuration:0.0;
+    
+    //Anthony Forsythe
+    if (frontViewPosition == FrontViewPositionLeft) {
+        duration = _toggleCloseAnimationDuration;
+    }
     __weak SWRevealViewController *theSelf = self;
     _enqueue( [theSelf _setFrontViewPosition:frontViewPosition withDuration:duration] );
 }

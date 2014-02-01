@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self slidingPanelSetup];   
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
 	// Do any additional setup after loading the view.
@@ -89,36 +89,37 @@
 }
 
     
-    -(void)parseData:(NSData*)data
-    {
-        NSError *error;
-        
-        NSDictionary *theDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        
-        NSArray *colleges = theDictionary[@"colleges"];
-        
-        NSLog(@"\n\n\nCall to Api\n\n");
-        for (NSDictionary* dictionary in colleges) {
-            NSLog(@"\nCollege Name: %@\nTuition: %@", [dictionary objectForKey:@"name"], [dictionary objectForKey:@"tuition"]);
-        }
-        
+-(void)parseData:(NSData*)data
+{
+    NSError *error;
+    
+    NSDictionary *theDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    
+    NSArray *colleges = theDictionary[@"colleges"];
+    
+    NSLog(@"\n\n\nCall to Api\n\n");
+    
+    for (NSDictionary* dictionary in colleges) {
+        NSLog(@"\nCollege Name: %@\nTuition: %@", [dictionary objectForKey:@"name"], [dictionary objectForKey:@"tuition"]);
     }
+    
+}
 
 -(void)slidingPanelSetup
 {
+
     //Set up panel view things
-    
-    
     _panelViewButton.target = self;
     _panelViewButton.action = @selector(panelPressed:);
     //Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    //[self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
 
 }
 -(void)panelPressed:(id) sender
 {
-    
-    [self.revealViewController revealToggle:sender];
+    [self.revealViewController rightRevealToggle:sender];
 }
+
 @end
