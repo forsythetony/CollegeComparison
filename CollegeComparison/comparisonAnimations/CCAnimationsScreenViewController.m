@@ -14,66 +14,7 @@
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-@interface CCAnimationsScreenViewController () {
-    
-    UIView  *detailViewer,
-            *myView,
-            *barOneView,
-            *barTwoView,
-            *line1,
-            *line2,
-            *line3,
-            *line4,
-            *line5,
-            *line6,
-            *underlinerView;
-    
-    UILabel *titleLabel,
-            *barOneLabel,
-            *barTwoLabel;
-    
-    NSArray *arrayOfUnderliners,
-            *arrayOfUnderLinersForTuition;
-    
-    NSMutableDictionary *global,
-                        *schoolOne,
-                        *schoolTwo;
-    
-    NSMutableArray  *subViewArray,
-                    *subviewArray,
-                    *underLinerViewArray;
-    
-    UIButton *handleView,
-             *dismissArea,
-             *womenButton,
-             *menButton,
-             *allButton,
-             *inState,
-             *outState;
-    
-    UIColor *barOneColor,
-            *barTwoColor;
-    
-    float   mainHeightMultiplier,
-            newWidthForMeAndYou,
-            BOTTOMREFERENCEPOINT,
-            TOPOFDETAILREFERENCEPOINT,
-            MIDDLEOFDETAILVIEWREFERENCEPOINT;
-
-    BOOL    haveRaced,
-            detailPanelDisplayed,
-            resetting,
-            isUp;
-    
-    
-    CGPoint lastPoint;
-    
-    CGRect  barOneFrame,
-            barTwoFrame,
-            originalMainViewFrame,
-            originalDetailViewFrame;
-    
-}
+@interface CCAnimationsScreenViewController ()
 @end
 
 @implementation CCAnimationsScreenViewController
