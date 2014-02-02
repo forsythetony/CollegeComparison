@@ -196,8 +196,8 @@
     
     //Add to view
     
-    [theView addSubview:collegeOneLabel];
-    [theView addSubview:collegeTwoLabel];
+   // [theView addSubview:collegeOneLabel];
+    //[theView addSubview:collegeTwoLabel];
     
 }
 
