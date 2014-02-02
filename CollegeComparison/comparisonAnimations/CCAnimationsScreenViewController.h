@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MUITCollege.h"
+#import "PNChart.h"
 
 @interface CCAnimationsScreenViewController : UIViewController
 
@@ -32,7 +33,7 @@
 @property (assign, nonatomic) float schoolTwoHeight;
 
 @property (strong, nonatomic) NSMutableArray *labelPlaces;
-
+@property (strong, nonatomic) NSArray *barsArray;
 
 @property (nonatomic, assign) BOOL populationButtonsArePresent;
 

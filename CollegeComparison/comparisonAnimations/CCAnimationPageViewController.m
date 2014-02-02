@@ -141,20 +141,7 @@
 -(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     return 0;
 }
-
-#pragma mark Delegate Methods -
-
--(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
-{
-    
-}
--(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-{
-    
-}
-
 #pragma mark Data Setup Methods -
-
 -(void)setAllArrays
 {
     sectionTitles  = [[NSMutableArray alloc] init];
