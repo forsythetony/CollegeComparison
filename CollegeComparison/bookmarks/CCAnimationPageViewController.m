@@ -19,6 +19,7 @@
     NSMutableArray *sectionTitles,
                     *schoolOneValues,
                     *schoolTwoValues,
+                    *schoolThreeValues,
                     *labelModifier,
                     *lineLabelArray,
                     *linesArray,
@@ -158,25 +159,18 @@
 {
     sectionTitles  = [[NSMutableArray alloc] init];
     schoolOneValues = [[NSMutableArray alloc] init];
-    labelModifier = [[NSMutableArray alloc] init];
     schoolTwoValues = [[NSMutableArray alloc] init];
-    lineLabelArray = [[NSMutableArray alloc] init];
-    moneyValueArray = [[NSMutableArray alloc] init];
-    linesArray = [[NSMutableArray alloc] init];
-    heightMultiplierArray = [[NSMutableArray alloc] init];
+    schoolThreeValues = [NSMutableArray new];
+
     
-    int schoolOneValue;
-    int schoolTwoValue;
+    
     float schoolOneFloatValue;
     float schoolTwoFloatValue;
-    float unitValue;
-    float moneyValue;
-    float heightMultiplier;
-    int lines;
-    float modifier;
+    float schoolThreeFloatValue;
     
     MUITCollege *dummyCollege;
     
+    NSInteger count = [self.twoColleges count];
     
     for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++)
     {
@@ -192,6 +186,11 @@
                 dummyCollege = self.twoColleges[1];
                 schoolTwoFloatValue = (float)dummyCollege.tuition_out_state;
                 
+                if (count > 2) {
+                    dummyCollege = self.twoColleges[2];
+                    schoolThreeFloatValue = (float)dummyCollege.tuition_out_state;
+                }
+                
                 break;
             case 1:
                 
@@ -203,6 +202,11 @@
                 dummyCollege = self.twoColleges[1];
                 schoolTwoFloatValue = (float)dummyCollege.enrollment_total;
                 
+                if (count > 2) {
+                    dummyCollege = self.twoColleges[2];
+                    schoolThreeFloatValue = (float)dummyCollege.enrollment_total;
+                }
+                
                 break;
             case 2:
                 
@@ -213,6 +217,11 @@
                 schoolOneFloatValue = [[schoolAidValues objectAtIndex:0] floatValue];
                 schoolTwoFloatValue = [[schoolAidValues objectAtIndex:1] floatValue];
                 
+                if (count > 2) {
+                    schoolThreeFloatValue = [[schoolAidValues objectAtIndex:2] floatValue];
+                }
+                
+                
                 break;
         }
         
@@ -221,6 +230,11 @@
         
         numberValue = [NSNumber numberWithFloat:schoolTwoFloatValue];
         [schoolTwoValues addObject:numberValue];
+        
+        if (count > 2) {
+            numberValue = [NSNumber numberWithFloat:schoolThreeFloatValue];
+            [schoolThreeValues addObject:numberValue];
+        }
         
         
     }
@@ -233,6 +247,8 @@
     viewControllersForMe = [[NSMutableArray alloc] init];
     
     MUITCollege *dummyCollege;
+    
+    NSInteger count = [self.twoColleges count];
     
     if (self.twoColleges == nil)
     {
@@ -269,27 +285,57 @@
         
         NSMutableDictionary *schoolTwoSettings = [NSMutableDictionary dictionaryWithObjects:schoolTwoValue
                                                                                     forKeys:settingKeysForSchool];
+        NSArray *schoolThreeValue;
+        NSMutableDictionary *schoolThreeSettings;
         
-        NSArray *settingKeysForView = [NSArray arrayWithObjects:
-                                       @"Title",
-                                       @"Object One",
-                                       @"Object Two",
-                                       nil];
+        if (count > 2) {
+            schoolHeight = [schoolThreeValues objectAtIndex:i];
+            dummyCollege = self.twoColleges[2];
+            
+            schoolThreeValue = [NSArray arrayWithObjects:[self shortenString:dummyCollege.name], schoolHeight, nil];
+            
+            schoolThreeSettings = [NSMutableDictionary dictionaryWithObjects:schoolThreeValue forKeys:settingKeysForSchool];
+            
+            
+        }
         
-        NSArray *settingObjectsForView = [NSArray arrayWithObjects:
-                                          [sectionTitles objectAtIndex:i],
-                                          [self.twoColleges objectAtIndex:0],
-                                          [self.twoColleges objectAtIndex:1],
-                                          nil];
+        
+        NSMutableArray *MsettingsKeysForView = [[NSMutableArray alloc] initWithObjects:@"Title", @"Object One", @"Object 2", @"Count", nil];
+        
+        if (count > 2) {
+            [MsettingsKeysForView addObject:@"Object Three"];
+        }
+
+        
+        
+        NSArray *settingKeysForView = [NSArray arrayWithArray:MsettingsKeysForView];
+        
+        NSMutableArray *MsettingsObjectsForView = [[NSMutableArray alloc] initWithObjects:
+                                                        [sectionTitles objectAtIndex:i],
+                                                        [self.twoColleges objectAtIndex:0],
+                                                        [self.twoColleges objectAtIndex:1],
+                                                        [NSNumber numberWithInteger:[self.twoColleges count]],
+                                                        nil];
+        
+        if (count > 2) {
+            [MsettingsObjectsForView addObject:[self.twoColleges objectAtIndex:2]];
+        }
+        
+        NSArray *settingObjectsForView = [NSArray arrayWithArray:MsettingsObjectsForView];
         
         NSMutableDictionary *generalSettings = [NSMutableDictionary dictionaryWithObjects:settingObjectsForView
                                                                     forKeys:settingKeysForView];
+        
         
         NSMutableDictionary *viewControllerInformation = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                    schoolOneSettings, @"One",
                                                    schoolTwoSettings, @"Two",
                                                    generalSettings, @"All",
                                                    nil];
+        if (count > 2) {
+            [viewControllerInformation setObject:schoolThreeSettings forKey:@"Three"];
+        }
+        
         
         
         CCAnimationsScreenViewController *cVC = [[CCAnimationsScreenViewController alloc] init];
@@ -428,6 +474,7 @@
     if (self.twoColleges)
     {
         MUITCollege *dummyCollege = self.twoColleges[0];
+        CGFloat schoolThreeValue;
         
         CGFloat schoolOneValue = (CGFloat)dummyCollege.percent_receive_financial_aid;
         
@@ -443,14 +490,27 @@
             schoolTwoValue = 0;
         }
         
+        if ([self.twoColleges count] > 2) {
+            dummyCollege = self.twoColleges[2];
+            
+            schoolThreeValue = (CGFloat)dummyCollege.percent_receive_financial_aid;
+        }
+        
         schoolOneValue /= 100.0;
         schoolTwoValue /= 100.0;
         
         
-        NSArray *arrayToReturn = [NSArray arrayWithObjects:
-                                  [NSNumber numberWithFloat:(CGFloat)schoolOneValue],
-                                  [NSNumber numberWithFloat:(CGFloat)schoolTwoValue],
-                                  nil];
+        
+        NSMutableArray *array = [NSMutableArray new];
+        
+        [array addObject:[NSNumber numberWithFloat:schoolOneValue]];
+        [array addObject:[NSNumber numberWithFloat:schoolTwoValue]];
+        
+        if ([self.twoColleges count] > 2) {
+            schoolThreeValue /= 100.0;
+            [array addObject:[NSNumber numberWithFloat:schoolThreeValue]];
+        }
+        NSArray *arrayToReturn = [NSArray arrayWithArray:array];
         
         return arrayToReturn;
         

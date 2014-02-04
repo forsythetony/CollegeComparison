@@ -8,6 +8,8 @@
 
 #import "FilteredCollegesViewController.h"
 
+#define NUMBEROFCOLLEGESTOCOMPARE 3
+
 @interface FilteredCollegesViewController (){
     NSMutableArray *collegesImGoingToCompare;
 }
@@ -202,7 +204,7 @@ NSArray *searchResults;
 {
     NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
     
-    if(selectedRows.count == 2)
+    if(selectedRows.count == NUMBEROFCOLLEGESTOCOMPARE)
     {
         return nil;
     } else {
@@ -222,7 +224,7 @@ NSArray *searchResults;
         
         [self.collegesToCompare removeObject:cellToCompare];
         [collegesImGoingToCompare removeObject:dummyCollege];
-        if(self.collegesToCompare.count < 2)
+        if(self.collegesToCompare.count < NUMBEROFCOLLEGESTOCOMPARE)
         {
             self.compareButton.enabled = NO;
             
@@ -279,7 +281,7 @@ NSArray *searchResults;
         
         
         // If the user has less than two colleges to selected
-        if(self.collegesToCompare.count < 2)
+        if(self.collegesToCompare.count < NUMBEROFCOLLEGESTOCOMPARE)
         {
             [self.collegesToCompare addObject:cellToCompare];
             [collegesImGoingToCompare addObject:collegeObject];
@@ -288,7 +290,7 @@ NSArray *searchResults;
         }
         
         // If the user has reached their max limit for selecting colleges
-        if (self.collegesToCompare.count == 2)
+        if (self.collegesToCompare.count == NUMBEROFCOLLEGESTOCOMPARE)
         {
             self.compareButton.enabled = YES;
             
@@ -308,7 +310,7 @@ NSArray *searchResults;
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.isEditing && tableView.indexPathsForSelectedRows.count == 2)
+    if (tableView.isEditing && tableView.indexPathsForSelectedRows.count == NUMBEROFCOLLEGESTOCOMPARE)
         ((FilteredCollegesTableViewCell *)cell).enabled = [[tableView indexPathsForSelectedRows] containsObject:indexPath];
 }
 

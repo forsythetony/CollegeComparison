@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     //For BarChart
-    
+
     NSDictionary *data = [self packageData];
     
     
@@ -56,7 +56,14 @@
     mainViewFrame.origin.y = 0.0;
     
     mainViewFrame.size.width = 320.0;
-    mainViewFrame.size.height = 345.0;
+    
+    if (!IS_IPHONE_5) {
+        mainViewFrame.size.height = 345.0;
+    }
+    else
+    {
+        mainViewFrame.size.height = 450.0;
+    }
     
     UIView *mainView = [[UIView alloc] initWithFrame:mainViewFrame];
     
@@ -100,15 +107,9 @@
 -(NSDictionary*)packageData
 {
     NSDictionary *dataDict = self.modifierDictionary;
-   
-    NSString *collegeOne = [[dataDict objectForKey:@"One"] objectForKey:@"Name"];
-    NSString *collegeTwo = [[dataDict objectForKey:@"Two"] objectForKey:@"Name"];
-    
-    NSString *collegeOneValue = [NSString stringWithFormat:@"%@", [[dataDict objectForKey:@"One"] objectForKey:@"Height"]];
-    NSString *collegeTwoValue = [NSString stringWithFormat:@"%@", [[dataDict objectForKey:@"Two"] objectForKey:@"Height"]];
 
-    NSArray *Xvalues = [NSArray arrayWithObjects:collegeOne, collegeTwo, nil];
-    NSArray *Yvalues = [NSArray arrayWithObjects:collegeOneValue, collegeTwoValue, nil];
+    NSArray *Xvalues = [self getXValuesFromData:dataDict];
+    NSArray *Yvalues = [self getYValuesFromData:dataDict];
     
     NSDictionary *valuesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:Xvalues, @"xvalues", Yvalues, @"yvalues", nil];
     
@@ -197,5 +198,45 @@
     
     
     
+}
+-(NSArray*)getYValuesFromData:(NSDictionary*) dataDict
+{
+    NSMutableArray *array = [NSMutableArray new];
+    
+    
+    NSInteger count = [[[dataDict objectForKey:@"All"] objectForKey:@"Count"] integerValue];
+    
+    [array addObject:[NSString stringWithFormat:@"%@", [[dataDict objectForKey:@"One"] objectForKey:@"Height"]]];
+    [array addObject:[NSString stringWithFormat:@"%@", [[dataDict objectForKey:@"Two"] objectForKey:@"Height"]]];
+    
+    if (count > 2) {
+        [array addObject:[NSString stringWithFormat:@"%@", [[dataDict objectForKey:@"Three"] objectForKey:@"Height"]]];
+    }
+
+    
+    
+    return [NSArray arrayWithArray:array];
+    
+    
+}
+-(NSArray*)getXValuesFromData:(NSDictionary*) dataDict
+{
+    NSMutableArray *array = [NSMutableArray new];
+    
+    NSInteger count = [[[dataDict objectForKey:@"All"] objectForKey:@"Count"] integerValue];
+    
+    [array addObject:[[dataDict objectForKey:@"One"] objectForKey:@"Name"]];
+    [array addObject:[[dataDict objectForKey:@"Two"] objectForKey:@"Name"]];
+    
+    if (count > 2) {
+        [array addObject:[[dataDict objectForKey:@"Three"] objectForKey:@"Name"]];
+    }
+    
+    
+    
+    
+    
+    
+    return [NSArray arrayWithArray:array];
 }
 @end
