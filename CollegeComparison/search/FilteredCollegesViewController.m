@@ -63,6 +63,7 @@ NSArray *searchResults;
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
 }
 
+
 #pragma  mark - UINavigationBar attributes
 
 -(void)setCustomAttributesForNavigationBar
@@ -290,19 +291,23 @@ NSArray *searchResults;
         }
         
         // If the user has reached their max limit for selecting colleges
-        if (self.collegesToCompare.count == NUMBEROFCOLLEGESTOCOMPARE)
+        if (self.collegesToCompare.count >= 2)
         {
             self.compareButton.enabled = YES;
             
             // Disable all unselected cells
-            for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row++)
-            {
-                NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
-                FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
-                if (!cell.selected) {
-                    cell.enabled = NO;
-                    cell.userInteractionEnabled = NO;
-                }
+            
+            if (self.collegesToCompare.count == NUMBEROFCOLLEGESTOCOMPARE) {
+                for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row++)
+                {
+                    NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
+                    FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
+                    if (!cell.selected) {
+                        cell.enabled = NO;
+                        cell.userInteractionEnabled = NO;
+                    }
+            }
+            
             }
         }
     }
