@@ -102,7 +102,10 @@
     
 
 }
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self removeFromParentViewController];
+}
 #pragma mark Data Source Methods -
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController

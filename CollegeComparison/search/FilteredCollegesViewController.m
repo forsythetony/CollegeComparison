@@ -62,7 +62,10 @@ NSArray *searchResults;
     
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
 }
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self resetTableView];
+}
 
 #pragma  mark - UINavigationBar attributes
 
@@ -417,6 +420,14 @@ NSArray *searchResults;
                                                      selectedScopeButtonIndex]]];
     
     return YES;
+}
+-(void)resetTableView
+{
+    [self.tableView setEditing:NO animated:NO];
+    [self.collegesToCompare removeAllObjects];
+    [collegesImGoingToCompare removeAllObjects];
+    [self.navigationItem setRightBarButtonItem:self.selectButton];
+    [self.navigationItem setLeftBarButtonItem:nil];
 }
 
 @end
