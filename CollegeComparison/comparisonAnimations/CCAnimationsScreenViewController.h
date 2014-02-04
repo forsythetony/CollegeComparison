@@ -10,6 +10,12 @@
 #import "MUITCollege.h"
 #import "PNChart.h"
 
+typedef NS_ENUM(NSUInteger, ChartValueFormattingType) {
+    ChartValueFormattingTypeCurrency,
+    ChartValueFormattingTypePercent,
+    ChartValueFormattingTypeDecimal
+};
+
 @interface CCAnimationsScreenViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleString;
@@ -36,5 +42,7 @@
 @property (strong, nonatomic) NSArray *barsArray;
 
 @property (nonatomic, assign) BOOL populationButtonsArePresent;
+
+@property (nonatomic, assign) int myIndex;
 
 @end

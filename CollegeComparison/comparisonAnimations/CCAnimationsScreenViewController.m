@@ -63,8 +63,27 @@
     mainViewFrame.origin.y += 30.0;
     
     PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:mainViewFrame];
-    [barChart setXLabels: [data objectForKey:@"xvalues"]];
-    [barChart setYValues: [data objectForKey:@"yvalues"]];
+    //[barChart setXLabels: [data objectForKey:@"xvalues"]];
+    
+    ChartValueFormattingType formatType = [self determineTypeUsingTitle:self.title];
+    
+    NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
+                                               andFormattingStyle:formatType];
+    
+    NSLog(@"\n%@\n", self.title);
+    [barChart setAllXLabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
+    
+    NSArray *yValues;
+    
+    if (formatType == ChartValueFormattingTypePercent) {
+        yValues = [self formatYValuesWithArray:[data objectForKey:@"yvalues"]];
+        [barChart setYValueMax:100];
+    }
+    else
+    {
+        yValues = [data objectForKey:@"yvalues"];
+    }
+    [barChart setYValues:yValues];
     [barChart setStrokeColor:UIColorFromRGB(0xF05746)];
     [barChart strokeChart];
     
@@ -73,8 +92,8 @@
     [mainView addSubview:barChart];
     self.barsArray = [NSArray arrayWithArray:[barChart theViews]];
     
-    
     NSLog(@"\n%@\n", self.title);
+
 
     return mainView;
 }
@@ -93,80 +112,90 @@
     
     NSDictionary *valuesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:Xvalues, @"xvalues", Yvalues, @"yvalues", nil];
     
+    self.title = [[dataDict objectForKey:@"All"] objectForKey:@"Title"];
+    
+    self.parentViewController.navigationItem.title = self.title;
+    
     return valuesDictionary;
 }
 -(void)addLabelsToView:(UIView*) theView withData:(NSDictionary*) theData
 {
-    /*
-    //Get locations
-    
-    UIView *barOne = [self.barsArray objectAtIndex:0];
-    
-    CGRect barOneFrame = [barOne bounds];
-    
-    UIView *barTwo = [self.barsArray objectAtIndex:1];
-    
-    CGRect barTwoFrame = [barTwo bounds];
-    
-    
-    
-    //Configure label sizes
-    CGRect collegeOneLabelFrame;
-    
-    collegeOneLabelFrame.origin.x = 20.0;
-    collegeOneLabelFrame.origin.y = 20.0;
-    
-    collegeOneLabelFrame.size.height = 30.0;
-    collegeOneLabelFrame.size.width = 100.0;
-    
-    CGRect collegeTwoLabelFrame;
-    
-    collegeTwoLabelFrame.origin.x = collegeOneLabelFrame.origin.x + 100.0;
-    collegeTwoLabelFrame.origin.y = collegeOneLabelFrame.origin.y;
-    
-    collegeTwoLabelFrame.size = collegeOneLabelFrame.size;
-    
-    //Configure label values
-    
-    NSString *collegeOneValue = [[theData objectForKey:@"yvalues"] objectAtIndex:0];
-    NSString *collegeTwoValue = [[theData objectForKey:@"yvalues"] objectAtIndex:1];
-    
-    //Create labels
-    
-    UILabel *collegeOneLabel = [[UILabel alloc] initWithFrame:collegeOneLabelFrame];
-    UILabel *collegeTwoLabel = [[UILabel alloc] initWithFrame:collegeTwoLabelFrame];
-    
-    //Configure label text
-    
-    [collegeOneLabel setText:collegeOneValue];
-    [collegeTwoLabel setText:collegeTwoValue];
-    
-    //Add to view
-    
-   // [theView addSubview:collegeOneLabel];
-    //[theView addSubview:collegeTwoLabel];
-    
-    */
-    
-    NSArray *centersArray = [theMainChart xValueFrames];
-    
-    NSValue *first = [centersArray objectAtIndex:0];
-    
-    CGPoint centerPoint = [first CGPointValue];
-    
-    CGRect labelFrame;
-    
-    labelFrame.origin = centerPoint;
-    
-    labelFrame.size.width = 50.0;
-    labelFrame.size.height = 30.0;
-    
-    UILabel *mainLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    
-    [mainLabel setBackgroundColor:[UIColor blueColor]];
-    
-    [self.view addSubview: mainLabel];
     
 }
-
+-(NSArray*)formattedArrayWithArray:(NSArray*) array andFormattingStyle:(ChartValueFormattingType) type
+{
+    NSMutableArray *formattedArray = [NSMutableArray new];
+    
+    NSNumberFormatter *nf = [NSNumberFormatter new];
+    
+    switch (type) {
+        case ChartValueFormattingTypeCurrency:
+            [nf setNumberStyle:NSNumberFormatterCurrencyStyle];
+            
+            for (NSString* value in array){
+                float currencyFloat = [value floatValue];
+                
+                [formattedArray addObject:[nf stringFromNumber:[NSNumber numberWithFloat:currencyFloat]]];
+            }
+            break;
+        case ChartValueFormattingTypePercent:
+            [nf setNumberStyle:NSNumberFormatterPercentStyle];
+            
+            
+            for (NSString *value in array) {
+                float percentFloat = [value floatValue];
+                [formattedArray addObject:[nf stringFromNumber:[NSNumber numberWithFloat:percentFloat]]];
+            }
+            break;
+        case ChartValueFormattingTypeDecimal:
+            [nf setNumberStyle:NSNumberFormatterDecimalStyle];
+            
+            for (NSString *value in array) {
+                float decimalFloat = [value floatValue];
+                [formattedArray addObject:[nf stringFromNumber:[NSNumber numberWithFloat:decimalFloat]]];
+            }
+            break;
+        default:
+            break;
+    }
+    
+    return [NSArray arrayWithArray:formattedArray];
+}
+-(ChartValueFormattingType)determineTypeUsingTitle:(NSString*) title
+{
+    if ([title isEqualToString:@"Tuition"]) {
+        return ChartValueFormattingTypeCurrency;
+    }
+    else if ([title isEqualToString:@"Enrollment Total"])
+    {
+        return ChartValueFormattingTypeDecimal;
+    }
+    else if ([title isEqualToString:@"Financial Aid"])
+    {
+        return ChartValueFormattingTypePercent;
+    }
+    else
+        return ChartValueFormattingTypeDecimal;
+    
+}
+-(NSArray*)formatYValuesWithArray:(NSArray*) array
+{
+    
+    NSMutableArray *fixedArray = [NSMutableArray new];
+    
+    for (NSString *value in array) {
+        float percentValue = [value floatValue];
+        
+        percentValue *= 100.0;
+        
+        NSString *fixedValue = [NSString stringWithFormat:@"%.2lf", percentValue];
+        
+        [fixedArray addObject:fixedValue];
+    }
+    
+    return [NSArray arrayWithArray:fixedArray];
+    
+    
+    
+}
 @end
