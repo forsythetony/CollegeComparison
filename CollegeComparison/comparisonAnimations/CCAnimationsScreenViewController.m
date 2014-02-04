@@ -14,7 +14,10 @@
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-@interface CCAnimationsScreenViewController ()
+@interface CCAnimationsScreenViewController () {
+    PNBarChart *theMainChart;
+    
+}
 @end
 
 @implementation CCAnimationsScreenViewController
@@ -65,9 +68,11 @@
     [barChart setStrokeColor:UIColorFromRGB(0xF05746)];
     [barChart strokeChart];
     
+    theMainChart = barChart;
+    
     [mainView addSubview:barChart];
     self.barsArray = [NSArray arrayWithArray:[barChart theViews]];
-
+    
     
     NSLog(@"\n%@\n", self.title);
 
@@ -92,6 +97,7 @@
 }
 -(void)addLabelsToView:(UIView*) theView withData:(NSDictionary*) theData
 {
+    /*
     //Get locations
     
     UIView *barOne = [self.barsArray objectAtIndex:0];
@@ -139,6 +145,27 @@
     
    // [theView addSubview:collegeOneLabel];
     //[theView addSubview:collegeTwoLabel];
+    
+    */
+    
+    NSArray *centersArray = [theMainChart xValueFrames];
+    
+    NSValue *first = [centersArray objectAtIndex:0];
+    
+    CGPoint centerPoint = [first CGPointValue];
+    
+    CGRect labelFrame;
+    
+    labelFrame.origin = centerPoint;
+    
+    labelFrame.size.width = 50.0;
+    labelFrame.size.height = 30.0;
+    
+    UILabel *mainLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    
+    [mainLabel setBackgroundColor:[UIColor blueColor]];
+    
+    [self.view addSubview: mainLabel];
     
 }
 
