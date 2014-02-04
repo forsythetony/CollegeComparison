@@ -228,7 +228,7 @@ NSArray *searchResults;
         
         [self.collegesToCompare removeObject:cellToCompare];
         [collegesImGoingToCompare removeObject:dummyCollege];
-        if(self.collegesToCompare.count < NUMBEROFCOLLEGESTOCOMPARE)
+        if(self.collegesToCompare.count < 2)
         {
             self.compareButton.enabled = NO;
             
@@ -381,26 +381,6 @@ NSArray *searchResults;
      {
          [self performSegueWithIdentifier:@"comparisonSegueOne" sender:self];
      }
-
-     
-
-     
-//     
-//     
-//     if ([segue.identifier isEqualToString:@"comparisonSegue"]) {
-//         CCAnimationPageViewController *destViewController = (CCAnimationPageViewController*)segue.destinationViewController;
-//         
-//         destViewController.twoColleges = [NSArray arrayWithArray:collegesImGoingToCompare];
-//         
-//         NSIndexPath *indexPath = nil;
-//         
-//         //            instead of passing a college name, pass an MUITCollege object.
-//         NSIndexPath *tappedPath =  [self.tableView indexPathForSelectedRow]; //get the index path of the row the user tapped
-//         MUITCollege *tappedCollege = [colleges objectAtIndex:tappedPath.row];  //get the college at the row the user tapped
-//         destViewController.representedCollege = tappedCollege;
-//     }
-// }
-
  }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
