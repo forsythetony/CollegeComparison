@@ -8,7 +8,8 @@
 
 #import "FilteredCollegesViewController.h"
 
-#define NUMBEROFCOLLEGESTOCOMPARE 3
+#define MAXNUMBEROFCOLLEGESTOCOMPARE 3
+#define MINNUMBEROFCOLLEGESTOCOMPARE 2
 
 @interface FilteredCollegesViewController (){
     NSMutableArray *collegesImGoingToCompare;
@@ -208,7 +209,7 @@ NSArray *searchResults;
 {
     NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
     
-    if(selectedRows.count == NUMBEROFCOLLEGESTOCOMPARE)
+    if(selectedRows.count == MAXNUMBEROFCOLLEGESTOCOMPARE)
     {
         return nil;
     } else {
@@ -228,7 +229,7 @@ NSArray *searchResults;
         
         [self.collegesToCompare removeObject:cellToCompare];
         [collegesImGoingToCompare removeObject:dummyCollege];
-        if(self.collegesToCompare.count < 2)
+        if(self.collegesToCompare.count < MINNUMBEROFCOLLEGESTOCOMPARE)
         {
             self.compareButton.enabled = NO;
             
@@ -285,7 +286,7 @@ NSArray *searchResults;
         
         
         // If the user has less than two colleges to selected
-        if(self.collegesToCompare.count < NUMBEROFCOLLEGESTOCOMPARE)
+        if(self.collegesToCompare.count < MAXNUMBEROFCOLLEGESTOCOMPARE)
         {
             [self.collegesToCompare addObject:cellToCompare];
             [collegesImGoingToCompare addObject:collegeObject];
@@ -294,13 +295,13 @@ NSArray *searchResults;
         }
         
         // If the user has reached their max limit for selecting colleges
-        if (self.collegesToCompare.count >= 2)
+        if (self.collegesToCompare.count >= MINNUMBEROFCOLLEGESTOCOMPARE)
         {
             self.compareButton.enabled = YES;
             
             // Disable all unselected cells
             
-            if (self.collegesToCompare.count == NUMBEROFCOLLEGESTOCOMPARE) {
+            if (self.collegesToCompare.count == MAXNUMBEROFCOLLEGESTOCOMPARE) {
                 for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row++)
                 {
                     NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
@@ -318,7 +319,7 @@ NSArray *searchResults;
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.isEditing && tableView.indexPathsForSelectedRows.count == NUMBEROFCOLLEGESTOCOMPARE)
+    if (tableView.isEditing && tableView.indexPathsForSelectedRows.count == MAXNUMBEROFCOLLEGESTOCOMPARE)
         ((FilteredCollegesTableViewCell *)cell).enabled = [[tableView indexPathsForSelectedRows] containsObject:indexPath];
 }
 
