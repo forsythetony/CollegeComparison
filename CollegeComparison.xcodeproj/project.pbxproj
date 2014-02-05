@@ -18,6 +18,7 @@
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
 		5B0870BA3AD6428B9B4543CD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5E15E49C234B32ADD0178D /* libPods.a */; };
+		BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */; };
 		BA75EDC01881EB670087BC15 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */; };
 		BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBC1881EB670087BC15 /* CCBookmarksPage.m */; };
 		BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBE1881EB670087BC15 /* CCFavoriteSCell.m */; };
@@ -92,6 +93,8 @@
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
 		AD5E15E49C234B32ADD0178D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA14958C18A1F0AD00A326B0 /* CollegeSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeSearchCell.h; path = search/CollegeSearchCell.h; sourceTree = "<group>"; };
+		BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeSearchCell.m; path = search/CollegeSearchCell.m; sourceTree = "<group>"; };
 		BA75EDB91881EB670087BC15 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = bookmarks/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = bookmarks/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA75EDBB1881EB670087BC15 /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = bookmarks/CCBookmarksPage.h; sourceTree = "<group>"; };
@@ -392,6 +395,8 @@
 		BA98F1A4188158DB00752303 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				BA14958C18A1F0AD00A326B0 /* CollegeSearchCell.h */,
+				BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */,
 				BA75EE1B1881EC700087BC15 /* CollegeSearchViewController.h */,
 				BA75EE1C1881EC700087BC15 /* CollegeSearchViewController.m */,
 				BA75EE1D1881EC700087BC15 /* FilteredCollegesTableViewCell.h */,
@@ -609,6 +614,7 @@
 				BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */,
 				BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */,
 				BA75EDE31881EBBD0087BC15 /* CCPanelViewViewController.m in Sources */,
+				BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */,
 				BA75EE231881EC700087BC15 /* CollegeSearchViewController.m in Sources */,
 				BA75EDE01881EBB00087BC15 /* CCSettingsViewController.m in Sources */,
 				BA75EE2D1881EC7C0087BC15 /* CollegeDetailTableViewController.m in Sources */,

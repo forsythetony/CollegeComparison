@@ -17,8 +17,10 @@
 #import "CollegeDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CCAnimationPageViewController.h"
+#import "CollegeSearchCell.h"
+#import <Colours.h>
 
-@interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, SWTableViewCellDelegate>
 
 @property (nonatomic, strong) NSArray *universitiesPassed;
 @property (nonatomic, strong) NSMutableArray *allCellsInTable;

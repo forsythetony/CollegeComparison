@@ -191,62 +191,56 @@ NSArray *searchResults;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    // Local variables
-    static NSString *cellIdentifier = @"CollegeCell";
+    static NSString *cellIdentifier = @"MyCustomCell";
     
-    FilteredCollegesTableViewCell *cell = (FilteredCollegesTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    CollegeSearchCell *cell = (CollegeSearchCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                                                                           forIndexPath:indexPath];
+    __weak CollegeSearchCell *weakCell = cell;
     
-    if (cell == nil) {
-        cell = [[FilteredCollegesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
-    // Cell label customization
-    [cell.universityNameLabel setTextColor:[UIColor colorWithRed:0.0/255
-                                                           green:174.0/255
-                                                            blue:239.0/255
-                                                           alpha:1.0]];
-    
-    [cell.universityNameLabel setFont:[UIFont fontWithName:@"Avenir-Heavy" size:17.0]];
-    
-    [cell.universityLocationLabel setTextColor:[UIColor colorWithRed:147.0/255.0
-                                                               green:149.0/255
-                                                                blue:152.0/255
-                                                               alpha:1.0]];
-    
-    [cell.universityLocationLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:17.0]];
-    
-    [cell.universityTuitionLabel setTextColor:[UIColor colorWithRed:147.0/255.0
-                                                              green:149.0/255
-                                                               blue:152.0/255
-                                                              alpha:1.0]];
-    
-    [cell.universityTuitionLabel setFont:[UIFont fontWithName:@"Avenir-Book" size:17.0]];
-    
-    NSNumberFormatter *tuition = [[NSNumberFormatter alloc] init];
-    [tuition setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [tuition setNumberStyle:NSNumberFormatterCurrencyStyle];
-    
-    NSNumber *amount = [NSNumber numberWithInteger:[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] tuition_out_state]];
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    //Do any fixed setup here (will be executed once unless force is set to YES)
+    [cell setAppearanceWithBlock:^{
+        cell.containingTableView = tableView;
         
-        cell.universityNameLabel.text = [(MUITCollege *)[searchResults objectAtIndex:indexPath.row] name];
+        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
         
-        cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
+        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor greenColor] title:@"Compare"];
+        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"Bookmark"];
         
-        cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
-    }
-    else {
-        cell.universityNameLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] name];
+        cell.leftUtilityButtons = leftUtilityButtons;
+        cell.rightUtilityButtons = rightUtilityButtons;
         
-        cell.universityLocationLabel.text = [(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row] state];
-        
-        cell.universityTuitionLabel.text = [tuition stringFromNumber:amount];
-    }
+        cell.delegate = self;
+    } force:NO];
     
-    cell.tag = indexPath.row;
     
-    [self.allCellsInTable addObject:cell];
+    //Configure the cell with college information
+    
+    MUITCollege *college = [self.universitiesPassed objectAtIndex:indexPath.row];
+    
+    NSString *collegeName = [NSString stringWithString:college.name];
+    NSString *collegeLocation = [NSString stringWithFormat:@"%@, %@", @"SomeCity", college.state];
+    
+    //Set the cells labels
+    
+    [cell.name setText:collegeName];
+    [cell.location setText:collegeLocation];
+    
+    //Configure fonts for labels
+    
+    UIFont *nameFont = [UIFont fontWithName:@"Avenir-Book" size:17.0];
+    UIFont *locationFont = [UIFont fontWithName:@"Avenir-Book" size:15.0];
+    
+    UIColor *nameColor = [UIColor blackColor];
+    UIColor *locationColor = [UIColor black50PercentColor];
+    
+    [cell.name setFont:nameFont];
+    [cell.location setFont:locationFont];
+    
+    [cell.name setTextColor:nameColor];
+    [cell.location setTextColor:locationColor];
+    
+    [cell setCellHeight:cell.frame.size.height];
     
     return cell;
 }
