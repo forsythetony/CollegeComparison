@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <FlatUIKit.h>
+#import <Colours.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface newHomeFiltersViewController : UIViewController
+@interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
