@@ -12,6 +12,8 @@
     UISlider *tuitionSlider;
     UISlider *studentBodySlider;
     NSMutableArray *locationsArray;
+    
+    CGFloat tuitionMaximum, populationMaximum;
 }
 
 @end
@@ -199,11 +201,19 @@
 }
 -(void)tuitionSliderDidSlide:(id) sender
 {
+    //Update the value of maximum tuition filter
     
+    CGFloat tuitionValue = tuitionSlider.value;
+    
+    tuitionMaximum = tuitionValue;
 }
 -(void)populationSliderDidSlide:(id) sender
 {
+    //Update the value of maximum student body filter
     
+    CGFloat populationValue = studentBodySlider.value;
+    
+    populationMaximum = populationValue;
 }
 - (void)didReceiveMemoryWarning
 {
