@@ -160,8 +160,12 @@
     [titleLabel setText:@"  Locations"];
     
     //Configure visual properties
+    
+    //Font for titleLabel
+    UIFont *titleFont = [UIFont fontWithName:@"Avenir-Book" size:23.0];
+    
     [titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [titleLabel setFont:[UIFont fontWithName:@"Avenir-Book"size:25.0]];
+    [titleLabel setFont:titleFont];
     [titleLabel setBackgroundColor:[UIColor black25PercentColor]];
     [titleLabel setTextColor:[UIColor antiqueWhiteColor]];
     
@@ -239,7 +243,6 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyCell"];
     
-    
     //Grab the dictionary from the array
     NSDictionary *location = [locationsArray objectAtIndex:indexPath.row];
     
@@ -276,7 +279,6 @@
     tableFooterFrame.size.height = 40.0;
     
     //Initialize UIView
-    
     UIView *footerView = [[UIView alloc] initWithFrame:tableFooterFrame];
     
     //Configure the view
@@ -285,7 +287,6 @@
     
     
     //Add a label to the view
-    
     CGRect labelFrame = CGRectMake(0.0, 0.0, 320.0, 40.0);
     
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:labelFrame];
