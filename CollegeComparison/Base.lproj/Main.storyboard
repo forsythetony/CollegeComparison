@@ -580,6 +580,24 @@
             </objects>
             <point key="canvasLocation" x="1600" y="-709"/>
         </scene>
+        <!--New Home Filters View Controller-->
+        <scene sceneID="j09-au-084">
+            <objects>
+                <viewController id="JaV-hr-HBn" customClass="newHomeFiltersViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D4N-1y-u6W"/>
+                        <viewControllerLayoutGuide type="bottom" id="owb-Xw-MWS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fdA-R8-Tat">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pT6-WT-WP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1505" y="97"/>
+        </scene>
         <!--Panel View View Controller-->
         <scene sceneID="iCx-QU-hOh">
             <objects>

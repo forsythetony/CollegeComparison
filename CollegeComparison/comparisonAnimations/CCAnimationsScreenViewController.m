@@ -77,8 +77,10 @@
     NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
                                                andFormattingStyle:formatType];
     
+    
+    
     NSLog(@"\n%@\n", self.title);
-    [barChart setAllXLabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
+    [barChart setAllXlabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
     
     NSArray *yValues;
     
@@ -97,7 +99,7 @@
     theMainChart = barChart;
     
     [mainView addSubview:barChart];
-    self.barsArray = [NSArray arrayWithArray:[barChart theViews]];
+//    self.barsArray = [NSArray arrayWithArray:[barChart theViews]];
     
     NSLog(@"\n%@\n", self.title);
 
