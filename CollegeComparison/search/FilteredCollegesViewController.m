@@ -204,8 +204,8 @@ NSArray *searchResults;
         NSMutableArray *leftUtilityButtons = [NSMutableArray new];
         NSMutableArray *rightUtilityButtons = [NSMutableArray new];
         
-        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor greenColor] title:@"Compare"];
-        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"Bookmark"];
+        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor grapefruitColor] title:@"Compare"];
+        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor blueberryColor] title:@"Bookmark"];
         
         cell.leftUtilityButtons = leftUtilityButtons;
         cell.rightUtilityButtons = rightUtilityButtons;
