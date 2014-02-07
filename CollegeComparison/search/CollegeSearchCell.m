@@ -10,6 +10,8 @@
 
 @implementation CollegeSearchCell
 
+@synthesize selected;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -17,6 +19,33 @@
         // Initialization code
     }
     return self;
+}
+-(void)setSelected:(BOOL)mselected
+{
+    UIColor *newBackgroundColor;
+    UIColor *newTextColor;
+    UIColor *newLocationTextColor;
+    
+    
+    selected = mselected;
+    
+    if (selected == YES) {
+        newBackgroundColor = [UIColor watermelonColor];
+        newTextColor = [UIColor antiqueWhiteColor];
+        newLocationTextColor = [UIColor black75PercentColor];
+    }
+    else
+    {
+        newBackgroundColor = [UIColor clearColor];
+        newTextColor = [UIColor blackColor];
+        newLocationTextColor = [UIColor black25PercentColor];
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        [self setBackgroundColor:newBackgroundColor];
+        [self.name setTextColor:newTextColor];
+        [self.location setTextColor:newLocationTextColor];
+    }];
 }
 
 /*

@@ -13,6 +13,7 @@
 
 @interface FilteredCollegesViewController (){
     NSMutableArray *collegesImGoingToCompare;
+    NSMutableArray *selectedColleges;
 }
 
 @end
@@ -23,6 +24,7 @@ NSArray *searchResults;
 
 - (void)viewDidLoad
 {
+    selectedColleges = [NSMutableArray new];
     
     collegesImGoingToCompare = [NSMutableArray new];
     NSMutableDictionary *options = [NSMutableDictionary new];
@@ -46,12 +48,12 @@ NSArray *searchResults;
     [self setCustomAttributesForNavigationBar];
     
     // Navigation bar buttons
-    self.selectButton = [[UIBarButtonItem alloc] initWithTitle:@"Select"
-                                                         style:UIBarButtonItemStyleBordered
-                                                        target:self
-                                                        action:@selector(selectButton:)];
-    
-    self.selectButton.tintColor = [UIColor whiteColor];
+//    self.selectButton = [[UIBarButtonItem alloc] initWithTitle:@"Select"
+//                                                         style:UIBarButtonItemStyleBordered
+//                                                        target:self
+//                                                        action:@selector(selectButton:)];
+//    
+//    self.selectButton.tintColor = [UIColor whiteColor];
     
     self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare"
                                                           style:UIBarButtonItemStyleBordered
@@ -69,7 +71,7 @@ NSArray *searchResults;
  
     self.cancelButton.tintColor = [UIColor whiteColor];
     
-    [self.navigationItem setRightBarButtonItem:self.selectButton];
+    [self.navigationItem setRightBarButtonItem:self.compareButton];
     
     // Changing the checkmark color while selecting universities
     [self.tableView setTintColor:[UIColor colorWithRed:240.0/255.0
@@ -240,6 +242,8 @@ NSArray *searchResults;
     [cell.name setTextColor:nameColor];
     [cell.location setTextColor:locationColor];
     
+    cell.tag = indexPath.row;
+    
     [cell setCellHeight:cell.frame.size.height];
     
     return cell;
@@ -261,33 +265,6 @@ NSArray *searchResults;
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // If user is selecting colleges to compare
-    if (self.tableView.isEditing)
-    {
-        NSLog(@"%lu", (unsigned long)self.collegesToCompare.count);
-        FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        MUITCollege *dummyCollege = [self.universitiesPassed objectAtIndex:indexPath.row];
-        
-        
-        [self.collegesToCompare removeObject:cellToCompare];
-        [collegesImGoingToCompare removeObject:dummyCollege];
-        if(self.collegesToCompare.count < MINNUMBEROFCOLLEGESTOCOMPARE)
-        {
-            self.compareButton.enabled = NO;
-            
-            // Enable all cells
-            for (int row = 0; row < [tableView numberOfRowsInSection:0]; row++)
-            {
-                NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
-                FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
-                if(!cell.selected)
-                {
-                    cell.enabled = YES;
-                    cell.userInteractionEnabled = YES;
-                }
-            }
-        }
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -309,51 +286,6 @@ NSArray *searchResults;
             else if([self.title isEqual:@"filteredSchools"])
             {
                 [self performSegueWithIdentifier:@"collegeDetailsSegue" sender:detailCell];
-            }
-        }
-    }
-    
-    /*if (self.tableView == self.searchDisplayController.searchResultsTableView) {
-        [self performSegueWithIdentifier: @"showCollegeDetailSegue" sender: self];
-    }*/
-    
-    // If user is selecting colleges to compare
-    if (self.tableView.isEditing)
-    {
-        FilteredCollegesTableViewCell *cellToCompare = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        //[(MUITCollege *)[self.universitiesPassed objectAtIndex:indexPath.row]
-        
-        MUITCollege *collegeObject = [self.universitiesPassed objectAtIndex:indexPath.row];
-        
-        
-        
-        // If the user has less than two colleges to selected
-        if(self.collegesToCompare.count < MAXNUMBEROFCOLLEGESTOCOMPARE)
-        {
-            [self.collegesToCompare addObject:cellToCompare];
-            [collegesImGoingToCompare addObject:collegeObject];
-            
-            self.compareButton.enabled = NO;
-        }
-        
-        // If the user has reached their max limit for selecting colleges
-        if (self.collegesToCompare.count >= MINNUMBEROFCOLLEGESTOCOMPARE)
-        {
-            self.compareButton.enabled = YES;
-            
-            // Disable all unselected cells
-            
-            if (self.collegesToCompare.count == MAXNUMBEROFCOLLEGESTOCOMPARE) {
-                for (int row = 0; row < [self.tableView numberOfRowsInSection:0]; row++)
-                {
-                    NSIndexPath* cellPath = [NSIndexPath indexPathForRow:row inSection:0];
-                    FilteredCollegesTableViewCell* cell = (FilteredCollegesTableViewCell *)[self.tableView cellForRowAtIndexPath:cellPath];
-                    if (!cell.selected) {
-                        cell.enabled = NO;
-                        cell.userInteractionEnabled = NO;
-                    }
-            }
-            
             }
         }
     }
@@ -449,8 +381,49 @@ NSArray *searchResults;
     [self.tableView setEditing:NO animated:NO];
     [self.collegesToCompare removeAllObjects];
     [collegesImGoingToCompare removeAllObjects];
-    [self.navigationItem setRightBarButtonItem:self.selectButton];
+    [self.navigationItem setRightBarButtonItem:self.compareButton];
+    [self.compareButton setEnabled:NO];
     [self.navigationItem setLeftBarButtonItem:nil];
+    [self resetColleges];
+}
+-(void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
+{
+    cell = (CollegeSearchCell*)cell;
+    
+    
+    if (index == 0) {
+        if (cell.selected == NO) {
+            [cell setSelected:YES];
+            [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:cell.tag]];
+            [selectedColleges addObject:cell];
+            
+        }
+        else
+        {
+            [cell setSelected:NO];
+            [collegesImGoingToCompare removeObject:[self.universitiesPassed objectAtIndex:cell.tag]];
+            
+        }
+        
+        
+        [cell hideUtilityButtonsAnimated:YES];
+    
+        NSInteger count = [collegesImGoingToCompare count];
+        
+        if (count >= MINNUMBEROFCOLLEGESTOCOMPARE) {
+            [self.compareButton setEnabled:YES];
+        }
+        else
+        {
+            [self.compareButton setEnabled:NO];
+        }
+    }
+}
+-(void)resetColleges
+{
+    for (CollegeSearchCell* cell in selectedColleges) {
+        [cell setSelected:NO];
+    }
 }
 
 @end
