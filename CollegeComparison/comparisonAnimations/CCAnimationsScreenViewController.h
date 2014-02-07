@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MUITCollege.h"
+#import "PNChart.h"
+
+typedef NS_ENUM(NSUInteger, ChartValueFormattingType) {
+    ChartValueFormattingTypeCurrency,
+    ChartValueFormattingTypePercent,
+    ChartValueFormattingTypeDecimal
+};
 
 @interface CCAnimationsScreenViewController : UIViewController
 
@@ -32,18 +39,10 @@
 @property (assign, nonatomic) float schoolTwoHeight;
 
 @property (strong, nonatomic) NSMutableArray *labelPlaces;
-
+@property (strong, nonatomic) NSArray *barsArray;
 
 @property (nonatomic, assign) BOOL populationButtonsArePresent;
 
--(void)setLabel;
--(void)animateAll;
--(void)checkBeforeAnimation;
--(void)removeDuringTransition;
--(void)createHandle;
--(void)replaceHandle;
--(void)buttonsForMenAndWomen;
--(void)buttonsForInStateAndOutWithOptionFirst:(BOOL) first;
--(void)removeUnderliners;
+@property (nonatomic, assign) int myIndex;
 
 @end

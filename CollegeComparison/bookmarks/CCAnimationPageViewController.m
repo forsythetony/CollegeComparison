@@ -19,6 +19,7 @@
     NSMutableArray *sectionTitles,
                     *schoolOneValues,
                     *schoolTwoValues,
+                    *schoolThreeValues,
                     *labelModifier,
                     *lineLabelArray,
                     *linesArray,
@@ -99,11 +100,12 @@
     pageControl.currentPageIndicatorTintColor = blueishColor;
     
     
-    [[viewControllers objectAtIndex:0] animateAll];
-    [[viewControllers objectAtIndex:0] createHandle];
-    [[viewControllers objectAtIndex:0] buttonsForInStateAndOutWithOptionFirst:YES];
-}
 
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self removeFromParentViewController];
+}
 #pragma mark Data Source Methods -
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
@@ -139,58 +141,19 @@
 }
 
 -(NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    return 0;
+     return 0;
 }
 
 #pragma mark Delegate Methods -
 
--(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
+-(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
     
-    if ([pendingViewControllers firstObject])
-    {
-        
-        CCAnimationsScreenViewController *theView = [pendingViewControllers firstObject];
-        [theView checkBeforeAnimation];
-        theView.hasAnimated = YES;
-        
-        int index = (int)[[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Index"] integerValue];
-        
-        for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++)
-        {
-            if (i == index) {
-                [theView createHandle];
-            }
-            else
-            {
-                CCAnimationsScreenViewController *newView = [self viewControllerAtIndex:i];
-                [newView removeDuringTransition];
-            }
-        }
-        
-        if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Enrollment Total"])
-        {
-            [theView buttonsForMenAndWomen];
-        }
-        
-        if ([[[theView.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"] isEqualToString:@"Tuition"])
-        {
-            [theView removeUnderliners];
-            [theView buttonsForInStateAndOutWithOptionFirst:YES];
-        }
-        
-    }
+   
 }
 -(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    if (!completed)
-    {
-        if ([previousViewControllers firstObject])
-        {
-            CCAnimationsScreenViewController *theView = [previousViewControllers firstObject];
-            
-            [theView replaceHandle];
-        }
-    }
+    
 }
 
 #pragma mark Data Setup Methods -
@@ -199,23 +162,18 @@
 {
     sectionTitles  = [[NSMutableArray alloc] init];
     schoolOneValues = [[NSMutableArray alloc] init];
-    labelModifier = [[NSMutableArray alloc] init];
     schoolTwoValues = [[NSMutableArray alloc] init];
-    lineLabelArray = [[NSMutableArray alloc] init];
-    moneyValueArray = [[NSMutableArray alloc] init];
-    linesArray = [[NSMutableArray alloc] init];
-    heightMultiplierArray = [[NSMutableArray alloc] init];
+    schoolThreeValues = [NSMutableArray new];
+
     
-    int schoolOneValue;
-    int schoolTwoValue;
-    float unitValue;
-    float moneyValue;
-    float heightMultiplier;
-    int lines;
-    float modifier;
+    
+    float schoolOneFloatValue;
+    float schoolTwoFloatValue;
+    float schoolThreeFloatValue;
     
     MUITCollege *dummyCollege;
     
+    NSInteger count = [self.twoColleges count];
     
     for (int i = 0; i < NUMBEROFVIEWCONTROLLERS; i++)
     {
@@ -226,43 +184,15 @@
                 [sectionTitles addObject:@"Tuition"];
             
                 dummyCollege = self.twoColleges[0];
-                schoolOneValue = (int)dummyCollege.tuition_out_state;
+                schoolOneFloatValue = (float)dummyCollege.tuition_out_state;
                 
                 dummyCollege = self.twoColleges[1];
-                schoolTwoValue = (int)dummyCollege.tuition_out_state;
-                [lineLabelArray addObject:@"%@k"];
+                schoolTwoFloatValue = (float)dummyCollege.tuition_out_state;
                 
-                float maximum = MAX(schoolTwoValue, schoolOneValue);
-                
-                
-                if (maximum < 10000)
-                {
-                    moneyValue = 1;
+                if (count > 2) {
+                    dummyCollege = self.twoColleges[2];
+                    schoolThreeFloatValue = (float)dummyCollege.tuition_out_state;
                 }
-                else if (maximum < 20000)
-                {
-                    moneyValue = 2;
-                }
-                else if (maximum < 40000)
-                {
-                    moneyValue = 5;
-                }
-                else
-                {
-                    moneyValue = 10;
-                }
-               
-                modifier = 255.0;
-                
-                unitValue = [self determineBestForTuitionWithMoneyValue:(moneyValue)
-                                                          andMaxInteger:MAX(schoolTwoValue, schoolOneValue)
-                                                            andModifier:modifier];
-                
-                heightMultiplier = (unitValue / (moneyValue * 1000));
-                
-                lines = [self determineLineNumberFromUnitValue:unitValue
-                                                   andModifier:modifier];
-                
                 
                 break;
             case 1:
@@ -270,102 +200,45 @@
                 [sectionTitles addObject:@"Enrollment Total"];
                 
                 dummyCollege = self.twoColleges[0];
-                schoolOneValue = (int)dummyCollege.enrollment_total;
+                schoolOneFloatValue = (float)dummyCollege.enrollment_total;
+                
                 dummyCollege = self.twoColleges[1];
-                schoolTwoValue = (int)dummyCollege.enrollment_total;
+                schoolTwoFloatValue = (float)dummyCollege.enrollment_total;
                 
-                moneyValue = 10.0;
-                
-                if (ABS((schoolTwoValue - schoolOneValue)) < 1000
-                    && MAX(schoolOneValue, schoolTwoValue) < 2000)
-                {
-                    moneyValue /= 50;
+                if (count > 2) {
+                    dummyCollege = self.twoColleges[2];
+                    schoolThreeFloatValue = (float)dummyCollege.enrollment_total;
                 }
-                else if (ABS((schoolTwoValue - schoolOneValue)) > 1000
-                         && MAX(schoolOneValue, schoolTwoValue) > 2000
-                         && MIN(schoolTwoValue, schoolOneValue) <5000)
-                {
-                    moneyValue /= 5;
-                }
-                else
-                {
-                    [lineLabelArray addObject:@"%@k"];
-                }
-                
-                modifier = 250;
-                unitValue = [self determineBestForPopulationWithMoneyValue:(moneyValue)
-                                                             andMaxInteger:MAX(schoolOneValue, schoolTwoValue)
-                                                               andModifier:modifier];
-                
-                heightMultiplier = (unitValue / (moneyValue * 1000));
-                
-                lines = [self determineLineNumberFromUnitValue:unitValue
-                                                   andModifier:modifier];
-                
-                if (ABS((schoolTwoValue - schoolOneValue)) < 1000
-                    && MAX(schoolOneValue, schoolTwoValue) < 2000)
-                {
-                    moneyValue *= 1000;
-                    [lineLabelArray addObject:@"%@"];
-                }
-                else if (ABS((schoolTwoValue - schoolOneValue)) > 1000
-                         && MAX(schoolOneValue, schoolTwoValue) > 2000
-                         && MIN(schoolTwoValue, schoolOneValue) <5000)
-                {
-                    moneyValue *= 1000;
-                    [lineLabelArray addObject:@"%@"];
-                }
-                else
-                {
-                    moneyValue *= 100;
-                    [lineLabelArray addObject:@"%@"];
-                }
-                
                 
                 break;
             case 2:
                 
                 [sectionTitles addObject:@"Financial Aid"];
+                
                 NSArray *schoolAidValues = [self checkFinancialAidValues];
-                schoolOneValue = [[schoolAidValues objectAtIndex:0] intValue];
-                schoolTwoValue = [[schoolAidValues objectAtIndex:1] intValue];
-                [lineLabelArray addObject:@"%@%%"];
                 
-                moneyValue = 10.0;
-                lines = 11;
+                schoolOneFloatValue = [[schoolAidValues objectAtIndex:0] floatValue];
+                schoolTwoFloatValue = [[schoolAidValues objectAtIndex:1] floatValue];
                 
-                if (IS_IPHONE_5)
-                {
-                    unitValue = 36.0;
+                if (count > 2) {
+                    schoolThreeFloatValue = [[schoolAidValues objectAtIndex:2] floatValue];
                 }
-                else
-                {
-                    unitValue = 28.0;
-                }
-                
-                heightMultiplier = (unitValue / (moneyValue));
                 
                 
                 break;
         }
         
-        NSNumber *numberValue = [NSNumber numberWithFloat:schoolOneValue];
+        NSNumber *numberValue = [NSNumber numberWithFloat:schoolOneFloatValue];
         [schoolOneValues addObject:numberValue];
         
-        numberValue = [NSNumber numberWithFloat:schoolTwoValue];
+        numberValue = [NSNumber numberWithFloat:schoolTwoFloatValue];
         [schoolTwoValues addObject:numberValue];
         
-        numberValue = [NSNumber numberWithFloat:unitValue];
-        [labelModifier addObject:numberValue];
+        if (count > 2) {
+            numberValue = [NSNumber numberWithFloat:schoolThreeFloatValue];
+            [schoolThreeValues addObject:numberValue];
+        }
         
-        numberValue = [NSNumber numberWithFloat:moneyValue];
-        [moneyValueArray addObject:numberValue];
-        
-        numberValue = [NSNumber numberWithInt:lines];
-        [linesArray addObject:numberValue];
-        
-        numberValue = [NSNumber numberWithFloat:heightMultiplier];
-        [heightMultiplierArray addObject:numberValue];
         
     }
 }
@@ -377,6 +250,8 @@
     viewControllersForMe = [[NSMutableArray alloc] init];
     
     MUITCollege *dummyCollege;
+    
+    NSInteger count = [self.twoColleges count];
     
     if (self.twoColleges == nil)
     {
@@ -413,46 +288,63 @@
         
         NSMutableDictionary *schoolTwoSettings = [NSMutableDictionary dictionaryWithObjects:schoolTwoValue
                                                                                     forKeys:settingKeysForSchool];
+        NSArray *schoolThreeValue;
+        NSMutableDictionary *schoolThreeSettings;
         
-        NSArray *settingKeysForView = [NSArray arrayWithObjects:
-                                       @"Title",
-                                       @"LineSpacing",
-                                       @"LineLabel",
-                                       @"Index",
-                                       @"Lines",
-                                       @"MoneyValue",
-                                       @"Multiplier",
-                                       @"My Navigation Item",
-                                       @"Object One",
-                                       @"Object Two",
-                                       nil];
+        if (count > 2) {
+            schoolHeight = [schoolThreeValues objectAtIndex:i];
+            dummyCollege = self.twoColleges[2];
+            
+            schoolThreeValue = [NSArray arrayWithObjects:[self shortenString:dummyCollege.name], schoolHeight, nil];
+            
+            schoolThreeSettings = [NSMutableDictionary dictionaryWithObjects:schoolThreeValue forKeys:settingKeysForSchool];
+            
+            
+        }
         
-        NSArray *settingObjectsForView = [NSArray arrayWithObjects:
-                                          [sectionTitles objectAtIndex:i],
-                                          [labelModifier objectAtIndex:i],
-                                          [lineLabelArray objectAtIndex:i],
-                                          [NSNumber numberWithInt:i],
-                                          [linesArray objectAtIndex:i],
-                                          [moneyValueArray objectAtIndex:i],
-                                          [heightMultiplierArray objectAtIndex:i],
-                                          myNavigationItem,
-                                          [self.twoColleges objectAtIndex:0],
-                                          [self.twoColleges objectAtIndex:1],
-                                          nil];
+        
+        NSMutableArray *MsettingsKeysForView = [[NSMutableArray alloc] initWithObjects:@"Title", @"Object One", @"Object 2", @"Count", nil];
+        
+        if (count > 2) {
+            [MsettingsKeysForView addObject:@"Object Three"];
+        }
+
+        
+        
+        NSArray *settingKeysForView = [NSArray arrayWithArray:MsettingsKeysForView];
+        
+        NSMutableArray *MsettingsObjectsForView = [[NSMutableArray alloc] initWithObjects:
+                                                        [sectionTitles objectAtIndex:i],
+                                                        [self.twoColleges objectAtIndex:0],
+                                                        [self.twoColleges objectAtIndex:1],
+                                                        [NSNumber numberWithInteger:[self.twoColleges count]],
+                                                        nil];
+        
+        if (count > 2) {
+            [MsettingsObjectsForView addObject:[self.twoColleges objectAtIndex:2]];
+        }
+        
+        NSArray *settingObjectsForView = [NSArray arrayWithArray:MsettingsObjectsForView];
         
         NSMutableDictionary *generalSettings = [NSMutableDictionary dictionaryWithObjects:settingObjectsForView
                                                                     forKeys:settingKeysForView];
+        
         
         NSMutableDictionary *viewControllerInformation = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                    schoolOneSettings, @"One",
                                                    schoolTwoSettings, @"Two",
                                                    generalSettings, @"All",
                                                    nil];
+        if (count > 2) {
+            [viewControllerInformation setObject:schoolThreeSettings forKey:@"Three"];
+        }
+        
         
         
         CCAnimationsScreenViewController *cVC = [[CCAnimationsScreenViewController alloc] init];
         [cVC setModifierDictionary:viewControllerInformation];
         
+        cVC.myIndex = i;
         
         [viewControllersForMe addObject:cVC];
     }
@@ -522,10 +414,9 @@
 
 -(NSInteger)indexOfViewController:(CCAnimationsScreenViewController*) viewController
 {
-    NSNumber *indexValue = [[viewController.modifierDictionary objectForKey:@"All"]
-                            objectForKey:@"Index"];
+    int indexValue = viewController.myIndex;
     
-    return [indexValue integerValue];
+    return indexValue;
     
 }
 
@@ -586,8 +477,9 @@
     if (self.twoColleges)
     {
         MUITCollege *dummyCollege = self.twoColleges[0];
+        CGFloat schoolThreeValue;
         
-        NSInteger schoolOneValue = dummyCollege.percent_receive_financial_aid;
+        CGFloat schoolOneValue = (CGFloat)dummyCollege.percent_receive_financial_aid;
         
         if (schoolOneValue > 100 || schoolOneValue < 0) {
             schoolOneValue = 0;
@@ -595,17 +487,33 @@
         
         dummyCollege = self.twoColleges[1];
         
-        NSInteger schoolTwoValue = dummyCollege.percent_receive_financial_aid;
+        CGFloat schoolTwoValue = (CGFloat)dummyCollege.percent_receive_financial_aid;
         
         if (schoolTwoValue > 100 || schoolTwoValue < 0) {
             schoolTwoValue = 0;
         }
         
+        if ([self.twoColleges count] > 2) {
+            dummyCollege = self.twoColleges[2];
+            
+            schoolThreeValue = (CGFloat)dummyCollege.percent_receive_financial_aid;
+        }
         
-        NSArray *arrayToReturn = [NSArray arrayWithObjects:
-                                  [NSNumber numberWithInt:(int)schoolOneValue],
-                                  [NSNumber numberWithInt:(int)schoolTwoValue],
-                                  nil];
+        schoolOneValue /= 100.0;
+        schoolTwoValue /= 100.0;
+        
+        
+        
+        NSMutableArray *array = [NSMutableArray new];
+        
+        [array addObject:[NSNumber numberWithFloat:schoolOneValue]];
+        [array addObject:[NSNumber numberWithFloat:schoolTwoValue]];
+        
+        if ([self.twoColleges count] > 2) {
+            schoolThreeValue /= 100.0;
+            [array addObject:[NSNumber numberWithFloat:schoolThreeValue]];
+        }
+        NSArray *arrayToReturn = [NSArray arrayWithArray:array];
         
         return arrayToReturn;
         

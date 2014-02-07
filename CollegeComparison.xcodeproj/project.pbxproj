@@ -17,6 +17,8 @@
 		535EA92418297638003D289A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535EA90618297637003D289A /* UIKit.framework */; };
 		535EA92C18297638003D289A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 535EA92A18297638003D289A /* InfoPlist.strings */; };
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
+		5B0870BA3AD6428B9B4543CD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5E15E49C234B32ADD0178D /* libPods.a */; };
+		BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */; };
 		BA75EDC01881EB670087BC15 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */; };
 		BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBC1881EB670087BC15 /* CCBookmarksPage.m */; };
 		BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBE1881EB670087BC15 /* CCFavoriteSCell.m */; };
@@ -78,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25767B620559407EB618A9C0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		3D581DC2184C4A5A00645179 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		53290F421830A1F800781050 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		535EA8FF18297637003D289A /* CollegeComparison.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeComparison.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +92,9 @@
 		535EA92918297638003D289A /* CollegeComparisonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollegeComparisonTests-Info.plist"; sourceTree = "<group>"; };
 		535EA92B18297638003D289A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
+		AD5E15E49C234B32ADD0178D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA14958C18A1F0AD00A326B0 /* CollegeSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeSearchCell.h; path = search/CollegeSearchCell.h; sourceTree = "<group>"; };
+		BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeSearchCell.m; path = search/CollegeSearchCell.m; sourceTree = "<group>"; };
 		BA75EDB91881EB670087BC15 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = bookmarks/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = bookmarks/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA75EDBB1881EB670087BC15 /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = bookmarks/CCBookmarksPage.h; sourceTree = "<group>"; };
@@ -100,8 +106,6 @@
 		BA75EDC51881EB7A0087BC15 /* gold_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gold_star.png; path = bookmarks/images/gold_star.png; sourceTree = "<group>"; };
 		BA75EDC61881EB7A0087BC15 /* highlighted_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highlighted_star.png; path = bookmarks/images/highlighted_star.png; sourceTree = "<group>"; };
 		BA75EDC71881EB7A0087BC15 /* highlighted_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "highlighted_star@2x.png"; path = "bookmarks/images/highlighted_star@2x.png"; sourceTree = "<group>"; };
-		BA75EDD41881EB900087BC15 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = comparisonAnimations/CCAnimationPageViewController.h; sourceTree = "<group>"; };
-		BA75EDD51881EB900087BC15 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = comparisonAnimations/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA75EDD61881EB900087BC15 /* CCAnimationsScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationsScreenViewController.h; path = comparisonAnimations/CCAnimationsScreenViewController.h; sourceTree = "<group>"; };
 		BA75EDD71881EB900087BC15 /* CCAnimationsScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationsScreenViewController.m; path = comparisonAnimations/CCAnimationsScreenViewController.m; sourceTree = "<group>"; };
 		BA75EDD81881EB900087BC15 /* CCAnimationsScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CCAnimationsScreenViewController.xib; path = comparisonAnimations/CCAnimationsScreenViewController.xib; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				535EA90518297637003D289A /* CoreGraphics.framework in Frameworks */,
 				535EA90718297637003D289A /* UIKit.framework in Frameworks */,
 				535EA90318297637003D289A /* Foundation.framework in Frameworks */,
+				5B0870BA3AD6428B9B4543CD /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +214,7 @@
 				535EA92718297638003D289A /* CollegeComparisonTests */,
 				535EA90118297637003D289A /* Frameworks */,
 				535EA90018297637003D289A /* Products */,
+				25767B620559407EB618A9C0 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,6 +236,7 @@
 				535EA90418297637003D289A /* CoreGraphics.framework */,
 				535EA90618297637003D289A /* UIKit.framework */,
 				535EA92118297637003D289A /* XCTest.framework */,
+				AD5E15E49C234B32ADD0178D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -314,8 +321,8 @@
 		BA852071183AF40D002CC626 /* Bar Animations */ = {
 			isa = PBXGroup;
 			children = (
-				BA75EDD41881EB900087BC15 /* CCAnimationPageViewController.h */,
-				BA75EDD51881EB900087BC15 /* CCAnimationPageViewController.m */,
+				BA75EDB91881EB670087BC15 /* CCAnimationPageViewController.h */,
+				BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */,
 				BA75EDD61881EB900087BC15 /* CCAnimationsScreenViewController.h */,
 				BA75EDD71881EB900087BC15 /* CCAnimationsScreenViewController.m */,
 				BA75EDD81881EB900087BC15 /* CCAnimationsScreenViewController.xib */,
@@ -388,6 +395,8 @@
 		BA98F1A4188158DB00752303 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				BA14958C18A1F0AD00A326B0 /* CollegeSearchCell.h */,
+				BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */,
 				BA75EE1B1881EC700087BC15 /* CollegeSearchViewController.h */,
 				BA75EE1C1881EC700087BC15 /* CollegeSearchViewController.m */,
 				BA75EE1D1881EC700087BC15 /* FilteredCollegesTableViewCell.h */,
@@ -416,8 +425,6 @@
 		BAE4EB481854EDC400597C1D /* Bookmarking */ = {
 			isa = PBXGroup;
 			children = (
-				BA75EDB91881EB670087BC15 /* CCAnimationPageViewController.h */,
-				BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */,
 				BA75EDBB1881EB670087BC15 /* CCBookmarksPage.h */,
 				BA75EDBC1881EB670087BC15 /* CCBookmarksPage.m */,
 				BA75EDBD1881EB670087BC15 /* CCFavoriteSCell.h */,
@@ -448,9 +455,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 535EA93118297638003D289A /* Build configuration list for PBXNativeTarget "CollegeComparison" */;
 			buildPhases = (
+				B752C8C58EE049F3890296F0 /* Check Pods Manifest.lock */,
 				535EA8FB18297637003D289A /* Sources */,
 				535EA8FC18297637003D289A /* Frameworks */,
 				535EA8FD18297637003D289A /* Resources */,
+				A5E1F9B5406544B78C79F1BB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -560,6 +569,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A5E1F9B5406544B78C79F1BB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B752C8C58EE049F3890296F0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		535EA8FB18297637003D289A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -572,6 +614,7 @@
 				BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */,
 				BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */,
 				BA75EDE31881EBBD0087BC15 /* CCPanelViewViewController.m in Sources */,
+				BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */,
 				BA75EE231881EC700087BC15 /* CollegeSearchViewController.m in Sources */,
 				BA75EDE01881EBB00087BC15 /* CCSettingsViewController.m in Sources */,
 				BA75EE2D1881EC7C0087BC15 /* CollegeDetailTableViewController.m in Sources */,
@@ -707,6 +750,7 @@
 		};
 		535EA93218297638003D289A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25767B620559407EB618A9C0 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -720,6 +764,7 @@
 		};
 		535EA93318297638003D289A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25767B620559407EB618A9C0 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
