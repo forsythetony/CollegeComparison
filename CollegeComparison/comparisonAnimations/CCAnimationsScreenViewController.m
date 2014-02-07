@@ -80,7 +80,7 @@
     
     
     NSLog(@"\n%@\n", self.title);
-    [barChart setAllXlabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
+    //[barChart setAllXlabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
     
     NSArray *yValues;
     

@@ -19,6 +19,14 @@
 		535EA92E18297638003D289A /* CollegeComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 535EA92D18297638003D289A /* CollegeComparisonTests.m */; };
 		5B0870BA3AD6428B9B4543CD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5E15E49C234B32ADD0178D /* libPods.a */; };
 		9348BD3A18A492F000891358 /* newHomeFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9348BD3918A492F000891358 /* newHomeFiltersViewController.m */; };
+		9F6BFFD418A52D82002EA069 /* collegeComparisonInstitutionData.sql in Resources */ = {isa = PBXBuildFile; fileRef = 9F6BFFC718A52D82002EA069 /* collegeComparisonInstitutionData.sql */; };
+		9F6BFFD518A52D82002EA069 /* collegeComparisonInstitutionData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9F6BFFC818A52D82002EA069 /* collegeComparisonInstitutionData.sqlite */; };
+		9F6BFFD618A52D82002EA069 /* collegeComparisonUserData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9F6BFFC918A52D82002EA069 /* collegeComparisonUserData.sqlite */; };
+		9F6BFFD718A52D82002EA069 /* MUITDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6BFFCB18A52D82002EA069 /* MUITDatabase.m */; };
+		9F6BFFD818A52D82002EA069 /* MUITInstitutionDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6BFFCD18A52D82002EA069 /* MUITInstitutionDatabase.m */; };
+		9F6BFFD918A52D82002EA069 /* MUITInstitutionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6BFFCF18A52D82002EA069 /* MUITInstitutionModel.m */; };
+		9F6BFFDA18A52D82002EA069 /* MUITUserDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6BFFD118A52D82002EA069 /* MUITUserDatabase.m */; };
+		9F6BFFDB18A52D82002EA069 /* MUITUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6BFFD318A52D82002EA069 /* MUITUserModel.m */; };
 		BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */; };
 		BA75EDC01881EB670087BC15 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */; };
 		BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBC1881EB670087BC15 /* CCBookmarksPage.m */; };
@@ -95,6 +103,19 @@
 		535EA92D18297638003D289A /* CollegeComparisonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollegeComparisonTests.m; sourceTree = "<group>"; };
 		9348BD3818A492F000891358 /* newHomeFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newHomeFiltersViewController.h; path = home/newHomeFiltersViewController.h; sourceTree = "<group>"; };
 		9348BD3918A492F000891358 /* newHomeFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = newHomeFiltersViewController.m; path = home/newHomeFiltersViewController.m; sourceTree = "<group>"; };
+		9F6BFFC718A52D82002EA069 /* collegeComparisonInstitutionData.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = collegeComparisonInstitutionData.sql; path = CollegeComparison/model/collegeComparisonInstitutionData.sql; sourceTree = SOURCE_ROOT; };
+		9F6BFFC818A52D82002EA069 /* collegeComparisonInstitutionData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = collegeComparisonInstitutionData.sqlite; path = CollegeComparison/model/collegeComparisonInstitutionData.sqlite; sourceTree = SOURCE_ROOT; };
+		9F6BFFC918A52D82002EA069 /* collegeComparisonUserData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = collegeComparisonUserData.sqlite; path = CollegeComparison/model/collegeComparisonUserData.sqlite; sourceTree = SOURCE_ROOT; };
+		9F6BFFCA18A52D82002EA069 /* MUITDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITDatabase.h; path = CollegeComparison/model/MUITDatabase.h; sourceTree = SOURCE_ROOT; };
+		9F6BFFCB18A52D82002EA069 /* MUITDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITDatabase.m; path = CollegeComparison/model/MUITDatabase.m; sourceTree = SOURCE_ROOT; };
+		9F6BFFCC18A52D82002EA069 /* MUITInstitutionDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITInstitutionDatabase.h; path = CollegeComparison/model/MUITInstitutionDatabase.h; sourceTree = SOURCE_ROOT; };
+		9F6BFFCD18A52D82002EA069 /* MUITInstitutionDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITInstitutionDatabase.m; path = CollegeComparison/model/MUITInstitutionDatabase.m; sourceTree = SOURCE_ROOT; };
+		9F6BFFCE18A52D82002EA069 /* MUITInstitutionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITInstitutionModel.h; path = CollegeComparison/model/MUITInstitutionModel.h; sourceTree = SOURCE_ROOT; };
+		9F6BFFCF18A52D82002EA069 /* MUITInstitutionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITInstitutionModel.m; path = CollegeComparison/model/MUITInstitutionModel.m; sourceTree = SOURCE_ROOT; };
+		9F6BFFD018A52D82002EA069 /* MUITUserDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITUserDatabase.h; path = CollegeComparison/model/MUITUserDatabase.h; sourceTree = SOURCE_ROOT; };
+		9F6BFFD118A52D82002EA069 /* MUITUserDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITUserDatabase.m; path = CollegeComparison/model/MUITUserDatabase.m; sourceTree = SOURCE_ROOT; };
+		9F6BFFD218A52D82002EA069 /* MUITUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MUITUserModel.h; path = CollegeComparison/model/MUITUserModel.h; sourceTree = SOURCE_ROOT; };
+		9F6BFFD318A52D82002EA069 /* MUITUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUITUserModel.m; path = CollegeComparison/model/MUITUserModel.m; sourceTree = SOURCE_ROOT; };
 		AD5E15E49C234B32ADD0178D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA14958C18A1F0AD00A326B0 /* CollegeSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeSearchCell.h; path = search/CollegeSearchCell.h; sourceTree = "<group>"; };
 		BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeSearchCell.m; path = search/CollegeSearchCell.m; sourceTree = "<group>"; };
@@ -201,6 +222,19 @@
 		532A1485184D7594009C5BAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F6BFFC718A52D82002EA069 /* collegeComparisonInstitutionData.sql */,
+				9F6BFFC818A52D82002EA069 /* collegeComparisonInstitutionData.sqlite */,
+				9F6BFFC918A52D82002EA069 /* collegeComparisonUserData.sqlite */,
+				9F6BFFCA18A52D82002EA069 /* MUITDatabase.h */,
+				9F6BFFCB18A52D82002EA069 /* MUITDatabase.m */,
+				9F6BFFCC18A52D82002EA069 /* MUITInstitutionDatabase.h */,
+				9F6BFFCD18A52D82002EA069 /* MUITInstitutionDatabase.m */,
+				9F6BFFCE18A52D82002EA069 /* MUITInstitutionModel.h */,
+				9F6BFFCF18A52D82002EA069 /* MUITInstitutionModel.m */,
+				9F6BFFD018A52D82002EA069 /* MUITUserDatabase.h */,
+				9F6BFFD118A52D82002EA069 /* MUITUserDatabase.m */,
+				9F6BFFD218A52D82002EA069 /* MUITUserModel.h */,
+				9F6BFFD318A52D82002EA069 /* MUITUserModel.m */,
 				BA75EE301881ECD20087BC15 /* MUITCollege.h */,
 				BA75EE311881ECD20087BC15 /* MUITCollege.m */,
 				BA75EE321881ECD20087BC15 /* MUITCollegeDataProvider.h */,
@@ -542,8 +576,10 @@
 				BA75EDF41881EBCC0087BC15 /* bookmarks_navbar_icon.png in Resources */,
 				BA75EDF51881EBCC0087BC15 /* bookmarks_navbar_icon@2x.png in Resources */,
 				BA75EDDB1881EB900087BC15 /* CCAnimationsScreenViewController.xib in Resources */,
+				9F6BFFD418A52D82002EA069 /* collegeComparisonInstitutionData.sql in Resources */,
 				BA75EDCC1881EB7A0087BC15 /* custom_star_icon.png in Resources */,
 				BA75EDCE1881EB7A0087BC15 /* highlighted_star.png in Resources */,
+				9F6BFFD518A52D82002EA069 /* collegeComparisonInstitutionData.sqlite in Resources */,
 				BA75EE471881EDAF0087BC15 /* InfoPlist.strings in Resources */,
 				BA75EE5E188460240087BC15 /* menuBarsWhite.png in Resources */,
 				BA75EDF61881EBCC0087BC15 /* Filter Icon.png in Resources */,
@@ -560,6 +596,7 @@
 				BA75EDFA1881EBCC0087BC15 /* home_navbar_icon@2x.png in Resources */,
 				BA75EE381881ECFF0087BC15 /* Main.storyboard in Resources */,
 				BA75EE491881EDBB0087BC15 /* schools.db in Resources */,
+				9F6BFFD618A52D82002EA069 /* collegeComparisonUserData.sqlite in Resources */,
 				BA75EDFB1881EBCC0087BC15 /* Star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,12 +654,15 @@
 				BA75EE2E1881EC7C0087BC15 /* CollegeDetailViewController.m in Sources */,
 				BA75EE2F1881EC7C0087BC15 /* CollegeSavedViewController.m in Sources */,
 				BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */,
+				9F6BFFD718A52D82002EA069 /* MUITDatabase.m in Sources */,
 				BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */,
 				BA75EDE31881EBBD0087BC15 /* CCPanelViewViewController.m in Sources */,
 				BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */,
 				BA75EE231881EC700087BC15 /* CollegeSearchViewController.m in Sources */,
 				BA75EDE01881EBB00087BC15 /* CCSettingsViewController.m in Sources */,
 				BA75EE2D1881EC7C0087BC15 /* CollegeDetailTableViewController.m in Sources */,
+				9F6BFFDA18A52D82002EA069 /* MUITUserDatabase.m in Sources */,
+				9F6BFFDB18A52D82002EA069 /* MUITUserModel.m in Sources */,
 				BA75EE3B1881ED040087BC15 /* CCAppDelegate.m in Sources */,
 				BA75EE241881EC700087BC15 /* FilteredCollegesTableViewCell.m in Sources */,
 				BA75EE251881EC700087BC15 /* FilteredCollegesViewController.m in Sources */,
@@ -630,8 +670,10 @@
 				BA75EE1A1881EC640087BC15 /* HomeViewController.m in Sources */,
 				9348BD3A18A492F000891358 /* newHomeFiltersViewController.m in Sources */,
 				BA75EE441881ED780087BC15 /* main.m in Sources */,
+				9F6BFFD918A52D82002EA069 /* MUITInstitutionModel.m in Sources */,
 				BA75EE341881ECD20087BC15 /* MUITCollege.m in Sources */,
 				BA75EE351881ECD20087BC15 /* MUITCollegeDataProvider.m in Sources */,
+				9F6BFFD818A52D82002EA069 /* MUITInstitutionDatabase.m in Sources */,
 				BA75EDFE1881EBD90087BC15 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

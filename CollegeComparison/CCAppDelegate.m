@@ -7,6 +7,8 @@
 //
 
 #import "CCAppDelegate.h"
+#import "MUITInstitutionDatabase.h"
+#import "MUITUserDatabase.h"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation CCAppDelegate
@@ -36,7 +38,7 @@
     
     // Override point for customization after application launch.
 
-    NSError *error;
+    /* NSError *error;
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  // Get the path to the database file
     NSString *documentPath = [searchPaths objectAtIndex:0];
     NSString *databasePath = [documentPath stringByAppendingPathComponent:@"schools.db"];
@@ -46,7 +48,12 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
         
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"schools" ofType:@"db"];
-    [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error];
+    [fileManager copyItemAtPath:resourcePath toPath:databasePath error:&error]; */
+    
+    MUITInstitutionDatabase *inst = [[MUITInstitutionDatabase alloc] init];
+    MUITUserDatabase *user = [[MUITUserDatabase alloc] init];
+    [inst copyDBIfNeeded];
+    [user copyDBIfNeeded];
     
     self.recentlyVisited = [self reloadRecentlyVisited];
     
