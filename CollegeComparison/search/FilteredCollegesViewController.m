@@ -11,6 +11,8 @@
 #define MAXNUMBEROFCOLLEGESTOCOMPARE 3
 #define MINNUMBEROFCOLLEGESTOCOMPARE 2
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 @interface FilteredCollegesViewController (){
     NSMutableArray *collegesImGoingToCompare;
     NSMutableArray *selectedColleges;
@@ -195,13 +197,12 @@ NSArray *searchResults;
     [cell setAppearanceWithBlock:^{
         cell.containingTableView = tableView;
         
-        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
         NSMutableArray *rightUtilityButtons = [NSMutableArray new];
         
-        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor grapefruitColor] title:@"Compare"];
-        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor blueberryColor] title:@"Bookmark"];
         
-        cell.leftUtilityButtons = leftUtilityButtons;
+        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor denimColor] title:@"Bookmark"];
+        [rightUtilityButtons sw_addUtilityButtonWithColor:UIColorFromRGB(0xF05746) title:@"Compare"];
+        
         cell.rightUtilityButtons = rightUtilityButtons;
         
         cell.delegate = self;
