@@ -16,6 +16,11 @@
 @interface FilteredCollegesViewController (){
     NSMutableArray *collegesImGoingToCompare;
     NSMutableArray *selectedColleges;
+    
+    UIFont *cellNameFont, *cellLocationFont, *headerViewFont;
+    UIColor *cellNameTextColor, *cellLocationTextColor, *headerViewBackgroundColor, *headerViewTextColor, *colorForBookmarkButton, *colorForCompareButton, *headerViewLabelBackgroundColor, *tableViewCellBackgroundColor, *tableViewCellSelectedColor;
+    
+    NSTextAlignment alignmentForHeaderLabelText;
 }
 
 @end
@@ -26,6 +31,9 @@ NSArray *searchResults;
 
 - (void)viewDidLoad
 {
+    //Configure visual properties
+    [self aestheticsConfiguration];
+    
     selectedColleges = [NSMutableArray new];
     
     collegesImGoingToCompare = [NSMutableArray new];
@@ -66,12 +74,7 @@ NSArray *searchResults;
     self.cancelButton.tintColor = [UIColor whiteColor];
     
     [self.navigationItem setRightBarButtonItem:self.compareButton];
-    
-    // Changing the checkmark color while selecting universities
-    [self.tableView setTintColor:[UIColor colorWithRed:240.0/255.0
-                                                 green:87.0/255.0
-                                                  blue:70.0/255.0
-                                                 alpha:1.0]];
+
     
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
 }
@@ -139,24 +142,19 @@ NSArray *searchResults;
     
     UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
     
-    [tableHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255
-                                                        green:245.0/255
-                                                         blue:245.0/255
-                                                        alpha:1.0]];
+    [tableHeaderView setBackgroundColor:headerViewBackgroundColor];
+    
     
     // Label properties for custon UIView
     UILabel *labelInHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0.0f, 320.0f, 40.0f)];
     
-    labelInHeaderView.textAlignment = NSTextAlignmentLeft;
+    labelInHeaderView.textAlignment = alignmentForHeaderLabelText;
     
-    [labelInHeaderView setBackgroundColor:[UIColor colorWithRed:245.0/255.0
-                                                          green:245.0/255.0
-                                                           blue:245.0/255.0
-                                                          alpha:1.0]];
+    [labelInHeaderView setBackgroundColor:headerViewLabelBackgroundColor];
     
-    [labelInHeaderView setTextColor:[UIColor grayColor]];
+    [labelInHeaderView setTextColor:headerViewTextColor];
     
-    labelInHeaderView.font = [UIFont fontWithName:@"Avenir-Book" size:13.0];
+    labelInHeaderView.font = headerViewFont;
     
     labelInHeaderView.text = [[NSString stringWithFormat:@"%lu", (unsigned long)collegesReturned] stringByAppendingString:@" COLLEGES RETURNED"];
     
@@ -200,10 +198,11 @@ NSArray *searchResults;
         NSMutableArray *rightUtilityButtons = [NSMutableArray new];
         
         
-        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor denimColor] title:@"Bookmark"];
-        [rightUtilityButtons sw_addUtilityButtonWithColor:UIColorFromRGB(0xF05746) title:@"Compare"];
+        [rightUtilityButtons sw_addUtilityButtonWithColor:colorForBookmarkButton title:@"Bookmark"];
+        [rightUtilityButtons sw_addUtilityButtonWithColor:colorForCompareButton title:@"Compare"];
         
         cell.rightUtilityButtons = rightUtilityButtons;
+        
         
         cell.delegate = self;
     } force:NO];
@@ -217,23 +216,19 @@ NSArray *searchResults;
     NSString *collegeLocation = [NSString stringWithFormat:@"%@, %@", @"SomeCity", college.state];
     
     //Set the cells labels
-    
     [cell.name setText:collegeName];
     [cell.location setText:collegeLocation];
     
+    //Configure colors
+    cell.backgroundColor = tableViewCellBackgroundColor;
+    [cell.selectedBackgroundView setBackgroundColor:tableViewCellSelectedColor];
+    
     //Configure fonts for labels
+    [cell.name setFont:cellNameFont];
+    [cell.location setFont:cellLocationFont];
     
-    UIFont *nameFont = [UIFont fontWithName:@"Avenir-Book" size:17.0];
-    UIFont *locationFont = [UIFont fontWithName:@"Avenir-Book" size:15.0];
-    
-    UIColor *nameColor = [UIColor blackColor];
-    UIColor *locationColor = [UIColor black50PercentColor];
-    
-    [cell.name setFont:nameFont];
-    [cell.location setFont:locationFont];
-    
-    [cell.name setTextColor:nameColor];
-    [cell.location setTextColor:locationColor];
+    [cell.name setTextColor:cellNameTextColor];
+    [cell.location setTextColor:cellLocationTextColor];
     
     cell.tag = indexPath.row;
     
@@ -417,6 +412,79 @@ NSArray *searchResults;
     for (CollegeSearchCell* cell in selectedColleges) {
         [cell setSelected:NO];
     }
+}
+-(void)aestheticsConfiguration
+{
+/*
+    Use the functions below to configure the fonts for this view controller
+    You can find the list of iOS supported fonts at iosfonts.com
+    Always enter names as NSStrings meaning that it should be in the format @"NAMEOFFONT" with the @ sign and quotations
+    You can also modify the text color
+*/
+    
+
+    
+    //Table cell configuration
+    
+        //Configure background properties for cell
+        UIColor *cellBackgroundColor            =   [UIColor antiqueWhiteColor];
+        UIColor *cellSelectedBackgroundColor    =   [UIColor grayColor];
+    
+        //Font for college name label for cells in table view
+    
+        NSString *fontNameForNameLabel          =   @"Avenir-Book";
+        float sizeOfNameFont                    =   14.0;
+    
+        UIColor *colorForNameLabelText          =   [UIColor black25PercentColor];
+    
+    
+        //Font for college location label for cells in table view
+    
+        NSString *fontNameForLocationLabel      =   @"Avenir-Book";
+        float sizeOfLocationFont                =   14.0;
+    
+        UIColor *colorForLocationLabelText      =   [UIColor black25PercentColor];
+    
+    
+    //Font for the header view that display number of colleges returned
+    
+        NSString *fontnameForHeaderView         =   @"Avenir-Book";
+        float sizeOfHeaderFont                  =   14.0;
+    
+        UIColor *colorForHeaderViewText         =   [UIColor black25PercentColor];
+        UIColor *colorForHeaderViewBackground   =   [UIColor antiqueWhiteColor];
+        UIColor *colorForHeaderLabelBackground  =   [UIColor antiqueWhiteColor];
+    
+        //Here you can set the alignment for the header label
+    
+        alignmentForHeaderLabelText             =   NSTextAlignmentLeft;
+    
+    //Colors for right utility buttons (compare and bookmark)
+    
+        UIColor *colorForBookmarkUtilityButton  =   [UIColor denimColor];
+        UIColor *colorForCompareUtilityButton   =   UIColorFromRGB(0xF05746); //This is a coral color
+    
+    
+    
+    //These functions down here are used to take the values set above and apply them
+    tableViewCellBackgroundColor = cellBackgroundColor;
+    tableViewCellSelectedColor = cellSelectedBackgroundColor;
+    
+    cellNameFont = [UIFont fontWithName:fontNameForNameLabel size:sizeOfNameFont];
+    cellNameTextColor = colorForNameLabelText;
+    
+    
+    cellLocationFont = [UIFont fontWithName:fontNameForLocationLabel size:sizeOfLocationFont];
+    cellLocationTextColor = colorForLocationLabelText;
+    
+    headerViewFont = [UIFont fontWithName:fontnameForHeaderView size:sizeOfHeaderFont];
+    headerViewTextColor = colorForHeaderViewText;
+    headerViewBackgroundColor = colorForHeaderViewBackground;
+    headerViewLabelBackgroundColor = colorForHeaderLabelBackground;
+    
+    colorForBookmarkButton = colorForBookmarkUtilityButton;
+    colorForCompareButton = colorForCompareUtilityButton;
+    
 }
 
 @end

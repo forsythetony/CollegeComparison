@@ -12,13 +12,26 @@
 #define CORALCOLOR [UIColor colorWithRed:207.0/255.0 green:103.0/255.0 blue:65.0/255.0 alpha:1.0]
 #define SECTIONHEADERHEIGHT 30.0
 #define WIDTHOFPANEL 150.0
-#define LEFTPADDINGFORTABLECELLS 65.0
+#define LEFTPADDINGFORTABLECELLS 43.0
 
 #define CORAL [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
+
+typedef struct paddingInfo {
+    float leftPadding;
+    float bottomPadding;
+    float width;
+    float height;
+} paddingInfo;
 
 @interface CCPanelViewViewController () {
     UIImageView *syncImage;
     BOOL animating;
+    
+    UIColor *pViewBackground, *pViewHeaderBackground, *pCellBackground, *pCellText, *pViewHeaderText, *cLabelBackgroundColor, *hLabelBackgroundColor;
+    
+    UIFont *pViewHeader, *pViewCell;
+    
+    NSDictionary *theLook;
 }
 
 @property (nonatomic, strong) NSArray *menuItems;
@@ -39,20 +52,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self aestheticsConfiguration];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
-    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
-   
-    
-    [self revealViewControllerConfiguration];
+//    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+    self.tableView.separatorColor = [UIColor yellowColor];
     
     _menuItems = @[@"Home", @"Bookmarks", @"Settings"];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
@@ -102,33 +109,17 @@
 #pragma mark Configure Cell -
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell WithIdentifier:(NSString*) name
 {
-    
-//    if ([name isEqualToString:@"sync"]) {
-//        return [self configureSyncCell:theCell];
-//    }
-    
-    //Configure 'global' variables
-    UIFont *titleFont = [UIFont
-                         fontWithName:@"Avenir-Book"
-                         size:20.0];
-    UIColor *backgroundColor = [UIColor colorWithWhite:0.2 alpha:1.0];
-    
-    UIColor *textColor = CORALCOLOR;
-    
     //Find cell properties
     float heightOfCell = theCell.contentView.bounds.size.height;
     
-    //Create title
-    float heightOfTitle = 30.0;
-    float bottomPadding = 7.0;
-    float leftPadding = 7.0 + LEFTPADDINGFORTABLECELLS;
+    CGRect cellPadding = [[padding objectForKey:@"cPadding"] CGRectValue];
     
     CGRect titleFrame;
     
-    titleFrame.origin.x = leftPadding;
-    titleFrame.origin.y = heightOfCell - heightOfTitle - bottomPadding;
-    titleFrame.size.width = 200.0;
-    titleFrame.size.height = heightOfTitle;
+    titleFrame.origin.x = cellPadding.origin.x + LEFTPADDINGFORTABLECELLS;
+    titleFrame.origin.y = heightOfCell - cellPadding.size.height - cellPadding.origin.y;
+    titleFrame.size.width = cellPadding.size.width;
+    titleFrame.size.height = cellPadding.size.height;
     
     //Create actual label
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
@@ -137,12 +128,12 @@
     [titleLabel setText:name];
     
     //Configure label properties
-    [titleLabel setTextColor:textColor];
-    [titleLabel setFont:titleFont];
+    [titleLabel setTextColor:pCellText];
+    [titleLabel setFont:pViewCell];
     
     //Configure cell properties
-    [theCell.contentView setBackgroundColor:backgroundColor];
-    theCell.selectionStyle = UITableViewCellEditingStyleNone;
+    [theCell.contentView setBackgroundColor:pCellBackground];
+    //theCell.selectionStyle = UITableViewCellEditingStyleNone;
     
     //Add subviews
     [theCell.contentView addSubview:titleLabel];
@@ -152,19 +143,6 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
-    //Configure 'global' variables
-    UIFont *titleFont = [UIFont
-                         fontWithName:@"Avenir-Heavy"
-                         size:20.0];
-    
-    UIColor *titleTextColor = CORALCOLOR;
-    UIColor *headerBackgroundColor = [UIColor colorWithWhite:0.15 alpha:1.0];
-    
-    
-    
-    
-    
     if (section == 0) {
         //Create rect for view
         CGRect headerFrame;
@@ -177,22 +155,17 @@
         
         UIView *headerView = [[UIView alloc] initWithFrame:headerFrame];
         
-        [headerView setBackgroundColor:headerBackgroundColor];
+        [headerView setBackgroundColor:pViewHeaderBackground];
         
+        CGRect headerPadding = [[padding objectForKey:@"hPadding"] CGRectValue];
         
         //Create label
-        
-       // float leftPadding = 6 + LEFTPADDINGFORTABLECELLS;
-        float bottomPadding = -3.0;
-        float titleHeight = 30.0;
-        float labelWidth = 200.0;
-        
         CGRect labelFrame;
         
-        labelFrame.origin.x = LEFTPADDINGFORTABLECELLS + ((WIDTHOFPANEL / 2) - (labelWidth/2));
-        labelFrame.origin.y = SECTIONHEADERHEIGHT - titleHeight - bottomPadding;
-        labelFrame.size.width = labelWidth;
-        labelFrame.size.height = titleHeight;
+        labelFrame.origin.x = LEFTPADDINGFORTABLECELLS + ((WIDTHOFPANEL / 2) - (headerPadding.size.width/2));
+        labelFrame.origin.y = SECTIONHEADERHEIGHT - headerPadding.size.height - headerPadding.origin.y;
+        labelFrame.size.width = headerPadding.size.width;
+        labelFrame.size.height = headerPadding.size.height;
         
         
         //Instantiate title label
@@ -202,8 +175,8 @@
         [titleLabel setText:@"Menu"];
         
         //Configure properties of title label
-        [titleLabel setFont:titleFont];
-        [titleLabel setTextColor:titleTextColor];
+        [titleLabel setFont:pViewHeader];
+        [titleLabel setTextColor:pViewHeaderText];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         
         
@@ -336,14 +309,131 @@
     // set the flag to stop spinning after one last 90 degree increment
     animating = NO;
 }
--(void)revealViewControllerConfiguration
+-(void)aestheticsConfiguration
 {
-    [self.revealViewController setRightViewController:self];
-    self.revealViewController.rightViewRevealWidth = WIDTHOFPANEL;
+    //Panel view background configuration.
 
-    self.revealViewController.rightViewRevealDisplacement = 0.0;
-    self.revealViewController.rightViewRevealOverdraw = 40.0;
-    self.revealViewController.bounceBackOnLeftOverdraw = NO;
-    self.revealViewController.toggleCloseAnimationDuration = 0.18;
+        UIColor *panelViewBackgroundColor   =   [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
+    
+    //The color for the seperator lines between cells
+    
+        UIColor *seperatorLineColor         =   [UIColor black50PercentColor];
+    
+    //Panel View Header Configuration
+    
+        UIColor *headerViewBackgroundColor  =   [UIColor colorWithWhite:0.15 alpha:1.0];
+    
+        UIColor *headerLabelBackgroundColor =   [UIColor yellowColor];
+    
+        UIColor *colorForHeaderText         =   CORALCOLOR;
+    
+        NSString *fontNameForHeaderText     =   @"Avenir-Heavy";
+        float fontSizeForHeaderText         =   20.0;
+    
+        //Configure padding for header label
+    
+    
+    //Panel view cell configuration
+    
+        UIColor *cellBackgroundColor        =   [UIColor colorWithWhite:0.2 alpha:1.0];
+    
+        UIColor *cellLabelBackgroundColor   =   [UIColor yellowColor];
+    
+        UIColor *colorForCellText           =   CORALCOLOR;
+    
+        NSString *fontNameForCellText       =   @"Avenir-Heavy";
+        float fontSizeForCellText           =   20.0;
+    
+        //Configure padding for header and cell
+    
+        float headerLeftPadding             =   5.0;
+        float headerBottomPadding           =   -3.0;
+        float headerWidth                   =   200.0;
+        float headerHeight                  =   30.0;
+        
+        float cellLeftPadding               =   7.0;
+        float cellBottomPadding             =   7.0;
+        float cellWidth                     =   200.0;
+        float cellHeight                    =   30.0;
+    
+    //Panel view configuration
+    
+        //Set the width of the panel
+    
+        float panelWidth                    =   150.0;
+    
+        //Set the Displacement
+    
+        float panelDisplacement             =   0.0;
+    
+        //Set the overdraw
+    
+        float panelOverdraw                 =   40.0;
+    
+        //Set the time duration (in seconds) for the toggle close animation
+    
+        float toggleCloseAnimationDuration  =   0.18;
+    
+        //Should the panel bounce back on left overdraw?
+    
+        BOOL bounceBackOnLeftOverdraw = NO;
+    
+    
+
+    
+    
+    
+    NSArray *colorsKeys = [NSArray arrayWithObjects:
+                                                   @"pViewBackground",
+                                                   @"pViewLines",
+                                                   @"hBackground",
+                                                   @"hText",
+                                                   @"hFont",
+                                                   @"hLabelBackground",
+                                                   @"cBackground",
+                                                   @"cText",
+                                                   @"cFont",
+                                                   @"cLabelBackground", nil];
+
+    NSArray *colorsObjects = [NSArray arrayWithObjects:
+                                                      panelViewBackgroundColor,
+                                                      seperatorLineColor,
+                                                      headerViewBackgroundColor,
+                                                      colorForHeaderText,
+                                                      [UIFont fontWithName:fontNameForHeaderText size:fontSizeForHeaderText],
+                                                      headerLabelBackgroundColor,
+                                                      cellBackgroundColor,
+                                                      colorForCellText,
+                                                      [UIFont fontWithName:fontNameForCellText size:fontSizeForCellText],
+                                                      cellLabelBackgroundColor, nil];
+    
+    
+    CGRect cPad = CGRectMake(cellLeftPadding, cellBottomPadding, cellWidth, cellHeight);
+    
+    CGRect hPad = CGRectMake(headerLeftPadding, headerBottomPadding, headerWidth, headerHeight);
+
+    NSDictionary *colorsDictionary = [NSDictionary dictionaryWithObjects:colorsObjects forKeys:colorsKeys];
+    
+    NSDictionary *paddingDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                   [NSValue valueWithCGRect:cPad],
+                                                                                   @"cPadding",
+                                                                                   [NSValue valueWithCGRect:hPad],
+                                                                                   @"hPadding", nil];
+    
+    theLook = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           colorsDictionary,
+                                                           @"colors",
+                                                           paddingDictionary,
+                                                           @"padding", nil];
+    
+    [self.revealViewController setRightViewController:self];
+    self.revealViewController.rightViewRevealWidth = panelWidth;
+    
+    self.revealViewController.rightViewRevealDisplacement = panelDisplacement;
+    self.revealViewController.rightViewRevealOverdraw = panelOverdraw;
+    self.revealViewController.bounceBackOnLeftOverdraw = bounceBackOnLeftOverdraw;
+    self.revealViewController.toggleCloseAnimationDuration = toggleCloseAnimationDuration;
+    
+    
 }
 @end
