@@ -13,9 +13,12 @@
 #define MIDSECTIONREFERENCEPOINT 200.0
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define CORALCOLOR UIColorFromRGB(0xF05746)
 
 @interface CCAnimationsScreenViewController () {
     PNBarChart *theMainChart;
+    
+    NSDictionary *theLook;
     
 }
 @end
@@ -34,8 +37,10 @@
 }
 - (void)viewDidLoad
 {
+    //Configure visual properties
+    [self configureAesthetics];
+    
     //For BarChart
-
     NSDictionary *data = [self packageData];
     
     
@@ -93,13 +98,12 @@
         yValues = [data objectForKey:@"yvalues"];
     }
     [barChart setYValues:yValues];
-    [barChart setStrokeColor:UIColorFromRGB(0xF05746)];
+    [barChart setStrokeColor:[theLook objectForKey:@"barColor"]];
     [barChart strokeChart];
     
     theMainChart = barChart;
     
     [mainView addSubview:barChart];
-//    self.barsArray = [NSArray arrayWithArray:[barChart theViews]];
     
     NSLog(@"\n%@\n", self.title);
 
@@ -234,11 +238,17 @@
         [array addObject:[[dataDict objectForKey:@"Three"] objectForKey:@"Name"]];
     }
     
-    
-    
-    
-    
-    
     return [NSArray arrayWithArray:array];
+}
+
+-(void)configureAesthetics
+{
+    //  Set the bar color
+    
+        UIColor *barFillColor = CORALCOLOR; // This is a coral color
+    
+/*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
+    
+    theLook = [NSDictionary dictionaryWithObjectsAndKeys:barFillColor, @"barColor", nil];
 }
 @end

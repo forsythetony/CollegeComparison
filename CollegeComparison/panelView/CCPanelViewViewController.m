@@ -369,7 +369,7 @@ typedef struct paddingInfo {
     
         //Set the width of the panel
     
-        float panelWidth                    =   150.0;
+        float panelWidth                    =  150.0;
     
         //Set the Displacement
     
@@ -393,24 +393,24 @@ typedef struct paddingInfo {
     
     
     NSArray *colorsKeys = [NSArray arrayWithObjects:
-                                                   @"hBackground",
-                                                   @"hText",
-                                                   @"hFont",
-                                                   @"hLabelBackground",
-                                                   @"cBackground",
-                                                   @"cText",
-                                                   @"cFont",
-                                                   @"cLabelBackground", nil];
+                                                       @"hBackground",
+                                                       @"hText",
+                                                       @"hFont",
+                                                       @"hLabelBackground",
+                                                       @"cBackground",
+                                                       @"cText",
+                                                       @"cFont",
+                                                       @"cLabelBackground", nil];
 
     NSArray *colorsObjects = [NSArray arrayWithObjects:
-                                                      headerViewBackgroundColor,
-                                                      colorForHeaderText,
-                                                      [UIFont fontWithName:fontNameForHeaderText size:fontSizeForHeaderText],
-                                                      headerLabelBackgroundColor,
-                                                      cellBackgroundColor,
-                                                      colorForCellText,
-                                                      [UIFont fontWithName:fontNameForCellText size:fontSizeForCellText],
-                                                      cellLabelBackgroundColor, nil];
+                                                          headerViewBackgroundColor,
+                                                          colorForHeaderText,
+                                                          [UIFont fontWithName:fontNameForHeaderText size:fontSizeForHeaderText],
+                                                          headerLabelBackgroundColor,
+                                                          cellBackgroundColor,
+                                                          colorForCellText,
+                                                          [UIFont fontWithName:fontNameForCellText size:fontSizeForCellText],
+                                                          cellLabelBackgroundColor, nil];
     
     
     CGRect cPad = CGRectMake(cellLeftPadding, cellBottomPadding, cellWidth, cellHeight);
