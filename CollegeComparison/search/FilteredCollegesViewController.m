@@ -407,11 +407,47 @@ NSArray *searchResults;
         }
     }
 }
+-(void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    cell = (CollegeSearchCell*)cell;
+    
+    if (index == 1) {
+        if (cell.selected == NO) {
+            [cell setSelected:YES];
+            [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:cell.tag]];
+            [selectedColleges addObject:cell];
+            
+        }
+        else
+        {
+            [cell setSelected:NO];
+            [collegesImGoingToCompare removeObject:[self.universitiesPassed objectAtIndex:cell.tag]];
+            
+        }
+        
+        
+        [cell hideUtilityButtonsAnimated:YES];
+        
+        NSInteger count = [collegesImGoingToCompare count];
+        
+        if (count >= MINNUMBEROFCOLLEGESTOCOMPARE) {
+            [self.compareButton setEnabled:YES];
+        }
+        else
+        {
+            [self.compareButton setEnabled:NO];
+        }
+    }
+}
 -(void)resetColleges
 {
     for (CollegeSearchCell* cell in selectedColleges) {
         [cell setSelected:NO];
     }
+}
+-(void)hideOtherUtilityBarsWithCell:(SWTableViewCell*) theCell
+{
+    
 }
 -(void)aestheticsConfiguration
 {

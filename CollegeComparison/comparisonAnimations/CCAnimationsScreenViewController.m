@@ -55,19 +55,20 @@
 
 -(UIView*)buildBarChartsWithData:(NSDictionary*) data
 {
+    CGRect userPrefRect = [[theLook objectForKey:@"bRect"] CGRectValue];
+    
     CGRect mainViewFrame;
     
-    mainViewFrame.origin.x = 0.0;
-    mainViewFrame.origin.y = 0.0;
+    mainViewFrame.origin = userPrefRect.origin;
     
-    mainViewFrame.size.width = 320.0;
+    mainViewFrame.size.width = userPrefRect.size.width;
     
     if (!IS_IPHONE_5) {
-        mainViewFrame.size.height = 345.0;
+        mainViewFrame.size.height = 345.0 + userPrefRect.size.height;
     }
     else
     {
-        mainViewFrame.size.height = 450.0;
+        mainViewFrame.size.height = 450.0 + userPrefRect.size.height;
     }
     
     UIView *mainView = [[UIView alloc] initWithFrame:mainViewFrame];
@@ -75,12 +76,14 @@
     mainViewFrame.origin.y += 30.0;
     
     PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:mainViewFrame];
-    //[barChart setXLabels: [data objectForKey:@"xvalues"]];
+
+    [barChart setBackgroundColor:[theLook objectForKey:@"barBackground"]];
+    
     
     ChartValueFormattingType formatType = [self determineTypeUsingTitle:self.title];
     
-    NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
-                                               andFormattingStyle:formatType];
+    //NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
+                                               //andFormattingStyle:formatType];
     
     
     
@@ -247,8 +250,38 @@
     
         UIColor *barFillColor = CORALCOLOR; // This is a coral color
     
+    //  Set the background color for the bar graphs view
+    
+        UIColor *barGraphBackgroundColor = [UIColor clearColor];
+    
+    //Configure the frame of the bar graphs
+        CGRect barGraphViewFrame;
+    
+        //  Set the origin of the view. Point 0,0 is located at the top left of the screen and X values increase
+        //  going right and Y values increas going down.
+    
+            barGraphViewFrame.origin.x = 0.0;
+            barGraphViewFrame.origin.y = 0.0;
+        
+        //  Set the size of the view
+        
+            barGraphViewFrame.size.width = 320.0;
+    
+        //  Set a height modifier. Because there's a calculation that checks whether the screen is an iPhone 4 or 5
+        //  you can't modify that value directly.
+    
+            barGraphViewFrame.size.height = 0.0;
+    
 /*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
     
-    theLook = [NSDictionary dictionaryWithObjectsAndKeys:barFillColor, @"barColor", nil];
+    NSValue *bRect = [NSValue valueWithCGRect:barGraphViewFrame];
+    
+    theLook = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           barFillColor,
+                                                           @"barColor",
+                                                           barGraphBackgroundColor,
+                                                           @"barBackground",
+                                                           bRect,
+                                                           @"bRect", nil];
 }
 @end
