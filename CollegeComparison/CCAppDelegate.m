@@ -55,7 +55,7 @@
         //Added on 19th Sep 2013
         self.window.bounds = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height);
         background = [[UIWindow alloc] initWithFrame: CGRectMake(0, 0, self.window.frame.size.width, 20)];
-        background.backgroundColor =UIColorFromRGB(0xF05746);
+        background.backgroundColor =[theLook objectForKey:@"sbBackground"];
         [background setHidden:NO];
     }
     
@@ -155,12 +155,30 @@
             NSString *navigationBarFontName         =   @"Avenir-Book";
             float navigationBarFontSize             =   24.0;
     
+    //  Other
+    
+        //  Color of the status bar
+    
+            UIColor *statusBarBackgroundColor       =   CORALCOLOR;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 /*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
     
     UIFont *navigationBarFont = [UIFont fontWithName:navigationBarFontName size:navigationBarFontSize];
     
 
-    theLook = [NSDictionary dictionaryWithObjectsAndKeys:navigationBarBackgroundColor, @"nbBackground", navigationBarTextColor, @"nbText", navigationBarFont, @"nbFont", nil];
+    theLook = [NSDictionary dictionaryWithObjectsAndKeys:navigationBarBackgroundColor, @"nbBackground", navigationBarTextColor, @"nbText", navigationBarFont, @"nbFont",statusBarBackgroundColor, @"sbBackground", nil];
 }
 
 @end
