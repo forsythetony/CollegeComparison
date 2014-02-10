@@ -12,14 +12,15 @@
 #import "SWRevealViewController.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define CORALCOLOR UIColorFromRGB(0xF05746)
 
 @interface CCBookmarksPage () {
     NSMutableArray *tableViews;
     NSInteger currentTableView;
     NSMutableArray *recentItems, *favoriteItems;
-    UIColor *coralColor, *blueColor;
     UIImage *starHighlighted, *starUnhighlighted;
 
+    NSDictionary *theLook;
 }
 
 @end
@@ -41,18 +42,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+    
 	[self slidingPanelSetup];
-    // Do any additional setup after loading the view.
+    
     [self getData];
-    [self configureGlobalVariables];
+    
     [self addTableViews];
+    
+    [self configureAesthetics];
+
     
     
     
     [tableViews[0] reloadData];
 
-    [self configureNavigationBar];
     [self configureSegmentedControl];
     
     [self populateArrays];
@@ -86,20 +89,14 @@
     self.favoritesArray = [NSMutableArray arrayWithObjects:@"University of Missouri", @"University of Mexico", @"University of Florida", nil];
     self.recentArray = [NSMutableArray arrayWithObjects:@"Recent 1", @"Recent Two", @"Recent Tres", nil];
 }
--(void)configureNavigationBar
-{
-
-    self.title = @"Ucompare";
-    
-}
 -(void)configureSegmentedControl
 {
     [self.favoritesOrRect setTitle:@"Favorites" forSegmentAtIndex:0];
     [self.favoritesOrRect setTitle:@"Recent" forSegmentAtIndex:1];
-    [self.favoritesOrRect setTintColor:coralColor];
+    [self.favoritesOrRect setTintColor:[theLook objectForKey:@"segColor"]];
     [self.favoritesOrRect setMomentary:NO];
     
-    UIFont *fontForSegmentedControl = [UIFont fontWithName:@"Avenir-Book" size:13.0];
+    UIFont *fontForSegmentedControl = [theLook objectForKey:@"segFont"];
     
     NSDictionary *segmentedControlTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:fontForSegmentedControl, NSFontAttributeName, nil];
     
@@ -108,22 +105,6 @@
     
     [self.favoritesOrRect addTarget:self action:@selector(respondToSegmentedControl:) forControlEvents:UIControlEventValueChanged];
     
-}
-
--(void)configureGlobalVariables
-{
-    //This is a coral color
-    coralColor = [UIColor colorWithRed:205.0/255.0
-                                 green:86.0/255.0
-                                  blue:72.0/255.0
-                                 alpha:1.0];
-    //This is a blue color
-    blueColor = [UIColor colorWithRed:113.0/255.0
-                                green:173.0/255.0
-                                 blue:237.0/255.0
-                                alpha:1.0];
-    starHighlighted = [UIImage imageNamed:@"highlighted_star.png"];
-    starUnhighlighted = [UIImage imageNamed:@"unhighlighted_star.png"];
 }
 
 #pragma mark Tableview Configuration
@@ -315,12 +296,16 @@
     
     if ([theCell.reuseIdentifier isEqualToString:@"favoritesCell"]) {
         
-        //---Configure the font for the cell
-        UIFont *cellTextFont = [UIFont fontWithName:@"Avenir-Book" size:15.0];
-        [theCell.textLabel setFont:cellTextFont];
+        [theCell setBackgroundColor:[theLook objectForKey:@"favBackground"]];
         
-        UIFont *cellDetailTextFont = [UIFont fontWithName:@"Avenir-Book" size:11.0];
-        [theCell.detailTextLabel setFont:cellDetailTextFont];
+        //---Configure the font for the cell
+        [theCell.textLabel setFont:[theLook objectForKey:@"favMainFont"]];
+        [theCell.textLabel setTextColor:[theLook objectForKey:@"favMainColor"]];
+        
+        
+        [theCell.detailTextLabel setFont:[theLook objectForKey:@"favDetailFont"]];
+        [theCell.detailTextLabel setTextColor:[theLook objectForKey:@"favDetailColor"]];
+        
         
         theCollege = [favoriteItems objectAtIndex:row];
         [theCell.textLabel setText:theCollege.name];
@@ -329,21 +314,14 @@
     else
     {
         
+        [theCell setBackgroundColor:[theLook objectForKey:@"recBackground"]];
         //---Configure the font for the cell
         
-        UIFont *recentsFont = [UIFont fontWithName:@"Avenir-Book" size:15.0];
+        [theCell.textLabel setFont:[theLook objectForKey:@"recMainFont"]];
+        [theCell.textLabel setTextColor:[theLook objectForKey:@"recMainColor"]];
         
-        
-        UIFont *recentsDetailFont = [UIFont fontWithName:@"Avenir-light" size:10.0];
-        
-        UIColor *detailsColor = UIColorFromRGB(0xF05746);
-        
-        [theCell.detailTextLabel setTextColor:detailsColor];
-        [theCell.detailTextLabel setFont:recentsDetailFont];
-        
-        [theCell.textLabel setFont:recentsFont];
-        
-        
+        [theCell.detailTextLabel setFont:[theLook objectForKey:@"recDetailFont"]];
+        [theCell.detailTextLabel setTextColor:[theLook objectForKey:@"recDetailColor"]];
         
         
         theCollege = [recentItems objectAtIndex:row];
@@ -355,6 +333,135 @@
     }
     
     return theCell;
+}
+-(void)configureAesthetics
+{
+    //  Main view configuration
+    
+            UIColor *mainViewBackgroundColor        =   [UIColor whiteColor];
+    
+        //  Title of view controller that is displayed in the navigation bar. Set a value to override default.
+    
+            NSString *viewControllerTitle = @"Udecide";
+    
+    
+    //  Segmented Control
+    
+        //  Tint
+    
+            UIColor *segmentedControlTint           =   CORALCOLOR;
+    
+        //  Font name and size
+    
+            NSString *segmentedControlFontName      =   @"Avenir-Book";
+            float segmentedControlFontSize          =   13.0;
+    
+    
+    //  Table view config
+    
+        UIColor *recentsTableViewBackgroundColor    =   [UIColor whiteColor];
+    
+        UIColor *favoritesTableViewBackgroundColor  =   [UIColor whiteColor];
+    
+    
+        //  Recents cell config
+    
+            UIColor *recentsCellBackgroundColor     =   [UIColor clearColor];
+    
+    
+            //  Main title label config
+    
+                NSString *recentsMainFontName       =   @"Avenir-Book";
+                float recentsMainFontSize           =   15.0;
+    
+                UIColor *recentsCellMainTextColor   =   [UIColor blackColor];
+
+            //  Detail label config
+                NSString *recentsDetailFontName     =   @"Avenir-Book";
+                float recentsDetailFontSize         =   10.0;
+    
+                UIColor *recentsCellDetailTextColor =   [UIColor blackColor];
+    
+        //  Favorites cell config
+    
+            UIColor *favoritesCellBackgroundColor   =   [UIColor clearColor];
+    
+    
+            //  Main title label config
+    
+                NSString *favoritesMainFontName     =   @"Avenir-Book";
+                float favoritesMainFontSize         =   15.0;
+    
+                UIColor *favoritesMainTextColor     =   [UIColor blackColor];
+    
+            //  Detail label config
+    
+                NSString *favoritesDetailFontName   =   @"Avenir-Book";
+                float favoritesDetailFontSize       =   10.0;
+                
+                UIColor *favoritesDetailTextColor   =   [UIColor blackColor];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+/*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
+
+    UIFont *recentsMainFont = [UIFont fontWithName:recentsMainFontName size:recentsMainFontSize];
+    UIFont *recentsDetailFont = [UIFont fontWithName:recentsDetailFontName size:recentsDetailFontSize];
+    
+    UIFont *favMainFont = [ UIFont fontWithName:favoritesMainFontName size:favoritesMainFontSize];
+    UIFont *favDetailFont = [ UIFont fontWithName:favoritesDetailFontName size:favoritesDetailFontSize];
+    
+    UIFont *segContFont = [UIFont fontWithName:segmentedControlFontName size:segmentedControlFontSize];
+    
+    NSArray *theLookKeys = [NSArray arrayWithObjects:
+                                                        @"segColor",
+                                                        @"segFont",
+                                                        @"recBackground",
+                                                        @"recMainFont",
+                                                        @"recMainColor",
+                                                        @"recDetailFont",
+                                                        @"recDetailColor",
+                                                        @"favBackground",
+                                                        @"favMainFont",
+                                                        @"favMainColor",
+                                                        @"favDetailFont",
+                                                        @"favDetailColor", nil];
+    
+    NSArray *theLookObjects = [NSArray arrayWithObjects:
+                                                           segmentedControlTint,
+                                                           segContFont,
+                                                           recentsCellBackgroundColor,
+                                                           recentsMainFont,
+                                                           recentsCellMainTextColor,
+                                                           recentsDetailFont,
+                                                           recentsCellDetailTextColor,
+                                                           favoritesCellBackgroundColor,
+                                                           favMainFont,
+                                                           favoritesMainTextColor,
+                                                           favDetailFont,
+                                                           favoritesDetailTextColor, nil];
+    
+    theLook = [NSDictionary dictionaryWithObjects:theLookObjects forKeys:theLookKeys];
+    
+    
+    [self.view setBackgroundColor:mainViewBackgroundColor];
+    [tableViews[0] setBackgroundColor:favoritesTableViewBackgroundColor];
+    [tableViews[1] setBackgroundColor:recentsTableViewBackgroundColor];
+    [self setTitle:viewControllerTitle];
+    
+    
 }
 
 @end
