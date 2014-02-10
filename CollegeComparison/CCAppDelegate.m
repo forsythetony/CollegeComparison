@@ -8,29 +8,24 @@
 
 #import "CCAppDelegate.h"
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define CORALCOLOR UIColorFromRGB(0xF05746)
 
-@implementation CCAppDelegate
+@implementation CCAppDelegate {
+    NSDictionary *theLook;
+}
 
 @synthesize background;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xF05746)];
+    [self configureAesthetics];
+    
+    [[UINavigationBar appearance] setBarTintColor:[theLook objectForKey:@"nbBackground"]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                          [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                          [UIFont fontWithName:@"Avenir-Book" size:24.0], NSFontAttributeName,
+                                                          [theLook objectForKey:@"nbText"], NSForegroundColorAttributeName,
+                                                          [theLook objectForKey:@"nbFont"], NSFontAttributeName,
                                                           nil]];
-   
-    
-    
-    
-    [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0xF05746)];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                       [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
-                                                       nil] forState:UIControlStateNormal];
-    
+
 
     
     
@@ -143,6 +138,29 @@
     return favorited;
     
 }
+-(void)configureAesthetics
+{
+    //  Navigation bar configuration
+    
+        //  Color of the navigation bar
+    
+            UIColor *navigationBarBackgroundColor   =   CORALCOLOR;
+    
+        //  Text color
+    
+            UIColor *navigationBarTextColor         =   [UIColor whiteColor];
+    
+        //  Font title and size
+    
+            NSString *navigationBarFontName         =   @"Avenir-Book";
+            float navigationBarFontSize             =   24.0;
+    
+/*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
+    
+    UIFont *navigationBarFont = [UIFont fontWithName:navigationBarFontName size:navigationBarFontSize];
+    
 
+    theLook = [NSDictionary dictionaryWithObjectsAndKeys:navigationBarBackgroundColor, @"nbBackground", navigationBarTextColor, @"nbText", navigationBarFont, @"nbFont", nil];
+}
 
 @end

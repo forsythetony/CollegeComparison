@@ -19,7 +19,7 @@
     PNBarChart *theMainChart;
     
     NSDictionary *theLook;
-    
+
 }
 @end
 
