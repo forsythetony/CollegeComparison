@@ -47,14 +47,6 @@ NSArray *searchResults;
     // Set custom attributes for navigation bar
     [self setCustomAttributesForNavigationBar];
     
-    // Navigation bar buttons
-//    self.selectButton = [[UIBarButtonItem alloc] initWithTitle:@"Select"
-//                                                         style:UIBarButtonItemStyleBordered
-//                                                        target:self
-//                                                        action:@selector(selectButton:)];
-//    
-//    self.selectButton.tintColor = [UIColor whiteColor];
-    
     self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare"
                                                           style:UIBarButtonItemStyleBordered
                                                          target:self
