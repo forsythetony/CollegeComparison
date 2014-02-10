@@ -27,10 +27,6 @@ typedef struct paddingInfo {
     UIImageView *syncImage;
     BOOL animating;
     
-    UIColor *pViewBackground, *pViewHeaderBackground, *pCellBackground, *pCellText, *pViewHeaderText, *cLabelBackgroundColor, *hLabelBackgroundColor;
-    
-    UIFont *pViewHeader, *pViewCell;
-    
     NSDictionary *theLook;
 }
 
@@ -52,12 +48,9 @@ typedef struct paddingInfo {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self aestheticsConfiguration];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
-//    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
-    self.tableView.separatorColor = [UIColor yellowColor];
     
     _menuItems = @[@"Home", @"Bookmarks", @"Settings"];
 }
@@ -109,6 +102,10 @@ typedef struct paddingInfo {
 #pragma mark Configure Cell -
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell WithIdentifier:(NSString*) name
 {
+    NSDictionary *padding = [theLook objectForKey:@"padding"];
+    NSDictionary *colors = [theLook objectForKey:@"colors"];
+    
+    
     //Find cell properties
     float heightOfCell = theCell.contentView.bounds.size.height;
     
@@ -128,11 +125,12 @@ typedef struct paddingInfo {
     [titleLabel setText:name];
     
     //Configure label properties
-    [titleLabel setTextColor:pCellText];
-    [titleLabel setFont:pViewCell];
+    [titleLabel setTextColor:[colors objectForKey:@"cText"]];
+    [titleLabel setFont:[colors objectForKey:@"cFont"]];
+    [titleLabel setBackgroundColor:[colors objectForKey:@"cLabelBackground"]];
     
     //Configure cell properties
-    [theCell.contentView setBackgroundColor:pCellBackground];
+    [theCell.contentView setBackgroundColor:[colors objectForKey:@"cBackground"]];
     //theCell.selectionStyle = UITableViewCellEditingStyleNone;
     
     //Add subviews
@@ -143,6 +141,9 @@ typedef struct paddingInfo {
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSDictionary *padding = [theLook objectForKey:@"padding"];
+    NSDictionary *colors = [theLook objectForKey:@"colors"];
+    
     if (section == 0) {
         //Create rect for view
         CGRect headerFrame;
@@ -155,7 +156,7 @@ typedef struct paddingInfo {
         
         UIView *headerView = [[UIView alloc] initWithFrame:headerFrame];
         
-        [headerView setBackgroundColor:pViewHeaderBackground];
+        [headerView setBackgroundColor:[colors objectForKey:@"hBackground"]];
         
         CGRect headerPadding = [[padding objectForKey:@"hPadding"] CGRectValue];
         
@@ -175,9 +176,11 @@ typedef struct paddingInfo {
         [titleLabel setText:@"Menu"];
         
         //Configure properties of title label
-        [titleLabel setFont:pViewHeader];
-        [titleLabel setTextColor:pViewHeaderText];
+        [titleLabel setFont:[colors objectForKey:@"hFont"]];
+        [titleLabel setTextColor:[colors objectForKey:@"hText"]];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setBackgroundColor:[colors objectForKey:@"hLabelBackground"]];
+        
         
         
         
@@ -311,19 +314,25 @@ typedef struct paddingInfo {
 }
 -(void)aestheticsConfiguration
 {
-    //Panel view background configuration.
+    //The View's background color
+    
+        UIColor *mainViewBackgroundColor    =   [UIColor whiteColor];
+    
+    //Table view background configuration.
 
         UIColor *panelViewBackgroundColor   =   [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
     
     //The color for the seperator lines between cells
     
-        UIColor *seperatorLineColor         =   [UIColor black50PercentColor];
+        UIColor *separatorLineColor         =   [UIColor black50PercentColor];
     
     //Panel View Header Configuration
     
         UIColor *headerViewBackgroundColor  =   [UIColor colorWithWhite:0.15 alpha:1.0];
     
-        UIColor *headerLabelBackgroundColor =   [UIColor yellowColor];
+        //  You're most likely going to want to leave the background of the label clear but it helps to make it yellow
+        //  or some other noticible color when you're modifying the size of the label
+        UIColor *headerLabelBackgroundColor =   [UIColor clearColor];
     
         UIColor *colorForHeaderText         =   CORALCOLOR;
     
@@ -337,7 +346,7 @@ typedef struct paddingInfo {
     
         UIColor *cellBackgroundColor        =   [UIColor colorWithWhite:0.2 alpha:1.0];
     
-        UIColor *cellLabelBackgroundColor   =   [UIColor yellowColor];
+        UIColor *cellLabelBackgroundColor   =   [UIColor clearColor];
     
         UIColor *colorForCellText           =   CORALCOLOR;
     
@@ -376,16 +385,14 @@ typedef struct paddingInfo {
     
         //Should the panel bounce back on left overdraw?
     
-        BOOL bounceBackOnLeftOverdraw = NO;
+        BOOL bounceBackOnLeftOverdraw       =   NO;
     
     
 
-    
+    /*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
     
     
     NSArray *colorsKeys = [NSArray arrayWithObjects:
-                                                   @"pViewBackground",
-                                                   @"pViewLines",
                                                    @"hBackground",
                                                    @"hText",
                                                    @"hFont",
@@ -396,8 +403,6 @@ typedef struct paddingInfo {
                                                    @"cLabelBackground", nil];
 
     NSArray *colorsObjects = [NSArray arrayWithObjects:
-                                                      panelViewBackgroundColor,
-                                                      seperatorLineColor,
                                                       headerViewBackgroundColor,
                                                       colorForHeaderText,
                                                       [UIFont fontWithName:fontNameForHeaderText size:fontSizeForHeaderText],
@@ -434,6 +439,8 @@ typedef struct paddingInfo {
     self.revealViewController.bounceBackOnLeftOverdraw = bounceBackOnLeftOverdraw;
     self.revealViewController.toggleCloseAnimationDuration = toggleCloseAnimationDuration;
     
-    
+    self.view.backgroundColor = mainViewBackgroundColor;
+    self.tableView.backgroundColor = panelViewBackgroundColor;
+    self.tableView.separatorColor = separatorLineColor;
 }
 @end
