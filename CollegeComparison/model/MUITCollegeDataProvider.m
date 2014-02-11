@@ -227,30 +227,30 @@ static sqlite3_stmt *statement = nil;
                 break;
             case 2:
                 ar2 = [NSArray arrayWithObjects:
-                       @"University of Arkansas", //School Name
-                       [NSNumber numberWithInt:106397], //id
-                       [NSNumber numberWithInt:1], //control
-                       @"AR", //State
-                       [NSNumber numberWithInt:500], //sat_reading_25
-                       [NSNumber numberWithInt:610], //sat_reading_75
-                       [NSNumber numberWithInt:520], //sat_math_25
-                       [NSNumber numberWithInt:630], //sat_math_75
-                       [NSNumber numberWithInt:0], //sat_writing_25
-                       [NSNumber numberWithInt:0], //sat_writing_75
-                       [NSNumber numberWithInt:23], //act_25
-                       [NSNumber numberWithInt:28], //act_75
-                       [NSNumber numberWithInt:22], //act_english_25
-                       [NSNumber numberWithInt:29], //act_english_75
-                       [NSNumber numberWithInt:23], //act_math_25
-                       [NSNumber numberWithInt:28], //act_math_75
-                       [NSNumber numberWithInt:0], //act_writing_25
-                       [NSNumber numberWithInt:0], //act_writing_75
-                       [NSNumber numberWithInt:44], //percent_receive_financial_aid
-                       [NSNumber numberWithInt:2382], //enrollment_men
-                       [NSNumber numberWithInt:2192], //enrollment_women
-                       [NSNumber numberWithInt:4574], //enrollment_total
-                       [NSNumber numberWithInt:17022], //tuition_out_state
-                       [NSNumber numberWithInt:6142], //tuition_in_state
+                       @"University of Arkansas",       //  School Name
+                       [NSNumber numberWithInt:106397], //  id
+                       [NSNumber numberWithInt:1],      //  control
+                       @"AR",                           //  State
+                       [NSNumber numberWithInt:500],    //  sat_reading_25
+                       [NSNumber numberWithInt:610],    //  sat_reading_75
+                       [NSNumber numberWithInt:520],    //  sat_math_25
+                       [NSNumber numberWithInt:630],    //  sat_math_75
+                       [NSNumber numberWithInt:0],      //  sat_writing_25
+                       [NSNumber numberWithInt:0],      //  sat_writing_75
+                       [NSNumber numberWithInt:23],     //  act_25
+                       [NSNumber numberWithInt:28],     //  act_75
+                       [NSNumber numberWithInt:22],     //  act_english_25
+                       [NSNumber numberWithInt:29],     //  act_english_75
+                       [NSNumber numberWithInt:23],     //  act_math_25
+                       [NSNumber numberWithInt:28],     //  act_math_75
+                       [NSNumber numberWithInt:0],      //  act_writing_25
+                       [NSNumber numberWithInt:0],      //  act_writing_75
+                       [NSNumber numberWithInt:44],     //  percent_receive_financial_aid
+                       [NSNumber numberWithInt:2382],   //  enrollment_men
+                       [NSNumber numberWithInt:2192],   //  enrollment_women
+                       [NSNumber numberWithInt:4574],   //  enrollment_total
+                       [NSNumber numberWithInt:17022],  //  tuition_out_state
+                       [NSNumber numberWithInt:6142],   //  tuition_in_state
                        nil];
                 break;
             default:

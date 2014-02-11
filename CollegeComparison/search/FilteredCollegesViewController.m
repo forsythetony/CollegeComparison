@@ -7,11 +7,15 @@
 //
 
 #import "FilteredCollegesViewController.h"
+#import "CCAppDelegate.h"
 
 #define MAXNUMBEROFCOLLEGESTOCOMPARE 3
 #define MINNUMBEROFCOLLEGESTOCOMPARE 2
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define MY_DELEGATE (CCAppDelegate*)[[UIApplication sharedApplication] delegate]
+
 
 @interface FilteredCollegesViewController (){
     NSMutableArray *collegesImGoingToCompare;
@@ -438,6 +442,18 @@ NSArray *searchResults;
             [self.compareButton setEnabled:NO];
         }
     }
+    else if (index == 0)
+    {
+        NSUInteger indexOfCollege = cell.tag;
+        
+        MUITCollege *collegeToBookmark = [self.universitiesPassed objectAtIndex:indexOfCollege];
+        
+        BOOL wasThere = [self bookmarkCollege:collegeToBookmark];
+        
+        [self createBookmarkAlertViewWithCollege:collegeToBookmark andPresent:wasThere];
+        
+        [cell hideUtilityButtonsAnimated:YES];
+    }
 }
 -(void)resetColleges
 {
@@ -457,9 +473,6 @@ NSArray *searchResults;
     Always enter names as NSStrings meaning that it should be in the format @"NAMEOFFONT" with the @ sign and quotations
     You can also modify the text color
 */
-    
-
-    
     //Table cell configuration
     
         //Configure background properties for cell
@@ -521,6 +534,120 @@ NSArray *searchResults;
     colorForBookmarkButton = colorForBookmarkUtilityButton;
     colorForCompareButton = colorForCompareUtilityButton;
     
+}
+-(BOOL)bookmarkCollege:(MUITCollege*) college
+{
+    NSMutableArray *bookmarked = (NSMutableArray*)[MY_DELEGATE bookmarked];
+
+    //Check if college already exists in array
+    
+    
+    for (MUITCollege *theCollege in bookmarked) {
+        if (theCollege.identifier == college.identifier) {
+            [bookmarked removeObject:theCollege];
+            [bookmarked insertObject:college atIndex:0];
+            
+            return YES;
+        }
+    }
+    
+    [bookmarked insertObject:college atIndex:0];
+    
+    return NO;
+}
+-(void)createBookmarkAlertViewWithCollege:(MUITCollege*) college andPresent:(BOOL) wasThere
+{
+    NSString *message = [NSString new];
+    NSString *title = [NSString new];
+    
+    if (wasThere) {
+        title = @"Ya Dope";
+        message = [NSString stringWithFormat:@"%@ is already bookmarked!", college.name];
+    }
+    else
+    {
+        title = @"Bookmarked!";
+        message = [NSString stringWithFormat:@"%@ has been bookmarked!", college.name];
+    }
+    
+    
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:title andMessage:message];
+    
+    [alertView addButtonWithTitle:@"Ok"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"Button1 Clicked");
+                          }];
+
+    [alertView addButtonWithTitle:@"Remove"
+                             type:SIAlertViewButtonTypeDestructive
+                          handler:^(SIAlertView *alert) {
+                              [self unBookmarkCollege:college];
+                          }];
+    
+    alertView.willShowHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, willShowHandler", alertView);
+    };
+    alertView.didShowHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, didShowHandler", alertView);
+    };
+    alertView.willDismissHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, willDismissHandler", alertView);
+    };
+    alertView.didDismissHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, didDismissHandler", alertView);
+    };
+    
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    
+    [alertView show];
+}
+-(void)unBookmarkCollege:(MUITCollege*) college
+{
+    
+    NSMutableArray *bookmarkedColleges = [MY_DELEGATE bookmarked];
+    
+    [bookmarkedColleges removeObject:college];
+    
+    [self createUnbookmarkedAlertViewWithCollege:college];
+    
+}
+-(void)createUnbookmarkedAlertViewWithCollege:(MUITCollege*) college
+{
+    NSString *title = @"Removed";
+    NSString *message = [NSString stringWithFormat:@"%@ has been removed from bookmarks.", college.name];
+    
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:title andMessage:message];
+    
+    [alertView addButtonWithTitle:@"Ok"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {
+                              NSLog(@"Button1 Clicked");
+                          }];
+    
+    [alertView addButtonWithTitle:@"Undo"
+                             type:SIAlertViewButtonTypeDestructive
+                          handler:^(SIAlertView *alert) {
+                              [self bookmarkCollege:college];
+                              [self createBookmarkAlertViewWithCollege:college andPresent:NO];
+                          }];
+    
+    alertView.willShowHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, willShowHandler", alertView);
+    };
+    alertView.didShowHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, didShowHandler", alertView);
+    };
+    alertView.willDismissHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, willDismissHandler", alertView);
+    };
+    alertView.didDismissHandler = ^(SIAlertView *alertView) {
+        NSLog(@"%@, didDismissHandler", alertView);
+    };
+    
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    
+    [alertView show];
 }
 
 @end

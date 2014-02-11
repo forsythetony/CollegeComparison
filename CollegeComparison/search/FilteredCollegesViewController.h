@@ -19,6 +19,7 @@
 #import "CCAnimationPageViewController.h"
 #import "CollegeSearchCell.h"
 #import <Colours.h>
+#import <SIAlertView.h>
 
 @interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, SWTableViewCellDelegate>
 

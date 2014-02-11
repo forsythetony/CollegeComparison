@@ -79,11 +79,7 @@
     recentItems = [NSMutableArray arrayWithArray:appDelegate.recentlyVisited] ;
     
     favoriteItems = [NSMutableArray arrayWithArray:appDelegate.bookmarked];
-    
-    
-    
 }
-#pragma mark Custom Configuration
 -(void)populateArrays
 {
     self.favoritesArray = [NSMutableArray arrayWithObjects:@"University of Missouri", @"University of Mexico", @"University of Florida", nil];
@@ -334,6 +330,7 @@
     
     return theCell;
 }
+#pragma mark Custom Configuration
 -(void)configureAesthetics
 {
     //  Main view configuration
