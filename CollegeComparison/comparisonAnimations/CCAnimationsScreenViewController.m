@@ -9,6 +9,12 @@
 #import "CCAnimationsScreenViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+typedef enum {
+    tuitionPage,
+    enrollmentPage,
+    financialAidPercentage,
+    undefinedPage
+}   pageType;
 
 #define MIDSECTIONREFERENCEPOINT 200.0
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
@@ -43,11 +49,20 @@
     //For BarChart
     NSDictionary *data = [self packageData];
     
+    pageType currentPage = [self determinePageTypeForString:[[self.modifierDictionary objectForKey:@"All"] objectForKey:@"Title"]];
+
+    UIView *mainView;
     
-    UIView *mainView = [self buildBarChartsWithData:data];
+    if (currentPage == financialAidPercentage)
+    {
+        mainView = [self buildDonutChartsWithData:data];
+    }
+    else
+    {
+        mainView = [self buildBarChartsWithData:data];
+    }
     
     [self.view addSubview:mainView];
-    [self addLabelsToView:mainView withData:data];
     
     
     
@@ -84,10 +99,6 @@
     
     NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
                                                andFormattingStyle:formatType];
-    
-    
-    
-//    NSLog(@"\n%@\n", self.title);
     [barChart setAllXlabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
     
     NSArray *yValues;
@@ -128,9 +139,33 @@
     
     return valuesDictionary;
 }
--(void)addLabelsToView:(UIView*) theView withData:(NSDictionary*) theData
+-(UIView*)buildDonutChartsWithData:(NSDictionary*) theData
 {
     
+    CGRect userPrefRect = [[theLook objectForKey:@"bRect"] CGRectValue];
+    
+    CGRect mainViewFrame;
+    
+    mainViewFrame.origin = userPrefRect.origin;
+    
+    mainViewFrame.size.width = userPrefRect.size.width;
+    
+    if (!IS_IPHONE_5) {
+        mainViewFrame.size.height = 345.0 + userPrefRect.size.height;
+    }
+    else
+    {
+        mainViewFrame.size.height = 450.0 + userPrefRect.size.height;
+    }
+    
+    UIView *mainView = [[UIView alloc] initWithFrame:mainViewFrame];
+
+    PNCircleChart *circleChart = [[PNCircleChart alloc] initWithFrame:mainViewFrame andTotal:[NSNumber numberWithInteger:100] andCurrent:[NSNumber numberWithInteger:50]];
+    
+    [mainView addSubview:circleChart];
+    
+    
+    return mainView;
 }
 -(NSArray*)formattedArrayWithArray:(NSArray*) array andFormattingStyle:(ChartValueFormattingType) type
 {
@@ -242,6 +277,24 @@
     }
     
     return [NSArray arrayWithArray:array];
+}
+-(pageType)determinePageTypeForString:(NSString*) pageTitle
+{
+    if ([pageTitle isEqualToString:@"Tuition"]) {
+        return tuitionPage;
+    }
+    else if ([pageTitle isEqualToString:@"Financial Aid"])
+    {
+        return financialAidPercentage;
+    }
+    else if ([pageTitle isEqualToString:@"Enrollment"])
+    {
+        return enrollmentPage;
+    }
+    else
+    {
+        return undefinedPage;
+    }
 }
 
 -(void)configureAesthetics
