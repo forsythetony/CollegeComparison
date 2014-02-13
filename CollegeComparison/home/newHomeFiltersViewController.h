@@ -11,11 +11,11 @@
 #import <Colours.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <PNCircleChart.h>
 
 @interface newHomeFiltersViewController : UIViewController
 
 //Header view
-@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UIView *collegeCountContainerView;
 
 //Locations picker

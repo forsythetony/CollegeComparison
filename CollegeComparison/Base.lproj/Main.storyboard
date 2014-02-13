@@ -592,13 +592,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HeE-5q-rZS">
-                                <rect key="frame" x="0.0" y="20" width="320" height="150"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oIM-mP-yTv">
-                                <rect key="frame" x="135" y="87" width="50" height="50"/>
+                                <rect key="frame" x="128" y="87" width="65" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -703,10 +698,8 @@
                         <constraints>
                             <constraint firstItem="mde-hR-k7i" firstAttribute="trailing" secondItem="wCk-mD-bNE" secondAttribute="trailing" id="0ti-Yf-QLn"/>
                             <constraint firstAttribute="bottom" secondItem="mde-hR-k7i" secondAttribute="bottom" constant="-66" id="6lI-5I-mdD"/>
-                            <constraint firstItem="mde-hR-k7i" firstAttribute="trailing" secondItem="HeE-5q-rZS" secondAttribute="trailing" id="7xE-vo-dIT"/>
                             <constraint firstItem="mde-hR-k7i" firstAttribute="leading" secondItem="wCk-mD-bNE" secondAttribute="leading" id="8aw-xX-Wl7"/>
                             <constraint firstItem="mde-hR-k7i" firstAttribute="top" secondItem="fdA-R8-Tat" secondAttribute="top" constant="350" id="Cp4-ll-AaF"/>
-                            <constraint firstItem="mde-hR-k7i" firstAttribute="leading" secondItem="HeE-5q-rZS" secondAttribute="leading" id="Y28-N6-l1M"/>
                             <constraint firstAttribute="trailing" secondItem="mde-hR-k7i" secondAttribute="trailing" id="aUu-Y1-yua"/>
                             <constraint firstItem="FlP-5e-4qx" firstAttribute="top" secondItem="klI-1g-Iqk" secondAttribute="bottom" id="aeF-0O-Yd3"/>
                             <constraint firstItem="mde-hR-k7i" firstAttribute="top" secondItem="wCk-mD-bNE" secondAttribute="bottom" id="jdj-ic-N2f"/>
@@ -720,7 +713,6 @@
                         <outlet property="enrollmentContainerView" destination="klI-1g-Iqk" id="fJ3-Cw-KPM"/>
                         <outlet property="enrollmentLabel" destination="K2J-Hx-VKA" id="6se-52-C6D"/>
                         <outlet property="enrollmentSlider" destination="aq0-IO-rFt" id="Vq2-bs-h8O"/>
-                        <outlet property="headerImageView" destination="HeE-5q-rZS" id="uy9-pO-p9I"/>
                         <outlet property="locationsContainerView" destination="wCk-mD-bNE" id="9bl-01-LrX"/>
                         <outlet property="locationsTableView" destination="rFI-Mg-5qU" id="Ezi-C7-luh"/>
                         <outlet property="locationsTitleLabel" destination="eTJ-pz-F8j" id="dOx-Qm-ivK"/>

@@ -31,7 +31,7 @@
     CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMidY(rect));
     CGContextClosePath(ctx);
     
-    CGContextSetRGBFillColor(ctx, 1, 1, 0, 1);
+    CGContextSetRGBFillColor(ctx, 1, 1, 1, 1);
     CGContextFillPath(ctx);
 }
 

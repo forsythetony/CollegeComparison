@@ -31,18 +31,16 @@
 - (void)viewDidLoad
 {
     [self setDefaultLayoutValues];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self createHeaderView];
+    [self createCircleCollegeCount];
 }
 -(void)setDefaultLayoutValues
 {
     UIColor *backgroundColor = [UIColor clearColor];
     
     //Set defaults
-    
-        //For header view
-        [[self headerImageView] setBackgroundColor:backgroundColor];
-        [[self collegeCountContainerView] setBackgroundColor:backgroundColor];
-    [[self headerImageView] setImage:[UIImage imageNamed:@"homeScreenHeaderImage.png"]];
     
         //For locations
         [[self locationsContainerView] setBackgroundColor:backgroundColor];
@@ -97,5 +95,33 @@
     [headerView setBackgroundColor:CORALCOLOR];
     
     [self.view addSubview:headerView];
+    
+    [self.view bringSubviewToFront:self.collegeCountContainerView];
+}
+-(void)createCircleCollegeCount
+{
+    //  Create frame
+    
+    CGRect circleChartFrame;
+    
+    circleChartFrame.origin = CGPointMake(0.0, 0.0);
+    circleChartFrame.size = self.collegeCountContainerView.bounds.size;
+    
+    PNCircleChart *collegeCountCircleGraph = [[PNCircleChart alloc] initWithFrame:circleChartFrame andTotal:[NSNumber numberWithInt:4000] andCurrent:[NSNumber numberWithInt:3333]];
+    
+    [self.collegeCountContainerView addSubview:collegeCountCircleGraph];
+    
+    [self.collegeCountContainerView setBackgroundColor:[UIColor clearColor]];
+    
+    [collegeCountCircleGraph setLabelColor:[UIColor whiteColor]];
+    [collegeCountCircleGraph setLineWidth:[NSNumber numberWithFloat:10.0]];
+    [collegeCountCircleGraph setStrokeColor:UIColorFromRGB(0x69AEEF)];
+    [collegeCountCircleGraph strokeChart];
+    
+    
+    
+    
+    
+    
 }
 @end
