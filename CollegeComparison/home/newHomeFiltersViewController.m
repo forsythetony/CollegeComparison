@@ -7,6 +7,9 @@
 //
 
 #import "newHomeFiltersViewController.h"
+#import "homePageHeaderView.h"
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define CORALCOLOR UIColorFromRGB(0xF05746)
 
 @interface newHomeFiltersViewController () {
     NSMutableArray *locationsArray;
@@ -28,6 +31,7 @@
 - (void)viewDidLoad
 {
     [self setDefaultLayoutValues];
+    [self createHeaderView];
 }
 -(void)setDefaultLayoutValues
 {
@@ -38,6 +42,7 @@
         //For header view
         [[self headerImageView] setBackgroundColor:backgroundColor];
         [[self collegeCountContainerView] setBackgroundColor:backgroundColor];
+    [[self headerImageView] setImage:[UIImage imageNamed:@"homeScreenHeaderImage.png"]];
     
         //For locations
         [[self locationsContainerView] setBackgroundColor:backgroundColor];
@@ -78,5 +83,19 @@
         [[self enrollmentSlider] setThumbTintColor:sliderButtonColor];
     
     
+}
+-(void)createHeaderView
+{
+    CGRect headerViewFrame;
+    
+    headerViewFrame.origin = CGPointMake(0.0, 20.0);
+    
+    headerViewFrame.size = CGSizeMake(320.0, 150.0);
+    
+    homePageHeaderView *headerView = [[homePageHeaderView alloc] initWithFrame:headerViewFrame];
+    
+    [headerView setBackgroundColor:CORALCOLOR];
+    
+    [self.view addSubview:headerView];
 }
 @end

@@ -22,6 +22,8 @@
 		BA0ACFF418A5306100304B87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0ACFF318A5306100304B87 /* MapKit.framework */; };
 		BA0ACFF618A5306600304B87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0ACFF518A5306600304B87 /* CoreLocation.framework */; };
 		BA14958E18A1F0AD00A326B0 /* CollegeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */; };
+		BA368F0318ACF8AA00C93416 /* homeScreenHeaderImage.png in Resources */ = {isa = PBXBuildFile; fileRef = BA368F0218ACF8AA00C93416 /* homeScreenHeaderImage.png */; };
+		BA368F0618ACF9CE00C93416 /* homePageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA368F0518ACF9CE00C93416 /* homePageHeaderView.m */; };
 		BA75EDC01881EB670087BC15 /* CCAnimationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */; };
 		BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBC1881EB670087BC15 /* CCBookmarksPage.m */; };
 		BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA75EDBE1881EB670087BC15 /* CCFavoriteSCell.m */; };
@@ -102,6 +104,9 @@
 		BA0ACFF518A5306600304B87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BA14958C18A1F0AD00A326B0 /* CollegeSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollegeSearchCell.h; path = search/CollegeSearchCell.h; sourceTree = "<group>"; };
 		BA14958D18A1F0AD00A326B0 /* CollegeSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollegeSearchCell.m; path = search/CollegeSearchCell.m; sourceTree = "<group>"; };
+		BA368F0218ACF8AA00C93416 /* homeScreenHeaderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeScreenHeaderImage.png; path = home/images/homeScreenHeaderImage.png; sourceTree = "<group>"; };
+		BA368F0418ACF9CE00C93416 /* homePageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = homePageHeaderView.h; path = home/homePageHeaderView.h; sourceTree = "<group>"; };
+		BA368F0518ACF9CE00C93416 /* homePageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = homePageHeaderView.m; path = home/homePageHeaderView.m; sourceTree = "<group>"; };
 		BA75EDB91881EB670087BC15 /* CCAnimationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCAnimationPageViewController.h; path = bookmarks/CCAnimationPageViewController.h; sourceTree = "<group>"; };
 		BA75EDBA1881EB670087BC15 /* CCAnimationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCAnimationPageViewController.m; path = bookmarks/CCAnimationPageViewController.m; sourceTree = "<group>"; };
 		BA75EDBB1881EB670087BC15 /* CCBookmarksPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCBookmarksPage.h; path = bookmarks/CCBookmarksPage.h; sourceTree = "<group>"; };
@@ -297,6 +302,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BA368F0118ACF88600C93416 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BA368F0218ACF8AA00C93416 /* homeScreenHeaderImage.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		BA75ED7B1881E30D0087BC15 /* NavBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,10 +410,13 @@
 		BA98F1A3188158C900752303 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				BA368F0118ACF88600C93416 /* Images */,
 				BA75EE181881EC630087BC15 /* HomeViewController.h */,
 				BA75EE191881EC630087BC15 /* HomeViewController.m */,
 				9348BD3818A492F000891358 /* newHomeFiltersViewController.h */,
 				9348BD3918A492F000891358 /* newHomeFiltersViewController.m */,
+				BA368F0418ACF9CE00C93416 /* homePageHeaderView.h */,
+				BA368F0518ACF9CE00C93416 /* homePageHeaderView.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -565,6 +581,7 @@
 				BA75EDCF1881EB7A0087BC15 /* highlighted_star@2x.png in Resources */,
 				BA75EDF81881EBCC0087BC15 /* Home Navigation Bar.png in Resources */,
 				BA75EDCD1881EB7A0087BC15 /* gold_star.png in Resources */,
+				BA368F0318ACF8AA00C93416 /* homeScreenHeaderImage.png in Resources */,
 				BA75EDFA1881EBCC0087BC15 /* home_navbar_icon@2x.png in Resources */,
 				BA75EE381881ECFF0087BC15 /* Main.storyboard in Resources */,
 				BA75EE491881EDBB0087BC15 /* schools.db in Resources */,
@@ -623,6 +640,7 @@
 				BA75EDC01881EB670087BC15 /* CCAnimationPageViewController.m in Sources */,
 				BA75EDDA1881EB900087BC15 /* CCAnimationsScreenViewController.m in Sources */,
 				BA75EE2E1881EC7C0087BC15 /* CollegeDetailViewController.m in Sources */,
+				BA368F0618ACF9CE00C93416 /* homePageHeaderView.m in Sources */,
 				BA75EE2F1881EC7C0087BC15 /* CollegeSavedViewController.m in Sources */,
 				BA75EDC11881EB670087BC15 /* CCBookmarksPage.m in Sources */,
 				BA75EDC21881EB670087BC15 /* CCFavoriteSCell.m in Sources */,
