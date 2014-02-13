@@ -207,7 +207,6 @@
     
     [createLocation setHidden:NO];
     [footer addSubview:createLocation];
-
     
     return footer;
 }
