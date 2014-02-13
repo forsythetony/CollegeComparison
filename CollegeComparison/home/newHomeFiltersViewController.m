@@ -42,6 +42,10 @@
     
     //Set defaults
     
+        //Title to be displayed in the navigation bar
+    
+        NSString *title = @"Filters";
+    
         //For locations
         [[self locationsContainerView] setBackgroundColor:backgroundColor];
         [[self locationsTitleLabel] setBackgroundColor:backgroundColor];
@@ -79,6 +83,12 @@
         [[self enrollmentSlider] setMinimumTrackTintColor:sliderPastColor];
         [[self enrollmentSlider] setMaximumTrackTintColor:sliderFutureColor];
         [[self enrollmentSlider] setThumbTintColor:sliderButtonColor];
+    
+    
+    
+    
+    
+    self.title = title;
     
     
 }
