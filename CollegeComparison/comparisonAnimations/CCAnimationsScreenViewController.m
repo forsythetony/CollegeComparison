@@ -53,7 +53,14 @@ typedef enum {
 
     UIView *mainView;
     
-    mainView = [self buildBarChartsWithData:data];
+    if (currentPage == financialAidPercentage) {
+        mainView = [self buildDonutChartsWithData:data];
+    }
+    else
+    {
+        mainView = [self buildBarChartsWithData:data];
+    }
+  
     
     [self.view addSubview:mainView];
 }
@@ -170,8 +177,7 @@ typedef enum {
     [schoolTwoChart setStrokeColor:[UIColor redColor]];
     [circleChart setStrokeColor:[UIColor blueColor]];
     
-   [schoolTwoChart setLineWidth:[NSNumber numberWithInt:50]];
-//    [schoolTwoChart setCircle:kCALineCapSquare];
+   [schoolTwoChart setLineWidth:[NSNumber numberWithInt:10]];
     [mainView addSubview:schoolTwoChart];
     
     [mainView addSubview:circleChart];
