@@ -56,9 +56,11 @@
 {
     [super viewDidLoad];
     
+    [self aestheticsConfiguration];
+    
     MUITCollege *college = self.representedCollege;
     
-    self.title = self.representedCollege.name;
+    
     
     [self configureGobalVariables];
     [self configureFavoritesButton];
@@ -336,6 +338,92 @@
     }
     
     [theArray removeObject:collegeToDelete];
+}
+-(void)aestheticsConfiguration
+{
+    //  Main view
+    
+        //  Configure the title of the view controller which displays in the navigation bar
+        //  If you don't want to override the default (which is the name of the college being displayed) then leave it set to nil
+    
+            NSString *viewControllerTitle               =   nil;
+    
+    
+    //  Tableview
+    
+        //  Background color of the table view
+        //  User will most likely not see this color unless they scroll down past the frame of the table view
+        
+            UIColor *tableViewBackgroundColor           =   [UIColor whiteColor];
+    
+    //  Labels configuration
+    
+        //  College label
+    
+            //  Font
+    
+                NSString *fontFamilyForCollegeLabel     =   @"Avenir-Book";
+                float fontSizeForCollegeLabel           =   14.0;
+    
+            //  Text color
+    
+                UIColor *collegeLabelTextColor          =   [UIColor blackColor];
+    
+            //  Label background color
+    
+                UIColor *collegeLabelBackgroundColor    =   [UIColor yellowColor];
+    
+            //  Frame
+    
+                CGRect collegeLabelFrame                =   CGRectMake(0.0, 20.0, 320.0, 40.0);
+    
+            //  Other
+    
+                NSUInteger collegeLabelNumberOfLines    =   0.0; // Set the number of lines to 0 to unrestrict the number of lines the label will use.
+    
+        //  Other labels
+    
+            //  Font
+    
+                NSString *labelsFontFamily              =   @"Avenir-Book";
+                float   labelsFontSize                  =   10.0;
+    
+            //  Text color
+    
+                UIColor *labelsTextColor                =   [UIColor blackColor];
+    
+/*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
+    
+    
+    
+    self.tableView.backgroundColor = tableViewBackgroundColor;
+    
+    if (!viewControllerTitle) {
+        if (self.representedCollege.name) {
+            [self setTitle:self.representedCollege.name];
+        }
+        else
+        {
+            [self setTitle:@""];
+        }
+    }
+    else
+    {
+        [self setTitle:viewControllerTitle];
+    }
+    
+    //  College label configuration
+    
+    UIFont *collegeLabelFont = [UIFont fontWithName:fontFamilyForCollegeLabel size:fontSizeForCollegeLabel];
+    [self.collegeLabel setFont:collegeLabelFont];
+    [self.collegeLabel setTextColor:collegeLabelTextColor];
+    [self.collegeLabel setBackgroundColor:collegeLabelBackgroundColor];
+    [self.collegeLabel setFrame:collegeLabelFrame];
+    [self.collegeLabel setNumberOfLines:collegeLabelNumberOfLines];
+    
+    
+    
+    
     
     
     
