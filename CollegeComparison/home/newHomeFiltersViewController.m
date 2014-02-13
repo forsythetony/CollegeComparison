@@ -8,6 +8,8 @@
 
 #import "newHomeFiltersViewController.h"
 #import "homePageHeaderView.h"
+#import "SWRevealViewController.h"
+
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define CORALCOLOR UIColorFromRGB(0xF05746)
 
@@ -33,8 +35,13 @@
     [self setDefaultLayoutValues];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    [self slidingPanelSetup];
+    
     [self createHeaderView];
+    
     [self createCircleCollegeCount];
+    
 }
 -(void)setDefaultLayoutValues
 {
@@ -133,5 +140,17 @@
     
     
     
+}
+-(void)slidingPanelSetup
+{
+    _panelViewButton.target = self;
+    _panelViewButton.action = @selector(panelPressed:);
+    
+    //Set the gesture
+    //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+}
+-(void)panelPressed:(id) sender
+{
+    [self.revealViewController rightRevealToggle:sender];
 }
 @end

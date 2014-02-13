@@ -39,5 +39,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *publicSchoolButton;
 @property (weak, nonatomic) IBOutlet UIButton *privateSchoolButton;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *panelViewButton;
 
 @end
