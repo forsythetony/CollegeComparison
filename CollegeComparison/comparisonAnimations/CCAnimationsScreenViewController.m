@@ -225,8 +225,6 @@ typedef enum {
         
         collegeOneCircleFrame.size = CGSizeMake(squareDimension, squareDimension);
     
-    
-    
         float schoolOneFloatValue = [[[self.modifierDictionary objectForKey:@"One"] objectForKey:@"Height"] floatValue];
         
         schoolOneFloatValue *= 100.0;
