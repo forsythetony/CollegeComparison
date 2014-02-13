@@ -15,6 +15,7 @@
 
 @interface newHomeFiltersViewController () {
     NSMutableArray *locationsArray;
+    NSMutableArray *collegesFound;
 }
 
 @end
@@ -33,7 +34,9 @@
 - (void)viewDidLoad
 {
     [self setDefaultLayoutValues];
-    
+    [self dataSetup];
+    [self setupTableView];
+    [self.locationsTableView reloadData];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self slidingPanelSetup];
@@ -135,11 +138,6 @@
     [collegeCountCircleGraph setStrokeColor:UIColorFromRGB(0x69AEEF)];
     [collegeCountCircleGraph strokeChart];
     
-    
-    
-    
-    
-    
 }
 -(void)slidingPanelSetup
 {
@@ -152,5 +150,69 @@
 -(void)panelPressed:(id) sender
 {
     [self.revealViewController rightRevealToggle:sender];
+}
+-(void)setupTableView
+{
+    [self.locationsTableView setDelegate:self];
+    [self.locationsTableView setDataSource:self];
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [collegesFound count];
+}
+-(void)dataSetup
+{
+    collegesFound = [NSMutableArray arrayWithObjects:@"Fudge", @"Nudge", @"Pudge", nil];
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *reuseIdentifier = @"locationsCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    
+
+    [cell.textLabel setText:[collegesFound objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    CGRect footerFrame;
+    
+    footerFrame.origin = CGPointMake(0.0, 0.0);
+    
+    footerFrame.size = CGSizeMake(self.locationsTableView.bounds.size.width, 35.0);
+    
+    
+    UIView *footer = [[UIView alloc] initWithFrame:footerFrame];
+    
+    [footer setBackgroundColor:[UIColor blueberryColor]];
+    
+    //  Create button
+    
+    UIButton *createLocation = [[UIButton alloc] initWithFrame:footerFrame];
+    
+    [createLocation.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [createLocation setTitle:@"Add Location" forState:UIControlStateNormal];
+
+    
+    [createLocation.titleLabel setTextColor:[UIColor whiteColor]];
+    
+    [createLocation setHidden:NO];
+    [footer addSubview:createLocation];
+
+    
+    return footer;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 35.0;
 }
 @end

@@ -13,7 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <PNCircleChart.h>
 
-@interface newHomeFiltersViewController : UIViewController
+@interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 //Header view
 @property (weak, nonatomic) IBOutlet UIView *collegeCountContainerView;
