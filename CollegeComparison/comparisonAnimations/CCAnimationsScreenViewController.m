@@ -53,19 +53,9 @@ typedef enum {
 
     UIView *mainView;
     
-    if (currentPage == financialAidPercentage)
-    {
-        mainView = [self buildDonutChartsWithData:data];
-    }
-    else
-    {
-        mainView = [self buildBarChartsWithData:data];
-    }
+    mainView = [self buildBarChartsWithData:data];
     
     [self.view addSubview:mainView];
-    
-    
-    
 }
 
 -(UIView*)buildBarChartsWithData:(NSDictionary*) data
@@ -160,10 +150,34 @@ typedef enum {
     
     UIView *mainView = [[UIView alloc] initWithFrame:mainViewFrame];
 
-    PNCircleChart *circleChart = [[PNCircleChart alloc] initWithFrame:mainViewFrame andTotal:[NSNumber numberWithInteger:100] andCurrent:[NSNumber numberWithInteger:50]];
+    
+    
+    //  Create frame for circle chart
+    
+    CGRect circleFrame;
+    
+    circleFrame.size = CGSizeMake(150.0, 150.0);
+    
+    circleFrame.origin.x = (320.0 / 4.0) - (circleFrame.size.width / 4.0);//(mainViewFrame.size.width / 2) - (circleFrame.size.width);
+    circleFrame.origin.y = 25.0;//(mainViewFrame.size.height / 2) - (circleFrame.size.height) - 100.0;
+    
+    PNCircleChart *circleChart = [[PNCircleChart alloc] initWithFrame:circleFrame andTotal:[NSNumber numberWithInteger:100] andCurrent:[NSNumber numberWithInteger:50]];
+    
+    circleFrame.origin.y += 120.0;
+    
+    PNCircleChart *schoolTwoChart = [[PNCircleChart alloc] initWithFrame:circleFrame andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:20]];
+    
+    [schoolTwoChart setStrokeColor:[UIColor redColor]];
+    [circleChart setStrokeColor:[UIColor blueColor]];
+    
+   [schoolTwoChart setLineWidth:[NSNumber numberWithInt:50]];
+//    [schoolTwoChart setCircle:kCALineCapSquare];
+    [mainView addSubview:schoolTwoChart];
     
     [mainView addSubview:circleChart];
     
+    [schoolTwoChart strokeChart];
+    [circleChart strokeChart];
     
     return mainView;
 }

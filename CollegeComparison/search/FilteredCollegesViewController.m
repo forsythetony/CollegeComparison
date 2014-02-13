@@ -81,6 +81,10 @@ NSArray *searchResults;
 
     
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    
+    
+    [self testingSkipFunction];
+    
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -625,6 +629,39 @@ NSArray *searchResults;
     alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
     
     [alertView show];
+}
+
+//  This function is to be used for testing purposes. It picks the first two or three colleges to compare
+//  and sends them to the animation page
+-(void)testingSkipFunction
+{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Skip" message:@"Skip with two or three colleges" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"Two",@"Three", nil];
+    
+    
+    
+    [alert show];
+    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:0]];
+        [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:1]];
+        
+        [self performSegueWithIdentifier:@"comparisonSegueOne" sender:self];
+
+
+    }
+    else if (buttonIndex == 2)
+    {
+        [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:0]];
+        [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:1]];
+        [collegesImGoingToCompare addObject:[self.universitiesPassed objectAtIndex:2]];
+        
+        [self performSegueWithIdentifier:@"comparisonSegueOne" sender:self];
+
+    }
 }
 
 @end

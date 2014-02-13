@@ -21,7 +21,7 @@
 #import <Colours.h>
 #import <SIAlertView.h>
 
-@interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, SWTableViewCellDelegate>
+@interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate,SWTableViewCellDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *universitiesPassed;
 @property (nonatomic, strong) NSMutableArray *allCellsInTable;
