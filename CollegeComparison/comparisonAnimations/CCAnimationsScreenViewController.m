@@ -164,7 +164,7 @@ typedef enum {
     
     //  Font to use for labels
     
-    UIFont *labelFont = [UIFont fontWithName:@"Avenir-Heavy" size:20.0];
+    UIFont *labelFont = [circleGraphConfig objectForKey:@"labelFont"];
     
     //  Size modifier
     
@@ -214,8 +214,14 @@ typedef enum {
         float squareDimension = midPointOfView * dimensionModifier;
     
         //  Another view
+    CGRect subSubViewFrame;
     
-        UIView *subSubView = [[UIView alloc] initWithFrame:CGRectMake(320.0 / 2.0 - (squareDimension / 2.0), 40.0, squareDimension, squareDimension)];
+    subSubViewFrame.origin.x = 320.0 / 2.0 - (squareDimension / 2.0);
+    subSubViewFrame.origin.y = 40.0;
+    subSubViewFrame.size.width = squareDimension;
+    subSubViewFrame.size.height = squareDimension;
+    
+        UIView *subSubView = [[UIView alloc] initWithFrame:subSubViewFrame];
     
         [collegeOneSubview addSubview:subSubView];
 
@@ -274,10 +280,21 @@ typedef enum {
     
         //  Create college two circle chart
     
+    
+        //  Create another view
+    
+    subSubViewFrame.origin.y += 20.0;
+        UIView *collegeTwoSubSubView = [[UIView alloc] initWithFrame:subSubViewFrame];
+    
+    
+    [collegeTwoSubview addSubview:collegeTwoSubSubView];
+    
+    
+    
         CGRect collegeTwoCircleFrame;
         
-        collegeTwoCircleFrame.origin.x = mainViewFrame.size.width / 8.0;
-        collegeTwoCircleFrame.origin.y = ((midPointOfView * (1.0 - dimensionModifier)) / 2) ;
+        collegeTwoCircleFrame.origin.x = 0.0;
+        collegeTwoCircleFrame.origin.y = 0.0;
         
         collegeTwoCircleFrame.size = CGSizeMake(squareDimension, squareDimension);
         
@@ -292,8 +309,8 @@ typedef enum {
         [collegeTwoCircle setStrokeColor:[circleGraphConfig objectForKey:@"twoColor"]];
         [collegeTwoCircle setFontSize:[circleGraphConfig objectForKey:@"fontSize"]];
     
-        [collegeTwoSubview addSubview:collegeTwoCircle];
-        
+        [collegeTwoSubSubView addSubview:collegeTwoCircle];
+    [collegeTwoCircle setLineWidth:[circleGraphConfig objectForKey:@"lineWidth"]];
         [collegeTwoCircle strokeChart];
     
     
@@ -477,7 +494,7 @@ typedef enum {
     
             UIColor *collegeTwoCircleGraphColor     =   [UIColor strawberryColor];
 
-        //  Font size for label
+        //  Font size for label counter
     
             float fontSizeForCircleGraphLabel       =   24.0;
     
@@ -485,6 +502,10 @@ typedef enum {
     
             float dimensionModifierForCircleGraph   =   0.7;
     
+        //  Font for college name labels on circle graph page
+    
+            NSString *circleGraphCollegeNameLabelFamily =   @"Avenir-Book";
+            float circleGraphCollegeNameFontSize        =   25.0;
     
     
     
@@ -497,6 +518,9 @@ typedef enum {
     
     NSValue *bRect = [NSValue valueWithCGRect:barGraphViewFrame];
     
+    UIFont *circleGraphCollegeNameFont = [UIFont fontWithName:circleGraphCollegeNameLabelFamily size:circleGraphCollegeNameFontSize];
+    
+    
     NSDictionary *percentageInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                                                                                 [NSNumber numberWithFloat:widthOfCircleGraphLine],
                                                                                 @"lineWidth",
@@ -507,7 +531,9 @@ typedef enum {
                                                                                 [NSNumber numberWithFloat:fontSizeForCircleGraphLabel],
                                                                                 @"fontSize",
                                                                                 [NSNumber numberWithFloat:dimensionModifierForCircleGraph],
-                                                                                @"dimensionMod", nil];
+                                                                                @"dimensionMod",
+                                                                                circleGraphCollegeNameFont,
+                                                                                @"labelFont", nil];
     
     
     
