@@ -115,8 +115,6 @@ typedef enum {
     theMainChart = barChart;
     
     [mainView addSubview:barChart];
-    
-    NSLog(@"\n%@\n", self.title);
 
 
     return mainView;
@@ -168,13 +166,10 @@ typedef enum {
     
     UIFont *labelFont = [UIFont fontWithName:@"Avenir-Heavy" size:20.0];
     
-    //  Line width to use for circle charts
+    //  Size modifier
     
-    NSNumber *lineWidth = [NSNumber numberWithFloat:30.0];
-    
-    
-    
-    
+    float dimensionModifier = [[circleGraphConfig objectForKey:@"dimensionMod"] floatValue];
+
     //  Create square one
     CGRect collegeOneSubviewFrame;
     
@@ -216,9 +211,15 @@ typedef enum {
     
         CGRect collegeOneCircleFrame;
     
-        float squareDimension = midPointOfView * .75;
+        float squareDimension = midPointOfView * dimensionModifier;
     
-        collegeOneCircleFrame.origin = CGPointMake((mainViewFrame.size.width / 8.0), ((midPointOfView * .25) / 2) - 3.0);
+        //  Another view
+    
+        UIView *subSubView = [[UIView alloc] initWithFrame:CGRectMake(320.0 / 2.0 - (squareDimension / 2.0), 40.0, squareDimension, squareDimension)];
+    
+        [collegeOneSubview addSubview:subSubView];
+
+        collegeOneCircleFrame.origin = CGPointMake(0.0, 0.0);
         
     
         
@@ -233,12 +234,13 @@ typedef enum {
         NSNumber *schoolOneValue = [NSNumber numberWithFloat:schoolOneFloatValue];
         
         PNCircleChart *collegeOneCircle = [[PNCircleChart alloc] initWithFrame:collegeOneCircleFrame andTotal:[NSNumber numberWithFloat:100.0] andCurrent:schoolOneValue];
+
     
-    [collegeOneCircle setLineWidth:lineWidth];
+        [collegeOneCircle setStrokeColor:[circleGraphConfig objectForKey:@"oneColor"]];
+        [collegeOneCircle setFontSize:[circleGraphConfig objectForKey:@"fontSize"]];
+        [collegeOneCircle setLineWidth:[circleGraphConfig objectForKey:@"lineWidth"]];
     
-    [collegeOneCircle setStrokeColor:[circleGraphConfig objectForKey:@"oneColor"]];
-    
-        [collegeOneSubview addSubview:collegeOneCircle];
+        [subSubView addSubview:collegeOneCircle];
         [collegeOneCircle strokeChart];
 
     //  Create square two
@@ -270,14 +272,14 @@ typedef enum {
         [collegeTwoLabel setTextAlignment:NSTextAlignmentCenter];
         [collegeTwoLabel setFont:labelFont];
     
-    [collegeTwoSubview addSubview:collegeTwoLabel];
+        [collegeTwoSubview addSubview:collegeTwoLabel];
     
         //  Create college two circle chart
     
         CGRect collegeTwoCircleFrame;
         
         collegeTwoCircleFrame.origin.x = mainViewFrame.size.width / 8.0;
-        collegeTwoCircleFrame.origin.y = ((midPointOfView * .25) / 2) ;
+        collegeTwoCircleFrame.origin.y = ((midPointOfView * (1.0 - dimensionModifier)) / 2) ;
         
         collegeTwoCircleFrame.size = CGSizeMake(squareDimension, squareDimension);
         
@@ -289,13 +291,19 @@ typedef enum {
         
         PNCircleChart *collegeTwoCircle = [[PNCircleChart alloc] initWithFrame:collegeTwoCircleFrame andTotal:[NSNumber numberWithFloat:100.0] andCurrent:schoolTwoNumberValue];
     
-    [collegeTwoCircle setStrokeColor:[circleGraphConfig objectForKey:@"twoColor"]];
+        [collegeTwoCircle setStrokeColor:[circleGraphConfig objectForKey:@"twoColor"]];
+        [collegeTwoCircle setFontSize:[circleGraphConfig objectForKey:@"fontSize"]];
     
-    
-    [collegeTwoCircle setLineWidth:lineWidth];
         [collegeTwoSubview addSubview:collegeTwoCircle];
         
         [collegeTwoCircle strokeChart];
+    
+    
+    
+    
+    
+    
+    
     
     return mainView;
 }
@@ -461,21 +469,47 @@ typedef enum {
     
         //  Line width
     
-            float widthOfCircleGraphLine    =   40.0;
+            float widthOfCircleGraphLine            =   20.0;
 
         //  Color for college one graph
     
             UIColor *collegeOneCircleGraphColor     =   [UIColor blueberryColor];
-            UIColor *collegeTwoCircleGraphColor     =   [UIColor strawberryColor];
     
         //  Color for college two graph
+    
+            UIColor *collegeTwoCircleGraphColor     =   [UIColor strawberryColor];
+
+        //  Font size for label
+    
+            float fontSizeForCircleGraphLabel       =   24.0;
+    
+        //  Dimension modifier for circle graph. This should be a value between 0.0 and 1.0
+    
+            float dimensionModifierForCircleGraph   =   0.7;
+    
+    
+    
+    
+    
+    
+    
     
     
 /*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
     
     NSValue *bRect = [NSValue valueWithCGRect:barGraphViewFrame];
     
-    NSDictionary *percentageInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:widthOfCircleGraphLine], @"lineWidth", collegeOneCircleGraphColor, @"oneColor", collegeTwoCircleGraphColor, @"twoColor", nil];
+    NSDictionary *percentageInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                [NSNumber numberWithFloat:widthOfCircleGraphLine],
+                                                                                @"lineWidth",
+                                                                                collegeOneCircleGraphColor,
+                                                                                @"oneColor",
+                                                                                collegeTwoCircleGraphColor,
+                                                                                @"twoColor",
+                                                                                [NSNumber numberWithFloat:fontSizeForCircleGraphLabel],
+                                                                                @"fontSize",
+                                                                                [NSNumber numberWithFloat:dimensionModifierForCircleGraph],
+                                                                                @"dimensionMod", nil];
     
     
     
@@ -485,6 +519,8 @@ typedef enum {
                                                            barGraphBackgroundColor,
                                                            @"barBackground",
                                                            bRect,
-                                                           @"bRect", percentageInfo, @"percentageInfo", nil];
+                                                           @"bRect",
+                                                           percentageInfo,
+                                                           @"percentageInfo", nil];
 }
 @end
