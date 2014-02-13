@@ -261,26 +261,7 @@ NSArray *searchResults;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FilteredCollegesTableViewCell *detailCell = (FilteredCollegesTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
-    if (self.tableView == self.searchDisplayController.searchResultsTableView) {
-        [self performSegueWithIdentifier: @"showCollegeDetailSegue" sender: self];
-    }
-    
-    if([detailCell.reuseIdentifier isEqualToString:@"CollegeCell"])
-    {
-        if(!self.tableView.isEditing)
-        { 
-            if([self.title  isEqual:@"schools"])
-            {
-                [self performSegueWithIdentifier:@"showCollegeDetailSegue" sender:detailCell];
-            }
-            else if([self.title isEqual:@"filteredSchools"])
-            {
-                [self performSegueWithIdentifier:@"collegeDetailsSegue" sender:detailCell];
-            }
-        }
-    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
