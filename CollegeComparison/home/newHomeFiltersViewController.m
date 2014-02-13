@@ -136,6 +136,7 @@
     [collegeCountCircleGraph setLabelColor:[UIColor whiteColor]];
     [collegeCountCircleGraph setLineWidth:[NSNumber numberWithFloat:10.0]];
     [collegeCountCircleGraph setStrokeColor:UIColorFromRGB(0x69AEEF)];
+    [collegeCountCircleGraph setHasPercentage:NO];
     [collegeCountCircleGraph strokeChart];
     
 }
