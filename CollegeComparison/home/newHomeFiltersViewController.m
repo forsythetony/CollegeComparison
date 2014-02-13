@@ -147,7 +147,7 @@
     _panelViewButton.action = @selector(panelPressed:);
     
     //Set the gesture
-    //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 -(void)panelPressed:(id) sender
 {
