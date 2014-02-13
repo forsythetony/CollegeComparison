@@ -82,13 +82,13 @@
     
     ChartValueFormattingType formatType = [self determineTypeUsingTitle:self.title];
     
-    //NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
-                                               //andFormattingStyle:formatType];
+    NSArray *formattedValueLabels = [self formattedArrayWithArray:[data objectForKey:@"yvalues"]
+                                               andFormattingStyle:formatType];
     
     
     
-    NSLog(@"\n%@\n", self.title);
-    //[barChart setAllXlabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
+//    NSLog(@"\n%@\n", self.title);
+    [barChart setAllXlabelsForBottom:[data objectForKey:@"xvalues"] andTop:formattedValueLabels];
     
     NSArray *yValues;
     

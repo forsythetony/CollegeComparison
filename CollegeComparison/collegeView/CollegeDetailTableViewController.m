@@ -421,13 +421,5 @@
     [self.collegeLabel setFrame:collegeLabelFrame];
     [self.collegeLabel setNumberOfLines:collegeLabelNumberOfLines];
     
-    
-    
-    
-    
-    
-    
-    
-    
 }
 @end

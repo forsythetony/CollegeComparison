@@ -1,4 +1,4 @@
-pod 'PNChart', '~> 0.3.1'
+pod 'PNChart', :git => 'https://github.com/forsythetony/PNChart.git'
 pod 'SWTableViewCell'
 pod 'Colours'
 pod 'FlatUIKit'
