@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MUITCollege.h"
 #import "PNChart.h"
+#import <Colours.h>
 
 typedef NS_ENUM(NSUInteger, ChartValueFormattingType) {
     ChartValueFormattingTypeCurrency,

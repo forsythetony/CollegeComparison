@@ -138,6 +138,7 @@ typedef enum {
 }
 -(UIView*)buildDonutChartsWithData:(NSDictionary*) theData
 {
+    NSDictionary *circleGraphConfig = [theLook objectForKey:@"percentageInfo"];
     
     CGRect userPrefRect = [[theLook objectForKey:@"bRect"] CGRectValue];
     
@@ -157,33 +158,144 @@ typedef enum {
     
     UIView *mainView = [[UIView alloc] initWithFrame:mainViewFrame];
 
+    [mainView setBackgroundColor:[UIColor clearColor]];
     
     
-    //  Create frame for circle chart
+    float midPointOfView = mainView.center.y;
     
-    CGRect circleFrame;
     
-    circleFrame.size = CGSizeMake(150.0, 150.0);
+    //  Font to use for labels
     
-    circleFrame.origin.x = (320.0 / 4.0) - (circleFrame.size.width / 4.0);//(mainViewFrame.size.width / 2) - (circleFrame.size.width);
-    circleFrame.origin.y = 25.0;//(mainViewFrame.size.height / 2) - (circleFrame.size.height) - 100.0;
+    UIFont *labelFont = [UIFont fontWithName:@"Avenir-Heavy" size:20.0];
     
-    PNCircleChart *circleChart = [[PNCircleChart alloc] initWithFrame:circleFrame andTotal:[NSNumber numberWithInteger:100] andCurrent:[NSNumber numberWithInteger:50]];
+    //  Line width to use for circle charts
     
-    circleFrame.origin.y += 120.0;
+    NSNumber *lineWidth = [NSNumber numberWithFloat:30.0];
     
-    PNCircleChart *schoolTwoChart = [[PNCircleChart alloc] initWithFrame:circleFrame andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:20]];
     
-    [schoolTwoChart setStrokeColor:[UIColor redColor]];
-    [circleChart setStrokeColor:[UIColor blueColor]];
     
-   [schoolTwoChart setLineWidth:[NSNumber numberWithInt:10]];
-    [mainView addSubview:schoolTwoChart];
     
-    [mainView addSubview:circleChart];
+    //  Create square one
+    CGRect collegeOneSubviewFrame;
     
-    [schoolTwoChart strokeChart];
-    [circleChart strokeChart];
+    collegeOneSubviewFrame.origin = CGPointMake(0.0, 0.0);
+    collegeOneSubviewFrame.size.width = 320.0;
+    collegeOneSubviewFrame.size.height = midPointOfView;
+    
+    UIView *collegeOneSubview = [[UIView alloc] initWithFrame:collegeOneSubviewFrame];
+    
+    [collegeOneSubview setBackgroundColor:[UIColor clearColor]];
+    
+    [mainView addSubview:collegeOneSubview];
+    
+    
+    
+        //  Create label
+    
+        CGRect collegeOneLabelFrame;
+        
+        collegeOneLabelFrame.origin = CGPointMake(0.0, 5.0);
+        collegeOneLabelFrame.size.width = 320.0;
+        collegeOneLabelFrame.size.height = 20.0;
+        
+        
+        UILabel *collegeOneLabel = [[UILabel alloc] initWithFrame:collegeOneLabelFrame];
+        
+        [collegeOneLabel setText:[[theData objectForKey:@"xvalues"] objectAtIndex:0]];
+        [collegeOneLabel setTextAlignment:NSTextAlignmentCenter];
+        
+        [collegeOneLabel setFont:labelFont];
+        
+        
+        
+        [collegeOneSubview addSubview:collegeOneLabel];
+    
+    
+    
+        //  Create college one circle chart
+    
+        CGRect collegeOneCircleFrame;
+    
+        float squareDimension = midPointOfView * .75;
+    
+        collegeOneCircleFrame.origin = CGPointMake((mainViewFrame.size.width / 8.0), ((midPointOfView * .25) / 2) - 3.0);
+        
+    
+        
+        collegeOneCircleFrame.size = CGSizeMake(squareDimension, squareDimension);
+    
+    
+    
+        float schoolOneFloatValue = [[[self.modifierDictionary objectForKey:@"One"] objectForKey:@"Height"] floatValue];
+        
+        schoolOneFloatValue *= 100.0;
+        
+        NSNumber *schoolOneValue = [NSNumber numberWithFloat:schoolOneFloatValue];
+        
+        PNCircleChart *collegeOneCircle = [[PNCircleChart alloc] initWithFrame:collegeOneCircleFrame andTotal:[NSNumber numberWithFloat:100.0] andCurrent:schoolOneValue];
+    
+    [collegeOneCircle setLineWidth:lineWidth];
+    
+    [collegeOneCircle setStrokeColor:[circleGraphConfig objectForKey:@"oneColor"]];
+    
+        [collegeOneSubview addSubview:collegeOneCircle];
+        [collegeOneCircle strokeChart];
+
+    //  Create square two
+    
+    CGRect collegeTwoSubviewFrame;
+    
+    collegeTwoSubviewFrame.origin = CGPointMake(0.0, midPointOfView);
+    
+    collegeTwoSubviewFrame.size.width = 320.0;
+    collegeTwoSubviewFrame.size.height = midPointOfView;
+    
+    UIView *collegeTwoSubview = [[UIView alloc] initWithFrame:collegeTwoSubviewFrame];
+    
+    [collegeTwoSubview setBackgroundColor:[UIColor clearColor]];
+    
+    [mainView addSubview:collegeTwoSubview];
+    
+        //  Create square two label
+    
+        CGRect collegeTwoLabelFrame;
+        
+        collegeTwoLabelFrame.origin = CGPointMake(0.0, 13.0);
+        collegeTwoLabelFrame.size.width = mainViewFrame.size.width;
+        collegeTwoLabelFrame.size.height = 20.0;
+        
+        UILabel *collegeTwoLabel = [[UILabel alloc] initWithFrame:collegeTwoLabelFrame];
+        
+        [collegeTwoLabel setText:[[theData objectForKey:@"xvalues"] objectAtIndex:1]];
+        [collegeTwoLabel setTextAlignment:NSTextAlignmentCenter];
+        [collegeTwoLabel setFont:labelFont];
+    
+    [collegeTwoSubview addSubview:collegeTwoLabel];
+    
+        //  Create college two circle chart
+    
+        CGRect collegeTwoCircleFrame;
+        
+        collegeTwoCircleFrame.origin.x = mainViewFrame.size.width / 8.0;
+        collegeTwoCircleFrame.origin.y = ((midPointOfView * .25) / 2) ;
+        
+        collegeTwoCircleFrame.size = CGSizeMake(squareDimension, squareDimension);
+        
+        float schoolTwoFloatValue = [[[self.modifierDictionary objectForKey:@"Two"] objectForKey:@"Height"] floatValue];
+        
+        schoolTwoFloatValue *= 100.0;
+        
+        NSNumber *schoolTwoNumberValue = [NSNumber numberWithFloat:schoolTwoFloatValue];
+        
+        PNCircleChart *collegeTwoCircle = [[PNCircleChart alloc] initWithFrame:collegeTwoCircleFrame andTotal:[NSNumber numberWithFloat:100.0] andCurrent:schoolTwoNumberValue];
+    
+    [collegeTwoCircle setStrokeColor:[circleGraphConfig objectForKey:@"twoColor"]];
+    
+    
+    [collegeTwoCircle setLineWidth:lineWidth];
+        [collegeTwoSubview addSubview:collegeTwoCircle];
+        
+        [collegeTwoCircle strokeChart];
     
     return mainView;
 }
@@ -345,9 +457,27 @@ typedef enum {
     
             barGraphViewFrame.size.height = 0.0;
     
+    //  Configure the appearance of percentage circle graphs
+    
+        //  Line width
+    
+            float widthOfCircleGraphLine    =   40.0;
+
+        //  Color for college one graph
+    
+            UIColor *collegeOneCircleGraphColor     =   [UIColor blueberryColor];
+            UIColor *collegeTwoCircleGraphColor     =   [UIColor strawberryColor];
+    
+        //  Color for college two graph
+    
+    
 /*------------DON'T MESS WITH ANYTHING BELOW THIS LINE UNLESS YOU'RE SURE YOU KNOW WHAT YOU'RE DOING----------------------*/
     
     NSValue *bRect = [NSValue valueWithCGRect:barGraphViewFrame];
+    
+    NSDictionary *percentageInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:widthOfCircleGraphLine], @"lineWidth", collegeOneCircleGraphColor, @"oneColor", collegeTwoCircleGraphColor, @"twoColor", nil];
+    
+    
     
     theLook = [NSDictionary dictionaryWithObjectsAndKeys:
                                                            barFillColor,
@@ -355,6 +485,6 @@ typedef enum {
                                                            barGraphBackgroundColor,
                                                            @"barBackground",
                                                            bRect,
-                                                           @"bRect", nil];
+                                                           @"bRect", percentageInfo, @"percentageInfo", nil];
 }
 @end
