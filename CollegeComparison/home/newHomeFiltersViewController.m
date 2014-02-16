@@ -51,7 +51,17 @@
 #pragma mark Data Setup
 -(void)dataSetup
 {
-    collegesFound = [NSMutableArray arrayWithObjects:@"Fudge", @"Nudge", @"Pudge", nil];
+    locationsArray = [NSMutableArray arrayWithObjects:@"Fudge", @"Nudge", @"Pudge", nil];
+    
+    
+    //  Get colleges from data provider
+    MUITCollegeDataProvider *dataProvider = [MUITCollegeDataProvider new];
+
+    NSArray *collegesRetrieved = [dataProvider getDummyColleges];
+
+    collegesFound = [NSMutableArray arrayWithArray:collegesRetrieved];
+    
+    
 }
 #pragma mark Visual Configuration
 -(void)setDefaultLayoutValues
@@ -120,7 +130,9 @@
     circleChartFrame.origin = CGPointMake(0.0, 0.0);
     circleChartFrame.size = self.collegeCountContainerView.bounds.size;
     
-    PNCircleChart *collegeCountCircleGraph = [[PNCircleChart alloc] initWithFrame:circleChartFrame andTotal:[NSNumber numberWithInt:4000] andCurrent:[NSNumber numberWithInt:4000]];
+    NSInteger collegesCount = [collegesFound count];
+    
+    PNCircleChart *collegeCountCircleGraph = [[PNCircleChart alloc] initWithFrame:circleChartFrame andTotal:[NSNumber numberWithInt:collegesCount] andCurrent:[NSNumber numberWithInteger:collegesCount]];
     
     [self.collegeCountContainerView addSubview:collegeCountCircleGraph];
     
@@ -173,7 +185,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     
     
-    [cell.textLabel setText:[collegesFound objectAtIndex:indexPath.row]];
+    //[cell.textLabel setText:[collegesFound objectAtIndex:indexPath.row]];
     
     return cell;
 }

@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <PNCircleChart.h>
+#import "MUITCollegeDataProvider.h"
 
 @interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
