@@ -82,8 +82,12 @@ NSArray *searchResults;
     
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
     
+    //  Uncomment the line below if you would like to use the testing function. This will create an alert view
+    //  when you arrive at the results page allowing you to select either 2 or 3 colleges to automatically choose
+    //  an compare. This just makes it so you don't have to waste time manually selecting the colleges if you're
+    //  debugging the comparison animations.
     
-    [self testingSkipFunction];
+    //[self testingSkipFunction];
     
 }
 -(void)viewDidDisappear:(BOOL)animated
