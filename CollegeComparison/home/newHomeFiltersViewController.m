@@ -16,6 +16,8 @@
 @interface newHomeFiltersViewController () {
     NSMutableArray *locationsArray;
     NSMutableArray *collegesFound;
+    
+    PNCircleChart *headerChart;
 }
 
 @end
@@ -95,6 +97,7 @@
         [[self enrollmentSlider] setThumbTintColor:sliderButtonColor];
     
     
+    [self.privateSchoolButton addTarget:self action:@selector(privatePressed:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -127,7 +130,7 @@
     circleChartFrame.origin = CGPointMake(0.0, 0.0);
     circleChartFrame.size = self.collegeCountContainerView.bounds.size;
     
-    PNCircleChart *collegeCountCircleGraph = [[PNCircleChart alloc] initWithFrame:circleChartFrame andTotal:[NSNumber numberWithInt:4000] andCurrent:[NSNumber numberWithInt:3333]];
+    PNCircleChart *collegeCountCircleGraph = [[PNCircleChart alloc] initWithFrame:circleChartFrame andTotal:[NSNumber numberWithInt:4000] andCurrent:[NSNumber numberWithInt:4000]];
     
     [self.collegeCountContainerView addSubview:collegeCountCircleGraph];
     
@@ -138,6 +141,8 @@
     [collegeCountCircleGraph setStrokeColor:UIColorFromRGB(0x69AEEF)];
     [collegeCountCircleGraph setHasPercentage:NO];
     [collegeCountCircleGraph strokeChart];
+    
+    headerChart = collegeCountCircleGraph;
     
 }
 -(void)slidingPanelSetup
@@ -210,9 +215,17 @@
     [footer addSubview:createLocation];
     
     return footer;
+    
+    //  There is something to be said for people who cant actually maths right
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 35.0;
+}
+-(void)privatePressed:(id) sender
+{
+    [headerChart setCurrent:[NSNumber numberWithInt:2000]];
+    
+    [headerChart strokeChart];
 }
 @end
