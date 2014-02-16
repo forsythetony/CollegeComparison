@@ -24,6 +24,7 @@
 
 @implementation newHomeFiltersViewController
 
+#pragma mark Initialization Methods -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,6 +49,12 @@
     [self createCircleCollegeCount];
     
 }
+#pragma mark Data Setup
+-(void)dataSetup
+{
+    collegesFound = [NSMutableArray arrayWithObjects:@"Fudge", @"Nudge", @"Pudge", nil];
+}
+#pragma mark Visual Configuration
 -(void)setDefaultLayoutValues
 {
     UIColor *backgroundColor = [UIColor clearColor];
@@ -105,22 +112,6 @@
     
     
 }
--(void)createHeaderView
-{
-    CGRect headerViewFrame;
-    
-    headerViewFrame.origin = CGPointMake(0.0, 20.0);
-    
-    headerViewFrame.size = CGSizeMake(320.0, 150.0);
-    
-    homePageHeaderView *headerView = [[homePageHeaderView alloc] initWithFrame:headerViewFrame];
-    
-    [headerView setBackgroundColor:CORALCOLOR];
-    
-    [self.view addSubview:headerView];
-    
-    [self.view bringSubviewToFront:self.collegeCountContainerView];
-}
 -(void)createCircleCollegeCount
 {
     //  Create frame
@@ -145,41 +136,44 @@
     headerChart = collegeCountCircleGraph;
     
 }
--(void)slidingPanelSetup
-{
-    _panelViewButton.target = self;
-    _panelViewButton.action = @selector(panelPressed:);
-    
-    //Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-}
--(void)panelPressed:(id) sender
-{
-    [self.revealViewController rightRevealToggle:sender];
-}
+
+#pragma mark Table View Setup
 -(void)setupTableView
 {
     [self.locationsTableView setDelegate:self];
     [self.locationsTableView setDataSource:self];
 }
+-(void)createHeaderView
+{
+    CGRect headerViewFrame;
+    
+    headerViewFrame.origin = CGPointMake(0.0, 20.0);
+    
+    headerViewFrame.size = CGSizeMake(320.0, 150.0);
+    
+    homePageHeaderView *headerView = [[homePageHeaderView alloc] initWithFrame:headerViewFrame];
+    
+    [headerView setBackgroundColor:CORALCOLOR];
+    
+    [self.view addSubview:headerView];
+    
+    [self.view bringSubviewToFront:self.collegeCountContainerView];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [collegesFound count];
 }
--(void)dataSetup
-{
-    collegesFound = [NSMutableArray arrayWithObjects:@"Fudge", @"Nudge", @"Pudge", nil];
-}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *reuseIdentifier = @"locationsCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
-
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     
-
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    
+    
     [cell.textLabel setText:[collegesFound objectAtIndex:indexPath.row]];
     
     return cell;
@@ -207,7 +201,7 @@
     
     [createLocation.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [createLocation setTitle:@"Add Location" forState:UIControlStateNormal];
-
+    
     
     [createLocation.titleLabel setTextColor:[UIColor whiteColor]];
     
@@ -221,6 +215,21 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 35.0;
+}
+#pragma mark Sliding Panel Setup
+-(void)slidingPanelSetup
+{
+    _panelViewButton.target = self;
+    _panelViewButton.action = @selector(panelPressed:);
+    
+    //Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+}
+
+#pragma mark Event Handlers -
+-(void)panelPressed:(id) sender
+{
+    [self.revealViewController rightRevealToggle:sender];
 }
 -(void)privatePressed:(id) sender
 {
