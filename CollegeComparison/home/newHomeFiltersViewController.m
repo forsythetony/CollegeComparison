@@ -29,25 +29,24 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [self setDefaultLayoutValues];
+    
     [self dataSetup];
+    
     [self setupTableView];
+    
     [self.locationsTableView reloadData];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self slidingPanelSetup];
     
     [self createHeaderView];
     
     [self createCircleCollegeCount];
-    
 }
 #pragma mark Data Setup
 -(void)dataSetup
@@ -225,7 +224,6 @@
     //Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
-
 #pragma mark Event Handlers -
 -(void)panelPressed:(id) sender
 {
@@ -233,8 +231,6 @@
 }
 -(void)privatePressed:(id) sender
 {
-    [headerChart setCurrent:[NSNumber numberWithInt:2000]];
-    
-    [headerChart strokeChart];
+    [headerChart strokeChartToValue:[NSNumber numberWithInt:2000]];
 }
 @end
