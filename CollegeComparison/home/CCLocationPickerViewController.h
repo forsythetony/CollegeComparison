@@ -18,7 +18,7 @@
 
 @interface CCLocationPickerViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
-@property (nonatomic, weak) id <ccloca> delegate;
+@property (nonatomic, weak) id <CCLocationPickerViewControllerProtocol> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *regionLabel;
 @property (weak, nonatomic) IBOutlet UIPickerView *regionPickerView;

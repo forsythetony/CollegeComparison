@@ -13,5 +13,4 @@
 
 @property (nonatomic, strong) NSString *stringAddress;
 @property (nonatomic, strong) NSString *region;
-@
 @end

@@ -15,7 +15,7 @@
 #import "MUITCollegeDataProvider.h"
 #import "CCLocationPickerViewController.h"
 
-@interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerProtocol>
+@interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerViewControllerProtocol>
 
 //Header view
 @property (weak, nonatomic) IBOutlet UIView *collegeCountContainerView;
