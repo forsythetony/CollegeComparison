@@ -209,19 +209,19 @@
     
     UIView *footer = [[UIView alloc] initWithFrame:footerFrame];
     
-    [footer setBackgroundColor:[UIColor charcoalColor]];
+//    [footer setBackgroundColor:[UIColor charcoalColor]];
     
-    footer.layer.cornerRadius = 8.0;
+    footer.layer.cornerRadius = 0.0;
     
     //  Create button
     
     UIButton *createLocation = [[UIButton alloc] initWithFrame:footerFrame];
     
     [createLocation.titleLabel setTextAlignment:NSTextAlignmentLeft];
-    [createLocation setTitle:@"Add Location" forState:UIControlStateNormal];
+    [createLocation setTitle:@"+ Add Location" forState:UIControlStateNormal];
     
     
-    [createLocation.titleLabel setTextColor:[UIColor whiteColor]];
+    [createLocation.titleLabel setTextColor:[UIColor black25PercentColor]];
     
     
     [createLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
@@ -292,12 +292,11 @@
     
     [tuitionSlider setMinimumValue:0.0];
     [tuitionSlider setMaximumValue:100000];
-    [tuitionSlider setUpperValue:100000];
     
     [tuitionSlider addTarget:self action:@selector(tuitionRangeDidChange:) forControlEvents:UIControlEventValueChanged];
     
     [self.tuitionContainerView addSubview:tuitionSlider];
-    
+    [tuitionSlider setUpperValue:100000 animated:YES];
     [tuitionSlider setTintColor:CORALCOLOR];
     tuitionsSlider = tuitionSlider;
     
