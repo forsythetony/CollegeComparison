@@ -280,6 +280,7 @@
 -(void)dismissAndPresentCCLocationPicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[self locationsTableView] reloadData];
 }
 -(void)configureRangeSlider
 {

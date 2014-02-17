@@ -16,26 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-EX-r4d">
-                                <rect key="frame" x="82" y="518" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ok">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickedDismiss:" destination="9Nd-Qe-cGp" eventType="touchUpInside" id="zhr-NX-E1w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-rO-Cpc">
-                                <rect key="frame" x="153" y="518" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickedDismiss:" destination="9Nd-Qe-cGp" eventType="touchUpInside" id="bHa-TB-fNm"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfC-LM-uBP">
                                 <rect key="frame" x="29" y="343" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -108,12 +88,15 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="TIc-lr-fIT" id="gOs-ni-ITl"/>
                         <outlet property="cityLabel" destination="pQO-fj-D2L" id="tTV-KF-fz4"/>
                         <outlet property="cityTextField" destination="Sn5-4Z-G5l" id="RHN-Oe-j6u"/>
                         <outlet property="regionLabel" destination="3Qg-HE-AOn" id="yBX-ma-S4o"/>
                         <outlet property="regionPickerView" destination="ovN-Bk-YiW" id="mUz-Q7-e5Y"/>
+                        <outlet property="saveButton" destination="iTI-nd-qZd" id="Pum-Vy-xZt"/>
                         <outlet property="stateLabel" destination="yfC-LM-uBP" id="lJY-gj-IPx"/>
                         <outlet property="stateTextField" destination="DCe-GK-asn" id="rbw-4z-IZS"/>
+                        <outlet property="theToolbar" destination="eou-MX-wSR" id="Zy4-zo-3Mt"/>
                         <outlet property="zipLabel" destination="icY-Wr-PQt" id="dUC-V3-FLl"/>
                         <outlet property="zipTextField" destination="blA-ct-uJ3" id="4gD-D5-vLL"/>
                     </connections>

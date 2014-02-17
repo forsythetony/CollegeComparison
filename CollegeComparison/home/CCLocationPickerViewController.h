@@ -33,6 +33,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *zipLabel;
 @property (weak, nonatomic) IBOutlet UITextField *zipTextField;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *theToolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+
 - (IBAction)clickedDismiss:(id)sender;
 
 - (IBAction)clickedSave:(id)sender;
