@@ -36,7 +36,7 @@
 }
 - (void)viewDidLoad
 {
-    [self setDefaultLayoutValues];
+    [self aestheticsConfiguation];
     
     [self dataSetup];
     
@@ -68,65 +68,6 @@
     
 }
 #pragma mark Visual Configuration
--(void)setDefaultLayoutValues
-{
-    UIColor *backgroundColor = [UIColor clearColor];
-    
-    //Set defaults
-    
-        //Title to be displayed in the navigation bar
-    
-        NSString *title = @"Filters";
-    
-        //For locations
-        [[self locationsContainerView] setBackgroundColor:backgroundColor];
-        [[self locationsTitleLabel] setBackgroundColor:backgroundColor];
-        [[self locationsTitleLabel] setTextColor:[UIColor blackColor]];
-    
-        //For tuition
-        [[self tuitionContainerView] setBackgroundColor:backgroundColor];
-        [[self tuitionLabel] setBackgroundColor:backgroundColor];
-        [[self tuitionLabel] setTextColor:[UIColor blackColor]];
-    
-        //For Enrollment
-        [[self enrollmentContainerView] setBackgroundColor:backgroundColor];
-        [[self enrollmentLabel] setBackgroundColor:backgroundColor];
-        [[self enrollmentLabel] setTextColor:[UIColor blackColor]];
-    
-        //For School Type
-        [[self schoolTypeContainerView] setBackgroundColor:backgroundColor];
-        [[self schoolTypeLabel] setBackgroundColor:backgroundColor];
-        [[self schoolTypeLabel] setTextColor:[UIColor blackColor]];
-    
-    /*
-    //Configure sliders
-    
-    //Default Colors
-    UIColor *sliderPastColor = [UIColor blueberryColor];
-    UIColor *sliderFutureColor = [UIColor crimsonColor];
-    UIColor *sliderButtonColor = [UIColor black50PercentColor];
-    
-    
-        //Tuition Slider
-        [[self tuitionSlider] setMaximumTrackTintColor:sliderFutureColor];
-        [[self tuitionSlider] setMinimumTrackTintColor:sliderPastColor];
-        [[self tuitionSlider] setThumbTintColor:sliderButtonColor];
-    
-        //Enrollment Slider
-        [[self enrollmentSlider] setMinimumTrackTintColor:sliderPastColor];
-        [[self enrollmentSlider] setMaximumTrackTintColor:sliderFutureColor];
-        [[self enrollmentSlider] setThumbTintColor:sliderButtonColor];
-    
-    */
-    
-    [self.privateSchoolButton addTarget:self action:@selector(privatePressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    
-    self.title = title;
-    
-    
-}
 -(void)createCircleCollegeCount
 {
     //  Create frame
@@ -334,6 +275,10 @@
 {
     [self performSegueWithIdentifier:@"locationPicker" sender:self];
 }
+- (IBAction)goPress:(id)sender {
+    
+    [self performSegueWithIdentifier:@"searchResults" sender:self];
+}
 #pragma mark Sliders
 -(void)tuitionRangeDidChange:(id) sender
 {
@@ -375,8 +320,147 @@
     }];
     [self.locationsTableView reloadData];
 }
-- (IBAction)goPress:(id)sender {
+-(void)aestheticsConfiguation
+{
+    //  Main view
     
-    [self performSegueWithIdentifier:@"searchResults" sender:self];
+        //  Title
+    
+        NSString *mainViewTitle = @"Filters";
+    
+    
+    
+    //  Labels
+    
+        //  Global settings. Set it to nil if you would like to specifically configure each one.
+    
+        NSNumber *fontSizeForLabels = [NSNumber numberWithFloat:16.0];
+    
+        //  Location label
+    
+        UIColor *locationLabelTextColor             =   [UIColor black25PercentColor];
+        UIColor *locationLabelBackgroundColor       =   [UIColor clearColor];
+        
+        NSString *locationLabelFontFamily           =   @"Avenir-Book";
+        float locationLabelFontSize                 =   16.0;
+    
+        //  Tuition Label
+    
+        UIColor *tuitionLabelTextColor              =   [UIColor black25PercentColor];
+        UIColor *tuitionLabelBackgroundcolor        =   [UIColor clearColor];
+    
+        NSString *tuitionLabelFontFamily            =   @"Avenir-Book";
+        float tuitionLabelFontSize                  =   14.0;
+    
+        //  Enrollment label
+    
+        UIColor *enrollmentLabelTextColor           =   [UIColor black25PercentColor];
+        UIColor *enrollmentLabelBackgroundColor     =   [UIColor clearColor];
+        
+        NSString *enrollmentLabelFontFamily         =   @"Avenir-Book";
+        float enrollmentLabelFontSize               =   14.0;
+    
+        //  School Type Label
+    
+        UIColor *schoolTypeLabelTextColor           =   [UIColor black25PercentColor];
+        UIColor *schoolTypeLabelBackgroundColor     =   [UIColor clearColor];
+        
+        NSString *schoolTypeLabelFontFamily         =   @"Avenir-Book";
+        float schoolTypeLabelFontSize               =   14.0;
+    
+    //  Container views
+    
+        //  Location Container view
+    
+        UIColor *locationContainerBackgroundColor   =   [UIColor whiteColor];
+    
+        //  Tuition container view
+    
+        UIColor *tuitionContainerBackgroundColor    =   [UIColor whiteColor];
+    
+        //  Enrollment container view
+    
+        UIColor *enrollmentContainerBackgroundColor =   [UIColor whiteColor];
+    
+        //  School type container view
+    
+        UIColor *schoolTypeContainerBackgroundColor =   [UIColor whiteColor];
+    
+/*************** DO NOT CHANGE ANYTHING BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING****************/
+    
+    //  Create fonts
+    
+    if (fontSizeForLabels) {
+        locationLabelFontSize  = [fontSizeForLabels floatValue];
+        tuitionLabelFontSize = [fontSizeForLabels floatValue];
+        enrollmentLabelFontSize = [fontSizeForLabels floatValue];
+        schoolTypeLabelFontSize = [fontSizeForLabels floatValue];
+    }
+    UIFont *locationLabelFont = [UIFont fontWithName:locationLabelFontFamily size:locationLabelFontSize];
+    
+    UIFont *tuitionLabelFont = [UIFont fontWithName:tuitionLabelFontFamily size:tuitionLabelFontSize];
+    
+    UIFont *enrollmentLabelFont = [UIFont fontWithName:enrollmentLabelFontFamily size:enrollmentLabelFontSize];
+    
+    UIFont *schoolTypeLabelFont = [UIFont fontWithName:schoolTypeLabelFontFamily size:schoolTypeLabelFontSize];
+    
+    //  Set things
+    
+    //Main view
+    
+    self.title = mainViewTitle;
+    
+    //Location container view
+    
+    self.locationsContainerView.backgroundColor = locationContainerBackgroundColor;
+    
+    //Location Label
+    
+    self.locationsTitleLabel.textColor = locationLabelTextColor;
+    self.locationsTitleLabel.backgroundColor = locationLabelBackgroundColor;
+    self.locationsTitleLabel.font = locationLabelFont;
+    
+    
+    //Tuition container view
+    
+    self.tuitionContainerView.backgroundColor = tuitionContainerBackgroundColor;
+    
+    //Tuition Label
+    
+    self.tuitionLabel.textColor = tuitionLabelTextColor;
+    self.tuitionLabel.backgroundColor = tuitionLabelBackgroundcolor;
+    self.tuitionLabel.font = tuitionLabelFont;
+    
+    
+    //Enrollment Container view
+    
+    self.enrollmentContainerView.backgroundColor = enrollmentContainerBackgroundColor;
+    
+    //Enrollment Label
+    
+    self.enrollmentLabel.textColor = enrollmentLabelTextColor;
+    self.enrollmentLabel.backgroundColor = enrollmentLabelBackgroundColor;
+    self.enrollmentLabel.font = enrollmentLabelFont;
+    
+    
+    //School type container vew
+    
+    self.schoolTypeContainerView.backgroundColor = schoolTypeContainerBackgroundColor;
+    
+    //School Type Label
+    
+    self.schoolTypeLabel.textColor = schoolTypeLabelTextColor;
+    self.schoolTypeLabel.backgroundColor = schoolTypeLabelBackgroundColor;
+    self.schoolTypeLabel.font = schoolTypeLabelFont;
+    
+
+    
+    
+    
+    
+    //Misc button config
+    
+    [self.privateSchoolButton addTarget:self action:@selector(privatePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 @end
