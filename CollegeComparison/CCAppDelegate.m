@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0xF05746)];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor charcoalColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
                                                           [UIFont fontWithName:@"Avenir-Book" size:24.0], NSFontAttributeName,

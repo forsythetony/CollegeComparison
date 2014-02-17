@@ -216,6 +216,10 @@
     
     [createLocation.titleLabel setTextColor:[UIColor whiteColor]];
     
+    
+    [createLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [createLocation setHidden:NO];
     [footer addSubview:createLocation];
     
@@ -244,5 +248,22 @@
 -(void)privatePressed:(id) sender
 {
     [headerChart strokeChartToValue:[NSNumber numberWithInt:2000]];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"locationPicker"]) {
+        
+        CCLocationPickerViewController *vc = segue.destinationViewController;
+        
+        vc.delegate = self;
+    }
+}
+-(void)addLocation:(id) sender
+{
+    [self performSegueWithIdentifier:@"locationPicker" sender:self];
+}
+-(void)dismissAndPresentCCLocationPicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

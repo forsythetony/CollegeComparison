@@ -13,8 +13,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <PNCircleChart.h>
 #import "MUITCollegeDataProvider.h"
+#import "CCLocationPickerViewController.h"
 
-@interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerProtocol>
 
 //Header view
 @property (weak, nonatomic) IBOutlet UIView *collegeCountContainerView;
