@@ -31,8 +31,14 @@
                                                        [UIFont fontWithName:@"Avenir-Book" size:12.0], NSFontAttributeName,
                                                        nil] forState:UIControlStateNormal];
     
-
+    //  Keyboard settings
     
+    IQKeyboardManager *mgr = [IQKeyboardManager sharedManager];
+    
+    [mgr setEnable:YES];
+    [mgr setShouldResignOnTouchOutside:YES];
+    [mgr setEnableAutoToolbar:YES];
+    [mgr setToolbarManageBehaviour:IQAutoToolbarByTag];
     
     // Override point for customization after application launch.
 

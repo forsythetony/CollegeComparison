@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Colours.h>
-
+#import <IQKeyboardManager.h>
 @interface CCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

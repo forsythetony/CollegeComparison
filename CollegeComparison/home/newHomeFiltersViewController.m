@@ -330,5 +330,6 @@
     float down = tuitionsSlider.lowerValue;
     
     NSLog(@"\n\nThe lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
+    
 }
 @end
