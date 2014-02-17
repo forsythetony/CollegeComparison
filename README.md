@@ -6,7 +6,7 @@ Ucompare
 #####Coding
 - Anthony Forsythe
 - Josh Valdivieso
-- Scott Wood
+- Allen Ahner
 
 #####Design
 - Maura Howard - Lead Designer
