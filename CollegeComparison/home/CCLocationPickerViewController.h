@@ -13,6 +13,7 @@
 @protocol CCLocationPickerViewControllerProtocol <NSObject>
 
     - (void)dismissAndPresentCCLocationPicker;
+-(void)dismissAndAddLocation:(CCLocation*) location;
 
 @end
 
@@ -33,5 +34,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *zipTextField;
 
 - (IBAction)clickedDismiss:(id)sender;
+
+- (IBAction)clickedSave:(id)sender;
+- (IBAction)clickedCancel:(id)sender;
+
 
 @end

@@ -53,6 +53,18 @@
     
     [self.delegate dismissAndPresentCCLocationPicker];
 }
+
+- (IBAction)clickedSave:(id)sender {
+
+    
+    [self updateLocationObject];
+    
+    [self.delegate dismissAndAddLocation:theLocation];
+}
+
+- (IBAction)clickedCancel:(id)sender {
+    [self.delegate dismissAndPresentCCLocationPicker];
+}
 -(void)dataSetup
 {
     NSMutableArray *regionsArrray = [NSMutableArray arrayWithObjects:@"Northeast", @"Northwest", @"Southeast", @"Southwest", @"Midwest", nil];
@@ -106,5 +118,34 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+-(void)updateLocationObject
+{
+    NSString *city = self.cityTextField.text;
+    NSString *state = self.stateTextField.text;
+    NSString *zip = self.zipTextField.text;
+    
+    if (!city) {
+        city = @"";
+    }
+    if (!state) {
+        state = @"";
+    }
+    if (!zip) {
+        zip = @"";
+    }
+    
+    
+    //  Create location object
+    if (!theLocation) {
+        theLocation = [CCLocation new];
+    }
+    
+    theLocation.stringAddress = [NSString stringWithFormat:@"%@, %@ : %@", city, state, zip];
+    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    theLocation = nil;
 }
 @end

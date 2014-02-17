@@ -55,7 +55,7 @@
 #pragma mark Data Setup
 -(void)dataSetup
 {
-    locationsArray = [NSMutableArray arrayWithObjects:@"Fudge", @"Nudge", @"Pudge", nil];
+    locationsArray = [NSMutableArray new];
     
     
     //  Get colleges from data provider
@@ -177,7 +177,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [collegesFound count];
+    return [locationsArray count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -189,9 +189,15 @@
     
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     
+    CCLocation *theLocation = [locationsArray objectAtIndex:indexPath.row];
     
-    //[cell.textLabel setText:[collegesFound objectAtIndex:indexPath.row]];
+    NSString *textLabel = theLocation.stringAddress;
     
+    [cell.textLabel setText:textLabel];
+    
+    [cell setBackgroundColor:[UIColor charcoalColor]];
+    
+    [cell.textLabel setTextColor:[UIColor black75PercentColor]];
     return cell;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -331,5 +337,13 @@
     
     NSLog(@"\n\nThe lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
     
+}
+-(void)dismissAndAddLocation:(CCLocation *)location
+{
+    [locationsArray addObject:location];
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self.locationsTableView reloadData];
 }
 @end

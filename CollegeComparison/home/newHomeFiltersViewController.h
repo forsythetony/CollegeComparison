@@ -16,6 +16,7 @@
 #import "CCLocationPickerViewController.h"
 #import "NMRangeSlider.h"
 #import <IQKeyboardManager.h>
+#import "CCLocation.h"
 
 @interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerViewControllerProtocol>
 
