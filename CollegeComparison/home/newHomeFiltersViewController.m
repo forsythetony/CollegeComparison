@@ -284,6 +284,7 @@
 }
 -(void)configureRangeSlider
 {
+    //  Configure the frame for the tuition slider
     CGRect tuitionContainerBounds = [self.tuitionContainerView bounds];
     CGRect tuitionLabelBounds = [self.tuitionLabel bounds];
     
@@ -295,36 +296,51 @@
     tuitionSliderRect.size.width = tuitionContainerBounds.size.width;
     tuitionSliderRect.size.height = tuitionContainerBounds.size.height - tuitionLabelBounds.size.height;
     
-    NMRangeSlider *tuitionSlider = [[NMRangeSlider alloc] initWithFrame:tuitionSliderRect];
+    //  Initialize the tuition slider
+    tuitionsSlider = [[NMRangeSlider alloc] initWithFrame:tuitionSliderRect];
     
-    [tuitionSlider setMinimumValue:0.0];
-    [tuitionSlider setMaximumValue:100000];
+    //  Set the min and max values
+    [tuitionsSlider setMinimumValue:0.0];
+    [tuitionsSlider setMaximumValue:100000];
     
-    [tuitionSlider addTarget:self action:@selector(tuitionRangeDidChange:) forControlEvents:UIControlEventValueChanged];
+    //  Configure visual properties of slider
+    [tuitionsSlider setTintColor:CORALCOLOR];
+
+    //  Add this view controller to listen for slider's value change
+    [tuitionsSlider addTarget:self action:@selector(tuitionRangeDidChange:) forControlEvents:UIControlEventValueChanged];
     
-    [self.tuitionContainerView addSubview:tuitionSlider];
-    [tuitionSlider setUpperValue:100000 animated:YES];
-    [tuitionSlider setTintColor:CORALCOLOR];
-    tuitionsSlider = tuitionSlider;
+    //  Add as subview
+    [self.tuitionContainerView addSubview:tuitionsSlider];
+    
+    //  Animate the positioning of upper slider
+    [tuitionsSlider setUpperValue:100000 animated:YES];
     
     
-    //  Set up enrollment slider
     
+    
+    
+    //  ENROLLMENT SLIDER
+    
+    //  Set up the frame for enrollment slider
     CGRect enrollmentSliderFrame;
     
     enrollmentSliderFrame.origin.x = 0.0;
     enrollmentSliderFrame.origin.y = self.enrollmentContainerView.bounds.size.height - (self.enrollmentContainerView.bounds.size.height - self.enrollmentLabel.bounds.size.height);
     
     enrollmentSliderFrame.size.width = self.enrollmentContainerView.bounds.size.width;
-    
     enrollmentSliderFrame.size.height = self.enrollmentContainerView.bounds.size.height - self.enrollmentLabel.bounds.size.height;
     
-    
+    //  Instantiate enrollment slider
     enrollmentsSlider = [[NMRangeSlider alloc] initWithFrame:enrollmentSliderFrame];
     
+    //  Add this view controller as listener to value changes of slider
+    [enrollmentsSlider addTarget:self action:@selector(enrollmentRangeDidChange:) forControlEvents:UIControlEventValueChanged];
+    
+    //  Set minimum and maximum values for enrollment slider
     [enrollmentsSlider setMinimumValue:0.0];
     [enrollmentsSlider setMaximumValue:100000];
     
+    //  Configure visual properties of slider
     [enrollmentsSlider setTintColor:CORALCOLOR];
     [self.enrollmentContainerView addSubview:enrollmentsSlider];
     
@@ -338,6 +354,10 @@
     
     NSLog(@"\n\nThe lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
     
+}
+-(void)enrollmentRangeDidChange:(id) sender
+{
+    NSLog(@"Enrollment did change function!");
 }
 -(void)dismissAndAddLocation:(CCLocation *)location
 {
