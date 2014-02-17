@@ -8,7 +8,10 @@
 
 #import "CCLocationPickerViewController.h"
 
-@interface CCLocationPickerViewController ()
+@interface CCLocationPickerViewController () {
+    NSArray *regions;
+    CCLocation *theLocation;
+}
 
 @end
 
@@ -27,10 +30,17 @@
 {
     [super viewDidLoad];
     
-    [self aestheticsConfiguration];
-	// Do any additional setup after loading the view.
+    theLocation = [CCLocation new];
     
-    [self.view setBackgroundColor:[UIColor redColor]];
+    [self.regionPickerView setDataSource:self];
+    [self.regionPickerView setDelegate:self];
+    
+    [self.stateTextField setDelegate:self];
+    [self.cityTextField setDelegate:self];
+    [self.zipTextField setDelegate:self];
+    [self aestheticsConfiguration];
+    [self dataSetup];
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,21 +53,58 @@
     
     [self.delegate dismissAndPresentCCLocationPicker];
 }
+-(void)dataSetup
+{
+    NSMutableArray *regionsArrray = [NSMutableArray arrayWithObjects:@"Northeast", @"Northwest", @"Southeast", @"Southwest", @"Midwest", nil];
+    
+    [regionsArrray insertObject:@"None" atIndex:0];
+    
+    regions = [NSArray arrayWithArray:regionsArrray];
+    
+}
 -(void)aestheticsConfiguration
 {
     //  Set background color
     
         UIColor *mainViewBackgroundColor        =   [UIColor black75PercentColor];
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     self.view.backgroundColor = mainViewBackgroundColor;
+}
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    if (pickerView == self.regionPickerView) {
+        return 1;
+    }
+    else
+    {
+        return 1;
+    }
+}
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [regions count];
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [regions objectAtIndex:row];
+}
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSLog(@"\n\nSelected component %d row %d", component, row);
+    
+    theLocation.region = [regions objectAtIndex:row];
+    
+    NSLog(@"\n\nLocation object's region value is: %@\n\n,", theLocation.region);
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.stateTextField) {
+        NSLog(@"\n\n\nFUCK THIS SHITZ\n\n\n");
+    }
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

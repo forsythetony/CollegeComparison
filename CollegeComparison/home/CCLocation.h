@@ -11,7 +11,7 @@
 
 @interface CCLocation : NSObject
 
-//@property (nonatomic, strong) NSString *stringAddress;
-//@property (nonatomic, strong) 
+@property (nonatomic, strong) NSString *stringAddress;
+@property (nonatomic, strong) NSString *region;
+@
 @end
- 
