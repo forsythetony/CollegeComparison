@@ -98,6 +98,7 @@
         [[self schoolTypeLabel] setBackgroundColor:backgroundColor];
         [[self schoolTypeLabel] setTextColor:[UIColor blackColor]];
     
+    /*
     //Configure sliders
     
     //Default Colors
@@ -105,7 +106,7 @@
     UIColor *sliderFutureColor = [UIColor crimsonColor];
     UIColor *sliderButtonColor = [UIColor black50PercentColor];
     
-    /*
+    
         //Tuition Slider
         [[self tuitionSlider] setMaximumTrackTintColor:sliderFutureColor];
         [[self tuitionSlider] setMinimumTrackTintColor:sliderPastColor];
@@ -253,35 +254,7 @@
     //Set the gesture
     //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
-#pragma mark Event Handlers -
--(void)panelPressed:(id) sender
-{
-    [self.revealViewController rightRevealToggle:sender];
-}
--(void)privatePressed:(id) sender
-{
-    [headerChart strokeChartToValue:[NSNumber numberWithInt:1]];
-    NSLog(@"\n\nValue for upper slider is %lf\n\n", tuitionsSlider.upperValue);
-    
-}
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"locationPicker"]) {
-        
-        CCLocationPickerViewController *vc = segue.destinationViewController;
-        
-        vc.delegate = self;
-    }
-}
--(void)addLocation:(id) sender
-{
-    [self performSegueWithIdentifier:@"locationPicker" sender:self];
-}
--(void)dismissAndPresentCCLocationPicker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [[self locationsTableView] reloadData];
-}
+#pragma mark Range Slider Setup
 -(void)configureRangeSlider
 {
     //  Configure the frame for the tuition slider
@@ -305,7 +278,7 @@
     
     //  Configure visual properties of slider
     [tuitionsSlider setTintColor:CORALCOLOR];
-
+    
     //  Add this view controller to listen for slider's value change
     [tuitionsSlider addTarget:self action:@selector(tuitionRangeDidChange:) forControlEvents:UIControlEventValueChanged];
     
@@ -347,6 +320,24 @@
     [enrollmentsSlider setUpperValue:100000 animated:YES];
     
 }
+#pragma mark Event Handlers -
+#pragma mark Side Panel
+-(void)panelPressed:(id) sender
+{
+    [self.revealViewController rightRevealToggle:sender];
+}
+#pragma mark Buttons
+-(void)privatePressed:(id) sender
+{
+    [headerChart strokeChartToValue:[NSNumber numberWithInt:1]];
+    NSLog(@"\n\nValue for upper slider is %lf\n\n", tuitionsSlider.upperValue);
+    
+}
+-(void)addLocation:(id) sender
+{
+    [self performSegueWithIdentifier:@"locationPicker" sender:self];
+}
+#pragma mark Sliders
 -(void)tuitionRangeDidChange:(id) sender
 {
     float up = tuitionsSlider.upperValue;
@@ -362,6 +353,22 @@
     
     NSLog(@"\n\nEnrollment lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
     
+}
+#pragma mark Segue Preparation
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"locationPicker"]) {
+        
+        CCLocationPickerViewController *vc = segue.destinationViewController;
+        
+        vc.delegate = self;
+    }
+}
+#pragma mark Delegate Methods -
+-(void)dismissAndPresentCCLocationPicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[self locationsTableView] reloadData];
 }
 -(void)dismissAndAddLocation:(CCLocation *)location
 {
