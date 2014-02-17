@@ -824,7 +824,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FXJ-80-I1K">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="aKH-W7-pLd">
+                        <barButtonItem key="leftBarButtonItem" title="Go" id="aKH-W7-pLd">
                             <connections>
                                 <action selector="goPress:" destination="JaV-hr-HBn" id="lCB-2L-8Fw"/>
                             </connections>
