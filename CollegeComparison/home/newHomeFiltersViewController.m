@@ -290,11 +290,8 @@
     
     
     
-    
-    
     //  ENROLLMENT SLIDER
     
-    //  Set up the frame for enrollment slider
     CGRect enrollmentSliderFrame;
     
     enrollmentSliderFrame.origin.x = 0.0;
@@ -303,17 +300,17 @@
     enrollmentSliderFrame.size.width = self.enrollmentContainerView.bounds.size.width;
     enrollmentSliderFrame.size.height = self.enrollmentContainerView.bounds.size.height - self.enrollmentLabel.bounds.size.height;
     
-    //  Instantiate enrollment slider
+
     enrollmentsSlider = [[NMRangeSlider alloc] initWithFrame:enrollmentSliderFrame];
     
-    //  Add this view controller as listener to value changes of slider
+
     [enrollmentsSlider addTarget:self action:@selector(enrollmentRangeDidChange:) forControlEvents:UIControlEventValueChanged];
     
-    //  Set minimum and maximum values for enrollment slider
+
     [enrollmentsSlider setMinimumValue:0.0];
     [enrollmentsSlider setMaximumValue:100000];
     
-    //  Configure visual properties of slider
+
     [enrollmentsSlider setTintColor:CORALCOLOR];
     [self.enrollmentContainerView addSubview:enrollmentsSlider];
     
@@ -377,5 +374,9 @@
         
     }];
     [self.locationsTableView reloadData];
+}
+- (IBAction)goPress:(id)sender {
+    
+    [self performSegueWithIdentifier:@"searchResults" sender:self];
 }
 @end

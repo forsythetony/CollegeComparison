@@ -44,4 +44,9 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *panelViewButton;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *goButton;
+
+- (IBAction)goPress:(id)sender;
+
+
 @end
