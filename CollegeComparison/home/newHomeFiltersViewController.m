@@ -204,7 +204,9 @@
     
     UIView *footer = [[UIView alloc] initWithFrame:footerFrame];
     
-    [footer setBackgroundColor:[UIColor blueberryColor]];
+    [footer setBackgroundColor:[UIColor charcoalColor]];
+    
+    footer.layer.cornerRadius = 8.0;
     
     //  Create button
     
@@ -247,7 +249,7 @@
 }
 -(void)privatePressed:(id) sender
 {
-    [headerChart strokeChartToValue:[NSNumber numberWithInt:2000]];
+    [headerChart strokeChartToValue:[NSNumber numberWithInt:1]];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
