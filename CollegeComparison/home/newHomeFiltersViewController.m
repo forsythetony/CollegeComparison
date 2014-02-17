@@ -352,12 +352,16 @@
     float up = tuitionsSlider.upperValue;
     float down = tuitionsSlider.lowerValue;
     
-    NSLog(@"\n\nThe lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
+    NSLog(@"\n\nTuition lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
     
 }
 -(void)enrollmentRangeDidChange:(id) sender
 {
-    NSLog(@"Enrollment did change function!");
+    float up = enrollmentsSlider.upperValue;
+    float down = enrollmentsSlider.lowerValue;
+    
+    NSLog(@"\n\nEnrollment lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
+    
 }
 -(void)dismissAndAddLocation:(CCLocation *)location
 {
