@@ -20,6 +20,8 @@
     PNCircleChart *headerChart;
     
     NMRangeSlider *tuitionsSlider, *enrollmentsSlider;
+    
+    NSDictionary *theLook;
 }
 
 @end
@@ -57,14 +59,12 @@
 {
     locationsArray = [NSMutableArray new];
     
-    
     //  Get colleges from data provider
     MUITCollegeDataProvider *dataProvider = [MUITCollegeDataProvider new];
 
     NSArray *collegesRetrieved = [dataProvider getDummyColleges];
 
     collegesFound = [NSMutableArray arrayWithArray:collegesRetrieved];
-    
     
 }
 #pragma mark Visual Configuration
@@ -169,8 +169,11 @@
     [createLocation setTitle:@"+ Add Location" forState:UIControlStateNormal];
     
     
-    [createLocation.titleLabel setTextColor:[UIColor black25PercentColor]];
+
     
+    [createLocation setTitleColor:[[theLook objectForKey:@"locations"] objectForKey:@"buttonTextColor"] forState:UIControlStateNormal];
+    [createLocation setBackgroundColor:[[theLook objectForKey:@"locations"] objectForKey:@"buttonBackgroundColor"]];
+    [createLocation.titleLabel setFont:[[theLook objectForKey:@"locations"] objectForKey:@"buttonFont"]];
     
     [createLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -344,6 +347,14 @@
         NSString *locationLabelFontFamily           =   @"Avenir-Book";
         float locationLabelFontSize                 =   16.0;
     
+        //  Location table view button label
+    
+        UIColor *locationTableViewButtonLabelTextColor          =   [UIColor black25PercentColor];
+        UIColor *locationTableViewButtonLabelBackgroundColor    =   [UIColor clearColor];
+        
+        NSString *locationTableViewButtonLabelFontFamily        =   @"Avenir-Heavy";
+        float locationTableViewButtonLabelFontSize              =   16.0;
+    
         //  Tuition Label
     
         UIColor *tuitionLabelTextColor              =   [UIColor black25PercentColor];
@@ -404,6 +415,8 @@
     
     UIFont *schoolTypeLabelFont = [UIFont fontWithName:schoolTypeLabelFontFamily size:schoolTypeLabelFontSize];
     
+    UIFont *locationTableViewButtonLabelFont = [UIFont fontWithName:locationTableViewButtonLabelFontFamily size:locationTableViewButtonLabelFontSize];
+    
     //  Set things
     
     //Main view
@@ -461,6 +474,16 @@
     //Misc button config
     
     [self.privateSchoolButton addTarget:self action:@selector(privatePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //  Create dictionary
+    
+    
+    
+    NSDictionary *locationsTableView = [NSDictionary dictionaryWithObjectsAndKeys:locationTableViewButtonLabelTextColor, @"buttonTextColor", locationTableViewButtonLabelBackgroundColor, @"buttonBackgroundColor", locationTableViewButtonLabelFont, @"buttonFont", nil];
+    
+    NSMutableDictionary *configDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:locationsTableView, @"locations", nil];
+    
+    theLook = [NSDictionary dictionaryWithDictionary:configDictionary];
     
 }
 @end
