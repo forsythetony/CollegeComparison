@@ -746,10 +746,6 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="QHD-dg-ZWg">
-                                        <rect key="frame" x="18" y="29" width="284" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             </view>
@@ -765,10 +761,6 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aq0-IO-rFt">
-                                        <rect key="frame" x="18" y="29" width="284" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </view>
@@ -845,7 +837,6 @@
                         <outlet property="collegeCountContainerView" destination="oIM-mP-yTv" id="nWw-f4-c4A"/>
                         <outlet property="enrollmentContainerView" destination="klI-1g-Iqk" id="fJ3-Cw-KPM"/>
                         <outlet property="enrollmentLabel" destination="K2J-Hx-VKA" id="6se-52-C6D"/>
-                        <outlet property="enrollmentSlider" destination="aq0-IO-rFt" id="Vq2-bs-h8O"/>
                         <outlet property="locationsContainerView" destination="wCk-mD-bNE" id="9bl-01-LrX"/>
                         <outlet property="locationsTableView" destination="rFI-Mg-5qU" id="Ezi-C7-luh"/>
                         <outlet property="locationsTitleLabel" destination="eTJ-pz-F8j" id="dOx-Qm-ivK"/>
@@ -856,7 +847,6 @@
                         <outlet property="schoolTypeLabel" destination="cqa-GP-Gvh" id="XPX-vB-bB1"/>
                         <outlet property="tuitionContainerView" destination="mde-hR-k7i" id="nYQ-Zx-1WW"/>
                         <outlet property="tuitionLabel" destination="pL3-Ks-q4w" id="Eoz-f8-fT5"/>
-                        <outlet property="tuitionSlider" destination="QHD-dg-ZWg" id="MoF-8q-yuc"/>
                         <segue destination="9Nd-Qe-cGp" kind="modal" identifier="locationPicker" id="iUD-kN-Btw"/>
                     </connections>
                 </viewController>

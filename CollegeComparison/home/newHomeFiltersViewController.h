@@ -14,6 +14,7 @@
 #import <PNCircleChart.h>
 #import "MUITCollegeDataProvider.h"
 #import "CCLocationPickerViewController.h"
+#import "NMRangeSlider.h"
 
 @interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerViewControllerProtocol>
 
@@ -28,12 +29,10 @@
 //Tuition Slider
 @property (weak, nonatomic) IBOutlet UIView *tuitionContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *tuitionLabel;
-@property (weak, nonatomic) IBOutlet UISlider *tuitionSlider;
 
 //Enrollment Slider
 @property (weak, nonatomic) IBOutlet UIView *enrollmentContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *enrollmentLabel;
-@property (weak, nonatomic) IBOutlet UISlider *enrollmentSlider;
 
 //School Type
 @property (weak, nonatomic) IBOutlet UIView *schoolTypeContainerView;

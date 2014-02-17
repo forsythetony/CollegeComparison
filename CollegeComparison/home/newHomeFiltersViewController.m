@@ -18,6 +18,8 @@
     NSMutableArray *collegesFound;
     
     PNCircleChart *headerChart;
+    
+    NMRangeSlider *tuitionsSlider, *enrollmentsSlider;
 }
 
 @end
@@ -47,6 +49,8 @@
     [self createHeaderView];
     
     [self createCircleCollegeCount];
+    
+    [self configureRangeSlider];
 }
 #pragma mark Data Setup
 -(void)dataSetup
@@ -101,7 +105,7 @@
     UIColor *sliderFutureColor = [UIColor crimsonColor];
     UIColor *sliderButtonColor = [UIColor black50PercentColor];
     
-    
+    /*
         //Tuition Slider
         [[self tuitionSlider] setMaximumTrackTintColor:sliderFutureColor];
         [[self tuitionSlider] setMinimumTrackTintColor:sliderPastColor];
@@ -112,6 +116,7 @@
         [[self enrollmentSlider] setMaximumTrackTintColor:sliderFutureColor];
         [[self enrollmentSlider] setThumbTintColor:sliderButtonColor];
     
+    */
     
     [self.privateSchoolButton addTarget:self action:@selector(privatePressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -240,7 +245,7 @@
     _panelViewButton.action = @selector(panelPressed:);
     
     //Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 #pragma mark Event Handlers -
 -(void)panelPressed:(id) sender
@@ -250,6 +255,8 @@
 -(void)privatePressed:(id) sender
 {
     [headerChart strokeChartToValue:[NSNumber numberWithInt:1]];
+    NSLog(@"\n\nValue for upper slider is %lf\n\n", tuitionsSlider.upperValue);
+    
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -267,5 +274,62 @@
 -(void)dismissAndPresentCCLocationPicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)configureRangeSlider
+{
+    CGRect tuitionContainerBounds = [self.tuitionContainerView bounds];
+    CGRect tuitionLabelBounds = [self.tuitionLabel bounds];
+    
+    CGRect tuitionSliderRect;
+    
+    tuitionSliderRect.origin.x = 0.0;
+    tuitionSliderRect.origin.y = tuitionContainerBounds.size.height - (tuitionContainerBounds.size.height -tuitionLabelBounds.size.height);
+    
+    tuitionSliderRect.size.width = tuitionContainerBounds.size.width;
+    tuitionSliderRect.size.height = tuitionContainerBounds.size.height - tuitionLabelBounds.size.height;
+    
+    NMRangeSlider *tuitionSlider = [[NMRangeSlider alloc] initWithFrame:tuitionSliderRect];
+    
+    [tuitionSlider setMinimumValue:0.0];
+    [tuitionSlider setMaximumValue:100000];
+    [tuitionSlider setUpperValue:100000];
+    
+    [tuitionSlider addTarget:self action:@selector(tuitionRangeDidChange:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.tuitionContainerView addSubview:tuitionSlider];
+    
+    [tuitionSlider setTintColor:CORALCOLOR];
+    tuitionsSlider = tuitionSlider;
+    
+    
+    //  Set up enrollment slider
+    
+    CGRect enrollmentSliderFrame;
+    
+    enrollmentSliderFrame.origin.x = 0.0;
+    enrollmentSliderFrame.origin.y = self.enrollmentContainerView.bounds.size.height - (self.enrollmentContainerView.bounds.size.height - self.enrollmentLabel.bounds.size.height);
+    
+    enrollmentSliderFrame.size.width = self.enrollmentContainerView.bounds.size.width;
+    
+    enrollmentSliderFrame.size.height = self.enrollmentContainerView.bounds.size.height - self.enrollmentLabel.bounds.size.height;
+    
+    
+    enrollmentsSlider = [[NMRangeSlider alloc] initWithFrame:enrollmentSliderFrame];
+    
+    [enrollmentsSlider setMinimumValue:0.0];
+    [enrollmentsSlider setMaximumValue:100000];
+    
+    [enrollmentsSlider setTintColor:CORALCOLOR];
+    [self.enrollmentContainerView addSubview:enrollmentsSlider];
+    
+    [enrollmentsSlider setUpperValue:100000 animated:YES];
+    
+}
+-(void)tuitionRangeDidChange:(id) sender
+{
+    float up = tuitionsSlider.upperValue;
+    float down = tuitionsSlider.lowerValue;
+    
+    NSLog(@"\n\nThe lower value was: %lf\nThe upper value was: %lf\n\n", down, up);
 }
 @end
