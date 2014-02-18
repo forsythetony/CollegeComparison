@@ -123,11 +123,35 @@
     
     [self.theToolbar setTranslucent:YES];
     [self.theToolbar setBackgroundColor:toolbarTintColor];
-    [self.theToolbar setTintColor:toolbarTintColor];
+
     [self.theToolbar setBarTintColor:toolbarTintColor];
     
-    [self.saveButton setTintColor:toolbarButtonTextColor];
+    //[self.saveButton setTintColor:toolbarButtonTextColor];
     
+    float saveButtonSize = 25.0;
+    
+    FAKFontAwesome *saveButton = [FAKFontAwesome floppyOIconWithSize:saveButtonSize];
+    
+    [saveButton addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    //[saveButton addAttribute:NSBackgroundColorAttributeName value:[UIColor black50PercentColor]];
+    
+    UIBarButtonItem *saveIconButton = [[UIBarButtonItem alloc] initWithImage:[saveButton imageWithSize:CGSizeMake(saveButtonSize, saveButtonSize)] style:UIBarButtonItemStyleDone target:self action:@selector(saveItem:)];
+    
+//    self.saveButton = saveIconButton;
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    
+    FAKIonIcons *cancelIcon = [FAKIonIcons closeIconWithSize:saveButtonSize];
+    
+    [cancelIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithImage:[cancelIcon imageWithSize:CGSizeMake(saveButtonSize, saveButtonSize)] style:UIBarButtonItemStylePlain target:self action:@selector(userCanceled:)];
+    
+    
+    NSArray *items = [NSArray arrayWithObjects:cancelButton, spacer, saveIconButton, nil];
+    
+    [self.theToolbar setItems:items animated:YES];
     //Picker View
     
     UIFont *pickerViewFont = [UIFont fontWithName:pickerViewFontFamily size:pickerViewFontSize];
@@ -244,6 +268,18 @@
     newView.text = [regions objectAtIndex:row];
     
     return newView;
+}
+-(void)saveItem:(id) sender
+{
+    [self updateLocationObject];
+    
+    [self.delegate dismissAndAddLocation:theLocation];
+
+}
+-(void)userCanceled:(id) sender
+{
+    [self.delegate dismissAndPresentCCLocationPicker];
+
 }
 
 @end

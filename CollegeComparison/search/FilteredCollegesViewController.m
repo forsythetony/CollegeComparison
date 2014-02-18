@@ -55,11 +55,34 @@ NSArray *searchResults;
 //    
 //    self.selectButton.tintColor = [UIColor whiteColor];
     
-    self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare"
-                                                          style:UIBarButtonItemStyleBordered
-                                                         target:self
-                                                         action:@selector(selectCollegesToCompare:)];
+    float sizeOfIcon = 25.0;
+    
+    FAKFoundationIcons *compare = [FAKFoundationIcons graphBarIconWithSize:sizeOfIcon];
+    
+    [compare addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    UIImage *compareImage = [compare imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)];
+    
+    self.compareButton = [[UIBarButtonItem alloc] initWithImage:compareImage landscapeImagePhone:compareImage style:UIBarButtonItemStylePlain target:self action:@selector(selectCollegesToCompare:)];
+//    
+//    self.compareButton = [[UIBarButtonItem alloc] initWithTitle:@"Compare"
+//                                                          style:UIBarButtonItemStyleBordered
+//                                                         target:self
+//                                                         action:@selector(selectCollegesToCompare:)];
 
+    FAKIonIcons *filters = [FAKIonIcons levelsIconWithSize:sizeOfIcon];
+    
+    [filters addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIImage *filtersImage = [filters imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:filtersImage style:UIBarButtonItemStylePlain target:self action:@selector(goBackOneViewController)];
+
+    
+    
+    
+
+    
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
     self.compareButton.tintColor = [UIColor whiteColor];
     
     self.compareButton.enabled = NO;
@@ -84,6 +107,23 @@ NSArray *searchResults;
 -(void)viewDidDisappear:(BOOL)animated
 {
     [self resetTableView];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    /*
+    float sizeOfIcon = 25.0;
+    
+    FAKFontAwesome *filters = [FAKFontAwesome chevronLeftIconWithSize:sizeOfIcon];
+    
+    [filters addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIImage *filtersImage = [filters imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:filtersImage style:UIBarButtonItemStylePlain target:self action:@selector(goBackOneViewController)];
+     */
+//        self.navigationItem.backBarButtonItem.title = @"";
+//
+//        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 #pragma  mark - UINavigationBar attributes
@@ -206,8 +246,30 @@ NSArray *searchResults;
         NSMutableArray *leftUtilityButtons = [NSMutableArray new];
         NSMutableArray *rightUtilityButtons = [NSMutableArray new];
         
-        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor grapefruitColor] title:@"Compare"];
-        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor blueberryColor] title:@"Bookmark"];
+        float sizeOfIcon = 25.0;
+
+        
+        FAKFontAwesome *compare = [FAKFontAwesome plusIconWithSize:sizeOfIcon];
+        [compare addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        
+        UIImage *compareImage = [compare imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)];
+        
+        [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor hollyGreenColor] icon:[self createSpecialImageView]];
+        
+        
+        
+        
+        
+        sizeOfIcon = 30.0;
+        
+        FAKIonIcons *bookmark = [FAKIonIcons bookmarkIconWithSize:sizeOfIcon + 3];
+        
+        [bookmark addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        
+        UIImage *bookmarkImage = [bookmark imageWithSize:CGSizeMake(sizeOfIcon + 3, sizeOfIcon + 3)];
+        
+        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor crimsonColor] icon:bookmarkImage];
+        
         
         cell.leftUtilityButtons = leftUtilityButtons;
         cell.rightUtilityButtons = rightUtilityButtons;
@@ -403,6 +465,20 @@ NSArray *searchResults;
             [cell setSelected:NO];
             [collegesImGoingToCompare removeObject:[self.universitiesPassed objectAtIndex:cell.tag]];
             
+            NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+            
+            FAKFontAwesome *minusButton = [FAKFontAwesome minusCircleIconWithSize:30.0];
+            
+            [minusButton addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+            
+            UIImage *minusImage = [minusButton imageWithSize:CGSizeMake(30.0, 30.0)];
+            
+            [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor grapeColor] icon:minusImage];
+            
+            [cell setLeftUtilityButtons:[NSArray arrayWithArray:leftUtilityButtons]];
+            
+            [self.tableView reloadData];
+            
         }
         
         
@@ -419,11 +495,93 @@ NSArray *searchResults;
         }
     }
 }
+-(void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    
+    NSString *collegeName = [[self.universitiesPassed objectAtIndex:cell.tag] name];
+    NSString *notification = [NSString stringWithFormat:@"Bookmarked Added!"];
+    
+    UIFont *notificationFont = [UIFont fontWithName:@"Avenir-Heavy" size:13.0];
+    
+    FAKFoundationIcons *bmk = [FAKFoundationIcons bookmarkIconWithSize:10.0];
+    
+    [bmk addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIImage *bmkImage = [bmk imageWithSize:CGSizeMake(10.0, 10.0)];
+    
+    NSDictionary *options = @{kCRToastTextKey : notification,
+                              kCRToastFontKey : notificationFont,
+                              kCRToastTextColorKey : [UIColor whiteColor],
+                              kCRToastTextAlignmentKey : @(NSTextAlignmentLeft),
+                              kCRToastBackgroundColorKey : [UIColor crimsonColor],
+                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeLinear),
+                              kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeLinear),
+                              kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionBottom),
+                              kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
+                              kCRToastNotificationTypeKey   : @(CRToastTypeStatusBar),
+                              kCRToastAnimationInTimeIntervalKey : @(0.4),
+                              kCRToastAnimationOutTimeIntervalKey : @(0.3),
+                              kCRToastTimeIntervalKey : @(1.2),
+                              kCRToastImageKey: bmkImage,
+                              };
+    
+                              [CRToastManager showNotificationWithOptions:options
+                                                          completionBlock:^{
+                                                              NSLog(@"Completed");
+                                                          }];
+    
+    [cell hideUtilityButtonsAnimated:YES];
+}
 -(void)resetColleges
 {
     for (CollegeSearchCell* cell in selectedColleges) {
         [cell setSelected:NO];
     }
 }
-
+-(void)goBackOneViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(UIImage*)createSpecialImageView
+{
+    
+    float modifier = 0.8;
+    
+    float totalSize = 35.0 * modifier;
+    float totalHeight = 40.0 * modifier;
+    
+    float plusSize = 16.0 * modifier;
+    
+    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, totalSize, totalHeight)];
+    
+    UIImageView *first = [[UIImageView alloc] initWithFrame:CGRectMake((totalSize / 2.0), 0.0, plusSize, plusSize)];
+    
+    
+    
+    FAKIonIcons *plus = [FAKIonIcons plusIconWithSize:plusSize];
+    [plus addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    [first setImage:[plus imageWithSize:CGSizeMake(plusSize, plusSize)]];
+    
+    UIImageView *second = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, totalHeight - totalSize, totalSize, totalSize)];
+    
+    FAKIonIcons *graphs = [FAKIonIcons statsBarsIconWithSize:totalSize];
+    [graphs addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    [second setImage:[graphs imageWithSize:CGSizeMake(totalSize, totalSize)]];
+    
+    [mainView addSubview:first];
+    [mainView addSubview:second];
+    
+    
+    
+    
+    
+    UIGraphicsBeginImageContextWithOptions(mainView.bounds.size, NO, 0.0);
+    [    mainView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
 @end

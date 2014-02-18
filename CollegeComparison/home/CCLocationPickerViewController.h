@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Colours.h>
 #import "CCLocation.h"
+#import <FontAwesomeKit/FontAwesomeKit.h>
 
 @protocol CCLocationPickerViewControllerProtocol <NSObject>
 

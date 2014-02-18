@@ -60,6 +60,7 @@
     
     //[application setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         [application setStatusBarStyle:UIStatusBarStyleDefault];
         self.window.clipsToBounds =YES;

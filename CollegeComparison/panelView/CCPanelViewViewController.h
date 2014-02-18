@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FontAwesomeKit/FontAwesomeKit.h>
+#import <Colours.h>
 
 @interface CCPanelViewViewController : UITableViewController
-
-
 @end

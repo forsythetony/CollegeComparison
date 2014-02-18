@@ -101,6 +101,7 @@
 		BAB6506118B1CBCF00919522 /* slider-metal-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB6504518B1CBCF00919522 /* slider-metal-trackBackground.png */; };
 		BAB6506218B1CBCF00919522 /* slider-metal-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB6504618B1CBCF00919522 /* slider-metal-trackBackground@2x.png */; };
 		BAB6506318B1CBCF00919522 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB6504818B1CBCF00919522 /* NMRangeSlider.m */; };
+		BACCD90118B38ACE0033896B /* linen.png in Resources */ = {isa = PBXBuildFile; fileRef = BACCD90018B38ACE0033896B /* linen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,7 @@
 		BAB6504618B1CBCF00919522 /* slider-metal-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground@2x.png"; sourceTree = "<group>"; };
 		BAB6504718B1CBCF00919522 /* NMRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMRangeSlider.h; path = home/rangeSlider/NMRangeSlider/NMRangeSlider.h; sourceTree = "<group>"; };
 		BAB6504818B1CBCF00919522 /* NMRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMRangeSlider.m; path = home/rangeSlider/NMRangeSlider/NMRangeSlider.m; sourceTree = "<group>"; };
+		BACCD90018B38ACE0033896B /* linen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linen.png; path = panelView/images/linen.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +441,7 @@
 		BA98F19818814B6100752303 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BACCD90018B38ACE0033896B /* linen.png */,
 				BA75EE661884D5C20087BC15 /* sync_image.png */,
 				BA75EE641884D5710087BC15 /* pixel_weave.png */,
 				BA75EE5C188460240087BC15 /* menuBarsWhite.png */,
@@ -707,6 +710,7 @@
 				BA75EDF51881EBCC0087BC15 /* bookmarks_navbar_icon@2x.png in Resources */,
 				BA75EDDB1881EB900087BC15 /* CCAnimationsScreenViewController.xib in Resources */,
 				BA75EDCC1881EB7A0087BC15 /* custom_star_icon.png in Resources */,
+				BACCD90118B38ACE0033896B /* linen.png in Resources */,
 				BAB6505618B1CBCF00919522 /* slider-default7-track@2x.png in Resources */,
 				BA75EDCE1881EB7A0087BC15 /* highlighted_star.png in Resources */,
 				BAB6504E18B1CBCF00919522 /* slider-default-track@2x.png in Resources */,

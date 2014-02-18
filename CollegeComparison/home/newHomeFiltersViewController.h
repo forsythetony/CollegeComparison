@@ -17,6 +17,7 @@
 #import "NMRangeSlider.h"
 #import <IQKeyboardManager.h>
 #import "CCLocation.h"
+#import <FontAwesomeKit/FontAwesomeKit.h>
 
 @interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerViewControllerProtocol>
 
@@ -49,5 +50,9 @@
 
 - (IBAction)goPress:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *locationIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *tuitionIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *enrollmentIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *schoolTypeIcon;
 
 @end

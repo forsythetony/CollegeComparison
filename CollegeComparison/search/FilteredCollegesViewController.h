@@ -19,6 +19,9 @@
 #import "CCAnimationPageViewController.h"
 #import "CollegeSearchCell.h"
 #import <Colours.h>
+#import <CRToast.h>
+#import <FontAwesomeKit.h>
+#import <FontAwesomeKit/FAKFoundationIcons.h>
 
 @interface FilteredCollegesViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, SWTableViewCellDelegate>
 

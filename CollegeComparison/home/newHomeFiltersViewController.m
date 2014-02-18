@@ -165,8 +165,24 @@
     
     //  Create button
     
-    UIButton *createLocation = [[UIButton alloc] initWithFrame:footerFrame];
+    float sizeOfIcon = 20.0;
     
+    FAKIonIcons *plus = [FAKIonIcons plusCircledIconWithSize:sizeOfIcon];
+    
+    [plus addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    
+    
+    UIButton *createLocation = [[UIButton alloc] initWithFrame:CGRectMake((footerFrame.size.width / 2.0) - (sizeOfIcon / 2.0), 5.0, sizeOfIcon, sizeOfIcon)];
+    
+    [createLocation setImage:[plus imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)] forState:UIControlStateNormal];
+    
+    [plus addAttribute:NSForegroundColorAttributeName value:[UIColor successColor]];
+    
+    [createLocation setImage:[plus imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)] forState:UIControlStateSelected];
+    
+    [createLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+
+    /*
     [createLocation.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [createLocation setTitle:@"+ Add Location" forState:UIControlStateNormal];
     
@@ -178,6 +194,8 @@
     [createLocation.titleLabel setFont:[[theLook objectForKey:@"locations"] objectForKey:@"buttonFont"]];
     
     [createLocation addTarget:self action:@selector(addLocation:) forControlEvents:UIControlEventTouchUpInside];
+    
+    */
     
     
     [createLocation setHidden:NO];
@@ -203,6 +221,16 @@
 #pragma mark Range Slider Setup
 -(void)configureRangeSlider
 {
+    float handleSize = 20.0;
+    
+    FAKIonIcons *lowerHandle = [FAKIonIcons ios7CircleFilledIconWithSize:handleSize];
+    
+    [lowerHandle addAttribute:NSForegroundColorAttributeName value:[UIColor charcoalColor]];
+    
+    UIImage *lowerHandleImage = [lowerHandle imageWithSize:CGSizeMake(handleSize, handleSize)];
+
+    
+    
     //  Configure the frame for the tuition slider
     CGRect tuitionContainerBounds = [self.tuitionContainerView bounds];
     CGRect tuitionLabelBounds = [self.tuitionLabel bounds];
@@ -256,12 +284,24 @@
     [enrollmentsSlider setMinimumValue:0.0];
     [enrollmentsSlider setMaximumValue:100000];
     
+    
 
     [enrollmentsSlider setTintColor:CORALCOLOR];
     [self.enrollmentContainerView addSubview:enrollmentsSlider];
     
     [enrollmentsSlider setUpperValue:100000 animated:YES];
     
+    [enrollmentsSlider setLowerHandleImageHighlighted:lowerHandleImage];
+    [enrollmentsSlider setLowerHandleImageNormal:lowerHandleImage];
+    
+    [enrollmentsSlider setUpperHandleImageHighlighted:lowerHandleImage];
+    [enrollmentsSlider setUpperHandleImageNormal:lowerHandleImage];
+    
+    [tuitionsSlider setLowerHandleImageHighlighted:lowerHandleImage];
+    [tuitionsSlider setLowerHandleImageNormal:lowerHandleImage];
+    
+    [tuitionsSlider setUpperHandleImageHighlighted:lowerHandleImage];
+    [tuitionsSlider setUpperHandleImageNormal:lowerHandleImage];
 }
 #pragma mark Event Handlers -
 #pragma mark Side Panel
@@ -343,15 +383,15 @@
     
         //  Location label
     
-        UIColor *locationLabelTextColor             =   [UIColor black25PercentColor];
+        UIColor *locationLabelTextColor             =   [UIColor charcoalColor];
         UIColor *locationLabelBackgroundColor       =   [UIColor clearColor];
         
-        NSString *locationLabelFontFamily           =   @"Avenir-Book";
+        NSString *locationLabelFontFamily           =   @"Avenir-Heavy";
         float locationLabelFontSize                 =   16.0;
     
         //  Location table view button label
     
-        UIColor *locationTableViewButtonLabelTextColor          =   [UIColor black25PercentColor];
+        UIColor *locationTableViewButtonLabelTextColor          =   [UIColor black75PercentColor];
         UIColor *locationTableViewButtonLabelBackgroundColor    =   [UIColor clearColor];
         
         NSString *locationTableViewButtonLabelFontFamily        =   @"Avenir-Heavy";
@@ -359,26 +399,26 @@
     
         //  Tuition Label
     
-        UIColor *tuitionLabelTextColor              =   [UIColor black25PercentColor];
+        UIColor *tuitionLabelTextColor              =   [UIColor charcoalColor];
         UIColor *tuitionLabelBackgroundcolor        =   [UIColor clearColor];
     
-        NSString *tuitionLabelFontFamily            =   @"Avenir-Book";
+        NSString *tuitionLabelFontFamily            =   @"Avenir-Heavy";
         float tuitionLabelFontSize                  =   14.0;
     
         //  Enrollment label
     
-        UIColor *enrollmentLabelTextColor           =   [UIColor black25PercentColor];
+        UIColor *enrollmentLabelTextColor           =   [UIColor charcoalColor];
         UIColor *enrollmentLabelBackgroundColor     =   [UIColor clearColor];
         
-        NSString *enrollmentLabelFontFamily         =   @"Avenir-Book";
+        NSString *enrollmentLabelFontFamily         =   @"Avenir-Heavy";
         float enrollmentLabelFontSize               =   14.0;
     
         //  School Type Label
     
-        UIColor *schoolTypeLabelTextColor           =   [UIColor black25PercentColor];
+        UIColor *schoolTypeLabelTextColor           =   [UIColor charcoalColor];
         UIColor *schoolTypeLabelBackgroundColor     =   [UIColor clearColor];
         
-        NSString *schoolTypeLabelFontFamily         =   @"Avenir-Book";
+        NSString *schoolTypeLabelFontFamily         =   @"Avenir-Heavy";
         float schoolTypeLabelFontSize               =   14.0;
     
     //  Container views
@@ -401,6 +441,7 @@
     
 /*************** DO NOT CHANGE ANYTHING BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING****************/
     
+    [self setUpIcons];
     //  Create fonts
     
     if (fontSizeForLabels) {
@@ -429,6 +470,7 @@
     
     self.locationsContainerView.backgroundColor = locationContainerBackgroundColor;
     
+//    [self.locationsTableView setBackgroundColor:[UIColor black50PercentColor]];
     //Location Label
     
     self.locationsTitleLabel.textColor = locationLabelTextColor;
@@ -469,7 +511,18 @@
     self.schoolTypeLabel.font = schoolTypeLabelFont;
     
 
+    //  Left bar button
     
+    float sizeOfIcon = 25.0;
+    
+    FAKFoundationIcons *checkmark = [FAKFoundationIcons magnifyingGlassIconWithSize:sizeOfIcon];
+    
+    [checkmark addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIImage *checkmarkImage = [checkmark imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon + 5.0)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem  alloc] initWithImage:checkmarkImage style:UIBarButtonItemStylePlain target:self action:@selector(goToResults)];
+
     
     
     
@@ -512,8 +565,51 @@
     [theControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor black25PercentColor], NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:16.0]} forState:UIControlStateNormal];
     
     [self.schoolTypeContainerView addSubview:theControl];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    float sizeOfIcon = 25.0;
+    
+    FAKFoundationIcons *theCheckmark = [FAKFoundationIcons magnifyingGlassIconWithSize:sizeOfIcon];
+    
+    [theCheckmark addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIImage *checkmarkImage = [theCheckmark imageWithSize:CGSizeMake(sizeOfIcon, sizeOfIcon)];
     
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem  alloc] initWithImage:checkmarkImage style:UIBarButtonItemStylePlain target:self action:@selector(goToResults)];
+    
+    
+}
+-(void)goToResults
+{
+    [self performSegueWithIdentifier:@"searchResults" sender:self];
+}
+-(void)setUpIcons
+{
+    float theSize = 20.0;
+    CGSize sizeSize = CGSizeMake(theSize, theSize);
+    
+    UIColor *foregroundColor = UIColorFromRGB(0x69AEEF);
+    
+    FAKIonIcons *locationIcon = [FAKIonIcons androidEarthIconWithSize:theSize];
+    [locationIcon addAttribute:NSForegroundColorAttributeName value:foregroundColor];
+    
+    [self.locationIcon setImage:[locationIcon imageWithSize:sizeSize]];
+    
+    FAKFoundationIcons *tuitionIcon = [FAKFoundationIcons dollarIconWithSize:theSize];
+    [tuitionIcon addAttribute:NSForegroundColorAttributeName value:foregroundColor];
+    
+    [self.tuitionIcon setImage:[tuitionIcon imageWithSize:sizeSize]];
+    
+    FAKFoundationIcons *enrollmentIcon = [FAKFoundationIcons torsosAllIconWithSize:theSize];
+    [enrollmentIcon addAttribute:NSForegroundColorAttributeName value:foregroundColor];
+    
+    [self.enrollmentIcon setImage:[enrollmentIcon imageWithSize:sizeSize]];
+    
+    FAKFontAwesome *schoolTypeIcon = [FAKFontAwesome buildingOIconWithSize:theSize];
+    [schoolTypeIcon addAttribute:NSForegroundColorAttributeName value:foregroundColor];
+    [self.schoolTypeIcon setImage:[schoolTypeIcon imageWithSize:sizeSize]];
     
 }
 @end

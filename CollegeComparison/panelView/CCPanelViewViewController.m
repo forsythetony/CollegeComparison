@@ -13,12 +13,14 @@
 #define SECTIONHEADERHEIGHT 30.0
 #define WIDTHOFPANEL 150.0
 #define LEFTPADDINGFORTABLECELLS 65.0
+#define ICONSIZE 19.0
 
 #define CORAL [UIColor colorWithRed:205.0/255.0 green:86.0/255.0 blue:72.0/255.0 alpha:1.0];
 
 @interface CCPanelViewViewController () {
     UIImageView *syncImage;
     BOOL animating;
+    NSArray *images;
 }
 
 @property (nonatomic, strong) NSArray *menuItems;
@@ -39,8 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self buttonConfig];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pixel_weave.png"]];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen.png"]];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
    
     
@@ -53,6 +56,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 
@@ -86,7 +90,7 @@
     
     return cell;
 }
-
+/*
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     switch (section) {
@@ -99,6 +103,7 @@
             break;
     }
 }
+ */
 #pragma mark Configure Cell -
 -(UITableViewCell*)configureCell:(UITableViewCell*) theCell WithIdentifier:(NSString*) name
 {
@@ -111,7 +116,8 @@
     UIFont *titleFont = [UIFont
                          fontWithName:@"Avenir-Book"
                          size:20.0];
-    UIColor *backgroundColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+//    UIColor *backgroundColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+    UIColor *backgroundColor = [UIColor charcoalColor];
     
     UIColor *textColor = CORALCOLOR;
     
@@ -144,12 +150,37 @@
     [theCell.contentView setBackgroundColor:backgroundColor];
     theCell.selectionStyle = UITableViewCellEditingStyleNone;
     
+    //Image view
+    
+    float theSizer = ICONSIZE;
+    
+    UIImageView *theImageView = [[UIImageView alloc] initWithFrame:CGRectMake(LEFTPADDINGFORTABLECELLS - 19.0, 11.0, theSizer, theSizer)];
+    
+    UIImage *theImageToSet;
+    
+    if ([name isEqualToString:@"Home"]) {
+        theImageToSet = [images objectAtIndex:0];
+        
+    }
+    else if ([name isEqualToString:@"Bookmarks"])
+    {
+        theImageToSet = [images objectAtIndex:1];
+    }
+    else if ([name isEqualToString:@"Settings"])
+    {
+        theImageToSet = [images objectAtIndex:2];
+    }
+    
+    [theImageView setImage:theImageToSet];
+    
     //Add subviews
     [theCell.contentView addSubview:titleLabel];
+    [theCell.contentView addSubview:theImageView];
     
     //RETURN IT NOW
     return theCell;
 }
+/*
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
@@ -218,7 +249,7 @@
     
     return nil;
 }
-
+*/
 #pragma mark Respond to User -
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
@@ -345,5 +376,30 @@
     self.revealViewController.rightViewRevealOverdraw = 40.0;
     self.revealViewController.bounceBackOnLeftOverdraw = NO;
     self.revealViewController.toggleCloseAnimationDuration = 0.18;
+}
+-(void)buttonConfig
+{
+    float iconSizes = ICONSIZE;
+    
+    FAKIonIcons *homeIcon = [FAKIonIcons homeIconWithSize:iconSizes];
+    
+    [homeIcon addAttribute:NSForegroundColorAttributeName value:[UIColor black75PercentColor]];
+    
+    FAKFoundationIcons *bookmarksIcon = [FAKFoundationIcons bookBookmarkIconWithSize:iconSizes];
+    
+    [bookmarksIcon addAttribute:NSForegroundColorAttributeName value:[UIColor black75PercentColor]];
+    
+    FAKIonIcons *settingsIcon = [FAKIonIcons levelsIconWithSize:iconSizes];
+    
+    [settingsIcon addAttribute:NSForegroundColorAttributeName value:[UIColor black75PercentColor]];
+    
+    
+    
+
+    
+    
+    
+    
+    images = [NSArray arrayWithObjects:[homeIcon imageWithSize:CGSizeMake(iconSizes, iconSizes)], [bookmarksIcon imageWithSize:CGSizeMake(iconSizes, iconSizes)], [settingsIcon imageWithSize:CGSizeMake(iconSizes, iconSizes)], nil];
 }
 @end
