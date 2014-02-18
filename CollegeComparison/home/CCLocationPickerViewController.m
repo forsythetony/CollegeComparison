@@ -102,12 +102,23 @@
         UIColor *pickerViewTextColor            =   CORALCOLOR;
         
         NSString *pickerViewFontFamily          =   @"Avenir-Book";
-        float pickerViewFontSize                =   18.0;
-        
+        float pickerViewFontSize                =   20.0;
+    
+        NSTextAlignment pickerViewLabelTextAlignment   =   NSTextAlignmentCenter;
     
     
+    //  Style for text views
     
+    UITextBorderStyle textFieldsBorderStyle = UITextBorderStyleRoundedRect;
     
+        //  City text field
+        NSString *cityTextPlaceholderText       =   @"City";
+    
+        //  State text field
+        NSString *statePlaceholderText          =   @"State";
+    
+        //  Zip code text field
+        NSString *zipPlaceholderText            =   @"Zip Code";
     
     
     [self.theToolbar setTranslucent:YES];
@@ -121,13 +132,26 @@
     
     UIFont *pickerViewFont = [UIFont fontWithName:pickerViewFontFamily size:pickerViewFontSize];
     
-    NSDictionary *pickerView = [NSDictionary dictionaryWithObjectsAndKeys:pickerViewFont, @"font", pickerViewTextColor, @"textColor", pickerViewBackgroundColor, @"backgroundColor", nil];
+    
+    NSDictionary *pickerView = [NSDictionary dictionaryWithObjectsAndKeys:pickerViewFont, @"font", pickerViewTextColor, @"textColor", pickerViewBackgroundColor, @"backgroundColor", [NSNumber numberWithInt:pickerViewLabelTextAlignment], @"textAlignment", nil];
 
     
     
     [self.cancelButton setTintColor:toolbarButtonTextColor];
     
     self.view.backgroundColor = mainViewBackgroundColor;
+    
+    //  Text fields
+    self.stateTextField.borderStyle =textFieldsBorderStyle;
+    self.stateTextField.placeholder = statePlaceholderText;
+    
+    self.cityTextField.borderStyle = textFieldsBorderStyle;
+    self.cityTextField.placeholder = cityTextPlaceholderText;
+    
+    self.zipTextField.borderStyle = textFieldsBorderStyle;
+    self.zipTextField.placeholder = zipPlaceholderText;
+    
+    
     
     //Create the dictionary
     
@@ -196,15 +220,30 @@
 {
     theLocation = nil;
 }
--(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    NSString *title = [regions objectAtIndex:row];
+    UILabel *newView = (UILabel*)view;
     
+    if (!newView) {
+        newView = [[UILabel alloc] init];
+        
+        //  Set font of label
+        newView.font = [[theLook objectForKey:@"pickerView"] objectForKey:@"font"];
+        
+        //  Set text color
+        newView.textColor = [[theLook objectForKey:@"pickerView"] objectForKey:@"textColor"];
+        
+        //  Set background color
+        newView.backgroundColor = [[theLook objectForKey:@"pickerView"] objectForKey:@"backgroundColor"];
+        
+        //  Set text alignment
+        newView.textAlignment = [[[theLook objectForKey:@"pickerView"] objectForKey:@"textAlignment"] integerValue];
+    }
     
+    //  Set text of label
+    newView.text = [regions objectAtIndex:row];
     
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName: [[theLook objectForKey:@"pickerView"] objectForKey:@"textColor"], NSFontAttributeName: [[theLook objectForKey:@"pickerView"] objectForKey:@"font"]}];
-    
-    return attributedString;
+    return newView;
 }
 
 @end
