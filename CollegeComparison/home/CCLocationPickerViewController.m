@@ -14,6 +14,8 @@
 @interface CCLocationPickerViewController () {
     NSArray *regions;
     CCLocation *theLocation;
+    
+    NSDictionary *theLook;
 }
 
 @end
@@ -32,7 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self aestheticsConfiguration];
+
     theLocation = [CCLocation new];
     
     [self.regionPickerView setDataSource:self];
@@ -41,7 +44,6 @@
     [self.stateTextField setDelegate:self];
     [self.cityTextField setDelegate:self];
     [self.zipTextField setDelegate:self];
-    [self aestheticsConfiguration];
     [self dataSetup];
 	// Do any additional setup after loading the view.
 }
@@ -79,11 +81,12 @@
 }
 -(void)aestheticsConfiguration
 {
-    //  Set background color
+    //  Main view
     
         UIColor *mainViewBackgroundColor        =   [UIColor whiteColor];
+
     
-    //  Toolbar configuration
+    //  Toolbar
     
         UIColor *toolbarTintColor               =   [UIColor charcoalColor];
     
@@ -92,9 +95,16 @@
         UIColor *toolbarButtonTextColor         =   [UIColor whiteColor];
     
     
-    //  Configure picker view
+    //  Picker view
     
-        UIColor *pickerViewTintColor            =   CORALCOLOR;
+        UIColor *pickerViewBackgroundColor      =   [UIColor clearColor];
+        
+        UIColor *pickerViewTextColor            =   CORALCOLOR;
+        
+        NSString *pickerViewFontFamily          =   @"Avenir-Book";
+        float pickerViewFontSize                =   18.0;
+        
+    
     
     
     
@@ -104,14 +114,25 @@
     [self.theToolbar setBackgroundColor:toolbarTintColor];
     [self.theToolbar setTintColor:toolbarTintColor];
     [self.theToolbar setBarTintColor:toolbarTintColor];
-
-    [self.regionPickerView setTintColor:pickerViewTintColor];
-    self.regionPickerView.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
     
     [self.saveButton setTintColor:toolbarButtonTextColor];
+    
+    //Picker View
+    
+    UIFont *pickerViewFont = [UIFont fontWithName:pickerViewFontFamily size:pickerViewFontSize];
+    
+    NSDictionary *pickerView = [NSDictionary dictionaryWithObjectsAndKeys:pickerViewFont, @"font", pickerViewTextColor, @"textColor", pickerViewBackgroundColor, @"backgroundColor", nil];
+
+    
+    
     [self.cancelButton setTintColor:toolbarButtonTextColor];
     
     self.view.backgroundColor = mainViewBackgroundColor;
+    
+    //Create the dictionary
+    
+    theLook = [NSDictionary dictionaryWithObjectsAndKeys:pickerView, @"pickerView", nil];
+    
 }
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -181,10 +202,9 @@
     
     
     
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName: CORALCOLOR}];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName: [[theLook objectForKey:@"pickerView"] objectForKey:@"textColor"], NSFontAttributeName: [[theLook objectForKey:@"pickerView"] objectForKey:@"font"]}];
     
     return attributedString;
-    
-    
 }
+
 @end
