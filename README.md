@@ -3,7 +3,7 @@ Ucompare
 ######A College Comparison iOS Application
 ##Info
 ###The Team
-#####Coding
+#####Programmers
 - Anthony Forsythe
 - Josh Valdivieso
 - Allen Ahner
@@ -11,6 +11,12 @@ Ucompare
 #####Design
 - Maura Howard - Lead Designer
 - Drew Nikonowicz (Does a few graphics)
+
+#####Previous Contributors - Fall Semester 2013
+- Fernando Colon - Early UI 
+- Scott Wood - Early UI 
+- Dan Silver - Early Database
+- David Boullion- Early Database
 
 ###About the app
 Ucompare is a mobile application that helps students search for and compare colleges through custom filters.  
