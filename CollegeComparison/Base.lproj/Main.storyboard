@@ -769,29 +769,16 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zB4-9A-Anh">
-                                        <rect key="frame" x="40" y="36" width="106" height="30"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="f3w-ku-9G5">
+                                        <rect key="frame" x="104" y="38" width="123" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.58846382470000003" green="0.14277563909999999" blue="0.1155509473" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Public">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-iO-KY0">
-                                        <rect key="frame" x="176" y="36" width="106" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.58846382470000003" green="0.14277563909999999" blue="0.1155509473" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Private">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="cYx-iO-KY0" firstAttribute="leading" secondItem="zB4-9A-Anh" secondAttribute="trailing" constant="35" id="AMH-fz-i4y"/>
-                                    <constraint firstItem="zB4-9A-Anh" firstAttribute="leading" secondItem="FlP-5e-4qx" secondAttribute="leading" constant="40" id="mPC-9x-q6h"/>
-                                    <constraint firstAttribute="trailing" secondItem="cYx-iO-KY0" secondAttribute="trailing" constant="40" id="swK-3P-Kya"/>
-                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rFI-Mg-5qU">
                                 <rect key="frame" x="0.0" y="201" width="320" height="149"/>
@@ -840,8 +827,7 @@
                         <outlet property="locationsTableView" destination="rFI-Mg-5qU" id="Ezi-C7-luh"/>
                         <outlet property="locationsTitleLabel" destination="eTJ-pz-F8j" id="dOx-Qm-ivK"/>
                         <outlet property="panelViewButton" destination="W7J-29-kzb" id="Hfp-uT-jFR"/>
-                        <outlet property="privateSchoolButton" destination="cYx-iO-KY0" id="73o-ND-l2l"/>
-                        <outlet property="publicSchoolButton" destination="zB4-9A-Anh" id="kYr-0k-O4q"/>
+                        <outlet property="privatePublic" destination="f3w-ku-9G5" id="jEi-Ze-6ui"/>
                         <outlet property="schoolTypeContainerView" destination="FlP-5e-4qx" id="hnq-Ac-lsW"/>
                         <outlet property="schoolTypeLabel" destination="cqa-GP-Gvh" id="XPX-vB-bB1"/>
                         <outlet property="tuitionContainerView" destination="mde-hR-k7i" id="nYQ-Zx-1WW"/>

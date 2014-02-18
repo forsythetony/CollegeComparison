@@ -53,6 +53,8 @@
     [self createCircleCollegeCount];
     
     [self configureRangeSlider];
+    
+    [self createSegmentedControl];
 }
 #pragma mark Data Setup
 -(void)dataSetup
@@ -484,6 +486,34 @@
     NSMutableDictionary *configDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:locationsTableView, @"locations", nil];
     
     theLook = [NSDictionary dictionaryWithDictionary:configDictionary];
+    
+}
+-(void)createSegmentedControl
+{
+    CGRect theBounds = self.schoolTypeContainerView.bounds;
+    CGRect labelBounds = self.schoolTypeLabel.bounds;
+    
+    CGRect newFrame;
+    float xPadding = 10.0;
+    float yPadding = 15.0;
+    
+    newFrame.origin.x = 0.0 + xPadding;
+    newFrame.origin.y = theBounds.size.height - (theBounds.size.height - labelBounds.size.height) + yPadding;
+    
+    newFrame.size.width = theBounds.size.width - (xPadding * 2);
+    newFrame.size.height = theBounds.size.height - labelBounds.size.height - yPadding * 2;
+    
+    NSArray *segmentedControlTitles = [NSArray arrayWithObjects:@"All", @"Public",@"Private", nil];
+    
+    UISegmentedControl *theControl = [[UISegmentedControl alloc] initWithItems:segmentedControlTitles];
+    
+    [theControl setFrame:newFrame];
+    [theControl setTintColor:CORALCOLOR];
+    [theControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor black25PercentColor], NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:16.0]} forState:UIControlStateNormal];
+    
+    [self.schoolTypeContainerView addSubview:theControl];
+    
+    
     
 }
 @end

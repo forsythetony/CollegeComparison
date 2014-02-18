@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *schoolTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *publicSchoolButton;
 @property (weak, nonatomic) IBOutlet UIButton *privateSchoolButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *privatePublic;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *panelViewButton;
 
