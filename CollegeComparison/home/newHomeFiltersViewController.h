@@ -18,6 +18,7 @@
 #import <IQKeyboardManager.h>
 #import "CCLocation.h"
 #import <FontAwesomeKit/FontAwesomeKit.h>
+#import <FPBrandColors/UIColor+FPBrandColor.h>
 
 @interface newHomeFiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CCLocationPickerViewControllerProtocol>
 

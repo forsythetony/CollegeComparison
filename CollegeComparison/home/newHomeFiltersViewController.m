@@ -10,9 +10,6 @@
 #import "homePageHeaderView.h"
 #import "SWRevealViewController.h"
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-#define CORALCOLOR UIColorFromRGB(0xF05746)
-
 @interface newHomeFiltersViewController () {
     NSMutableArray *locationsArray;
     NSMutableArray *collegesFound;
@@ -89,7 +86,7 @@
     
     [collegeCountCircleGraph setLabelColor:[UIColor whiteColor]];
     [collegeCountCircleGraph setLineWidth:[NSNumber numberWithFloat:10.0]];
-    [collegeCountCircleGraph setStrokeColor:UIColorFromRGB(0x69AEEF)];
+    [collegeCountCircleGraph setStrokeColor:[UIColor customBlueColor]];
     [collegeCountCircleGraph setHasPercentage:NO];
     [collegeCountCircleGraph strokeChart];
     
@@ -113,7 +110,7 @@
     
     homePageHeaderView *headerView = [[homePageHeaderView alloc] initWithFrame:headerViewFrame];
     
-    [headerView setBackgroundColor:CORALCOLOR];
+    [headerView setBackgroundColor:[UIColor customCoralColor]];
     
     [self.view addSubview:headerView];
     
@@ -251,7 +248,7 @@
     [tuitionsSlider setMaximumValue:100000];
     
     //  Configure visual properties of slider
-    [tuitionsSlider setTintColor:CORALCOLOR];
+    [tuitionsSlider setTintColor:[UIColor customCoralColor]];
     
     //  Add this view controller to listen for slider's value change
     [tuitionsSlider addTarget:self action:@selector(tuitionRangeDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -286,7 +283,7 @@
     
     
 
-    [enrollmentsSlider setTintColor:CORALCOLOR];
+    [enrollmentsSlider setTintColor:[UIColor customCoralColor]];
     [self.enrollmentContainerView addSubview:enrollmentsSlider];
     
     [enrollmentsSlider setUpperValue:100000 animated:YES];
@@ -561,7 +558,7 @@
     UISegmentedControl *theControl = [[UISegmentedControl alloc] initWithItems:segmentedControlTitles];
     
     [theControl setFrame:newFrame];
-    [theControl setTintColor:CORALCOLOR];
+    [theControl setTintColor:[UIColor customCoralColor]];
     [theControl setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor black25PercentColor], NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:16.0]} forState:UIControlStateNormal];
     
     [self.schoolTypeContainerView addSubview:theControl];
@@ -590,7 +587,7 @@
     float theSize = 20.0;
     CGSize sizeSize = CGSizeMake(theSize, theSize);
     
-    UIColor *foregroundColor = UIColorFromRGB(0x69AEEF);
+    UIColor *foregroundColor = [UIColor customBlueColor];
     
     FAKIonIcons *locationIcon = [FAKIonIcons androidEarthIconWithSize:theSize];
     [locationIcon addAttribute:NSForegroundColorAttributeName value:foregroundColor];
